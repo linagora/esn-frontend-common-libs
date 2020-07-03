@@ -1,0 +1,14 @@
+.hidden.collaboration-invite-users
+  form(name='form', ng-submit='inviteUsers() && !running')
+    .lv-item
+      .fg-line
+        tags-input.form-control(ng-disabled='running', ng-model='users', display-property='{{::displayProperty}}',
+        placeholder="{{ 'Invite users...' | translate }}", min-tags='0', add-from-autocomplete-only='true',
+        on-tag-added='resetView()', replace-spaces-with-dashes='false')
+          auto-complete(source='getInvitablePeople($query)', min-length='0', debounce-delay='200', max-results-to-show="20", template="/views/modules/auto-complete/user-auto-complete")
+      .hidden.bg-danger(error-container)
+        span(ng-show='running') {{ 'Please wait...' | translate }}
+        span(ng-show='error') {{error.error.details || error}}.
+        span(ng-show='invalidUser') {{ 'An invitation has not been sent' | translate }} : {{invalidUser}} {{ 'is not a valid user' | translate }}.
+        span(ng-show='noUser') {{ 'Please enter at least one user to send an invitation' | translate }}.
+    .clearfix

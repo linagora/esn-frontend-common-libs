@@ -1,0 +1,54 @@
+{
+  "name": "html5-notification",
+  "libraryName": "HTML5 Notification",
+  "description": "Notification polyfill",
+  "version": "3.0.0",
+  "homepage": "https://github.com/ttsvetko/HTML5-Desktop-Notifications",
+  "bugs": {
+    "url": "https://github.com/ttsvetko/HTML5-Desktop-Notifications/issues",
+    "email": "tsekach+html5notification@gmail.com"
+  },
+  "author": {
+    "name": "Tsvetan Tsvetkov",
+    "email": "tsekach@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ttsvetko/HTML5-Desktop-Notifications.git"
+  },
+  "engines": {
+    "node": ">=5"
+  },
+  "devDependencies": {
+    "bower": "latest",
+
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-eslint": "latest",
+
+    "karma": "latest",
+    "jasmine-core": "latest",
+    "phantomjs-prebuilt": "latest",
+    "karma-chrome-launcher": "latest",
+    "karma-firefox-launcher": "latest",
+    "karma-ie-launcher": "latest",
+    "karma-jasmine": "latest",
+    "karma-opera-launcher": "latest",
+    "karma-safari-launcher": "latest",
+
+    "load-grunt-config": "latest",
+    "time-grunt": "latest"
+  },
+  "dependencies": {},
+  "scripts": {
+    "bower": "bower",
+    "grunt": "grunt -v",
+    "grunt:dev": "grunt -v dev",
+    "karma": "karma start",
+    "test": "karma start --browsers Firefox --single-run"
+  },
+  "private": false
+}

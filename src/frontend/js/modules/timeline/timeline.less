@@ -1,0 +1,124 @@
+@timelineLikeColor: #ff796f;
+@timelineRocketColor: @m-red;
+@timelinePostColor: @m-blue;
+@timelineUpdateColor: @m-green;
+@timelineFollowColor: @m-deeporange;
+@timelineUnfollowColor: @m-orange;
+
+.timeline {
+
+  .list-empty {
+    .all-centered;
+    .flex-column;
+
+    height: 50vh;
+
+    i {
+      color: @accentColor;
+      font-size: 8em;
+      opacity: 0.7;
+    }
+
+    .message {
+      color: @secondaryTextColor;
+      font-size: 16px;
+    }
+  }
+
+  .card-header h2 {
+    margin: 0;
+    line-height: 100%;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .t-view {
+    border: 0;
+
+    @media (max-width: @screen-md-min) {
+      &:before {
+        display: none;
+      }
+
+      &:after {
+        display: none;
+      }
+    }
+
+    &:before {
+      font-family: 'MaterialDesignIcons';
+    }
+
+    &[data-tv-type="rocket"] {
+      &:before {
+        content: "\f463";
+        background: @timelineRocketColor;
+        box-shadow: 0 0 0 1px @timelineRocketColor;
+      }
+
+      &:after {
+        background: @timelineRocketColor;
+      }
+    }
+
+    &[data-tv-type="like"] {
+      &:before {
+        content: "\F2D1";
+        background: @timelineLikeColor;
+        box-shadow: 0 0 0 1px @timelineLikeColor;
+      }
+
+      &:after {
+        background: @timelineLikeColor;
+      }
+    }
+
+    &[data-tv-type="post"] {
+      &:before {
+        content: "\f181";
+        background: @timelinePostColor;
+        box-shadow: 0 0 0 1px @timelinePostColor;
+      }
+
+      &:after {
+        background: @timelinePostColor;
+      }
+    }
+
+    &[data-tv-type="update"] {
+      &:before {
+        content: "\f45a";
+        background: @timelineUpdateColor;
+        box-shadow: 0 0 0 1px @timelineUpdateColor;
+      }
+
+      &:after {
+        background: @timelineUpdateColor;
+      }
+    }
+
+    &[data-tv-type="follow"] {
+      &:before {
+        content: "\f014";
+        background: @timelineFollowColor;
+        box-shadow: 0 0 0 1px @timelineFollowColor;
+      }
+
+      &:after {
+        background: @timelineFollowColor;
+      }
+    }
+
+    &[data-tv-type="unfollow"] {
+      &:before {
+        content: "\f00D";
+        background: @timelineUnfollowColor;
+        box-shadow: 0 0 0 1px @timelineUnfollowColor;
+      }
+
+      &:after {
+        background: @timelineUnfollowColor;
+      }
+    }
+  }
+}

@@ -1,0 +1,120 @@
+@inputBorderColor: #e0e0e0;
+@errorColor: #f44336;
+@toggleDisabledColor: @lighterSecondaryTextColor;
+
+esn-form-group {
+  .form-control.ng-pristine.ng-invalid {
+    border-bottom: 1px solid @inputBorderColor;
+  }
+
+  .fg-line::after {
+    background: none;
+  }
+
+  .esn-form-message-container {
+    height: 10px;
+    padding-top: 5px;
+
+    .help-block {
+      margin-top: 0;
+      font-size: 11px;
+    }
+  }
+
+  &.has-invalid .esn-form-message-container .help-block {
+    color: @errorColor;
+  }
+
+  .form-control.ng-valid-validator, .form-control.ng-valid-async-validator {
+    background-image: url('/images/checkmark.png');
+    background-size: 1.5em;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right: 25px;
+  }
+
+  .form-control.ng-invalid-validator, .form-control.ng-invalid-async-validator {
+    background-image: none;
+  }
+
+  .form-control.ng-pending {
+    background-image: url('/images/throbber-amber.svg');
+    background-size: 2em;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right: 25px;
+  }
+}
+
+esn-form-group.has-required {
+  .fg-label::after {
+    content: " *";
+  }
+}
+
+esn-form-group.has-focus.has-required {
+  .fg-label::after {
+    color: @errorColor;
+  }
+}
+
+esn-form-group:not(.has-focus).has-invalid {
+  .fg-label {
+    color: @errorColor;
+  }
+}
+
+form:not(.ng-submitted) {
+  esn-form-validate-message.pristine {
+    display: none;
+  }
+}
+
+.fg-line {
+  &:not([class*=has-]) {
+    &:after {
+      background: @primaryColor;
+    }
+  }
+}
+
+.toggle-switch {
+  .ts-helper.ts-disabled {
+    cursor: not-allowed;
+    background: lighten(@lighterSecondaryTextColor, 20%);
+  }
+
+  .ts-helper.ts-disabled:before {
+    background: @toggleDisabledColor;
+  }
+
+  .ts-label.ts-disabled {
+    color: lighten(@text-color, 40%);
+    background: transparent;
+  }
+
+  .ts-helper {
+    background: @secondaryTextColor;
+  }
+
+}
+
+.toggle-switch[data-ts-color="blue"] {
+  input {
+    &:not(:disabled) {
+      &:checked + .ts-helper {
+        background: fade(@primaryColor, 50%);
+
+        &:before {
+          background: @primaryColor;
+        }
+
+        &:active {
+          &:before {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.28), 0 0 0 20px fade(@primaryColor, 20%);
+          }
+        }
+      }
+    }
+  }
+} 

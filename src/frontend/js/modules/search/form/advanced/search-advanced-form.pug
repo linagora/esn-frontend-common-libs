@@ -1,0 +1,13 @@
+.search-advanced-form
+  form.search-header-form(name='form', ng-submit='ctrl.doSearch(ctrl.searchQuery)')
+    esn-search-provider-select(ng-class="{ 'focus': focus }", providers="ctrl.providers", on-provider-selected="ctrl.onProviderSelected(provider)")
+
+    .search-input-container
+      button.btn.btn-icon.btn-link.button.search-header-button.search-button.hidden-xs(type="submit", title="{{ 'Search' | translate }}")
+        i.mdi.mdi-magnify(ng-class="{ 'focus': focus }")
+      input.search-input(type="search", name="search", ng-model="ctrl.searchQuery.text", ng-change="ctrl.clearAdvancedQuery()", ng-focus="focus=true", ng-blur="focus=false", placeholder= "{{ctrl.placeHolder}}")
+
+    button.btn.btn-icon.btn-link.button.search-header-button.clean-button(type="button", title="{{ 'Delete' | translate }}", ng-hide="!ctrl.searchQuery.text", ng-click="ctrl.clearSearchQuery()")
+      i.mdi.mdi-close(ng-class="{ 'focus': focus }")
+    .search-header-button.settings-button
+      esn-search-advanced-toggle-button(ng-class="{ 'focus': focus }", provider="ctrl.provider", query="ctrl.searchQuery", search="ctrl.doSearch(query)")

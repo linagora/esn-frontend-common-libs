@@ -1,0 +1,7 @@
+div
+  a.avatar(ng-href='{{::activitystream.htmlUrl}}')
+    img(src='/images/activitystream.png', alt="{{ 'Activity Stream Avatar' | translate }}", fallback-src='/images/activitystream.png', ng-src='{{::activitystream.avatarUrl}}')
+    span.label.sourcelabel.label-primary {{ 'Source' | translate }}
+  div.ellipsis
+    span
+      a(ng-href='{{::activitystream.htmlUrl}}') {{::activitystream.displayName}}

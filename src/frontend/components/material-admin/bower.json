@@ -1,0 +1,25 @@
+{
+  "name": "material-admin",
+  "version": "0.0.1",
+  "authors": [
+    "rushenn (https://wrapbootstrap.com/user/rushenn)"
+  ],
+  "description": "Material-Design Bootstrap theme",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "material",
+    "admin"
+  ],
+  "license": "Commercial",
+  "homepage": "https://wrapbootstrap.com/theme/material-admin-responsive-angularjs-WB011H985",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "data"
+  ]
+}

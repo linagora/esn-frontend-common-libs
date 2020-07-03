@@ -1,0 +1,53 @@
+.avatar-with-bubble {
+  position: relative;
+
+  img {
+    position: relative;
+
+    .RoundedShape(50%);
+  }
+
+  .user-status-bubble {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    height: 12px;
+    width: 12px;
+    border: 2px solid white;
+
+    .RoundedShape(50%);
+  }
+}
+
+.avatar-picker-button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 999px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+  }
+}
+
+@media (max-width: @screen-xs-max) {
+  .avatar-picker-preview {
+    .flex-column;
+    .all-centered;
+  }
+}

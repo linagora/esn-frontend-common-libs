@@ -1,0 +1,18 @@
+extends ../../../../views/modules/subheader/responsive-subheader.pug
+
+block left
+  button.btn.btn-link.hidden-xs(href='', esn-back-button='home')
+    .flex-vertical-centered
+      i.mdi.mdi-arrow-left.mdi-margin-right
+      span {{ 'Back' | translate }}
+  button.btn.btn-link.btn-icon.visible-xs(href='', esn-back-button='home')
+    i.mdi.mdi-arrow-left
+  span.title.ellipsis {{ 'Notifications' | translate }}
+
+block right
+  .dropdown.flex-vertical-centered(ng-if="false")
+    a(href='', data-toggle='dropdown', aria-expanded='true')
+      i.mdi.mdi-dots-vertical
+
+    ul.dropdown-menu.dropdown-menu-right.clickable
+      li.action-list-container(dynamic-directive="user-notification-dropdown-actions")

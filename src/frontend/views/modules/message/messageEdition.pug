@@ -1,0 +1,23 @@
+.card.wall-posting(ng-controller='messageEditionController')
+  .error
+  .card-body.card-message-edition
+    .tab-content.p-0(data-ng-switch='type')
+      whatsup-edition(data-ng-switch-when='whatsup', type="type")
+      poll-edition(data-ng-switch-when='poll', type="type")
+      cal-event-message-edition(data-ng-switch-when='event', calendar-home-id="community._id", activitystream="activitystream")
+      injections-widget(injection-anchor-id="messageEditionMessageTypeSwitch", injection-subject="community")
+
+  ul.list-unstyled.clearfix.wpb-actions
+    li.wpba-attrs
+      ul.list-unstyled.list-inline.m-l-0.m-t-5
+        li
+          button.btn.btn-link(data-wpba="image", data-toggle="tab", ng-click='show("whatsup")', set-focus="textarea-whats-up-composer", title="{{ 'Message' | translate }}")
+            i.mdi.mdi-pencil
+        li
+          button.btn.btn-link(data-wpba="video", data-toggle="tab", ng-click='show("poll")', set-focus="textarea-poll-composer", title="{{ 'Survey' | translate }}")
+            i.mdi.mdi-chart-bar
+        li.disabled
+          //cal-event-message-edition-button
+          button.btn.btn-link(type='button', ng-click='show("event")', title="{{ 'Soon available' | translate }}", ng-disabled="true")
+            i.mdi.mdi-calendar
+        injections-widget(injection-anchor-id="messageEditionMessageTypeButton", injection-subject="community")

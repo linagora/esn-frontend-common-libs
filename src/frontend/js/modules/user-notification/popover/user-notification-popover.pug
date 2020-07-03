@@ -1,0 +1,7 @@
+.popover.user-notification-popover(tabindex="-1", force-margin-left="10")
+  .popover-title.text-center {{ 'Notifications' | translate }}
+    a.pull-right(href="", ng-show="false", ng-click="$hide()") {{ 'Mark as read' | translate }}
+  .popover-content
+    esn-user-notification-list(scroll-inside-container='true', hide-popover='$hide()')
+  .popover-footer
+    a(ui-sref="user-notification.list", ng-click="$hide()") {{ 'See all' | translate }}

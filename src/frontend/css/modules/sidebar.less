@@ -1,0 +1,100 @@
+@subHeaderShadow: rgba(0, 0, 0, 0.3);
+@sidebar-top: 0;
+
+body.aside-open {
+  .modal-open;
+}
+
+.aside#contextual-sidebar {
+  width: 268px;
+  min-width:268px;
+
+  @media (min-width: @screen-md-min) {
+    top: @header-height-md;
+  }
+
+  @media (min-width: @screen-xl-min) {
+    top: @header-height-xl;
+  }
+
+  #aside-header {
+    background-color: @darkenBgColor;
+    padding: 0 5px;
+
+    .header-inner {
+      .btn-link {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .btn-link:not([disabled]):hover {
+        color: @textPrimaryColor;
+      }
+
+      .logo {
+        a {
+          .openpaas-logo {
+            height: 32px;
+            width: 35px;
+          }
+        }
+      }
+
+      .mdi {
+        color: @primaryColor;
+        font-size: 1.8em;
+        vertical-align: middle;
+      }
+    }
+    .header-actions{
+      padding-right: 0;
+    }
+  }
+
+  .aside-body {
+    padding: 0;
+    padding-bottom: 40px;
+    padding-top: 10px;
+
+    &.hideHeader {
+      padding-top: 0;
+    }
+  }
+
+  hr {
+    margin: 0;
+  }
+}
+
+.aside-backdrop {
+
+  @media (min-width: @screen-md-min) {
+    top: @header-height-md !important; // Because $aside set styles on the element directly
+  }
+
+  @media (min-width: @screen-xl-min) {
+    top: @header-height-xl !important; // Because $aside set styles on the element directly
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {
+  #sidebar {
+    @media (min-width: @screen-md-min) {
+      top: @header-height-md;
+    }
+
+    @media (min-width: @screen-xl-min) {
+      top: @header-height-xl;
+    }
+  }
+}
+
+@media (max-width: @screen-md-min) {
+  .aside#contextual-sidebar, #sidebar {
+    top: @sidebar-top;
+  }
+
+  .aside-backdrop {
+    top: @sidebar-top !important; // Because $aside set styles on the element directly
+  }
+}

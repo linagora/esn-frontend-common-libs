@@ -1,0 +1,624 @@
+@import '../components/bootstrap/less/variables';
+@import '../components/bootstrap/less/mixins';
+@import '../components/material-admin/less/inc/variables';
+@import '../components/material-admin/less/inc/mixin';
+@import './variables';
+
+.PrimaryColor() {
+  background-color: @primaryColor;
+  color: @textPrimaryColor;
+}
+
+.SecondaryColor() {
+  background-color: @body-bg;
+  color: @secondaryTextColor;
+}
+
+.ReversedSecondaryColor() {
+  background-color: @secondaryTextColor;
+  color: @body-bg;
+}
+
+.DarkenReversedSecondaryColor() {
+  background-color: darken(@secondaryTextColor, 20%);
+  color: @body-bg;
+}
+
+.text-color {
+  color: @text-color;
+}
+
+.secondary-text-color {
+  color: @secondaryTextColor;
+}
+
+.AccentColor() {
+  background-color: @accentColor;
+  color: @textPrimaryColor;
+}
+
+.RoundedShape(@radius:@defaultRadius){
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.ShadowedShape(@shadow:@defaultShadow){
+  box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+  -webkit-box-shadow: @shadow;
+}
+
+.ResizeImage(@width, @height) {
+  img {
+    width: @width;
+    height: @height;
+  }
+}
+
+.BoxShadow(@color) {
+  box-shadow: @color;
+  -webkit-box-shadow: @color;
+  -o-box-shadow: @color;
+  -ms-box-shadow: @color;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.display-none {
+  display: none;
+}
+
+.rotate(@degrees) {
+  transform: rotate(@degrees);
+  -ms-transform: rotate(@degrees); /* IE 9 */
+  -webkit-transform: rotate(@degrees); /* Opera, Chrome, and Safari */
+}
+
+.translate(@xpx, @ypx) {
+  transform: translate(@xpx, @ypx);
+  -ms-transform: translate(@xpx, @ypx); /* IE 9 */
+  -webkit-transform: translate(@xpx, @ypx); /* Opera, Chrome, and Safari */
+}
+
+.transform(@transform) {
+  transform: @transform;
+  -ms-transform: @transform; /* IE 9 */
+  -webkit-transform: @transform; /* Opera, Chrome, and Safari */
+}
+
+.scale(@width, @height) {
+  -ms-transform: scale(@width, @height); /* IE 9 */
+  -webkit-transform: scale(@width, @height); /* Safari */
+  transform: scale(@width, @height);
+}
+
+.transition-transform(@duration) {
+  transform: @duration;
+  -ms-transform: @duration; /* IE 9 */
+  -webkit-transform: @duration; /* Opera, Chrome, and Safari */
+}
+
+.vertical-centered {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.transparent {
+  opacity: 0;
+}
+
+.opaque {
+  opacity: 1;
+}
+
+.multilines {
+  white-space: pre-wrap;
+}
+
+.nopadding {
+   padding: 0 !important; /* this rule deliberately overwrites padding */
+   margin: 0 !important; /* this rule deliberately overwrites the margin */
+}
+
+.nopadding-left {
+  padding-left: 0 !important; /* this rule deliberately overwrites padding */
+}
+
+.nopadding-right {
+  padding-right: 0 !important; /* this rule deliberately overwrites padding */
+}
+
+.nomargin {
+  margin: 0 !important; /* this rule deliberately overwrites the margin */
+}
+
+.noborder {
+  border: 0 !important; /* this rule deliberately overwrites the border */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.horiz-space {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.vertiz-space {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.centered-cell {
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.flex {
+  display: flex;
+  display: -webkit-flex;
+}
+
+.flex-direction(@direction) {
+  flex-direction: @direction;
+  -webkit-flex-direction: @direction;
+}
+
+.flex-column {
+  .flex;
+  .flex-direction(column);
+}
+
+.flex-row {
+  .flex;
+  .flex-direction(row);
+}
+
+.flex-row-reverse {
+  .flex;
+  .flex-direction(row-reverse);
+}
+
+.flex-shorthand(@grow, @shrink: 0, @basis: auto) {
+  flex: @grow @shrink @basis;
+  -webkit-flex: @grow @shrink @basis;
+}
+
+.flex-horizontal-centered {
+  .flex();
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.flex-vertical-centered {
+  .flex();
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.flex-space-around {
+  .flex();
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+.flex-space-between {
+  .flex();
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.flex-start {
+  .flex();
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  .flex();
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+.flex-wrap {
+  .flex();
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.flex-flow(@flow) {
+  .flex();
+  -webkit-flex-flow: @flow;
+  flex-flow: @flow;
+}
+
+.flex-shrink(@shrink: 1) {
+  -webkit-flex-shrink: @shrink;
+  flex-shrink: @shrink;
+}
+
+.flex-grow(@grow: 1) {
+  -webkit-flex-grow: @grow;
+  flex-grow: @grow;
+}
+
+/* flex-noshrink renamed to esn-flex-noshrink to prevent conflicts with angular-material */
+.esn-flex-noshrink {
+  .flex();
+  .flex-shrink(0);
+}
+
+.all-centered {
+  .flex-horizontal-centered;
+  .flex-vertical-centered;
+}
+
+.align-items(@value) {
+  align-items: @value;
+  -webkit-align-items: @value;
+}
+.align-self(@value) {
+  align-self: @value;
+  -webkit-align-self: @value;
+}
+
+.aligner {
+  height: 100%;
+  .all-centered;
+}
+
+.aligner-items-start {
+  .align-items(flex-start);
+}
+
+.aligner-items-end {
+  .align-items(flex-end);
+}
+
+.aligner-item-start {
+  .align-self(flex-start);
+}
+
+.aligner-item-end {
+  .align-self(flex-end);
+}
+
+.rotate, .mdi-spin {
+  animation-duration: 2s;
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-name: rotate;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-duration: 2s;
+  -moz-animation-name: rotate;
+  -ie-animation-iteration-count: infinite;
+  -ie-animation-duration: 2s;
+  -ie-animation-name: rotate;
+}
+
+.animation-rotate(@val) {
+  animation: rotate @val;
+  -webkit-animation: rotate @val;
+  -moz-animation: rotate @val;
+  -ie-animation: rotate @val;
+}
+
+.rotateZ3d(@val) {
+  -webkit-transform: rotateZ(@val);
+  transform: rotateZ(@val);
+}
+
+.break-word {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-ie-keyframes rotate {
+  from {
+    transform: rotate(0deg);
+    -ie-transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -ie-transform: rotate(360deg);
+  }
+}
+
+.zoomIn {
+  animation: zoomIn .25s ease-out forwards;
+}
+
+.flashing-keyframes (@className; @firstColor; @secondColor) {
+
+  @-webkit-keyframes @className {
+    0%, 20%, 60%, 100%  { color: @firstColor }
+    40%, 80%  { color: @secondColor }
+  }
+
+  @-moz-keyframes @className {
+    0%, 20%, 60%, 100%  { color: @firstColor }
+    40%, 80%  { color: @secondColor }
+  }
+
+  @-ie-keyframes  @className {
+    0%, 20%, 60%, 100%  { color: @firstColor }
+    40%, 80%  { color: @secondColor }
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale3d(0,0,0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale3d(1,1,1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    transform: scale3d(0,0,0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale3d(1,1,1);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes zoomIn {
+  0% {
+    transform: scale3d(0,0,0);
+    -moz-transform: scale3d(0,0,0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale3d(1,1,1);
+    -moz-transform: scale3d(1,1,1);
+    opacity: 1;
+  }
+}
+
+@-ie-keyframes zoomIn {
+  0% {
+    transform: scale3d(0,0,0);
+    -ie-transform: scale3d(0,0,0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale3d(1,1,1);
+    -ie-transform: scale3d(1,1,1);
+    opacity: 1;
+  }
+}
+
+.drop-menu-open-animation(@origin) {
+  &.open {
+    .dropdown-menu {
+      .scale3d(1, 1, 1);
+      .opacity(1);
+    }
+  }
+  .dropdown-menu {
+    display: block;
+    .opacity(0);
+    .scale3d(0, 0, 1);
+    .transform-origin(@origin);
+    .transition(all 250ms ease-out);
+  }
+}
+
+.fadeIn(@duration) {
+  animation: fadeIn @duration;
+  -webkit-animation: fadeIn @duration;
+}
+
+
+/* material-admin extras */
+
+.bold {
+  font-weight: 600;
+}
+
+.w-128 {
+  width: 128px;
+  height: 128px;
+}
+
+.button-add {
+  color: @m-green;
+  font-size: 1.5em;
+}
+
+.button-remove {
+  color: @m-red;
+  font-size: 1.5em;
+  position: absolute;
+  right: 0;
+  bottom: 7px;
+  z-index: 9;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.fill-parent-block {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.z-index-on-top(@index) {
+  z-index: @index;
+  -webkit-transform: translate(0, 0); // https://css-tricks.com/forums/topic/safari-for-ios-z-index-ordering-bug-while-scrolling-a-page-with-a-fixed-element/
+}
+
+textarea {
+  // http://stackoverflow.com/questions/5263260/stop-safari-mobile-from-giving-input-buttons-rounded-corners
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+@media (max-width: @screen-xs-max) {
+  .no-padding-xs {
+    padding:0 !important; /* Needed to override bootsrap */
+  }
+  .main-content:before, .main-content:after {
+    content: "";
+    display: none;
+  }
+  .all-centered-xs {
+    .flex-horizontal-centered;
+    .flex-vertical-centered;
+  }
+}
+
+//Override the path for select input img
+html:not(.ie9) .select::before, .select::before {
+  background-image: url('../components/material-admin/img/select.png');
+}
+
+.inline-flex {
+  display: -webkit-inline-flex; /* iOS, Safari */
+  display: -ms-inline-flexbox; /* IE */
+  display: inline-flex;
+}
+
+.visible-xl {
+  display: none !important; // As every other BS visible classes
+}
+
+@media (min-width: @screen-xl-min) {
+  .hidden-xl {
+    display: none !important; // As every other BS hidden classes
+  }
+
+  .visible-xl {
+    display: block !important; // As every other BS visible classes
+  }
+}
+
+.cursor-grab() {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.cursor-grabbing() {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.btn-icon-before {
+  & > i.mdi {
+    margin-right: 5px;
+  }
+}
+
+@media (min-width: @screen-xl-min) {
+  .make-grid(xl);
+}
+
+.checkbox .input-helper:before, .radio .input-helper:before {
+  border: 2px solid lighten(@secondaryTextColor, 20%);
+  border-radius: 2px;
+}
+
+/*
+ * Pop-in active effects
+ */
+.active-pop(@background: ~"rgba(0,0,0,0.5)", @radius: 0, @duration: 250ms, @zindex: 0) {
+  position: relative;
+
+  &:before {
+    left: 0;
+    top: 0;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: @background;
+    z-index: @zindex;
+    border-radius: @radius;
+
+    .scale3d(0,0,0);
+    .transition(all);
+    .transition-duration(@duration);
+    .backface-visibility(hidden);
+    .opacity(0);
+  }
+
+  &:active {
+    &:before {
+      .scale3d(1,1,1);
+      .opacity(1);
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.white-space-pre-line {
+  white-space: pre-line;
+}

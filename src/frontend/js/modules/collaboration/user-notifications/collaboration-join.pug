@@ -1,0 +1,24 @@
+.esn-user-notification
+  .card
+    .card-header
+      .media
+        div(ng-show='notFound')
+          p {{ 'This notification is about removed content and is skipped' | translate }}
+        div(ng-show='error')
+          p {{ 'Error while getting notification' | translate }}
+        div(ng-show='loading && !error && !notFound')
+          p {{ 'Loading notification' | translate }}
+        div(ng-hide='loading || error || notFound')
+          a.pull-left(ng-href='/#/{{::collaborationPath}}/{{::collaborationJoined._id}}')
+            img.media-object(ng-src='/api/avatars?objectType={{::collaborationJoined.objectType}}&id={{::collaborationJoined._id}}', fallback-src='/images/collaboration.png', alt="{{ 'Collaboration joined' | translate }}")
+          .media-body
+            .ellipsis
+              span.pull-right.date.hidden-xs(am-time-ago="::notification.timestamps.creation")
+              a(ng-href="/#/{{::collaborationPath}}/{{::collaborationJoined._id}}") {{::collaborationJoined.title}}
+            div
+              span
+                a(ng-href="/#/profile/{{::joiner._id}}") {{::joinerDisplayName}}
+                span(ng-switch='collaborationJoined.objectType')
+                  span(ng-switch-when='community') &nbsp; {{ 'joined this community' | translate }}
+                  span(ng-switch-when='project') &nbsp; {{ 'joined this project' | translate }}
+                  span(ng-switch-default) &nbsp; {{ 'joined this collaboration' | translate }}

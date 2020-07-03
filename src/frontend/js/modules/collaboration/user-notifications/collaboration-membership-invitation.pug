@@ -1,0 +1,34 @@
+.esn-user-notification
+  .card
+    .card-header
+      .media
+        div(ng-show='notFound')
+          p {{ 'This notification is about removed content and is skipped' | translate }}
+        div(ng-show='error')
+          p {{ 'Error while getting notification' | translate }}
+        div(ng-show='loading && !error && !notFound')
+          p {{ 'Loading notification' | translate }}
+        div(ng-hide='loading || error || notFound')
+          a.pull-left(ng-href='/#/{{::collaborationPath}}/{{::invitationCollaboration._id}}')
+            img.media-object(ng-src='/api/avatars?objectType={{::invitationCollaboration.objectType}}&id={{::invitationCollaboration._id}}', fallback-src='/images/collaboration.png', alt="{{ 'Invitation Collaboration' | translate }}")
+          .media-body
+            .ellipsis
+              span.pull-right.date.hidden-xs(am-time-ago="::notification.timestamps.creation")
+              a(ng-href="/#/{{::collaborationPath}}/{{::invitationCollaboration._id}}") {{::invitationCollaboration.title}}
+            div
+              span
+                a(ng-href="/#/profile/{{::invitationSender._id}}") {{::invitationSenderDisplayName}}
+                span(ng-switch='invitationCollaboration.objectType')
+                  span(ng-switch-when='community')  {{ 'invites you to join this community' | translate }}
+                  span(ng-switch-when='project')  {{ 'invites you to join this project' | translate }}
+                  span(ng-switch-default)  {{ 'invites you to join this collaboration' | translate }}
+            div(ng-switch='notification.actionDone')
+              div.notification-actions(ng-switch-default)
+                esn-collaboration-invitation-accept-button
+                esn-collaboration-invitation-decline-button
+              div(ng-switch-when='accept')
+                span(ng-switch='invitationCollaboration.objectType')
+                  span(ng-switch-when='community') {{ 'You have been added to the community, welcome' | translate }} !
+                  span(ng-switch-when='project') {{ 'You have been added to the project, welcome' | translate }} !
+                  span(ng-switch-default) {{ 'You have been added to the collaboration, welcome' | translate }} !
+              div(ng-switch-when='decline') {{ 'You have declined the invitation' | translate }}

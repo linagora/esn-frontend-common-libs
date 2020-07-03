@@ -1,0 +1,126 @@
+@transition-btn-link: box-shadow .4s cubic-bezier(.25, .8, .25, 1), background-color .4s cubic-bezier(.25, .8, .25, 1);
+@opacity-btn-disabled: 0.65;
+
+.btn-fab-fixed-bottom {
+  &:extend(.btn-float all, .btn-accent all);
+  position: fixed;
+  bottom: 30px;
+  z-index: 100;
+  right: 30px;
+  padding: 0;
+  line-height: inherit;
+  i {
+    font-size: 3em;
+    font-weight: normal;
+  }
+}
+
+.radio .input-helper::after{
+  background-color: @primaryColor;
+}
+
+.btn-link {
+  .ShadowedShape(none);
+
+  background:transparent;
+  border:0;
+  font-size: 1.1em;
+  font-weight: 500;
+
+  &.disabled, &[disabled] {
+    cursor: @cursor-disabled;
+    .opacity(@opacity-btn-disabled);
+  }
+
+  &.active {
+    background-color: @black-alpha-10;
+    transition: @transition-btn-link;
+  }
+}
+
+.is-desktop .btn-link:not([disabled]):hover  {
+  background-color: @black-alpha-10;
+  transition: @transition-btn-link;
+}
+
+.btn-float {
+  width: 56px;
+  height: 56px;
+  line-height: 52px !important; /* Override material-admin  */
+
+  i {
+    font-size: 24px;
+  }
+}
+
+button.close {
+  opacity: 1;
+}
+
+.m-btn {
+  bottom: 16px;
+  right: 16px;
+}
+
+
+@media (min-width: @screen-md-min) {
+  .m-btn {
+    bottom: 24px;
+    right: 24px;
+  }
+}
+
+@media (max-width: @screen-md-min) {
+  #header, #aside-header {
+    .btn-icon {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
+/* Override ANGULAR MATERIAL */
+
+md-menu-item .md-button {
+  & > span {
+    font-family: roboto;
+    font-size: 13px;
+  }
+}
+
+.md-open-menu-container {
+  z-index: @aside-z-index + 5;
+}
+
+@media (max-width: @screen-md-min) {
+  md-backdrop.md-menu-backdrop {
+    z-index: 1055;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  md-menu-content, md-menu-content.md-menu-bar-menu.md-dense {
+    padding: 5px 0;
+
+    md-menu-item {
+      min-height: 32px;
+      height: 32px;
+
+      & > a.md-button {
+        padding-top: 0;
+      }
+
+      & > .md-button {
+        min-height: 32px;
+        line-height: 32px;
+      }
+    }
+  }
+}
+
+ul.dropdown-menu {
+  li.disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+}

@@ -1,0 +1,10 @@
+h1.text-center {{ 'Application is loading...' | translate }}
+
+div.text-center We encoutered a problem to load the application: <strong>{{session.error.error}} {{session.error.message}}</strong>.
+div.text-center
+  code.text-danger {{session.error.details}}
+
+p(ng-show='session.error.displayLogout')
+  div.text-center
+    a(ui-sref='logout') {{ 'Logout' | translate }}
+  

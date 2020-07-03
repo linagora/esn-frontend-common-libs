@@ -1,0 +1,113 @@
+body.login {
+  background: url('/images/login-360.jpg') no-repeat right center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  &:before {
+    height: 49%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('/images/white-logo.svg') no-repeat top left;
+    background-position: top 2% center;
+    background-size: 300px;
+    content: "";
+    z-index: 0;
+    .hidden-xs;
+  }
+}
+
+ul.login-oauth {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.login-content {
+  &.card {
+    width: 450px;
+    @media (max-width: @screen-xs-max) {
+      width: 100%;
+    }
+  }
+
+  .login-background {
+    background: @primaryColor;
+    .welcome-logo {
+      width: 280px;
+    }
+    h4 {
+      color: @textPrimaryColor;
+    }
+  }
+
+  i.mdi {
+    font-size: x-large;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: @defaultFont;
+    font-weight: normal;
+    color: @secondaryTextColor;
+  }
+
+  .btn-accent:hover {
+    color: @textPrimaryColor;
+  }
+
+  .zoomIn {
+    animation: zoomIn .25s ease-out forwards;
+  }
+  .actions-footer{
+    cursor: pointer;
+    .tab-nav:not(.tn-vertical):not([data-tab-color]) > li > a::after {
+      background: @accentColor;
+    }
+    .tab-nav:not(.tn-vertical) > li > a::after {
+    	height: 3px;
+    }
+    .tab-nav:not(.tn-vertical) > li.active > a {
+      color: @primaryColor;
+    }
+  }
+}
+
+
+@keyframes zoomIn {
+  0% {
+    transform: scale3d(0,0,0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale3d(1,1,1);
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 361px) and (max-width: 600px) {
+  body.login {
+    background: url('/images/login-600.jpg') no-repeat right center;
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    // iOS workaround to disable auto-zoom on input fields
+    input:not([type="button"]):not([type="submit"]):not([type="file"]), select, textarea, tags-input .tags .input {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1366px) {
+  body.login {
+    background: url('/images/login-1366.jpg') no-repeat right center;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 1367px) {
+  body.login {
+    background: url('/images/login-1920.jpg') no-repeat right center;
+    -webkit-background-size: cover;
+    background-size: cover;
+  }
+}

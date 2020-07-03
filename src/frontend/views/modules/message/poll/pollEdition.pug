@@ -1,0 +1,33 @@
+.poll-composer.form-container(ng-controller='messageController', nv-file-drop="" uploader="uploader")
+  form(name='messageform')
+    .form-group.message-textarea-edition
+      .fg-line
+        textarea.form-control.textarea-poll-composer(ng-model='messageContent', placeholder="{{ 'Enter your poll description and question' | translate }}", ng-file-drop="$ctrl.onFileSelect($files)", auto-resize)
+    p
+      strong {{ 'Your poll options' | translate }}
+    .form-horizontal
+      .form-group(ng-repeat='choice in additionalData.pollChoices')
+        label.col-sm-2.control-label {{ 'Option' | translate }} {{$index + 1}}
+        .col-sm-10
+          .fg-line
+            input.form-control(type='text' ng-model='choice.label' placeholder="{{ 'Poll option description...' | translate }}")
+    .form-group
+      .p-5
+        button.btn.btn-link(ng-click='appendChoice()')
+          .flex-vertical-centered
+            i.mdi.mdi-plus
+            span {{ 'Add another option' | translate }}
+    .row.form-group.display-current-position
+      map-get-display-current-position
+    .row.form-group(ng-if='attachments && attachments.length > 0')
+      message-edition-attachments
+    .form-group.text-right.post-attachments
+      button.btn.btn-link(type='file', ng-file-select='$ctrl.onFileSelect($files)', data-multiple='true')
+        i.mdi.mdi-paperclip
+      a(href='', fill-position)
+        i.mdi.mdi-map-marker
+    .message-edition-button-block
+      .form-group
+        .text-right
+          button.btn.btn-link.color-default(type='reset', ng-click='resetMessage()') {{ 'Cancel' | translate }}
+          button.btn.btn-primary(type='submit', ng-click='sendMessage()') {{ 'Post' | translate }}

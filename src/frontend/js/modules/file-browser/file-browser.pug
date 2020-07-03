@@ -1,0 +1,63 @@
+.listview.lv-bordered.lv-lg
+  .lv-header-alt.clearfix
+    ul.lv-actions.actions.pull-left
+      li
+        button.btn-link(ng-if='$ctrl.currentNode && $ctrl.status !== "loading"', ng-click='$ctrl.back()')
+          i.mdi.mdi-chevron-left
+    h2.lvh-label(ng-if='$ctrl.currentNode.name') {{$ctrl.currentNode.name}}
+    h2.lvh-label(ng-if='!$ctrl.currentNode') {{$ctrl.options.rootName}}
+
+  .error-message(ng-if='$ctrl.status === "error"')
+    i.mdi.mdi-cloud-off-outline
+    .message {{ 'An error occured while loading' | translate }}
+
+  .text-center(
+    ng-if='$ctrl.status === "loading"',
+    openpaas-logo-spinner,
+    spinner-start-active='1',
+    spinner-size='0.5'
+  )
+
+  .lv-body(ng-if='$ctrl.status === "loaded"')
+    .browser-input-filter
+      esn-filter-input(on-change="$ctrl.filter = $filter")
+    .browser-header
+      .name.clickable(ng-click='$ctrl.sortBy("name")')
+        span {{ 'Name' | translate }}
+        i.mdi(
+          ng-show='$ctrl.sortingProperty === "name"',
+          ng-class='{"mdi-menu-down": $ctrl.reverse, "mdi-menu-up": !$ctrl.reverse}')
+      .modification-date.clickable(ng-click='$ctrl.sortBy("modificationDate")')
+        span {{ 'Modified' | translate }}
+        i.mdi(
+          ng-show="$ctrl.sortingProperty === 'modificationDate'",
+          ng-class='{"mdi-menu-down": $ctrl.reverse, "mdi-menu-up": !$ctrl.reverse}')
+
+    .browser-body
+      .node.lv-bordered.clickable(
+        ng-repeat='node in $ctrl.childNodes | orderBy: $ctrl.criterias | filter: { name: $ctrl.filter }',
+        desktop-hover="hovering = hover",
+        ng-click='$ctrl.toggleSelection(node)'
+      )
+        .node-icon
+          .node-checkbox(
+            ng-show='node.isSelectable && hovering || node.selected',
+          )
+            label.checkbox
+              input(
+                type='checkbox',
+                ng-checked='node.selected',
+              )
+              i.input-helper
+
+          i.mdi(
+            ng-hide='node.isSelectable && hovering || node.selected',
+            ng-class='node.icon || "mdi-menu-right"'
+          )
+
+        .node-details
+          .node-name.ellipsis {{node.name}}
+          .node-modification-date {{node.modificationDate | esnDatetime: 'HumanTimeGrouping'}}
+          .lv-actions.actions
+            a.clickable(ng-if='node.isFolder', ng-click='$ctrl.open(node)')
+              i.mdi.mdi-chevron-right

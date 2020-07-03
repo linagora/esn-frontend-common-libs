@@ -1,0 +1,239 @@
+<div class="container" data-ng-controller="animCtrl as actrl">
+    <div class="block-header">
+        <h2>Pure CSS3 Animations</h2>
+
+        <ul class="actions">
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-trending-up"></i>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-check-all"></i>
+                </a>
+            </li>
+            <li class="dropdown" dropdown>
+                <a href="" dropdown-toggle>
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="">Refresh</a>
+                    </li>
+                    <li>
+                        <a href="">Manage Widgets</a>
+                    </li>
+                    <li>
+                        <a href="">Widgets Settings</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Attention Seekers <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/1.png" alt="" ng-class="actrl.ca" class="animated" id="attentionSeeker">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.attentionSeekers">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Flippers <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/6.png" alt="" ng-class="actrl.ca" class="animated" id="flippers">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.flippers">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Light Speed <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/7.png" alt="" ng-class="actrl.ca" class="animated" id="lightSpeed">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.lightSpeed">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Specials <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/1.png" alt="" ng-class="actrl.ca" class="animated" id="special">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.special">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Bouncing Entrances <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/2.png" alt="" ng-class="actrl.ca" class="animated" id="bouncingEntrance">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.bouncingEntrance">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Bouncing Exits <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/3.png" alt="" ng-class="actrl.ca" class="animated" id="bouncingExits">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.bouncingExits">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Rotating Entrances <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/8.png" alt="" ng-class="actrl.ca" class="animated" id="rotatingEntrances">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.rotatingEntrances">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Rotating Exits <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/9.png" alt="" ng-class="actrl.ca" class="animated" id="rotatingExits">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.rotatingExits">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Fadeing Entrances <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/4.png" alt="" ng-class="actrl.ca" class="animated" id="fadeingEntrances">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.fadeingEntrances">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Fadeing Exits <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/5.png" alt="" ng-class="actrl.ca" class="animated" id="fadeingExits">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.fadeingExits">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Zoom Entrances <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/4.png" alt="" ng-class="actrl.ca" class="animated" id="zoomEntrances">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.zoomEntrances">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card animation-demo">
+                <div class="card-header">
+                    <h2>Zoom Exits <small>Click on the buttons below to start the animation</small></h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <img src="img/headers/sm/3.png" alt="" ng-class="actrl.ca" class="animated" id="zoomExits">
+
+                    <div class="row">
+                        <div class="col-xs-6" ng-repeat="w in actrl.zoomExits">
+                            <button ng-click="actrl.setAnimation(w.animation, w.target)" class="btn bgm-cyan">{{ w.animation }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

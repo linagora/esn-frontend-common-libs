@@ -1,0 +1,402 @@
+@import "../components/bootstrap/less/bootstrap";
+@icon-font-path: '/components/bootstrap/dist/fonts/';
+
+/*
+ * Override @screen-* boostrap variables.
+ * We want xs size to be exactly the same than sm size and
+ * md size to be exactly the same than lg size.
+ */
+
+ // Extra small screen / phone
+ //** Deprecated `@screen-xs` as of v3.0.1
+ @screen-xs:                  480px;
+ //** Deprecated `@screen-xs-min` as of v3.2.0
+ @screen-xs-min:              @screen-xs;
+ //** Deprecated `@screen-phone` as of v3.0.1
+ @screen-phone:               @screen-xs-min;
+
+ // Small screen / tablet
+ //** Deprecated `@screen-sm` as of v3.0.1
+ @screen-sm:                  992px;
+ @screen-sm-min:              @screen-sm;
+ //** Deprecated `@screen-tablet` as of v3.0.1
+ @screen-tablet:              @screen-sm-min;
+
+ // Medium screen / desktop
+ //** Deprecated `@screen-md` as of v3.0.1
+ @screen-md:                  992px;
+ @screen-md-min:              @screen-md;
+ //** Deprecated `@screen-desktop` as of v3.0.1
+ @screen-desktop:             @screen-md-min;
+
+ // Large screen / wide desktop
+ //** Deprecated `@screen-lg` as of v3.0.1
+ @screen-lg:                  @screen-md;
+ @screen-lg-min:              @screen-lg;
+ //** Deprecated `@screen-lg-desktop` as of v3.0.1
+ @screen-lg-desktop:          @screen-lg-min;
+
+ // So media queries don't overlap when required, provide a maximum
+ @screen-xs-max:              (@screen-md-min - 1);
+ @screen-sm-max:              @screen-xs-max;
+ @screen-md-max:              9999px;
+
+/*
+ * Modernizr
+ */
+@import './modernizr';
+
+/*
+ * LESS Plugins
+ */
+@import '../components/material-admin/less/inc/less-plugins/for';
+
+/*
+ * Variables and Mixins
+ */
+@import './fonts';
+
+@import '../components/material-admin/less/inc/variables';
+@import '../components/material-admin/less/inc/mixin';
+
+@import './colors';
+@import './variables';
+
+@import '../components/material-admin/less/inc/generics';
+@import '../components/material-admin/less/inc/bootstrap-overrides';
+@import '../components/material-admin/less/inc/base';
+
+/*
+ * Vendors
+ */
+@import 'material-shadows/material-shadows';
+@import '../components/waves/src/less/waves';
+
+/*
+ * Load material-admin related LESS files
+ */
+@import '../components/material-admin/less/inc/generics';
+@import '../components/material-admin/less/inc/bootstrap-overrides';
+@import '../components/material-admin/less/inc/base';
+@import '../components/material-admin/less/inc/header';
+@import '../components/material-admin/less/inc/sidebar';
+@import '../components/material-admin/less/inc/form/form';
+
+@import '../components/material-admin/less/inc/dropdown';
+@import '../components/material-admin/less/inc/listview';
+@import '../components/material-admin/less/inc/progress-bar';
+//@import '../components/material-admin/less/inc/chat';
+// @import '../components/material-admin/less/inc/tabs';
+@import '../components/material-admin/less/inc/card';
+//@import '../components/material-admin/less/inc/chart';
+@import '../components/material-admin/less/inc/widgets';
+//@import '../components/material-admin/less/inc/table';
+//@import '../components/material-admin/less/inc/todo';
+@import '../components/material-admin/less/inc/button';
+@import '../components/material-admin/less/inc/form';
+//@import '../components/material-admin/less/inc/pagination';
+//@import '../components/material-admin/less/inc/popover';
+//@import '../components/material-admin/less/inc/wizard';
+@import '../components/material-admin/less/inc/alert';
+@import '../components/material-admin/less/inc/media';
+@import '../components/material-admin/less/inc/modal';
+//@import '../components/material-admin/less/inc/panel';
+//@import '../components/material-admin/less/inc/tooltip';
+//@import '../components/material-admin/less/inc/breadcrumb';
+//@import '../components/material-admin/less/inc/messages';
+//@import '../components/material-admin/less/inc/404';
+//@import '../components/material-admin/less/inc/login';
+@import '../components/material-admin/less/inc/profile';
+//@import '../components/material-admin/less/inc/photos';
+//@import '../components/material-admin/less/inc/contacts';
+//@import '../components/material-admin/less/inc/shadow';
+@import '../components/material-admin/less/inc/misc';
+//@import '../components/material-admin/less/inc/ie-warning';
+@import '../components/material-admin/less/inc/load';
+@import '../components/material-admin/less/inc/wall';
+//@import '../components/material-admin/less/inc/footer';
+
+/*
+ * Custom LESS files
+ */
+@import "./commons";
+
+/*
+ * Modules
+ */
+@import "./modules/oauth";
+@import "./modules/avatar";
+@import "./modules/login";
+@import "./modules/activitystream";
+@import "./modules/message";
+@import './modules/sidebar';
+@import './modules/button';
+@import './modules/header';
+@import './modules/auto-complete';
+@import './modules/fullscreen-edit-form';
+@import './modules/action-list';
+@import './modules/application-menu';
+@import './modules/settings-overlay';
+@import './modules/badge';
+@import './modules/bootstrap-alerts-saving';
+@import './modules/member';
+@import './modules/notifications';
+@import './modules/dragndrop';
+@import './modules/tabs';
+@import "./modules/subheader";
+@import "./modules/form-helper";
+@import "../js/modules/attachment/attachment";
+@import "../js/modules/attachment/list/attachment-list";
+@import "../js/modules/attachment/viewer/attachment-viewer";
+@import "../js/modules/user-notification/user-notification";
+@import '../js/modules/box-overlay/box-overlay';
+@import "../js/modules/chips/chips";
+@import "../js/modules/collaboration/membership/collaboration-membership";
+@import "../js/modules/collaboration/member/collaboration-member";
+@import "../js/modules/collaboration/members/list/collaboration-members-list";
+@import "../js/modules/collaboration/members/add/collaboration-members-add.less";
+@import "../js/modules/collaboration/members/add/add-item/collaboration-members-add-item.less";
+@import "../js/modules/collaboration/members/collaboration-members.less";
+@import "../js/modules/collaboration/invite/collaboration-invite-users.less";
+@import "../js/modules/collaboration/members/collaboration-members-widget.less";
+@import '../js/modules/follow/follow';
+@import '../js/modules/message/message';
+@import "../js/modules/avatar/list/avatar-list";
+@import "../js/modules/oauth-application/oauth-application";
+@import "../js/modules/header/profile-menu/profile-menu";
+@import "../js/modules/search/search";
+@import "../js/modules/datetime/datetime";
+@import "../js/modules/shortcuts/shortcuts";
+@import "../js/modules/clipboard/clipboard";
+@import "../js/modules/file-browser/file-browser";
+@import "../js/modules/form-helper/filter-input/filter-input";
+@import "../js/modules/form-helper/email-input/email-input";
+@import "../js/modules/attachments-selector/attachments-selector";
+@import '../js/modules/timeline/timeline.less';
+@import '../js/modules/i18n/language-selector/i18n-language-selector';
+@import '../js/modules/profile-popover-card/profile-popover-content/profile-popover-content';
+
+/*
+* Widgets
+*/
+@import "./widgets/form";
+@import "./widgets/button";
+@import "./widgets/alphascroll";
+@import "./widgets/fab-dropup";
+@import "./widgets/modal";
+
+/**
+ * After mdi 1.6, these styles are not applied, but we need them
+ */
+.mdi {
+  display: inline-block;
+  font: normal normal normal 24px/1 'Material Design Icons';
+  font-size: inherit; // can't have font-size inherit on line above, so need to override
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%; // material admin set this property to 100vh. It does not work well on iOs.
+}
+
+body {
+  word-wrap: break-word;
+  padding-top: @header-height;
+
+  @media (min-width: @screen-md-min) {
+    padding-top: @header-height-md;
+  }
+
+  @media (min-width: @screen-xl-min) {
+    padding-top: @header-height-xl;
+  }
+
+  .modal.center .modal-dialog {
+    margin: 0;
+    min-width: 300px;
+
+    .modal-body {
+      max-height: 60vh;
+
+      &:not(.overflow-none) {
+        overflow: auto;
+      }
+    }
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  #sidebar {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  }
+}
+
+// Used in selectors
+.form-container {
+}
+
+// Used in selectors
+header.topbar {
+}
+
+// Used in selector
+.esn-navbar-wrapper {
+}
+
+// Used in selector
+.esn-item {
+}
+
+#profile-main .pmop-edit {
+  cursor: pointer;
+}
+
+.m-btn {
+  z-index: 2;
+}
+
+@media (min-width: @screen-sm-min) {
+  fab-scroll-top {
+    .btn-float {
+      right: 40px;
+      left: inherit;
+    }
+  }
+  .pull-right-sm {
+    .pull-right;
+  }
+
+}
+
+input[type='radio'][disabled] {
+    background-color: inherit;
+    opacity: 0;
+}
+
+.popover.clockpicker-popover {
+    z-index: 1050;
+}
+
+.form-control {
+  padding: 2px 2px 1px;
+
+  &:not(.fc-alt) {
+    padding: 2px 2px 1px;
+  }
+}
+
+.form-control:not(.fc-alt).ng-invalid {
+    border-bottom-color: #f44336;
+}
+
+.form-control.ignore-readonly[readonly] {
+  background-color: inherit;
+}
+
+.listview.lv-lg .lv-item:hover {
+  background-color: lighten(@body-bg, 1%);
+}
+
+.avatar(@size, @border-radius: 50%) {
+  .RoundedShape(@border-radius);
+
+  width: @size !important; /* Override material-admin  */
+  min-width: @size !important; // Both attributes are mandatory for Firefox or the img is distorted (width is set to 1px)
+  height: @size;
+}
+
+.avatar(@size) when(@size >= 35px) {
+  .user-status-bubble {
+    right: 1px;
+    bottom: 1px;
+  }
+}
+
+.esn-avatar-xs {
+  .avatar(28px);
+}
+
+.avatar(@size) when(@size = 28px) {
+  .user-status-bubble {
+    height: 11px;
+    width: 11px;
+  }
+}
+
+.esn-avatar-sm {
+  .avatar(30px);
+}
+
+.esn-avatar {
+ .avatar(35px);
+}
+
+.esn-avatar-md {
+  .avatar(40px);
+}
+
+.esn-avatar-lg {
+  .avatar(45px);
+}
+
+.esn-avatar-xl {
+  .avatar(50px);
+}
+
+.label {
+  font-weight: 500;
+}
+
+.app-menu-icon-primary-color {
+  fill: @appMenuIconPrimaryColor !important; /* override svg default color */
+  stroke: @appMenuIconaccentColor !important; /* override svg default color */
+}
+
+.app-menu-icon-primary-color-without-stroke {
+  fill: @appMenuIconPrimaryColor !important; /* override svg default color */
+}
+
+.app-menu-icon-accent-color {
+  fill: @appMenuIconaccentColor !important; /* override svg default color */
+  stroke: @appMenuIconPrimaryColor !important; /* override svg default color */
+}
+
+.openpaas-logo .blue-circle {
+  border-color: @appMenuIconPrimaryColor !important; /* override svg default color */
+}
+
+.openpaas-logo .yellow-circle {
+  border-color: @appMenuIconaccentColor !important; /* override svg default color */
+}
+
+tags-input .tags {
+  padding: 0;
+
+  .input {
+    font: inherit;
+    background: transparent;
+    min-height: 30px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    &::placeholder {
+      color: @m-gray;
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  md-option {
+    min-height: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+  }
+}

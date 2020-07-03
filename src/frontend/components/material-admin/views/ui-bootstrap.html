@@ -1,0 +1,1159 @@
+<div class="container">
+    <div class="block-header">
+        <h2>UI Bootstrap</h2>
+
+        <ul class="actions">
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-trending-up"></i>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="zmdi zmdi-check-all"></i>
+                </a>
+            </li>
+            <li class="dropdown" dropdown>
+                <a href="" dropdown-toggle>
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href="">Refresh</a>
+                    </li>
+                    <li>
+                        <a href="">Manage Widgets</a>
+                    </li>
+                    <li>
+                        <a href="">Widgets Settings</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+
+    <!-- ALERTS -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Alerts <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/alert">ui.bootstrap.alert</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="AlertDemoCtrl">
+
+            <p>Alert is an AngularJS-version of bootstrap's alert. This directive can be used to generate alerts from the dynamic model data (using the <code>ng-repeat</code> directive); The presence of the close attribute determines if a <code>close</code> button is displayed.</p>
+
+            <br/>
+
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Buttons <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/buttons">ui.bootstrap.buttons</a></small></h2>
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="ButtonsDemoCtrl">
+            <p>There are two directives that can make a group of buttons behave like a set of checkboxes, radio buttons, or a hybrid where radio buttons can be unchecked.</p>
+
+            <br/>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <p class="f-500 c-black m-b-5">Single toggle</p>
+                    <small class="c-gray">Status - {{singleModel}}</small>
+
+                    <br/>
+                    <br/>
+
+                    <button type="button" class="btn btn-primary" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+                        Single Toggle
+                    </button>
+                </div>
+
+                <div class="col-sm-4">
+                    <p class="f-500 c-black m-b-5">Checkbox</p>
+                    <small class="c-gray">Status - {{checkModel}}</small>
+
+                    <br/>
+                    <br/>
+
+                    <div class="btn-group">
+                        <label class="btn btn-primary" ng-model="checkModel.left" btn-checkbox>Left</label>
+                        <label class="btn btn-primary" ng-model="checkModel.middle" btn-checkbox>Middle</label>
+                        <label class="btn btn-primary" ng-model="checkModel.right" btn-checkbox>Right</label>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <p class="f-500 c-black m-b-5">Radio</p>
+                    <small class="c-gray">Status - {{radioModel || 'null'}}</small>
+
+                    <br/>
+                    <br/>
+
+                    <div class="btn-group">
+                        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Left'">Left</label>
+                        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Middle'">Middle</label>
+                        <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Right'">Right</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAROUSEL -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Carousel <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/carousel ">ui.bootstrap.carousel </a></small></h2>
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="CarouselDemoCtrl">
+            <p>Carousel creates a carousel similar to bootstrap's image carousel. The carousel also offers support for touchscreen devices in the form of swiping. To enable swiping, load the ngTouch module as a dependency.</p>
+
+            <p>Use a <code>&lt;carousel&gt;</code>code> element with <code>&lt;slide&gt;</code> elements inside it. It will automatically cycle through the slides at a given rate, and a current-index variable will be kept in sync with the currently visible slide.</p>
+
+            <br/>
+
+            <carousel interval="myInterval">
+                <slide ng-repeat="w in slides" active="slide.active">
+                    <img ng-src="media/carousel/{{w.img}}">
+                    <div class="carousel-caption" data-ng-if="w.title.length > 0">
+                        <h3>{{w.title}}</h3>
+                        <p>{{w.text}}</p>
+                    </div>
+                </slide>
+            </carousel>
+
+            <br/>
+            <br/>
+ 
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <strong>Interval, in milliseconds </strong>
+                    <div class="fg-line m-b-5">
+                        <input type="number" class="form-control" ng-model="myInterval">
+                    </div>
+
+                    <small class="c-gray">Enter a postive number to start the interval.</small>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- COLLAPSE -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Collapse <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/collapse ">ui.bootstrap.collapse </a></small></h2>
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="CollapseDemoCtrl">
+            <p>AngularJS version of Bootstrap's collapse plugin. Provides a simple way to hide and show an element with a css transition.</p>
+
+            <br/>
+
+            <button class="btn btn-primary" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+
+            <br/>
+            <br/>
+
+            <div collapse="isCollapsed">
+                <alert type="info">Nunc nec porta felis. Curabitur non fringilla ipsum, quis mollis metus. Etiam mauris elit, iaculis quis dapibus et, luctus id erat. Sed ac rutrum est, a bibendum nibh. Phasellus rhoncus imperdiet neque in tincidunt. Fusce nibh tellus, laoreet a orci in, auctor semper leo. Sed turpis odio, lobortis in orci et, finibus placerat nulla. Maecenas vehicula ante sit amet lacus placerat, non congue nibh tristique.</alert>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- DROPDOWN -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Dropdown <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/dropdown ">ui.bootstrap.dropdown</a></small></h2>
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="DropdownDemoCtrl">
+            <p>Dropdown is a simple directive which will toggle a dropdown menu on click or programmatically. You can either use is-open to toggle or add inside a <code>&lt;a dropdown-toggle&gt;</code> element to toggle it when is clicked. There is also the on-toggle(open) optional expression fired when dropdown changes state.</p>
+
+            <p>Add <code>dropdown-append-to-body</code> to the dropdown element to append to the inner <code>dropdown-menu</code> to the body. This is useful when the dropdown button is inside a div with <code>overflow: hidden</code>, and the menu would otherwise be hidden. <a target="_blank" href="http://angular-ui.github.io/bootstrap/#/dropdown ">Read more..</a></p>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-5">Basic Previews (After triggering)</p>
+            <small>Please refer the Colors page for all the available color options</small>
+
+            <br/>
+            <br/>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu" role="menu">
+                    <li data-ng-repeat="w in items"><a href="">{{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu bgm-blue" role="menu">
+                    <li data-ng-repeat="w in items"><a href="">{{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu bgm-teal" role="menu">
+                    <li data-ng-repeat="w in items"><a href="">{{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu bgm-orange" role="menu">
+                    <li data-ng-repeat="w in items"><a href="">{{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu bgm-bluegray" role="menu">
+                    <li data-ng-repeat="w in items"><a href="">{{ w.name }}</a></li>
+                </ul>
+            </div>
+            
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu bgm-green" role="menu">
+                    <li data-ng-repeat="w in items"><a href="">{{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <br/>
+            <br/>
+            
+            <p class="f-500 c-black m-b-5">Dropdown links with icon</p>
+            <small>Adding <code>.dm-icon</code> class to the <code>.dropdown-menu</code> will enable extra room for icons in dropdown links.</small>
+
+            <br/>
+            <br/>
+            
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu dm-icon" role="menu">
+                    <li data-ng-repeat="w in items"><a href=""><i class="zmdi zmdi-{{ w.icon }}"></i> {{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu dm-icon bgm-blue" role="menu">
+                    <li data-ng-repeat="w in items"><a href=""><i class="zmdi zmdi-{{ w.icon }}"></i> {{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu dm-icon bgm-teal" role="menu">
+                    <li data-ng-repeat="w in items"><a href=""><i class="zmdi zmdi-{{ w.icon }}"></i> {{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu dm-icon bgm-orange" role="menu">
+                    <li data-ng-repeat="w in items"><a href=""><i class="zmdi zmdi-{{ w.icon }}"></i> {{ w.name }}</a></li>
+                </ul>
+            </div>
+
+            <div class="dropdown-basic-demo clearfix">
+                <ul class="dropdown-menu dm-icon bgm-bluegray" role="menu">
+                    <li data-ng-repeat="w in items"><a href=""><i class="zmdi zmdi-{{ w.icon }}"></i> {{ w.name }}</a></li>
+                </ul>
+            </div>
+
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-20">Alignment</p>
+
+            <div class="clearfix dropdown-btn-demo">
+                <div class="dropdown" dropdown>
+                    <button class="dropdown-toggle btn btn-default" dropdown-toggle>Dropdown Left</button>
+
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="dropdown" dropdown>
+                    <button class="dropdown-toggle btn btn-default" dropdown-toggle>Dropdown Right</button>
+
+                    <ul class="dropdown-menu pull-right">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <p class="c-black f-500 m-b-20">Dropups - Trigger dropdown menus above elements</p>
+
+            <div class="clearfix dropdown-btn-demo">
+                <div class="dropdown dropup" dropdown>
+                    <button class="dropdown-toggle btn btn-default" dropdown-toggle>This is a Dropup</button>
+
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="dropdown dropup" dropdown>
+                    <button class="dropdown-toggle btn btn-default" dropdown-toggle>This is a right aligned dropup</button>
+
+                    <ul class="dropdown-menu pull-right">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <p class="c-black f-500 m-b-20">Split Button Dropdowns</p>
+
+            <div class="clearfix dropdown-btn-demo">
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-default">Default</button>
+                    <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button dropdowns</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-primary">Primary</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button dropdowns</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-info">Info</button>
+                    <button type="button" class="btn btn-info dropdown-toggle" dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button dropdowns</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-success">Success</button>
+                    <button type="button" class="btn btn-success dropdown-toggle" dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button dropdowns</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-warning">Warning</button>
+                    <button type="button" class="btn btn-warning dropdown-toggle" dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button dropdowns</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group" dropdown>
+                    <button type="button" class="btn btn-danger">Danger</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
+                        <span class="caret"></span>
+                        <span class="sr-only">Split button dropdowns</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="w in items"><a href="">{{ w }}</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Modal <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/modal">ui.bootstrap.modal</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="ModalDemoCtrl">
+            <p>Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
+            <p><code>$modal</code> is a service to quickly create AngularJS-powered modal windows. Creating custom modals is straightforward: create a partial view, its controller and reference them when using the service. <a target="_blank" href="http://angular-ui.github.io/bootstrap/#/modal">Read more...</a></p>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-20">A rendered modal with header, body, and set of actions in the footer.</p>
+
+            <div class="clearfix modal-preview-demo">
+                <div class="modal"> <!-- Inline style just for preview -->
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ modalContent }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-link">Save changes</button>
+                                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-20">Modals have two optional sizes</p>
+
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ modalContent }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-link" ng-click="ok()">OK</button>
+                    <button class="btn btn-link" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+
+            <div class="btn-demo">
+                <button class="btn btn-default" ng-click="open()">Modal - Regular</button>
+                <button class="btn btn-default" ng-click="open('lg')">Modal - Large</button>
+                <button class="btn btn-default" ng-click="open('sm')">Modal - Small</button>
+            </div>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-20">Other Examples</p>
+
+            <div class="btn-demo">
+                <button class="btn btn-default" ng-click="openWithoutAnimation()">Without Animation</button>
+                <button class="btn btn-default" ng-click="openStatic()">Prevent Outside Click</button>
+                <button class="btn btn-default" ng-click="openKeyboard()">Disable Keyboard</button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Pagination <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/pagination">ui.bootstrap.pagination</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="PaginationDemoCtrl">
+
+            <p>A lightweight pagination directive that is focused on ... providing pagination & will take care of visualising a pagination bar and enable / disable buttons correctly! <a target="_blank" href="https://angular-ui.github.io/bootstrap/#/pagination">Read more...</a></p>
+
+            <br/>
+
+            <p class="f-500 c-black m-b-0">Default</p>
+
+            <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-0">With First and Last links</p>
+            <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="<div>dsd</div>" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-0">Without Next and Previous</p>
+            <pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage"></pagination>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-0">Only Numbers</p>
+            <pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages"></pagination>
+
+            <br/>
+            <br/>
+
+            <button class="btn btn-primary m-r-10" ng-click="setPage(3)">Set current page to: 3</button>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-0">Pager</p>
+            <pager total-items="totalItems" ng-model="currentPage"></pager>
+
+            <br/>
+
+            <p class="f-500 c-black m-b-0">Limit the maximum visible buttons <small class="c-gray">[ Page: {{bigCurrentPage}} / {{numPages}} ]</small></p>
+            <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"></pagination>
+
+        </div>
+    </div>
+
+    <!-- POPOVER -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Popover <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/popover">ui.bootstrap.popover</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="PopoverDemoCtrl">
+
+            <p>A lightweight, extensible directive for fancy popover creation. The popover directive supports multiple placements, optional transition animation, and more. <a target="_blank" href="https://angular-ui.github.io/bootstrap/#/popover">Read more...</a></p>
+
+            <br/>
+
+            <p class="c-black f-500 m-b-20">Preview - After triggering</p>
+
+            <div class="popover-demo">
+                <div class="popover top">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">Popover top</h3>
+                    <div class="popover-content">
+                        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+                    </div>
+                </div>
+
+                <div class="popover right">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">Popover right</h3>
+                    <div class="popover-content">
+                        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+                    </div>
+                </div>
+
+                <div class="popover bottom">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">Popover bottom</h3>
+
+                    <div class="popover-content">
+                        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+                    </div>
+                </div>
+
+                <div class="popover left">
+                    <div class="arrow"></div>
+                    <h3 class="popover-title">Popover left</h3>
+                    <div class="popover-content">
+                        <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <br/>
+
+            <p class="f-500 c-black">Basic Examples</p>
+
+            <script type="text/ng-template" id="myPopoverTemplate.html">
+                <div>Vivamus sagittis lacus vel augue laoreet rutrum faucibus.</div>
+                <div class="form-group fg-line m-b-0 m-t-20">
+                    <input type="text" class="form-control" placeholder="Just put something...">
+                </div>
+            </script>
+
+            <div class="btn-demo">
+                <button popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popover-title="Popover Title" class="btn btn-primary">Default Popover</button>
+                <button popover-template="dynamicPopover.templateUrl" popover-title="Popover Title" class="btn btn-primary">Popover With Template</button>
+            </div>
+
+            <br/>
+
+            <p class="f-500 c-black">Position</p>
+
+            <div class="btn-demo">
+                <button popover-placement="top" popover="On the Top!" class="btn btn-primary">Top</button>
+                <button popover-placement="left" popover="On the Left!" class="btn btn-primary">Left</button>
+                <button popover-placement="right" popover="On the Right!" class="btn btn-primary">Right</button>
+                <button popover-placement="bottom" popover="On the Bottom!" class="btn btn-primary">Bottom</button>
+            </div>
+
+            <br/>
+
+            <p class="f-500 c-black">Popover on Mouse Hover</p>
+            <div class="btn-demo">
+                <button popover-placement="top" popover-trigger="mouseenter" popover="On the Top!" class="btn btn-primary">Top</button>
+                <button popover-placement="left" popover-trigger="mouseenter" popover="On the Left!" class="btn btn-primary">Left</button>
+                <button popover-placement="right" popover-trigger="mouseenter" popover="On the Right!" class="btn btn-primary">Right</button>
+                <button popover-placement="bottom" popover-trigger="mouseenter" popover="On the Bottom!" class="btn btn-primary">Bottom</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROGRESSBAR -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Progressbar <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/progressbar">ui.bootstrap.progressbar</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding" data-ng-controller="ProgressDemoCtrl">
+
+            <p>A progress bar directive that is focused on providing feedback on the progress of a workflow or action. It supports multiple (stacked) bars into the same <code>&nt;progress&gt;</code> element or a single <code>progressbar</code> elemtnt with optional max attribute and transition animations. <a target="_blank" href="http://angular-ui.github.io/bootstrap/#/progressbar">Read more...</a></p>
+
+            <br/>
+
+            <p class="f-500 c-black">Basic Examples</p>
+            <progressbar value="70"></progressbar>
+
+            <br/>
+
+            <p class="f-500 c-black">Contextual alternatives</p>
+            <progressbar class="m-b-10" value="40" type="info"></progressbar>
+            <progressbar class="m-b-10" value="20" type="success"></progressbar>
+            <progressbar class="m-b-10" value="60" type="warning"></progressbar>
+            <progressbar class="m-b-10" value="80" type="danger"></progressbar>
+
+            <br/>
+
+            <p class="f-500 c-black">Striped Progress bars</p>
+            <progressbar class="progress-striped m-b-10" value="40" type="info"></progressbar>
+            <progressbar class="progress-striped m-b-10" value="20" type="success"></progressbar>
+            <progressbar class="progress-striped m-b-10" value="60" type="warning"></progressbar>
+            <progressbar class="progress-striped m-b-10" value="80" type="danger"></progressbar>
+
+            <br/>
+
+            <p class="f-500 c-black">Animated Progress bar (Not in old IEs)</p>
+            <progressbar class="progress-striped active m-b-10" value="65"></progressbar>
+
+            <br/>
+
+            <p class="f-500 c-black">Dynamic Examples</p>
+
+            <button class="btn btn-sm btn-primary btn-sm" type="button" ng-click="random()">Randomize</button>
+
+            <br/>
+            <br/>
+
+            <progressbar max="max" value="dynamic"></progressbar>
+
+            <br/>
+
+            <small><em>No animation</em></small>
+            <progressbar class="m-b-10" animate="false" value="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
+
+            <small><em>Object (changes type based on value)</em></small>
+            <progressbar class="progress-striped active m-b-10" value="dynamic" type="{{type}}">{{type}} <i ng-show="showWarning">!!! Watch out !!!</i></progressbar>
+
+            <br/>
+
+            <p class="f-500 c-black">Stacked</p>
+
+            <button class="btn btn-sm btn-primary" type="button" ng-click="randomStacked()">Randomize</button>
+
+            <br />
+            <br/>
+
+            <progress><bar ng-repeat="bar in stacked track by $index" value="bar.value" type="{{bar.type}}"></bar></progress>
+
+        </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Tabs <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/tabs">ui.bootstrap.tabs</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding" data-ng-controller="TabsDemoCtrl">
+
+            <p>Add quick, dynamic tab functionality to transition through panes of local content, even via dropdown menus. <a target="_blank" href="http://angular-ui.github.io/bootstrap/#/tabs">Read more...</a></p>
+
+            <tabset>
+                <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+                  {{tab.content}}
+                </tab>
+            </tabset>
+
+            <br/>
+
+            <tabset justified="true">
+                <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+                  {{tab.content}}
+                </tab>
+            </tabset>
+
+            <br/>
+            <br/>
+
+            <tabset vertical="true">
+                <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+                  {{tab.content}}
+                </tab>
+            </tabset>
+
+
+        </div>
+    </div>
+
+    <!-- TOOLTIPS -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Tooltips <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/tooltips">ui.bootstrap.tooltips</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding" data-ng-controller="TooltipDemoCtrl">
+
+            <p>A lightweight, extensible directive for fancy tooltip creation. The tooltip directive supports multiple placements, optional transition animation, and more. <a target="_blank" href="http://angular-ui.github.io/bootstrap/#/tooltips">Read more...</a></p>
+
+            <br/>
+
+
+            <p class="f-500 c-black">Hover over the links below to see tooltips</p>
+
+            <p>Pellentesque, sit amet <a href="" tooltip="First one">venenatis</a> urna cursus eget nunc scelerisque viverra mauris, in aliquam. Tincidunt lobortis feugiat vivamus at <a href="#" tooltip="Default Tooltip">sweincidunt</a> egetarcu dictum varius duis at consectetur lorem. Vitae elementum curabitur <a href="#" tooltip="Another one">sodales</a> nunc sed velit dignissim sodales ut eu sem integer vitae. Turpis egesta <a href="#" tooltip="Another one her too">elementum</a> pharetra convallis posuere morbi leo urna, at elementum eu, facilisis sed odio morbi quis commodo odio. In cursus <a href="#" tooltip='This is not the last one'>lorem ipsum</a> turpis massa tincidunt dui ut. nunc sed velit dignissim sodales ut eu sem integer <a href="#" tooltip='Finally, last one'>suremlco</a>.</p>
+
+            <br/>
+
+            <p class="f-500 c-black m-b-5">Tooltips Positions</p>
+            <small>Four options are available: top, right, bottom, and left aligned. </small>
+
+            <br/>
+            <br/>
+
+            <div class="btn-demo">
+                <a href="" tooltip-placement="top" tooltip="Tooltip on Top" class="btn btn-primary">Top</a>
+                <a href="" tooltip-placement="right" tooltip="Tooltip on Right" class="btn btn-primary">Right</a>
+                <a href="" tooltip-placement="bottom" tooltip="Tooltip on Bottom" class="btn btn-primary">Bottom</a>
+                <a href="" tooltip-placement="left" tooltip="Tooltip on Left" class="btn btn-primary">Left</a>
+            </div>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-5">Optional Colors Schemes</p>
+
+            <div class="btn-demo">
+                <a href="" tooltip="Red" class="btn bgm-red" tooltip-class="tooltip-red">Red</a>
+                <a href="" tooltip="Purple" class="btn bgm-purple" tooltip-class="tooltip-purple">Purple</a>
+                <a href="" tooltip="Blue" class="btn bgm-blue" tooltip-class="tooltip-blue">Blue</a>
+                <a href="" tooltip="Cyan" class="btn bgm-cyan" tooltip-class="tooltip-cyan">Cyan</a>
+                <a href="" tooltip="Teal" class="btn bgm-teal" tooltip-class="tooltip-teal">Teal</a>
+                <a href="" tooltip="Green" class="btn bgm-green" tooltip-class="tooltip-green">Green</a>
+                <a href="" tooltip="Orange" class="btn bgm-orange" tooltip-class="tooltip-orange">Orange</a>
+                <a href="" tooltip="Brown" class="btn bgm-brown" tooltip-class="tooltip-brown">Brown</a>
+                <a href="" tooltip="Blue Gray" class="btn bgm-bluegray" tooltip-class="tooltip-bluegray">Blue Gray</a>
+                <a href="" tooltip="Black" class="btn bgm-black" tooltip-class="tooltip-black">Black</a>
+            </div>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black">Other Examples</p>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="fg-line">
+                        <input type="text" tooltip-placement="bottom" class="form-control" placeholder="HTML Content" tooltip-html="htmlTooltip">
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="fg-line">
+                        <input type="text" tooltip-placement="bottom" class="form-control" placeholder="On Focus" tooltip="See? Now click away..." tooltip-trigger="focus">
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="fg-line">
+                        <input type="text" tooltip-placement="bottom" ng-model="inputModel" tooltip="Enter something in this input field to disable this tooltip" tooltip-trigger="mouseenter" tooltip-enable="!inputModel" class="form-control" placeholder="Disable Conditionally">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DATE TIME PICKER -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Datepicker <small><a target="_blank" class="c-gray" href="http://angular-ui.github.io/bootstrap/#/datepicker">ui.bootstrap.datepicker</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="DatepickerDemoCtrl">
+
+            <p>A clean, flexible, and fully customizable date picker. User can navigate through months and years. The datepicker shows dates that come from other than the main month being displayed. These other dates are also selectable. <a href="http://angular-ui.github.io/bootstrap/#/datepicker">Read more...</a></p>
+
+            <br/>
+
+            <p class="f-500 c-black m-b-5">Inline Examples</p>
+            <small class="c-gray">Displaying the Datepicker by default</small>
+
+            <br/>
+            <br/>
+
+            <div class="datepicker-demo">
+                <div class="dd-block">
+                    <div class="date-picker">
+                        <datepicker show-weeks="false" ng-model="dtInline" min-date="minDate" class="dp-inline"></datepicker>
+                    </div>
+                </div>
+
+                <div class="dd-block">
+                    <div class="date-picker dp-blue">
+                        <datepicker show-weeks="false" ng-model="dtInline2" min-date="minDate" class="dp-inline"></datepicker>
+                    </div>
+                </div>
+
+                <div class="dd-block">
+                    <div class="date-picker dp-red">
+                        <datepicker show-weeks="false" ng-model="dtInline3" min-date="minDate" class="dp-inline"></datepicker>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-5">Multiple Popup Examples</p>
+            <small class="c-gray">Displaying on focus</small>
+
+            <br/>
+            <br/>
+
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <div class="date-picker input-group" ng-class="{ 'is-opened': opened == true }">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                        <div class="fg-line" ng-class="{ 'fg-toggled': opened == true }">
+                            <input ng-click="open($event, 'opened')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false" ng-model="dtPopup" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Select Date" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+
+                    <div class="date-picker input-group dp-blue" ng-class="{ 'is-opened': opened2 == true }">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                        <div class="fg-line" ng-class="{ 'fg-toggled': opened2 == true }">
+                            <input ng-click="open($event, 'opened2')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false" ng-model="dtPopup2" is-open="opened2" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Select Date" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+
+                    <div class="date-picker input-group dp-red" ng-class="{ 'is-opened': opened3 == true }">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                        <div class="fg-line" ng-class="{ 'fg-toggled': opened3 == true }">
+                            <input ng-click="open($event, 'opened3')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false" ng-model="dtPopup3" is-open="opened3" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Select Date" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br/>
+            <br/>
+
+            <p class="f-500 c-black m-b-5">Other Examples</p>
+            <small class="c-gray">Dropup, Month and Year Pickers</small>
+
+            <br/>
+            <br/>
+
+            <div class="row">
+                <div class="col-sm-4">
+
+                    <div class="date-picker input-group dropup" ng-class="{ 'is-opened': opened4 == true }">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                        <div class="fg-line" ng-class="{ 'fg-toggled': opened4 == true }">
+                            <input ng-click="open($event, 'opened4')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false" ng-model="dtUp" is-open="opened4" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="This is a dropup" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+
+                    <div class="date-picker input-group" ng-class="{ 'is-opened': opened5 == true }">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                        <div class="fg-line" ng-class="{ 'fg-toggled': opened5 == true }">
+                            <input ng-click="open($event, 'opened5')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false"  datepicker-mode="'month'" ng-model="dtUp2" is-open="opened5" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Start with Month"/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-4">
+
+                    <div class="date-picker input-group" ng-class="{ 'is-opened': opened6 == true }">
+                        <span class="input-group-addon"><i class="zmdi zmdi-calendar ma-icon"></i></span>
+                        <div class="fg-line" ng-class="{ 'fg-toggled': opened6 == true }">
+                            <input ng-click="open($event, 'opened6')" type="text" class="form-control" datepicker-popup="{{format}}" show-weeks="false"  datepicker-mode="'year'" ng-model="dtUp3" is-open="opened6" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="Start with Year"/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TYPEAHEAD -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Typeahead <small><a target="_blank" class="c-gray" href="https://angular-ui.github.io/bootstrap/#/typeahead">ui.bootstrap.typeahead</a></small></h2>
+
+
+            <ul class="actions">
+                <li dropdown class="dropdown action-show">
+                    <a href="" dropdown-toggle>
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+
+                    <div class="dropdown-menu pull-right">
+                        <p class="p-20">
+                            You can put anything here
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card-body card-padding p-t-0" data-ng-controller="TypeaheadCtrl">
+
+            <p>Typeahead is a AngularJS version of Bootstrap v2's typeahead plugin. This directive can be used to quickly create elegant typeaheads with any form text input. <a href="https://angular-ui.github.io/bootstrap/#/typeahead">Read more...</a></p>
+
+            <br/>
+
+            <p class="f-500 c-black m-b-5">Static arrays</p>
+            <small class="c-gray">Selected value: {{ selected }}</small>
+
+            <br/>
+            <br/>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="fg-line">
+                        <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control" placeholder="e.g. Arizona">
+                    </div>
+                </div>
+            </div>
+                
+            <br/>
+            <br/>
+            
+            <p class="f-500 c-black m-b-5">Asynchronous results</p>
+            <small class="c-gray">Selected value: {{ selected }}</small>
+            
+            <br/>
+            <br/>
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="fg-line">
+                        <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

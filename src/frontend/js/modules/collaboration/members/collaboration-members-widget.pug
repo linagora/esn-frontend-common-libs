@@ -1,0 +1,11 @@
+.collaboration-members-widget
+  .card
+    .card-header.ch-alt
+      h2 {{ 'Members' | translate }}
+    .listview
+      .lv-body
+        esn-collaboration-invite-users(object-type="community", collaboration="collaboration")
+        esn-collaboration-member-avatar(member="member", collaboration="collaboration", ng-repeat="member in members")
+      a.lv-footer.show-more(ng-href='#/{{objectType}}/view/{{collaboration._id}}/members')
+        span(ng-if="more > 0") {{ 'And' | translate }} {{more}} {{ 'more' | translate }}...
+        span(ng-if="more === 0") {{ 'Show all members' | translate }}...

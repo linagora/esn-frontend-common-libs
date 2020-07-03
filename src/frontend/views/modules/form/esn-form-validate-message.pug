@@ -1,0 +1,31 @@
+.has-error(ng-messages="$ctrl.error")
+  .help-block(ng-message="email")
+    | {{ $ctrl.options.email.message.error || 'Invalid email' | translate }}
+  .help-block(ng-message="required")
+    | {{ $ctrl.options.required.message.error || 'This is required' | translate }}
+  .help-block(ng-message="url")
+    | {{ $ctrl.options.url.message.error || 'This is a invalid url' | translate }}
+  .help-block(ng-message="date")
+    | {{ $ctrl.options.date.message.error || 'This is a invalid date' | translate }}
+  .help-block(ng-message="datetimelocal")
+    | {{ $ctrl.options.datetimelocal.message.error || 'This is a invalid date time' | translate }}
+  .help-block(ng-message="time")
+    | {{ $ctrl.options.time.message.error || 'This is a invalid time' | translate }}
+  .help-block(ng-message="week")
+    | {{ $ctrl.options.week.message.error || 'This is a invalid date' | translate }}
+  .help-block(ng-message="month")
+    | {{ $ctrl.options.month.message.error || 'This is a invalid date' | translate }}
+  .help-block(ng-message="max")
+    | {{ $ctrl.options.max.message.error || 'This must be less than or equal to' | translate }} {{ $ctrl.options.max.value }}
+  .help-block(ng-message="min")
+    | {{ $ctrl.options.min.message.error || 'This must be greater than or equal to' | translate }} {{ $ctrl.options.min.value }}
+  .help-block(ng-message="maxlength")
+    | {{ $ctrl.options.maxlength.message.error || 'Length must be less than or equal to' | translate }} {{ $ctrl.options.maxlength.value }}
+  .help-block(ng-message="minlength")
+    | {{ $ctrl.options.minlength.message.error || 'Length must be greater than or equal to' | translate }} {{ $ctrl.options.minlength.value }}
+  .help-block(ng-message="pattern")
+    | {{ $ctrl.options.pattern.message.error || 'Please match requested format' | translate }}
+  .help-block(ng-message="validator")
+    | {{ $ctrl.options.validator.message.error || 'Invalid value' | translate }}
+  .help-block(ng-message="asyncValidator")
+    | {{ $ctrl.options.asyncValidator.message.error || 'Invalid value' | translate }}

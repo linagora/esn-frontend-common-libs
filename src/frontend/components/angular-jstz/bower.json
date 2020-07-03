@@ -1,0 +1,17 @@
+{
+    "name": "angular-jstz",
+    "version": "0.1.0",
+    "description": "JsTimezoneDetect service for AngularJS",
+    "author": "Czar Pino",
+    "license": "MIT",
+    "homepage": "http://github.com/czarpino/angular-jstz",
+    "main": "./angular-jstz.js",
+    "dependencies": {
+      "angular": "~1.3.9",
+      "jstzdetect": "HenningM/jstimezonedetect#~1.0.6"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/czarpino/angular-jstz.git"
+    }
+}

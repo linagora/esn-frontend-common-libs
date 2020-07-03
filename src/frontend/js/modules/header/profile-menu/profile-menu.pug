@@ -1,0 +1,9 @@
+md-menu.blue.btn-icon.btn-link.all-centered(md-position-mode='right bottom')
+  img.header-avatar(ng-src="{{ctrl.avatarURL}}", alt="{{ 'Avatar' | translate }}", aria-label='menu', ng-click='ctrl.openMenu($mdMenu, $event)')
+  md-menu-content.dm-icon.profile-menu
+    div(dynamic-directive="profile-menu-profile")
+    div(dynamic-directive="profile-menu-controlcenter")
+    md-menu-item
+      md-button(ui-sref="logout")
+        md-icon(md-svg-icon="power",aria-label="power Icon")
+        | {{ 'Logout' | translate }}

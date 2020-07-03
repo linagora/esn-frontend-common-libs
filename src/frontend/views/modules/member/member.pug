@@ -1,0 +1,20 @@
+.member-container(ui-sref="profile({user_id: member._id})", ng-if="!disableProfileLink")
+  .pull-left.p-r-15
+    esn-avatar(user-id="member._id")
+  .media-body
+    .lv-titles
+      span.media-heading-search
+        h4(ng-bind-html="::member.firstname | esnHighlight: query") 
+        h4(ng-bind-html="::member.lastname | esnHighlight: query") 
+      span
+        a(ng-bind-html="::member.emails[0] | esnHighlight: query", ng-href='mailto:{{::member.emails[0]}}', op-inbox-compose, op-inbox-compose-users='[member]')
+.member-container(ng-if="disableProfileLink")
+  .pull-left.p-r-15
+    esn-avatar(user-id="member._id")
+  .media-body
+    .lv-title
+      span.media-heading-search
+        h4(ng-bind-html="::member.firstname | esnHighlight: query") 
+        h4(ng-bind-html="::member.lastname | esnHighlight: query") 
+      span
+        a(ng-bind-html="::member.emails[0] | esnHighlight: query", ng-href='mailto:{{::member.emails[0]}}', op-inbox-compose, op-inbox-compose-users='[member]')

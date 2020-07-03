@@ -1,0 +1,36 @@
+tags-input {
+  height: inherit;
+
+  .tags {
+    .ShadowedShape(none);
+
+    border: none;
+    -webkit-appearance: none;
+    overflow-y: auto;
+    max-height: 120px;
+
+    &.focused {
+      .ShadowedShape(none);
+    }
+  }
+
+  .autocomplete {
+    margin-top: 5px;
+    padding: 0;
+  }
+
+  .auto-complete-match {
+    .nopadding;
+    align-items: center;
+    .flex();
+
+    .row {
+      margin: 0;
+    }
+
+    img {
+      .nopadding;
+      .avatar(50px);
+    }
+  }
+}

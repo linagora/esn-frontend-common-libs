@@ -1,0 +1,22 @@
+.comment-composer.wcl-form(ng-controller='messageCommentController')
+  .wc-comment
+    div(error-message-id='{{message._id}}')
+    form.wcc-inner(name='whatsupcommentform', ng-class="{'focus-on': rows === 4}")
+      .form-group.message-textarea-edition(ng-class='{nopadding: rows !== 4}')
+        .fg-line
+          textarea.form-control(ng-model='commentContent', ng-focus='expand()', ng-blur='shrink()', placeholder="{{ 'Add a comment' | translate }}", ng-file-drop="$ctrl.onFileSelect($files)", ng-class="'textarea-' + message._id", auto-resize)
+      .form-group.display-current-position
+        map-get-display-current-position
+      .form-group(ng-if='attachments && attachments.length > 0')
+        message-edition-attachments
+      .comment-edition-button-block(ng-hide='rows !== 4', ng-class='{nopadding: rows !== 4}')
+        hr
+        .form-group.flex
+          .flex-vertical-centered.flex-start.flex-grow
+            button.btn.btn-link.btn-icon(type='file', ng-file-select='$ctrl.onFileSelect($files)', data-multiple='true')
+              i.mdi.mdi-paperclip
+            button.btn.btn-link.btn-icon(ng-disabled='sending', fill-position)
+              i.mdi.mdi-map-marker
+          .flex-vertical-centered.flex-end.flex-grow
+            button.btn.btn-link.color-default(type='reset', ng-click='resetComment()', ng-disabled='sending') {{ 'Cancel' | translate }}
+            button.btn.btn-primary(type='submit', ng-click='addComment("whatsup")', ng-disabled='sending') {{ 'Publish' | translate }}

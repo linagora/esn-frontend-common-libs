@@ -1,0 +1,11 @@
+.col-xs-12.col-md-10.nopadding
+  div(ng-controller="memberscontroller")
+    .block-header
+      h2 {{ 'Members' | translate }}
+    .card
+      .listview.lv-bordered
+        .lv-header.p-20
+          search-form(search-spinner-key="membersSpinner")
+        infinite-list.lv-body(load-more-elements='loadMoreElements()')
+          .lv-item.media(ng-repeat="member in members")
+            member-display(member="member")

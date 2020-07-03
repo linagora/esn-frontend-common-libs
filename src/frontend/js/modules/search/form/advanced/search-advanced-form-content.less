@@ -1,0 +1,49 @@
+.search-header-settings-panel {
+  background: @m-white;
+  border-radius: 2px;
+  max-width: 100vw;
+  .z-depth(1);
+}
+
+.search-advanced-form-content {
+  .search-advanced-form-content-content {
+    padding: 5px 2px 0 2px;
+
+    .search-advanced-form-content-body {
+      margin-top: 10px;
+
+      .search-advanced-form-content-form {
+        padding: 15px;
+      }
+    }
+
+    .search-advanced-form-content-footer {
+      .flex-end;
+
+      padding: 15px;
+    }
+  }
+}
+
+@media (max-width: @screen-md-min) {
+  .search-header-settings-panel {
+    left: 0px !important; // overrides md-panel on mobile
+    width: 100vw !important; // overrides md-panel on mobile so it takes all the available width
+  }
+
+  .search-advanced-form-content {
+    left: 0 !important; //search option popover always displayed on the left
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .search-advanced-form-content {
+    width: 542px;
+  }
+}
+
+@media (min-width: @screen-xl-min) {
+  .search-advanced-form-content {
+    width: 792px;
+  }
+}

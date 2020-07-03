@@ -1,0 +1,79 @@
+@modal-header-bg: #f7f7f7;
+@button-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+
+.btn-accent, .bgm-accent {
+  .AccentColor();
+  &:hover {
+    background-color: darken(@accentColor, 5%);
+  }
+  &.btn-float:not(.no-animation) {
+    .zoomIn;
+    .mdi {
+      transition-delay: 0.4s;
+      animation: rotateIn 0.3s ease-out forwards;
+    }
+  }
+}
+
+.underlined-button {
+  color: lighten(@secondaryTextColor, 20%);
+  text-decoration: underline;
+  text-transform: initial;
+
+  &.btn:not(.btn-link) {
+    box-shadow: none;
+    background: none;
+    border: none;
+  }
+}
+
+.checkbox .input-helper:after{
+  border-color: @primaryColor;
+}
+
+fab-scroll-top {
+  .btn-float {
+    background-color: rgba(100, 100, 100, 0.7);
+    top: 160px;
+  }
+}
+
+.btn:not(.btn-link):not(.btn-float) {
+  box-shadow: none;
+}
+
+@media (min-width: @screen-md-min) {
+  fab-scroll-top {
+    .btn-float:hover {
+      .DarkenReversedSecondaryColor;
+    }
+  }
+}
+
+.is-desktop {
+  .btn:not(.btn-link):not(.btn-float):hover, .btn:not(.btn-link):not(.btn-float):focus {
+    box-shadow: @button-shadow;
+    transition: @transition-btn-link;
+  }
+}
+
+.is-mobile {
+  .btn:not(.btn-link):not(.btn-float):active {
+    box-shadow: @button-shadow;
+    transition: @transition-btn-link;
+  }
+}
+
+.btn-icon-inside-input {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    font-size: 20px;
+  }
+}

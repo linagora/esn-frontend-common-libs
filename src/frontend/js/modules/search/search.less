@@ -1,0 +1,121 @@
+@import "./header/search-header.less";
+@import "./provider-select/search-provider-select.less";
+@import "./form/advanced/search-advanced-form.less";
+@import "./form/advanced/search-advanced-form-content.less";
+
+@searchInputHeight: 35px;
+
+#sub-header .module-subheader {
+
+  .search-show-aside {
+    padding: 0 5px;
+  }
+
+  .title {
+    font-size: 1.4em;
+    color: inherit;
+    text-align: center;
+    margin-left: 25px;
+    margin-right: 25px;
+
+      small {
+        display: block;
+        text-transform: none;
+        margin-top: 3px;
+        color: @accentColor;
+        font-weight: bold;
+        line-height: 140%;
+      }
+    }
+
+  .search-options {
+    .flex-end;
+
+    .mdi {
+      font-size: xx-large;
+    }
+
+    .toggle-active {
+      color: @accentColor;
+    }
+
+    .toggle-switch {
+      margin: 0 10px 0 10px;
+
+      label.ts-helper {
+        margin-bottom: 2px;
+      }
+    }
+  }
+
+  .actions {
+    .mdi {
+      color: @m-white;
+      font-size: xx-large;
+    }
+  }
+}
+
+.search-body {
+  margin-top: 0;
+
+  @media (min-width: @screen-md-min) {
+    margin-top: @sub-header-height-md;
+  }
+
+  @media (min-width: @screen-xl-min) {
+    margin-top: @sub-header-height-xl;
+  }
+
+  padding: 0;
+  position: inherit;
+  width: 100%;
+
+  .search-result {
+    margin-top: 15px;
+
+    .listview.lv-lg .lv-item {
+      padding: 7px 10px;
+    }
+
+    .search-empty-result {
+      .all-centered;
+
+      flex-direction: column;
+      height: 55vh;
+      color: @secondaryTextColor;
+      font-size: 1.4em;
+      text-align: center;
+
+      .search-empty-icon {
+        color: @accentColor;
+        font-size: 8em;
+        opacity: 0.7;
+      }
+
+      .message {
+        margin-bottom: 10px;
+      }
+
+      &.offscreen {
+        display: none;
+      }
+    }
+  }
+}
+
+.member-search-item {
+  .highlight {
+    background: @m-yellow;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .search-body {
+    .search-result {
+      .listview.lv-lg .lv-item {
+        padding: 15px 20px 15px 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.col-xs-12
+  .block-header
+    h2 {{ $ctrl.application.name }}
+
+  .row
+    .well.text-center
+      button.btn.btn-danger.m-5(type='submit', ng-click='$ctrl.revokeTokens()') {{ 'Revoke users tokens' | translate }}
+      button.btn.btn-danger.m-5(type='submit', ng-click='$ctrl.resetClientSecret()') {{ 'Reset client secret' | translate }}
+
+  .row
+    p
+      strong {{ 'Client ID' | translate }}
+      br
+      span {{ $ctrl.application.clientId }}
+    p
+      strong {{ 'Client Secret' | translate }}
+      br
+      span {{ $ctrl.application.clientSecret }}
+
+  .row
+    .well
+      esn-oauth-application-edit-form(application="$ctrl.application")

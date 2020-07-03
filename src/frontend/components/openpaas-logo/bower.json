@@ -1,0 +1,21 @@
+{
+  "name": "openpaas-logo",
+  "version": "0.8.0",
+  "authors": [
+    "Michael Bailly <mbailly@linagora.com>"
+  ],
+  "description": "OpenPaaS logo, ready to spin",
+  "main": "openpaas-logo.js",
+  "keywords": [
+    "angularjs"
+  ],
+  "license": "MIT",
+  "homepage": "http://open-paas.org",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

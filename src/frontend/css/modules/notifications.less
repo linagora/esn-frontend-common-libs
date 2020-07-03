@@ -1,0 +1,88 @@
+@alertBackground: #323232;
+@toastContainerZIndex: @overlayContainerZIndex + 1;;
+
+.alert {
+  display: flex !important; //override notify bootstrap lib setting display CSS inline
+  width: 100%;
+  min-width: 288px;
+  height: auto;
+  padding: 14px 24px 14px 24px;
+  font-size: 14px;
+  border-radius: 0;
+  word-break: break-all;
+  z-index: @toastContainerZIndex !important; //override notify bootstrap lib setting display CSS inline
+
+  .flex-space-between;
+
+  a, button {
+    cursor: pointer;
+
+    &.action-link {
+      .esn-flex-noshrink;
+
+      font-size: 14px;
+      padding-left: 5px;
+      padding-right: 5px;
+      text-transform: uppercase;
+    }
+
+    &.close {
+      color: @m-white;
+      opacity: 1;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  span {
+    cursor: default;
+  }
+
+  &.alert-success {
+    background: @alertBackground;
+    border-color: @alertBackground;
+    color: @m-white;
+
+    a.action-link {
+      color: @m-green;
+    }
+  }
+
+  &.alert-info {
+    background: @alertBackground;
+    border-color: @alertBackground;
+    color: @m-white;
+
+    a.action-link {
+      color: @m-white;
+    }
+  }
+
+  &.alert-warning {
+    background: @alertBackground;
+    border-color: @alertBackground;
+    color: @m-white;
+
+    a.action-link {
+      color: @m-amber;
+    }
+  }
+
+  &.alert-danger {
+    background: @alertBackground;
+    border-color: @alertBackground;
+    color: @m-white;
+
+    a.action-link {
+      color: @m-red;
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .alert {
+    max-width: 568px;
+    border-radius: 2px 2px 0 0;
+  }
+}

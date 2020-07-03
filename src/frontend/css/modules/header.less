@@ -1,0 +1,222 @@
+@subHeaderShadow: rgba(0, 0, 0, 0.3);
+
+#header, #aside-header {
+  background-color: @headerBackground;
+  padding-right: 0;
+  z-index: @header-z-index;
+  box-shadow: none;
+  transition: transform 0.2s ease-in-out;
+  height: @header-height;
+
+  @media (min-width: @screen-md-min) {
+    height: @header-height-md;
+  }
+
+  @media (min-width: @screen-xl-min) {
+    height: @header-height-xl;
+  }
+
+  .header-inner {
+    padding: 0;
+    height: 100%;
+
+    .toggle-switch label {
+      margin-bottom: 2px;
+      transform: scale(0.8);
+    }
+
+    .logo {
+      padding: 0;
+      a {
+        padding: 0 0 0 5px;
+        .openpaas-logo {
+          height: 100%;
+          width: 150px;
+
+          @media (min-width: @screen-md-min) {
+            max-height: 40px;
+          }
+
+          @media (min-width: @screen-xl-min) {
+            max-height: 56px;
+          }
+
+          max-height: 56px;
+        }
+      }
+    }
+
+    ul {
+      margin: 0;
+    }
+
+    li.hover-scale-animation {
+      position: relative;
+      padding: 0;
+    }
+
+    .dropdown-open-animation {
+      .drop-menu-open-animation(top right);
+    }
+
+  }
+  .header-actions{
+    padding-right: 5px;
+  }
+  
+  &:not(.popover) {
+    .btn-link {
+      color: @headerTextColor;
+    }
+
+    .btn-link:not([disabled], .popover):hover {
+      color: @textPrimaryColor;
+    }
+  }
+
+  .mdi-margin-left {
+    margin-left: 0.1em;
+  }
+
+  .mdi-margin-right {
+    margin-right: 0.1em;
+  }
+}
+
+@media (max-width: @screen-md-min) {
+  #header {
+    transform: translate3d(0, -@header-height, 0);
+    .transition-transform(0.2s);
+  }
+}
+
+#sub-header {
+  height: @sub-header-height;
+
+  @media (min-width: @screen-md-min) {
+    height: @sub-header-height-md;
+  }
+
+  @media (min-width: @screen-xl-min) {
+    height: @sub-header-height-xl;
+  }
+
+  width: 100%;
+  background-color: @headerBackground;
+  color:  @headerTextColor;
+  position: relative;
+
+  .row {
+    margin: 0;
+
+    a, button.btn-link {
+      text-transform: uppercase;
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+
+    a {
+      color: @headerTextColor;
+    }
+  }
+
+  .row > .right-action {
+    text-align: right;
+    float: right;
+  }
+
+  ul.dropdown-menu {
+    color: @secondaryTextColor;
+
+    & li a {
+      color: @secondaryTextColor;
+      cursor: pointer;
+      text-transform: capitalize;
+    }
+  }
+
+  &:not(.popover) {
+    .btn-link {
+      color: @headerTextColor;
+    }
+
+    .btn-link:not([disabled], .popover):hover {
+      color: @textPrimaryColor;
+    }
+  }
+
+}
+
+#header .header-actions, #sub-header {
+  .mdi {
+    font-size: 1.8em;
+    vertical-align: middle;
+  }
+}
+
+.subheader-aware {
+  margin-top: 0;
+
+  @media (min-width: @screen-md-min) {
+    margin-top: @sub-header-height-md;
+  }
+
+  @media (min-width: @screen-xl-min) {
+    margin-top: @sub-header-height-xl;
+  }
+}
+
+@media (max-width: @screen-md-min) {
+  body {
+    padding-top: 0;
+    .transition-transform(0.2s);
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+
+  #header {
+    #sub-header {
+      background-color: @subHeaderBackground;
+      box-shadow: 0 1px 4px @subHeaderShadow;
+      color: @subHeaderTextColor;
+
+      &:not(.popover) {
+        .btn-link {
+          color: @subHeaderTextColor;
+        }
+
+        .btn-link:not([disabled], .popover):hover {
+          color: @textPrimaryColor;
+        }
+      }
+
+      .row a {
+        color: @subHeaderTextColor;
+      }
+    }
+  }
+}
+
+.is-desktop .toggle-fullscreen {
+  display: block;
+}
+
+.is-mobile .toggle-fullscreen {
+  display: none;
+}
+
+.dropdown-menu.dm-icon > li > a {
+  text-align: left;
+
+  & > i {
+    color: @primaryColor;
+    line-height: 100%;
+    vertical-align: top;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+  }
+}

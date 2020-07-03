@@ -1,0 +1,6 @@
+.collaboration-membership-requests-actions
+  button.btn.btn-icon.btn-link(ng-click="ctrl.accept()" ng-disabled="ctrl.sending || ctrl.done", bs-tooltip, data-title="{{ 'Accept' | translate }}", data-placement="bottom")
+    i.mdi.mdi-check
+
+  button.btn.btn-icon.btn-link(ng-click="ctrl.decline()" ng-disabled="ctrl.sending || ctrl.done", bs-tooltip, data-title="{{ 'Decline' | translate }}", data-placement="bottom")
+    i.mdi.mdi-close

@@ -1,0 +1,9 @@
+require("./all.less");
+require('./frontend/index.js');
+require('./angular-common.js');
+require('./require-angular-injections.js');
+require('./modules/linagora.esn.account/index.js');
+require('./modules/linagora.esn.graceperiod/index.js');
+require('./modules/linagora.esn.oauth.consumer/index.js');
+require('./modules/linagora.esn.user.status/index.js');
+require('./frontend/js/constants.js');

@@ -1,0 +1,21 @@
+.member-search-item {
+  & > span {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+  }
+
+  img {
+    .avatar(@searchAvatarSize);
+  }
+}
+
+.member-container {
+  .clickable;
+
+  esn-avatar {
+    & img {
+      .esn-avatar;
+    }
+  }
+}

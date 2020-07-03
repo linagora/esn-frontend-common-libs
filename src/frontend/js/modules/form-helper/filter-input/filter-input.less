@@ -1,0 +1,93 @@
+.input-inline-item(@pos) {
+  position: absolute;
+  color: @secondaryTextColor;
+  top: 50%;
+  transform: translateY(-50%);
+
+  & when (@pos = 'left') {
+    left: 0;
+  }
+
+  & when (@pos = 'right') {
+    right: 0;
+  }
+}
+
+esn-filter-input {
+  margin: 2px 0;
+
+  .esn-filter-input-filter-icon {
+    .input-inline-item('left');
+
+    font-size: 20px;
+  }
+
+  input.esn-filter-input-field.form-control {
+    width: 100%;
+    padding-left: 25px;
+    padding-right: 30px;
+    background: transparent;
+  }
+
+  .esn-filter-input-clear-btn {
+    .input-inline-item('right');
+
+    i {
+      font-size: 20px;
+    }
+  }
+
+  .on-background {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+
+    .esn-filter-input-filter-icon {
+      margin-left: 4px;
+    }
+
+    .esn-filter-input-clear-btn {
+      margin-right: 4px;
+    }
+
+    i {
+      color: @textPrimaryColor;
+      vertical-align: middle;
+
+      &.focused {
+        color: @search-input-color-focus;
+      }
+    }
+
+    input.esn-filter-input-field.form-control {
+      &:not([type="button"]):not([type="submit"]):not([type="file"]) {
+        font-size: 13px;
+      }
+
+      &::placeholder {
+        font-size: 13px;
+        color: @textPrimaryColor;
+      }
+
+      height: 32px;
+      padding-left: 29px;
+      padding-right: 34px;
+      border: none;
+      color: @textPrimaryColor;
+      background: @search-input-background-color;
+
+      &:hover {
+        background: @search-input-background-color-hover;
+      }
+
+      &:focus {
+        &::placeholder {
+          color: @search-input-color-focus;
+        }
+
+        background: @search-input-background-color-focus;
+        color: @textColor;
+      }
+    }
+  }
+}

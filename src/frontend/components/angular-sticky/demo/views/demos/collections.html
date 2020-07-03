@@ -1,0 +1,86 @@
+<div save-content="intro" class="hidden">
+	<h2>Collections</h2>
+	<p>
+		Using collections you can create columns each with sticky elements.
+		Due to the <code>collection-parent</code> attribute you can tell the plugin to calculate the stack height of that parent collection and use it as extra offset for itself.
+	</p>
+	<h4><i>Note</i></h4>
+	<ul>
+		<li>
+			This demo also includes a <code>container</code> attribute on the first sticky element. Check out how the header is acting on this.
+		</li>
+		<li>
+			This demo is fully responsive. Perhaps it can inspire you for your own implementation.
+		</li>
+	</ul>
+</div>
+
+<div save-content="html">
+	<header id="header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div hl-sticky="header1" container="header" collection="header" class="sticky sticky-header1"><b>Header1</b> (is sticky to the top but is contained within the "#header")</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="between-headers">Adds some space between "header1" and "header2" to see if they will stick together when you scroll down enough</div>
+				</div>
+				<div class="col-lg-12">
+					<div hl-sticky="header2" collection="header" class="sticky sticky-header2"><b>Header2</b> (should be sticky to the top but underneath "header1" until "header1" moves off the screen. Notice how the sidebar slides under this container up until a certain point, too.)</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<section>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-4 col-md-3 col-sm-4 hidden-xs">
+					<div class="sidebar">
+						<div class="sidebar-space">
+							<p>
+								Vivamus non justo mi. Duis vel ligula eu orci luctus mattis non vitae est. Pellentesque a tincidunt nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit vitae urna quis scelerisque. Proin congue auctor erat.
+							</p>
+						</div>
+						<div hl-sticky="sidebar" collection="sidebar" offset-top="50" collection-parent="header" class="sticky sticky-sidebar">
+							<b>Sidebar</b> Sticky sidebar element with 50 pixels offset from the top
+						</div>
+						<div class="sidebar-space">
+							<p>
+								Mauris a magna sem. Nunc iaculis, arcu id varius fermentum, nisi ipsum sagittis urna, in finibus massa turpis eget elit. Sed posuere est sed ipsum consequat gravida. Suspendisse sed enim velit. Vivamus non justo mi. Duis vel ligula eu orci luctus mattis non vitae est. Pellentesque a tincidunt nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit vitae urna quis scelerisque. Proin congue auctor erat.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-9 col-sm-8">
+					<div class="content">
+						<p>
+							Mauris a magna sem. Nunc iaculis, arcu id varius fermentum, nisi ipsum sagittis urna, in finibus massa turpis eget elit. Sed posuere est sed ipsum consequat gravida. Suspendisse sed enim velit. Vivamus non justo mi. Duis vel ligula eu orci luctus mattis non vitae est. Pellentesque a tincidunt nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit vitae urna quis scelerisque. Proin congue auctor erat.
+						</p>
+						<p>
+							In odio ante, ultrices sed laoreet eu, semper et enim. Phasellus bibendum molestie bibendum. Quisque feugiat sapien non arcu mollis, a egestas libero finibus. Morbi pellentesque, ligula non tincidunt malesuada, justo magna molestie tellus, id dapibus enim dolor nec leo. Morbi sit amet lectus quis felis dictum aliquet. Nam vitae nibh ac purus molestie gravida quis nec nunc. Maecenas commodo tellus quam, iaculis cursus ante imperdiet id. In hac habitasse platea dictumst. Nam consectetur leo et felis volutpat ornare. Proin dapibus dui non erat mattis, quis vehicula risus imperdiet. In fringilla ligula at feugiat tempus. Quisque a ante ornare, iaculis erat in, interdum nibh. Duis eget tincidunt justo, at efficitur purus. Phasellus sed lorem non elit porta placerat ornare et erat. Etiam sed imperdiet justo. Aliquam euismod interdum erat.
+						</p>
+						<div hl-sticky="content-heading" collection="content" collection-parent="header" class="sticky-content-title">
+							<div>
+								<h3>Sticky content heading</h3>
+								<b>Should stick at the top of the content section</b>
+							</div>
+						</div>
+						<p>
+							Mauris a magna sem. Nunc iaculis, arcu id varius fermentum, nisi ipsum sagittis urna, in finibus massa turpis eget elit. Sed posuere est sed ipsum consequat gravida. Suspendisse sed enim velit. Vivamus non justo mi. Duis vel ligula eu orci luctus mattis non vitae est. Pellentesque a tincidunt nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit vitae urna quis scelerisque. Proin congue auctor erat.
+						</p>
+						<p>
+							In odio ante, ultrices sed laoreet eu, semper et enim. Phasellus bibendum molestie bibendum. Quisque feugiat sapien non arcu mollis, a egestas libero finibus. Morbi pellentesque, ligula non tincidunt malesuada, justo magna molestie tellus, id dapibus enim dolor nec leo. Morbi sit amet lectus quis felis dictum aliquet. Nam vitae nibh ac purus molestie gravida quis nec nunc. Maecenas commodo tellus quam, iaculis cursus ante imperdiet id. In hac habitasse platea dictumst. Nam consectetur leo et felis volutpat ornare. Proin dapibus dui non erat mattis, quis vehicula risus imperdiet. In fringilla ligula at feugiat tempus. Quisque a ante ornare, iaculis erat in, interdum nibh. Duis eget tincidunt justo, at efficitur purus. Phasellus sed lorem non elit porta placerat ornare et erat. Etiam sed imperdiet justo. Aliquam euismod interdum erat.
+						</p>
+						<p>
+							Mauris a magna sem. Nunc iaculis, arcu id varius fermentum, nisi ipsum sagittis urna, in finibus massa turpis eget elit. Sed posuere est sed ipsum consequat gravida. Suspendisse sed enim velit. Vivamus non justo mi. Duis vel ligula eu orci luctus mattis non vitae est. Pellentesque a tincidunt nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit vitae urna quis scelerisque. Proin congue auctor erat.
+						</p>
+						<p>
+							In odio ante, ultrices sed laoreet eu, semper et enim. Phasellus bibendum molestie bibendum. Quisque feugiat sapien non arcu mollis, a egestas libero finibus. Morbi pellentesque, ligula non tincidunt malesuada, justo magna molestie tellus, id dapibus enim dolor nec leo. Morbi sit amet lectus quis felis dictum aliquet. Nam vitae nibh ac purus molestie gravida quis nec nunc. Maecenas commodo tellus quam, iaculis cursus ante imperdiet id. In hac habitasse platea dictumst. Nam consectetur leo et felis volutpat ornare. Proin dapibus dui non erat mattis, quis vehicula risus imperdiet. In fringilla ligula at feugiat tempus. Quisque a ante ornare, iaculis erat in, interdum nibh. Duis eget tincidunt justo, at efficitur purus. Phasellus sed lorem non elit porta placerat ornare et erat. Etiam sed imperdiet justo. Aliquam euismod interdum erat.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

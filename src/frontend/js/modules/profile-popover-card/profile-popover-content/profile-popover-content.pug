@@ -1,0 +1,18 @@
+.profile-popover-content.flex-horizontal-centered
+  .profile-card.flex-horizontal-centered
+    .profile-card-left
+      esn-avatar(avatar-url='$ctrl.user.avatarUrl || $ctrl.user.photo', user-id='$ctrl.user._id', user-email='$ctrl.user.email', object-type='$ctrl.user.objectType')
+
+    .profile-card-right.profile-card-informations
+      .ellipsis
+        span.displayname(ng-class="{capitalize: $ctrl.user.displayName !== $ctrl.user.email}") {{$ctrl.user.displayName}}
+      div
+        a(ng-href='mailto:{{$ctrl.user.preferredEmail}}', op-inbox-compose, op-inbox-compose-users='[$ctrl.user]') {{$ctrl.user.preferredEmail}}
+      div(ng-if='$ctrl.user.officeLocation')
+        | {{$ctrl.user.officeLocation}}
+    .profile-card-right(ng-if='$ctrl.isMobileDevice')
+      button.btn.btn-default.popover-close-button(type="button" role="button" aria-label="Close" ng-click="$ctrl._hideComponent($event)")
+        span(aria-hidden="true")
+          i.mdi.mdi-close
+  .popover-profile-user-actions.flex-horizontal-centered
+    .actions(dynamic-directive='profile-user-actions')

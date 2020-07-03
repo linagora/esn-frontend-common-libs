@@ -1,0 +1,23 @@
+.custom-template-right{
+  background-color: #FF6E40;
+}
+
+.custom-template-left{
+  background-color: #40C4FF;
+}
+
+.start {
+  display: flex;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.end {
+  display: flex;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+  -webkit-align-items: center;
+  align-items: center;
+}

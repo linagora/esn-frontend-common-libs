@@ -1,0 +1,17 @@
+.card.m-b-0
+  .card-header
+    .media
+      a.pull-left(ui-sref="profile({user_id: entry.actor._id})")
+        img.lv-img(src='/images/user.png', ng-src='/api/users/{{::entry.actor._id}}/profile/avatar', alt="{{ 'User Avatar' | translate }}")
+      .media-body
+        h2(ng-if='entry.actor._id !== user._id')
+          a(ui-sref="profile({user_id: entry.actor._id})") {{::entry.actor.displayName}}
+          span &nbsp;{{ 'liked' | translate }}
+          a(ng-href="#/messages/{{::entry.object._id}}") &nbsp;{{ 'one of your messages' | translate }}
+        h2(ng-if='entry.actor._id === user._id')
+          span {{ 'You' | translate }}
+          span &nbsp;{{ 'liked' | translate }}
+          a(ui-sref="profile({user_id: entry.object._id})") &nbsp;{{ 'a message' | translate }}
+
+        small
+          span(am-time-ago="::entry.published")

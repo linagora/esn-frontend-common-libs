@@ -1,0 +1,82 @@
+<header id="header" data-ng-include="'template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+    <aside id="chat" data-ng-include="'template/chat.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.right === true }"></aside>
+
+    <section id="content" data-ng-controller="calendarCtrl as clctrl">
+        <div class="container" data-ng-controller="ModalDemoCtrl">
+            <div class="block-header">
+                <h2>Calendar <small>FullCalendar is a jQuery plugin that provides a full-sized, drag & drop event calendar like the one below. It uses AJAX to fetch events on-the-fly and is easily configured to use your own feed format. It is visually customizable with a rich API.</small></h2>
+
+                <ul class="actions">
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-trending-up"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-check-all"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown" dropdown>
+                        <a href="" dropdown-toggle>
+                            <i class="zmdi zmdi-more-vert"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="">Refresh</a>
+                            </li>
+                            <li>
+                                <a href="">Manage Widgets</a>
+                            </li>
+                            <li>
+                                <a href="">Widgets Settings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="calendar" data-calendar data-action-links="clctrl.actionMenu" data-select="clctrl.onSelect(start, end)"></div>
+            
+            <!-- Add event -->
+            <script type="text/ng-template" id="addEvent.html">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add an Event</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="addEvent" role="form">
+                        <div class="form-group" data-ng-class="{ 'has-error': calendarData.eventName === '' }">
+                            <label for="eventName">Event Name</label>
+                            <div class="fg-line">
+                                <input type="text" class="input-sm form-control" data-ng-model="calendarData.eventName" placeholder="eg: Sports day">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventName">Tag Color</label>
+                            <div class="event-tag" data-ng-class="{ 'active': activeState }">
+                                <span data-ng-repeat="w in tags" data-tag="{{ w }}" class="{{ w }}" data-ng-class="{ 'selected': activeState === $index }" data-ng-click="onTagClick(w, $index)"></span>
+                            </div>
+                        </div>
+
+                        <input type="hidden" data-ng-model="getStart" />
+                        <input type="hidden" data-ng-model="getEnd" />
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-ng-click="addEvent()">Add Event</button>
+                    <button type="button" class="btn btn-link" data-ng-click="eventDismiss()">Close</button>
+                </div>
+            </script>
+        </div>
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>

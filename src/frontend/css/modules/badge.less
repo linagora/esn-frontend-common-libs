@@ -1,0 +1,30 @@
+.badge-container {
+  .esn-flex-noshrink;
+
+  position: relative;
+  padding-right: 5px;
+
+  .badge {
+    position: absolute;
+    bottom: 5%;
+    right: 12%;
+    min-width: 18px;
+    height: 18px;
+    z-index: 2;
+    font-size: 0.9em;
+    line-height: 18px;
+    border-radius: 8px;
+    padding: 0 2px;
+
+    .hide-badge-number {
+      display: none;
+    }
+
+    .badge-loading-activate {
+      .animation-rotate(1s infinite linear);
+
+      width: 1.3em;
+      text-align: center;
+    }
+  }
+}

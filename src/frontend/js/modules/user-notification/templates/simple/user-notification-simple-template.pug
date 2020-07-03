@@ -1,0 +1,17 @@
+.esn-user-notification
+  .card(ng-show='!notification.acknowledged')
+    .card-header
+      .media
+        div(ng-show='error')
+          p {{ 'Error while getting notification' | translate }}
+        div(ng-show='loading && !error')
+          p {{ 'Loading notifications' | translate }}
+        div.clickable(ng-hide='loading || error', ui-sref='{{::notification.redirectPath}}', ui-sref-opts="{reload: true}", ng-click='acknowledge()')
+          div
+            span(ng-show='notification.icon')
+              i.mdi(ng-class="notification.icon.id")
+            span.ellipsis
+              span.pull-right.date.hidden-xs(am-time-ago="::notification.timestamps.creation")
+          .media-body
+            div(ng-show='notification.description')
+              span {{notification.description | translate}}

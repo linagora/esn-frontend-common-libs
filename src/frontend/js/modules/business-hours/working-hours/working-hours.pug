@@ -1,0 +1,10 @@
+ng-form(name="form")
+  p.text-muted {{ 'Choose your working hours' | translate }}
+  .row
+    .col-xs-6
+      esn-form-group(label="{{ 'Starts at' | translate }}")
+        input.form-control(type="text", aria-expanded="false", ng-model="$ctrl.display.start", ng-change="$ctrl.onStartChange()", lng-clockpicker, lng-clockpicker-options="{twelvehour: false}")
+    .col-xs-6
+      esn-form-group(label="{{ 'Ends at' | translate }}")
+        input.form-control(type="text", aria-expanded="false", ng-model="$ctrl.display.end", ng-change="$ctrl.onEndChange()", lng-clockpicker, lng-clockpicker-options="{twelvehour: false}")
+

@@ -1,0 +1,18 @@
+{
+  "name": "angular-naturalsort",
+  "version": "1.1.4",
+  "description": "Natural Sort for Angular.js",
+  "main": "dist/naturalSortVersion.min.js",
+  "keywords": [
+    "javascript",
+    "angularjs",
+    "sort"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

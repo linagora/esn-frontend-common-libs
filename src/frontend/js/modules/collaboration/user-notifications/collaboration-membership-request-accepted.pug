@@ -1,0 +1,21 @@
+.esn-user-notification
+  .card
+    .card-header
+      .media
+        div(ng-show='ctrl.notFound')
+          p {{ 'This notification is about removed content and is skipped' | translate }}
+        div(ng-show='ctrl.error')
+          p {{ 'Error while getting notification' | translate }}
+        div(ng-show='ctrl.loading && !ctrl.error && !ctrl.notFound')
+          p {{ 'Loading notification' | translate }}
+        div(ng-hide='ctrl.loading || ctrl.error || ctrl.notFound')
+          a.pull-left(ng-href='/#/{{::ctrl.collaborationPath}}/{{::ctrl.collaboration._id}}')
+            img.media-object(ng-src='/api/avatars?objectType={{::ctrl.collaboration.objectType}}&id={{::ctrl.collaboration._id}}', fallback-src='/images/collaboration.png', alt="{{ 'Collaboration' | translate }}")
+          .media-body
+            .ellipsis
+              span.pull-right.date.hidden-xs(am-time-ago="::ctrl.notification.timestamps.creation")
+              a(ng-href="/#/{{::ctrl.collaborationPath}}/{{::ctrl.collaboration._id}}") {{::ctrl.collaboration.title}}
+            div(ng-switch='ctrl.collaboration.objectType')
+              span(ng-switch-when='community') {{ 'Your request has been accepted, welcome to the community' | translate }} !
+              span(ng-switch-when='project') {{ 'Your request has been accepted, welcome to the project' | translate }} !
+              span(ng-switch-default) {{ 'Your request has been accepted, welcome' | translate }} !

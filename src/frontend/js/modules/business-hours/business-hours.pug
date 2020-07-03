@@ -1,0 +1,8 @@
+ng-form(name="form")
+  .card
+    .card-header
+      h2 {{ 'Business hours' | translate }}
+        small {{ 'Set the business hours, which will be emphasized in the calendars' | translate }}
+    .card-body.card-padding(ng-if="$ctrl.businessHour")
+      esn-business-hours-working-hours(start="$ctrl.businessHour.start", end="$ctrl.businessHour.end")
+      esn-business-hours-working-days(days-of-week="$ctrl.businessHour.daysOfWeek")

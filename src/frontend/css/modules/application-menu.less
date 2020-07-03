@@ -1,0 +1,50 @@
+@application-menu-icon-color: #4C4C4C;
+@application-menu-icon-background: #F7F7F7;
+
+.popover.application-menu {
+  max-width: 300px;
+  width: 300px;
+  margin-top: 0;
+  z-index: @aside-z-index + 1;
+
+  .flex() !important; /* override angular-strap display property */
+  .flex-vertical-centered();
+  .flex-start();
+  .flex-wrap();
+  div {
+    .all-centered();
+    .col-xs-4();
+    height: 90px;
+  }
+  div > a {
+    .all-centered();
+    .flex-column();
+    color: @application-menu-icon-color;
+    .label {
+      color: @application-menu-icon-color;
+      font-size: 100%;
+    }
+    &:hover {
+      color: darken(@application-menu-icon-color, 15%);
+      .label {
+        color: darken(@application-menu-icon-color, 15%);
+      }
+    }
+  }
+
+  .esn-application-menu-icon {
+    .avatar(65px);
+  }
+}
+
+#application-menu-backdrop {
+  opacity: 0;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {
+  .popover.application-menu {
+    max-width: 350px;
+    width: 350px;
+  }
+}

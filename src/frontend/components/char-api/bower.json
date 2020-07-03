@@ -1,0 +1,10 @@
+{
+  "name": "charAPI",
+  "version": "0.1.1",
+  "main": "charAPI.js",
+  "keywords": ["util", "ascii"],
+  "dependencies": {
+    "angular": "~1.3.0",
+    "angular-mocks": "~1.3.0"
+  }
+}

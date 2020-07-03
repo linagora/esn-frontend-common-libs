@@ -1,0 +1,56 @@
+@action-list-icon-color: lighten(@secondaryTextColor, 10%);
+@action-list-icon-color-dark: darken(@action-list-icon-color, 30%);
+
+.action-list {
+  .flex();
+  .flex-vertical-centered();
+  .flex-start();
+  .flex-wrap();
+
+  padding: 5px 0;
+
+  .action {
+    .all-centered();
+    .col-xs-4();
+
+    height: 80px;
+
+    & > a {
+      .all-centered();
+      .flex-column();
+
+      color: @action-list-icon-color;
+      cursor: pointer;
+      .label {
+        color: @action-list-icon-color;
+        font-size: 100%;
+      }
+
+      & > i.mdi {
+        font-size: 46px;
+      }
+
+      &:hover {
+        color: @action-list-icon-color-dark;
+        .label {
+          color: @action-list-icon-color-dark;
+        }
+      }
+    }
+  }
+
+}
+
+.action-list-container {
+
+  &.popover {
+    // Without a fixed width there, the action-list can be rendered too tight
+    max-width: 300px;
+    width: 300px;
+    z-index: @aside-z-index + 1;
+
+    .popover-content {
+      padding: 4px 9px;
+    }
+  }
+}

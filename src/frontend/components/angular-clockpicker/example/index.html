@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport", content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../bower_components/lng-clockpicker/dist/jquery-clockpicker.min.css">
+  <title>clockpicker wrapper</title>
+</head>
+<body ng-app="clockpicker.example">
+
+  <div ng-controller="dateCtrl">
+    <p>
+        Date : {{date.format('YYYY-MM-DD hh:mm A')}}
+    </p>
+    <p>
+        <input type="text" data-ng-model='date' data-lng-clockpicker data-lng-clockpicker-options='options'></input>
+        <button type="button" data-ng-click='randomTime()'>Random time</button>
+    </p>
+  </div>
+
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/moment/min/moment.min.js"></script>
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../bower_components/angular-moment/angular-moment.min.js"></script>
+  <script src="../dist/angular-clockpicker.min.js"></script>
+  <script src="../bower_components/lng-clockpicker/dist/jquery-clockpicker.min.js"></script>
+  <script src="../bower_components/re-tree/re-tree.min.js"></script>
+  <script src="../bower_components/ng-device-detector/ng-device-detector.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

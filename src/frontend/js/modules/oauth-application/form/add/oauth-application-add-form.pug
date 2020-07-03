@@ -1,0 +1,13 @@
+.oauth-application-add-form
+  ng-form(name='form')
+    esn-form-group(label="{{ 'Application name' | translate }}")
+      input.form-control(type='text', ng-model='$ctrl.application.name', name='name', autofocus=true, required)
+      span.help-block {{ 'Application name will help users to find and trust it' | translate }}.
+    esn-form-group(label="{{ 'Redirect URI' | translate }}")
+      input.form-control(type='text', ng-model='$ctrl.application.redirectUri', name='redirectUri', required, pattern="https?://.+")
+      span.help-block {{ 'The application\'s callback URL. Check OAuth documentation for more details' | translate }}.
+    esn-form-group(label="{{ 'Application description' | translate }}")
+      textarea.form-control(ng-model='$ctrl.application.description', name='description')
+      span.help-block {{ 'Tell us what your application is about' | translate }}.
+  .form-group.actions
+    button.btn.btn-primary(ng-disabled="!form.$valid" esn-submit="$ctrl.create()") {{ 'Register your application' | translate }}

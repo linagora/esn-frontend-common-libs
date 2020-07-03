@@ -1,0 +1,5 @@
+.display-position
+  a.map(href='', ng-show='position', ng-click='toggleMapDisplay(position)')
+    i.mdi.mdi-map-marker
+    span(ng-show="position.display_name") {{ 'Near' | translate }} {{position.display_name}}
+  leaflet(ng-if="showMeMap", markers="markers", center="center", height="200px", width="100%")

@@ -1,0 +1,76 @@
+@asideSettingsIconFontSize: 1.8em;
+
+.clickable:not(.text-danger):not(a):not(.menu-root) {
+  &.selected {
+    settings-overlay {
+      .md-menu, .md-menu.md-open {
+        .mdi {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .md-menu {
+    &.md-open {
+      .mdi {
+        opacity: 1;
+      }
+    }
+  }
+
+  .md-menu {
+    .all-centered;
+
+    position: absolute;
+    top: 0;
+    height: 100%;
+    right: 0;
+    font-size: @asideSettingsIconFontSize;
+    background-color: inherit;
+    padding-right: 5px;
+
+    .mdi {
+      opacity: 0;
+    }
+  }
+}
+
+.is-desktop .clickable:not(.text-danger):not(a):not(.menu-root):hover {
+  settings-overlay {
+    .md-menu {
+      .mdi {
+        opacity: 0.5;
+      }
+
+      &:hover .mdi {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.is-mobile .clickable:not(.text-danger):not(a):not(.menu-root) {
+  &.selected {
+    settings-overlay {
+      .md-menu, .md-menu.md-open {
+        .mdi {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  settings-overlay .md-menu {
+    &.md-open {
+      .mdi {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+md-menu-content inbox-folder-settings {
+  display: flex;
+  flex-direction: column;
+}

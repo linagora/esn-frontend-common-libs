@@ -1,0 +1,21 @@
+div.btn-group
+  button.btn.btn-info.dropdown-toggle(type="button" data-toggle="dropdown" aria-expanded="false")
+    span(ng-if='selectedStream.activity_stream.uuid === activitystream.activity_stream.uuid') {{ 'Current' | translate }}
+    span(ng-if='selectedStream && selectedStream.activity_stream.uuid !== activitystream.activity_stream.uuid') {{selectedStream.displayName}}
+    span(ng-if='!selectedStream') {{ 'All' | translate }}
+    span &nbsp;
+    span.caret
+  ul.dropdown-menu.dropdown-menu-right(role="menu")
+    li
+      a(href="" ng-click="clearStreamSelection()")
+        img(src='/images/activitystream.png', alt="{{ 'Activity Stream Avatar' | translate }}")
+        span {{ 'All' | translate }}
+    li
+      a(href="" ng-click="selectStream(activitystream)")
+        img(ng-src='{{activitystream.avatarUrl}}', alt="{{ 'Activity Stream Avatar' | translate }}")
+        span {{ 'Current' | translate }}
+    li.divider
+    li(ng-repeat="stream in displayList")
+      a(href="" ng-click="selectStream(stream)")
+        img(ng-src='{{stream.avatarUrl}}', alt="{{ 'Activity Stream Avatar' | translate }}")
+        span {{::stream.displayName}}
