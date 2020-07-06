@@ -1,4 +1,6 @@
-(function() {
+require('./i18n.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.i18n')
@@ -13,4 +15,4 @@
       $translateProvider.useInterpolation('esnI18nInterpolator');
       $translateProvider.useSanitizeValueStrategy('escape');
     });
-})();
+})(angular);

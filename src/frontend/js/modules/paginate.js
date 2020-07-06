@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.paginate', [])
+  angular.module('esn.paginate', [])
   .factory('paginator', function() {
 
     return function(items, itemsPerPage, totalItems, loader) {
@@ -74,3 +75,5 @@ angular.module('esn.paginate', [])
       };
     };
   });
+
+})(angular);

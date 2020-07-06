@@ -3,6 +3,11 @@
 
   angular.module('esn.clipboard', [
     'material.components.tooltip',
-    'ngclipboard'
+    'ngclipboard',
+    'esn.notification'
   ]);
 })(angular);
+
+require('../notification.js');
+require('./url/clipboard-url.component.js');
+require('./url/clipboard-url.controller.js');

@@ -1,11 +1,12 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.activitystreams-tracker', [
-  'esn.session',
-  'esn.websocket',
-  'esn.activitystream',
-  'esn.user'
-])
+  angular.module('esn.activitystreams-tracker', [
+    'esn.session',
+    'esn.websocket',
+    'esn.activitystream',
+    'esn.user'
+  ])
   .factory('ASTrackerAPI', function($log, userAPI, activitystreamAPI) {
 
     function getActivityStreams(domainid, objectType) {
@@ -46,8 +47,8 @@ angular.module('esn.activitystreams-tracker', [
           function(err) {
             defer.reject(err);
           });
-        return defer.promise;
-      });
+          return defer.promise;
+        });
 
       $q.all(promises).then(function() {
         callback(null, unreadsCount);
@@ -124,7 +125,7 @@ angular.module('esn.activitystreams-tracker', [
             function(response) {
               ASTrackerNotificationService.updateUnread(data.activitystreamUuid, response.data.unread_count);
             }
-          );
+            );
         }, 1000);
       }
     });
@@ -329,3 +330,9 @@ angular.module('esn.activitystreams-tracker', [
       get: get
     };
   });
+})(angular);
+
+require('./activitystream.js');
+require('./session.js');
+require('./user/user.module.js');
+require('./websocket.js');

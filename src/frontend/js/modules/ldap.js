@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular
@@ -24,4 +24,8 @@
       searchUsers: searchUsers
     };
   }
-})();
+})(angular);
+
+require('./attendee/attendee.module.js')
+require('./user/user.module.js');
+require('./http.js');

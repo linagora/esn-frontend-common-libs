@@ -1,10 +1,11 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.scroll', [
-  'esn.constants',
-  'esn.header',
-  'ng.deviceDetector'
-])
+  angular.module('esn.scroll', [
+    'esn.constants',
+    'esn.header',
+    'ng.deviceDetector'
+  ])
 
   .constant('SCROLL_EVENTS', {
     RESET_SCROLL: 'scroll:reset'
@@ -158,3 +159,8 @@ angular.module('esn.scroll', [
       }
     };
   });
+
+})(angular);
+
+require('../constants.js');
+require('./header/header.js');

@@ -1,10 +1,14 @@
+const _ = require('lodash');
+
+require('./pagination-provider.service.js');
+
 (function() {
   'use strict';
 
   angular.module('esn.pagination')
     .factory('esnPaginationtionProviderBuilder', esnPaginationtionProviderBuilder);
 
-  function esnPaginationtionProviderBuilder(esnPaginationProvider, infiniteScrollHelper, PageAggregatorService, _) {
+  function esnPaginationtionProviderBuilder(esnPaginationProvider, infiniteScrollHelper, PageAggregatorService) {
     return function(scope, name, sources, options) {
       var aggregator;
       var providers = [];

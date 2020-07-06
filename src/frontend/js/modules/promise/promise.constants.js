@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.promise')
@@ -8,4 +8,4 @@
       intervalMultiplier: 1.5
     });
 
-})();
+})(angular);

@@ -1,6 +1,8 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.login', ['esn.notification', 'esn.http', 'op.dynamicDirective', 'esn.feature-registry'])
+  angular.module('esn.login', ['esn.notification', 'esn.http', 'op.dynamicDirective', 'esn.feature-registry'])
+
   .config(function(dynamicDirectiveServiceProvider) {
     var passwordControlCenterMenu = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'controlcenter-menu-password', {priority: -14});
 
@@ -219,3 +221,10 @@ angular.module('esn.login', ['esn.notification', 'esn.http', 'op.dynamicDirectiv
       return this.data.error;
     };
   });
+
+})(angular);
+
+require('./login/login-success.service.js');
+require('./feature-registry/feature-registry.module.js');
+require('./http.js');
+require('./notification.js');

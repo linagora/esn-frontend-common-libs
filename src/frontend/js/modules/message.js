@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.message')
+  angular.module('esn.message')
   .constant('ESN_MESSAGE_TYPES', ['whatsup', 'event', 'poll'])
   .constant('ESN_MESSAGE_DEFAULT_POLL_CHOICES', [{ label: '' }, { label: '' }])
   .run(function(esnTimelineEntryProviders, $q, ESN_MESSAGE_TYPES) {
@@ -1098,3 +1099,5 @@ return objectTypeAdapter.adapt(collaboration.object);
       }
     };
   });
+
+})(angular);

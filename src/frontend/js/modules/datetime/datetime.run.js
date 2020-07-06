@@ -1,4 +1,6 @@
-(function() {
+require('./datetime.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.datetime')
@@ -9,4 +11,4 @@
         moment.tz.setDefault(esnDatetimeService.getTimeZone());
       });
     }
-})();
+})(angular);

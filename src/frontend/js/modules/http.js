@@ -1,9 +1,10 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.http', [
-  'esn.constants',
-  'restangular'
-])
+  angular.module('esn.http', [
+    'esn.constants',
+    'restangular'
+  ])
 
   .factory('esnRestangular', function(Restangular, httpConfigurer, httpErrorHandler) {
     var restangularInstance = Restangular.withConfig(function(RestangularConfigurer) {
@@ -88,3 +89,7 @@ angular.module('esn.http', [
       };
     };
   });
+
+})(angular);
+
+require('../constants.js');

@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -6,4 +6,4 @@
       name: 'defaultPreview',
       directive: 'esn-attachment-default-preview'
     });
-})();
+})(angular);

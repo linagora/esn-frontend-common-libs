@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.background', [])
+  angular.module('esn.background', [])
   .service('backgroundProcessorService', function() {
 
     var tasks = [];
@@ -30,3 +31,5 @@ angular.module('esn.background', [])
       return backgroundProcessorService.add(task);
     };
   });
+
+})(angular);

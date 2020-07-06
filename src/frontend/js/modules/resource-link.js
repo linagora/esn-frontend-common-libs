@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.resource-link', ['esn.http'])
+  angular.module('esn.resource-link', ['esn.http'])
   .factory('ResourceLinkAPI', function(esnRestangular) {
     function create(source, target, type, value) {
       return esnRestangular.all('resource-links').customPOST({
@@ -38,3 +39,7 @@ angular.module('esn.resource-link', ['esn.http'])
       get: get
     };
   });
+
+})(angular);
+
+require('./http.js');

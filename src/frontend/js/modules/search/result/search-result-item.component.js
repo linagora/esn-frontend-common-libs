@@ -1,3 +1,5 @@
+require('./search-result-item.controller.js');
+
 (function(angular) {
   'use strict';
 

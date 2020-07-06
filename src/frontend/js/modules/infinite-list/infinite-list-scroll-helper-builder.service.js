@@ -1,4 +1,7 @@
-(function() {
+require('./infinite-list.service.js');
+require('./infinite-list.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.infinite-list')
@@ -49,4 +52,4 @@
         };
       };
     }
-})();
+})(angular);

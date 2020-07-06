@@ -1,4 +1,6 @@
-(function() {
+require('./profile-menu.controller.js');
+
+(function(angular) {
 'use strict';
 
   angular.module('esn.profile-menu')
@@ -7,4 +9,4 @@
       controller: 'ESNProfileMenuController',
       controllerAs: 'ctrl'
     });
-})();
+})(angular);

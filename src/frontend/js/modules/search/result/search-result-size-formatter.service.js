@@ -1,3 +1,5 @@
+require('../search.constants.js');
+
 (function(angular) {
   'use strict';
 

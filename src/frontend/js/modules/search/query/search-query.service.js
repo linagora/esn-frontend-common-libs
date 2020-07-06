@@ -1,9 +1,11 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.search').factory('esnSearchQueryService', esnSearchQueryService);
 
-  function esnSearchQueryService(_) {
+  function esnSearchQueryService() {
     var searchKeepers = [];
 
     return {

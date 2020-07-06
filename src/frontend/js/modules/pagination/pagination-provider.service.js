@@ -1,4 +1,6 @@
-(function() {
+require('./pagination.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.pagination')
@@ -29,4 +31,4 @@
 
     return PaginationProvider;
   }
-})();
+})(angular);

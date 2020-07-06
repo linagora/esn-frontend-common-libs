@@ -1,4 +1,6 @@
-(function() {
+require('./search-provider-select.controller.js');
+
+(function(angular) {
   'use strict';
 
   angular
@@ -12,4 +14,4 @@
         onProviderSelected: '&'
       }
     });
-})();
+})(angular);

@@ -6,3 +6,5 @@
   ]);
 
 })(angular);
+
+require('./material-colors.config.js');

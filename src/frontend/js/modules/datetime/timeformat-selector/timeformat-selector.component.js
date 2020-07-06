@@ -1,3 +1,5 @@
+require('./timeformat-selector.controller.js');
+
 (function(angular) {
   'use strict';
 

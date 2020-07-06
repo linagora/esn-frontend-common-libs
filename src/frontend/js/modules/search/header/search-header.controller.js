@@ -1,4 +1,6 @@
-(function() {
+require('../search.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.search')
@@ -13,4 +15,4 @@
       esnSearchService.search(query, provider);
     }
   }
-})();
+})(angular);

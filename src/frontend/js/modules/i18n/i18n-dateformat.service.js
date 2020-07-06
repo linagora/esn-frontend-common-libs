@@ -1,4 +1,7 @@
-(function() {
+require('./i18n.constants.js');
+require('./i18n.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.i18n')
@@ -22,4 +25,4 @@
       return format[esnI18nService.getLocale().substring(0, 2)] || format[ESN_I18N_DEFAULT_LOCALE];
     }
   }
-})();
+})(angular);

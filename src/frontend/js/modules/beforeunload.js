@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.beforeunload', ['esn.background'])
+  angular.module('esn.beforeunload', ['esn.background'])
 
   .run(function($window, backgroundProcessorService) {
     //https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload
@@ -15,3 +16,7 @@ angular.module('esn.beforeunload', ['esn.background'])
       }
     });
   });
+
+})(angular);
+
+require('./background.js');

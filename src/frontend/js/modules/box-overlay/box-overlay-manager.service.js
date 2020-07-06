@@ -1,9 +1,13 @@
+const _ = require('lodash');
+
+require('./box-overlay.constants.js');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.box-overlay').service('boxOverlayManager', boxOverlayManager);
 
-  function boxOverlayManager(_, $rootScope, $window, $compile, $http, $templateCache, notificationFactory, ESN_BOX_OVERLAY_MAX_WINDOWS) {
+  function boxOverlayManager($rootScope, $window, $compile, $http, $templateCache, notificationFactory, ESN_BOX_OVERLAY_MAX_WINDOWS) {
     var boxTemplateUrl = '/views/modules/box-overlay/box-overlay.html';
     var boxes = [];
 

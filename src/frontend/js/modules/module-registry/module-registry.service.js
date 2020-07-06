@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.module-registry')
@@ -13,4 +13,4 @@
 
     return registry;
   }
-})();
+})(angular);

@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -8,4 +8,4 @@
       },
       template: require("./default-preview.pug")
     });
-})();
+})(angular);

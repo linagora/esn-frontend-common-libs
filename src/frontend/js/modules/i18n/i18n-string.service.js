@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.i18n')
@@ -22,4 +22,4 @@
 
       return EsnI18nString;
     }
-})();
+})(angular);

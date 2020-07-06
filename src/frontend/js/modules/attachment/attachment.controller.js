@@ -1,4 +1,8 @@
-(function() {
+require('./attachment-registry.service.js');
+require('./viewer/attachment-viewer.service.js');
+require('./viewer/attachment-viewer-gallery.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -57,4 +61,4 @@
       $element.append($compile('<' + previewer.directive + ' attachment="$ctrl._attachment", gallery="$ctrl.gallery", ng-click="$ctrl.onClick()" />')($scope));
     }
   }
-})();
+})(angular);

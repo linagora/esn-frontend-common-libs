@@ -1,4 +1,8 @@
-(function() {
+require('./infinite-list-scroll-helper-builder.service.js');
+require('./infinite-list.service.js');
+require('./infinite-list.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.infinite-list')
@@ -34,4 +38,4 @@
       return helper;
     };
   }
-})();
+})(angular);

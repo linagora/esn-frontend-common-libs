@@ -1,8 +1,11 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.user-configuration', [
-    'esn.configuration',
-    'esn.lodash-wrapper'
+    'esn.configuration'
   ]);
-})();
+})(angular);
+
+require('../config/config.module.js');
+require('./user-configuration.constants.js');
+require('./user-configuration.service.js');

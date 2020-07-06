@@ -1,9 +1,11 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.search').factory('esnSearchService', esnSearchService);
 
-  function esnSearchService(_, $state) {
+  function esnSearchService($state) {
     return {
       search: search
     };

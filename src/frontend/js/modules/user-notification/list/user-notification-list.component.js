@@ -1,4 +1,6 @@
-(function() {
+require('./user-notification-list.controller.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.user-notification')
@@ -16,4 +18,4 @@
       template: require("./user-notification-list.pug")
     };
   }
-})();
+})(angular);

@@ -1,8 +1,9 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.highlight', [])
+  angular.module('esn.highlight', [])
 
-.filter('esnHighlight', function($sce, escapeHtmlUtils) {
+  .filter('esnHighlight', function($sce, escapeHtmlUtils) {
     function escapeRegexChars(str) {
       return str && str.replace(/([.?*+^$[\]\\(){}|-])/g, ' ');
     }
@@ -33,3 +34,5 @@ angular.module('esn.highlight', [])
       return $sce.trustAsHtml(text);
     };
   });
+
+})(angular);

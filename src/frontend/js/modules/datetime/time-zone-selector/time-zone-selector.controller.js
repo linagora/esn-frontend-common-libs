@@ -1,3 +1,5 @@
+require('./time-zone-selector.constants.js');
+
 (function(angular) {
   'use strict';
 

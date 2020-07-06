@@ -1,4 +1,6 @@
-(function() {
+require('./attachment-icon.controller.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -14,4 +16,4 @@
       template: require("./attachment-icon.pug")
     };
   }
-})();
+})(angular);

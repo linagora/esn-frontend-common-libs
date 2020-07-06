@@ -1,3 +1,5 @@
+require('./date-picker.controller.js');
+
 (function(angular) {
   'use strict';
 

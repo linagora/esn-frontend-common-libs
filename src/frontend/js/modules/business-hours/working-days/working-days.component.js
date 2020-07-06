@@ -1,3 +1,5 @@
+require('./working-days.controller.js');
+
 (function(angular) {
   'use strict';
 

@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
@@ -5,7 +7,7 @@
     .module('esn.attachments-selector')
     .service('esnAttachmentsSelectorService', esnAttachmentsSelectorService);
 
-  function esnAttachmentsSelectorService($q, _) {
+  function esnAttachmentsSelectorService() {
     return {
       newAttachmentServiceHolder: newAttachmentServiceHolder
     };

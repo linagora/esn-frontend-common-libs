@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.settings-overlay', [])
@@ -14,4 +14,4 @@
       },
       controllerAs: 'ctrl'
     });
-})();
+})(angular);

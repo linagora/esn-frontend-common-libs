@@ -1,8 +1,8 @@
 /*global Offline*/
+(function(angular) {
+  'use strict';
 
-'use strict';
-
-angular.module('esn.offline-wrapper', [])
+  angular.module('esn.offline-wrapper', [])
   .factory('Offline', function() {
     return Offline;
   })
@@ -10,3 +10,5 @@ angular.module('esn.offline-wrapper', [])
   .run(function(Offline) {
     Offline.options = {checks: {xhr: {url: '/#/unifiedinbox'}}};
   });
+
+})(angular);

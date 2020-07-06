@@ -1,7 +1,10 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.twitter', [])
+  angular.module('esn.twitter', [])
 
   .factory('twitterWidgetService', function($window) {
     return $window.twttr;
   });
+
+})(angular);

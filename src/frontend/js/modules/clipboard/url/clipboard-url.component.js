@@ -1,3 +1,5 @@
+require('./clipboard-url.controller.js');
+
 (function(angular) {
   'use strict';
 

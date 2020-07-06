@@ -1,3 +1,5 @@
+require('../shortcuts-registry.service.js');
+
 (function(angular) {
   'use strict';
 

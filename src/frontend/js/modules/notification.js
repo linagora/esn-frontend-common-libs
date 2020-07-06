@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.notification', ['angularMoment', 'esn.escape-html', 'esn.i18n'])
+  angular.module('esn.notification', ['angularMoment', 'esn.escape-html', 'esn.i18n'])
 
   .factory('notifyService', function($window, escapeHtmlUtils, esnI18nService) {
 
@@ -124,3 +125,8 @@ angular.module('esn.notification', ['angularMoment', 'esn.escape-html', 'esn.i18
     };
 
   });
+
+})(angular);
+
+require('./i18n/i18n.module.js');
+require('./escape-html.js');

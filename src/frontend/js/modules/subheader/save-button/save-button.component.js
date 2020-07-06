@@ -1,3 +1,5 @@
+require('./save-button.controller.js');
+
 (function(angular) {
   'use strict';
 

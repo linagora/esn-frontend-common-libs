@@ -1,3 +1,8 @@
+require('./sheet/shortcuts-sheet.service.js');
+require('./shortcuts-action.service.js');
+require('./shortcuts.constants.js');
+require('./shortcuts.service.js');
+
 (function(angular) {
   'use strict';
 

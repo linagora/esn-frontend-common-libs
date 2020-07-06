@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
@@ -8,9 +10,7 @@
     $rootScope,
     $compile,
     $modal,
-    $log,
     $timeout,
-    _,
     uuid4,
     session,
     touchscreenDetectorService,

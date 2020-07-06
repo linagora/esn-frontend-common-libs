@@ -1,10 +1,12 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.file-browser')
     .controller('esnFileBrowserController', esnFileBrowserController);
 
-  function esnFileBrowserController(_, $log) {
+  function esnFileBrowserController($log) {
     var self = this;
     var DEFAULT_BROWSER_OPTIONS = {
       multipleSelect: false,

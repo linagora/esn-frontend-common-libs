@@ -1,6 +1,7 @@
-'use strict';
+require('./oembed.js');
 
-(function() {
+(function(angular) {
+  'use strict';
   var twitter = angular.module('esn.oembed.twitter', ['esn.oembed', 'esn.twitter']);
 
   var provider = {
@@ -43,4 +44,4 @@
       }
     };
   });
-})();
+})(angular);

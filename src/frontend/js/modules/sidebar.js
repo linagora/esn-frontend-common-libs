@@ -1,9 +1,10 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.sidebar', [
-  'esn.activitystreams-tracker',
-  'esn.application-menu',
-  'esn.profile-menu'
+  angular.module('esn.sidebar', [
+    'esn.activitystreams-tracker',
+    'esn.application-menu',
+    'esn.profile-menu'
   ])
 
   .constant('CONTEXTUAL_SIDEBAR', {
@@ -85,3 +86,9 @@ angular.module('esn.sidebar', [
     };
 
   });
+
+})(angular);
+
+require('./header/profile-menu/profile-menu.module.js');
+require('./activitystream.js');
+require('./application-menu.js');

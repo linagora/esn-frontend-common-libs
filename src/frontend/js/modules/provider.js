@@ -1,14 +1,16 @@
-'use strict';
+const _ = require('lodash');
 
-angular.module('esn.provider', [
-  'esn.constants',
-  'esn.aggregator',
-  'esn.lodash-wrapper',
-  'esn.infinite-list',
-  'uuid4'
-])
+(function(angular) {
+  'use strict';
 
-  .factory('Providers', function($q, _, toAggregatorSource) {
+  angular.module('esn.provider', [
+    'esn.constants',
+    'esn.aggregator',
+    'esn.infinite-list',
+    'uuid4'
+  ])
+
+  .factory('Providers', function($q, toAggregatorSource) {
 
     function Providers() {
       this.providersPromises = [];
@@ -108,7 +110,7 @@ angular.module('esn.provider', [
     return Providers;
   })
 
-  .factory('toAggregatorSource', function($q, _, ELEMENTS_PER_REQUEST) {
+  .factory('toAggregatorSource', function($q, ELEMENTS_PER_REQUEST) {
     return function(provider, context) {
       var fetcher = provider.fetch(context),
           mostRecentItem;
@@ -177,7 +179,7 @@ angular.module('esn.provider', [
     };
   })
 
-  .factory('newProvider', function($q, _, uuid4) {
+  .factory('newProvider', function($q, uuid4) {
     return function(provider) {
       return {
         id: provider.id || uuid4.generate(),
@@ -238,7 +240,7 @@ angular.module('esn.provider', [
     return ByTypeElementGroupingTool;
   })
 
-  .factory('ByDateElementGroupingTool', function(moment, _) {
+  .factory('ByDateElementGroupingTool', function(moment) {
     function ByDateElementGroupingTool(elements) {
       this.groups = [
         { name: 'Today', dateFormat: 'shortTime', accepts: isToday },
@@ -332,3 +334,9 @@ angular.module('esn.provider', [
       return now.startOf('month').isBefore(targetMoment);
     }
   });
+
+})(angular);
+
+require('../constants.js');
+require('./infinite-list/infinite-list.module.js');
+require('./aggregator.js');

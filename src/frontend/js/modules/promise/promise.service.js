@@ -1,4 +1,6 @@
-(function() {
+require('./promise.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.promise')
@@ -37,4 +39,4 @@
         return resolver(options.maxRetry, options.interval);
       }
     }
-})();
+})(angular);

@@ -1,4 +1,7 @@
-(function() {
+require('./user-notification-counter.service.js');
+require('./user-notification-severity.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.user-notification')
@@ -53,4 +56,4 @@
       return esnUserNotificationSeverity.decreaseBy(number);
     }
   }
-})();
+})(angular);

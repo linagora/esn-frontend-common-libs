@@ -1,3 +1,5 @@
+require('../datetime.constants.js');
+
 (function(angular) {
   'use strict';
 

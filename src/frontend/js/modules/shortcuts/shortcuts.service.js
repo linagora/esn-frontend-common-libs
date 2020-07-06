@@ -1,10 +1,12 @@
+require('./shortcuts-registry.service.js');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.shortcuts')
     .factory('esnShortcuts', esnShortcuts);
 
-  function esnShortcuts(hotkeys, _, esnShortcutsRegistry, deviceDetector) {
+  function esnShortcuts(hotkeys, esnShortcutsRegistry, deviceDetector) {
     return {
       use: use,
       unuse: unuse,

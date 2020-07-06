@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.back-detector', [])
+  angular.module('esn.back-detector', [])
 
   .constant('BACK_BTN_EVENT', 'backButtonPressed')
 
@@ -36,3 +37,5 @@ angular.module('esn.back-detector', [])
       previousLocation = previous;
     });
   });
+
+})(angular);

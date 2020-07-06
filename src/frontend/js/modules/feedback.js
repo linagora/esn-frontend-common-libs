@@ -1,9 +1,10 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.feedback', [
-  'esn.http',
-  'esn.constants'
-])
+  angular.module('esn.feedback', [
+    'esn.http',
+    'esn.constants'
+  ])
 
   .factory('feedbackAPI', function(esnRestangular) {
 
@@ -11,46 +12,52 @@ angular.module('esn.feedback', [
      * Post the content of a feedback
      *
      * @param {string} content - the feedback content
-     */
-    function post(subject, content) {
-      return esnRestangular.one('feedback').customPOST({ subject: subject, content: content });
-    }
+       */
+      function post(subject, content) {
+        return esnRestangular.one('feedback').customPOST({ subject: subject, content: content });
+      }
 
-    return {
-      post: post
-    };
-  })
-  .controller('feedback', function($scope, feedbackAPI, ESN_FEEDBACK_DEFAULT_SUBJECT) {
+      return {
+        post: post
+      };
+    })
 
-    $scope.error = false;
+    .controller('feedback', function($scope, feedbackAPI, ESN_FEEDBACK_DEFAULT_SUBJECT) {
 
-    $scope.feedbackButton = {
-      label: 'Send',
-      notRunning: 'Send',
-      running: 'Please wait...'
-    };
-    $scope.feedbackTask = {
-      running: false,
-      done: false
-    };
+      $scope.error = false;
 
-    $scope.submit = function() {
-      $scope.feedbackTask.running = true;
-      $scope.feedbackButton.label = $scope.feedbackButton.running;
-      var subject = $scope.subject || ESN_FEEDBACK_DEFAULT_SUBJECT;
+      $scope.feedbackButton = {
+        label: 'Send',
+        notRunning: 'Send',
+        running: 'Please wait...'
+      };
+      $scope.feedbackTask = {
+        running: false,
+        done: false
+      };
 
-      feedbackAPI.post(subject, $scope.content).then(
-        function() {
-          $scope.feedbackTask.running = false;
-          $scope.feedbackTask.done = true;
-          $scope.feedbackButton.label = $scope.feedbackButton.notRunning;
-          $scope.error = false;
-        },
-        function(err) {
-          $scope.feedbackTask.running = false;
-          $scope.feedbackButton.label = $scope.feedbackButton.notRunning;
-          $scope.error = err.data.details;
-        }
-      );
-    };
-  });
+      $scope.submit = function() {
+        $scope.feedbackTask.running = true;
+        $scope.feedbackButton.label = $scope.feedbackButton.running;
+        var subject = $scope.subject || ESN_FEEDBACK_DEFAULT_SUBJECT;
+
+        feedbackAPI.post(subject, $scope.content).then(
+          function() {
+            $scope.feedbackTask.running = false;
+            $scope.feedbackTask.done = true;
+            $scope.feedbackButton.label = $scope.feedbackButton.notRunning;
+            $scope.error = false;
+          },
+          function(err) {
+            $scope.feedbackTask.running = false;
+            $scope.feedbackButton.label = $scope.feedbackButton.notRunning;
+            $scope.error = err.data.details;
+          }
+          );
+        };
+    });
+
+})(angular);
+
+require('../constants.js')
+require('./http.js');

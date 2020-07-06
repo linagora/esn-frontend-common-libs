@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.array-helper', [])
+  angular.module('esn.array-helper', [])
   .factory('arrayHelper', function() {
 
     function sortHashArrayBy(array, field) {
@@ -25,3 +26,4 @@ angular.module('esn.array-helper', [])
     };
 
   });
+})(angular);

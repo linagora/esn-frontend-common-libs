@@ -1,10 +1,11 @@
-'use strict';
+const _ = require('lodash');
 
-angular.module('esn.registry', [
-  'esn.lodash-wrapper'
-])
+(function(angular) {
+  'use strict';
 
-  .provider('esnRegistry', function(_) {
+  angular.module('esn.registry', [])
+
+  .provider('esnRegistry', function() {
     var registries = {},
         DEFAULT_OPTIONS = {
           primaryKey: 'name',
@@ -44,3 +45,5 @@ angular.module('esn.registry', [
       $get: _.constant(getRegistry)
     };
   });
+
+})(angular);

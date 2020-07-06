@@ -1,13 +1,14 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.ui', [
-  'esn.autolinker-wrapper',
-  'esn.constants',
-  'op.dynamicDirective',
-  'mgcrea.ngStrap.modal',
-  'esn.waves',
-  'esn.textarea-autosize'
-])
+  angular.module('esn.ui', [
+    'esn.autolinker-wrapper',
+    'esn.constants',
+    'op.dynamicDirective',
+    'mgcrea.ngStrap.modal',
+    'esn.waves',
+    'esn.textarea-autosize'
+  ])
 
   .constant('FAB_ICONS', {
     default: 'mdi mdi-plus',
@@ -239,3 +240,10 @@ angular.module('esn.ui', [
       }
     };
   });
+
+})(angular);
+
+require('../constants');
+require('./esn.autolinker-wrapper.js');
+require('./esn.waves.js');
+require('./textarea-autosize.js');

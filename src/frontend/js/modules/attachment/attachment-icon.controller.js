@@ -1,4 +1,6 @@
-(function() {
+require('./attachment.constant.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -13,4 +15,4 @@
       self.iconClass = ESN_ATTACHMENT_ICONS[contentTypeService.getType(self.type)] || ESN_ATTACHMENT_ICONS.default;
     }
   }
-})();
+})(angular);

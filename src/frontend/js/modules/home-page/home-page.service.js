@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.home-page')
@@ -22,4 +22,4 @@
       return homePages;
     }
   }
-})();
+})(angular);

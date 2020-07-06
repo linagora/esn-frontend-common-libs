@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.fullscreen-edit-form', ['esn.scroll', 'esn.router'])
+  angular.module('esn.fullscreen-edit-form', ['esn.scroll', 'esn.router'])
 
   .directive('fullscreenEdit', function($timeout) {
     return {
@@ -55,3 +56,8 @@ angular.module('esn.fullscreen-edit-form', ['esn.scroll', 'esn.router'])
       }
     };
   });
+
+})(angular);
+
+require('./esn.router.js');
+require('./scroll.js');

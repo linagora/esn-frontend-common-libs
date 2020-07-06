@@ -1,3 +1,5 @@
+require('./subheader.constants.js');
+
 (function(angular) {
   'use strict';
 

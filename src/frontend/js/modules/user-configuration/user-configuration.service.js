@@ -1,10 +1,14 @@
+const _ = require('lodash');
+
+require('./user-configuration.constants.js');
+
 (function() {
   'use strict';
 
   angular.module('esn.user-configuration')
     .factory('esnUserConfigurationService', esnUserConfigurationService);
 
-    function esnUserConfigurationService(esnConfigApi, _, ESN_USER_CONFIGURATION_DEFAULT_MODULE) {
+    function esnUserConfigurationService(esnConfigApi, ESN_USER_CONFIGURATION_DEFAULT_MODULE) {
       return {
         get: get,
         set: set

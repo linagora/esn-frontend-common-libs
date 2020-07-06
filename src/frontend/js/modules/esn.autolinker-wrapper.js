@@ -1,7 +1,10 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.autolinker-wrapper', [])
+  angular.module('esn.autolinker-wrapper', [])
 
   .factory('autolinker', function($window) {
     return $window.Autolinker;
   });
+})(angular);
+

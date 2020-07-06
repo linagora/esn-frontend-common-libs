@@ -1,4 +1,6 @@
-(function() {
+require('./infinite-list-scroll-helper-builder.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.infinite-list')
@@ -16,4 +18,4 @@
       return infiniteScrollHelperBuilder(scope, loadNextItems, updateScope, elementsPerPage);
     };
   }
-})();
+})(angular);

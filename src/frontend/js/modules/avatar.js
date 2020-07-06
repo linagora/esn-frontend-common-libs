@@ -1,17 +1,18 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.avatar', [
-  'esn.constants',
-  'mgcrea.ngStrap',
-  'ngAnimate',
-  'mgcrea.ngStrap.modal',
-  'angularFileUpload',
-  'mgcrea.ngStrap.alert',
-  'ng.deviceDetector',
-  'esn.http',
-  'esn.url',
-  'esn.session'
-])
+  angular.module('esn.avatar', [
+    'esn.constants',
+    'mgcrea.ngStrap',
+    'ngAnimate',
+    'mgcrea.ngStrap.modal',
+    'angularFileUpload',
+    'mgcrea.ngStrap.alert',
+    'ng.deviceDetector',
+    'esn.http',
+    'esn.url',
+    'esn.session'
+  ])
   .constant('AVATAR_OFFSET', 10)
   .provider('avatarDefaultUrl', function() {
     var url = '/images/community.png';
@@ -549,3 +550,13 @@ angular.module('esn.avatar', [
       return self.objectType === 'user' ? !!self.avatar.id && !self.hideUserStatus : false;
     }
   });
+})(angular);
+
+require('./avatar/avatar-url.service.js');
+require('./avatar/list/avatar-list.component.js');
+require('./avatar/list/avatar-list.controller.js');
+
+require('../constants.js');
+require('./http.js');
+require('./url.js');
+require('./session.js');

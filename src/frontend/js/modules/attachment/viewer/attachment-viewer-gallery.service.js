@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -44,4 +44,4 @@
       files.splice(order, 1);
     }
   }
-})();
+})(angular);

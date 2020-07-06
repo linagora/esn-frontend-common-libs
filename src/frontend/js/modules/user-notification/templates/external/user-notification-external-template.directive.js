@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.user-notification')
@@ -87,4 +87,4 @@
       });
     }
   }
-})();
+})(angular);

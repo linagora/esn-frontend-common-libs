@@ -1,3 +1,5 @@
+require('../datetime.service.js');
+
 (function(angular) {
   'use strict';
 
