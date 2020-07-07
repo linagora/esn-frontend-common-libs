@@ -1,39 +1,41 @@
-'use strict';
+(function(angular){
+  'use strict';
 
-angular.module('linagora.esn.oauth.consumer')
+  angular.module('linagora.esn.oauth.consumer')
 
-  .factory('oauthStrategyRegistry', function() {
+    .factory('oauthStrategyRegistry', function() {
 
-    var strategies = [];
+      var strategies = [];
 
-    function register(name, strategy) {
-      if (!name || !strategy) {
-        throw new Error('Name and strategy ar required');
+      function register(name, strategy) {
+        if (!name || !strategy) {
+          throw new Error('Name and strategy ar required');
+        }
+        strategies[name] = strategy;
       }
-      strategies[name] = strategy;
-    }
 
-    function get(name) {
-      return strategies[name];
-    }
-
-    return {
-      register: register,
-      get: get
-    };
-
-  })
-
-  .factory('oauthWorkflow', function($window) {
-
-    function redirect(url) {
-      if (!url) {
-        return;
+      function get(name) {
+        return strategies[name];
       }
-      $window.location.href = url;
-    }
 
-    return {
-      redirect: redirect
-    };
-  });
+      return {
+        register: register,
+        get: get
+      };
+
+    })
+
+    .factory('oauthWorkflow', function($window) {
+
+      function redirect(url) {
+        if (!url) {
+          return;
+        }
+        $window.location.href = url;
+      }
+
+      return {
+        redirect: redirect
+      };
+    });
+})(angular);

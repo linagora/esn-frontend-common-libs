@@ -1,4 +1,6 @@
-(function() {
+require('./user-status.restangular.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.user-status')
@@ -19,4 +21,4 @@
         return userStatusRestangular.one('users').customPOST(usersId);
       }
     }
-})();
+})(angular);

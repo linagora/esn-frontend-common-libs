@@ -1,39 +1,26 @@
-'use strict';
+(function(angular){
+  'use strict';
 
-angular.module('linagora.esn.account', [
-  'esn.router',
-  'restangular',
-  'esn.lodash-wrapper',
-  'op.dynamicDirective',
-  'esn.core',
-  'esn.ui',
-  'esn.http',
-  'linagora.esn.oauth.consumer'])
-  .config(function($stateProvider, routeResolver) {
-    $stateProvider.state('controlcenter.accounts', {
-      url: '/accounts',
-      templateUrl: '/account/views/accounts',
-      controller: 'accountListController',
-      resolve: {
-        domain: routeResolver.session('domain'),
-        user: routeResolver.session('user'),
-        accounts: function($log, accountService) {
-          return accountService.getAccounts().then(function(response) {
-            return response.data;
-          }, function(err) {
-            $log.error('Error while getting accounts', err);
-          });
-        },
-        providers: function(_, $log, accountService, SUPPORTED_ACCOUNT_TYPES) {
-          return accountService.getAccountProviders()
-          .then(function(resp) {
-            return _.intersection(resp.data, _.values(SUPPORTED_ACCOUNT_TYPES));
-          })
-          .catch(function(err) {
-            $log.error('Error while getting account providers', err);
-          });
-        }
-      }
-    });
+  angular.module('linagora.esn.account', [
+    'esn.router',
+    'op.dynamicDirective',
+    'esn.core',
+    'esn.ui',
+    'esn.http',
+    'esn.notification',
+    'linagora.esn.oauth.consumer']);
+})(angular);
 
-  });
+require('../../../../frontend/js/modules/esn.router.js');
+require('../../../../frontend/components/dynamic-directive/src/dynamic-directive.js');
+require('../../../../frontend/js/modules/core.js');
+require('../../../../frontend/js/modules/ui.js');
+require('../../../../frontend/js/modules/http.js');
+require('../../../../frontend/js/modules/notification.js');
+require('../../../linagora.esn.oauth.consumer');
+require('./app.config.js');
+require('./app.run.js');
+require('./constants.js');
+require('./controllers.js');
+require('./directives.js');
+require('./services.js');

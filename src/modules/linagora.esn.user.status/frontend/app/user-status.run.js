@@ -1,4 +1,8 @@
-(function() {
+require('./user-status.constants.js');
+require('./services/user-status-sync.service.js');
+require('./services/user-status-websocket.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.user-status').run(run);
@@ -10,4 +14,4 @@
     });
   }
 
-})();
+})(angular);

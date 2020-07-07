@@ -1,11 +1,15 @@
-(function() {
+const _ = require('lodash');
+
+require('./constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.graceperiod')
 
     .factory('gracePeriodLiveNotificationService', gracePeriodLiveNotification);
 
-  function gracePeriodLiveNotification($log, $q, livenotification, GRACE_EVENTS, _) {
+  function gracePeriodLiveNotification($log, $q, livenotification, GRACE_EVENTS) {
 
     var listening = false;
     var sio;
@@ -105,4 +109,4 @@
       return _.clone(listeners);
     }
   }
-})();
+})(angular);

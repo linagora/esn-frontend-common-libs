@@ -1,4 +1,6 @@
-(function() {
+require('../services/user-status-client.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.user-status')
@@ -36,4 +38,4 @@
         });
       }
     }
-})();
+})(angular);

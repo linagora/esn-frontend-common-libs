@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.user-status')
@@ -6,7 +6,7 @@
 
   function userStatusBubble() {
     return {
-      templateUrl: '/user-status/app/bubble/user-status-bubble.html',
+      templateUrl: require('./user-status-bubble.pug'),
       controller: 'userStatusBubbleController',
       controllerAs: 'ctrl',
       bindings: {
@@ -15,4 +15,4 @@
     };
   }
 
-})();
+})(angular);
