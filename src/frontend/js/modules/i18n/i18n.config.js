@@ -10,7 +10,6 @@
       $translateProvider.registerAvailableLanguageKeys(ESN_I18N_AVAILABLE_LANGUAGES.map(function(language) {
         return language.key;
       }), ESN_I18N_AVAILABLE_LANGUAGE_ALIASES);
-      $translateProvider.useInterpolation('esnI18nInterpolator');
       $translateProvider.useSanitizeValueStrategy('escape');
     });
 })();
