@@ -1,3 +1,7 @@
+const _ = require('lodash');
+
+require('./attachment-alternative-uploader-modal-no-uploader.constants.js');
+
 (function(angular) {
   'use strict';
 

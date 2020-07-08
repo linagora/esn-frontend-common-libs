@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.websocket', ['esn.authentication', 'esn.session', 'esn.socketio', 'esn.http'])
+  angular.module('esn.websocket', ['esn.authentication', 'esn.session', 'esn.socketio', 'esn.http'])
   .factory('IoAction', function($timeout) {
     function getNgCallback(callback) {
       return function() {
@@ -522,3 +523,10 @@ angular.module('esn.websocket', ['esn.authentication', 'esn.session', 'esn.socke
       return socketCache[path];
     };
   });
+
+})(angular);
+
+require('./authentication.js');
+require('./http.js');
+require('./session.js');
+require('./socketio.js');

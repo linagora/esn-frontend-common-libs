@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -14,4 +14,4 @@
       template: require("./image-viewer.pug")
     };
   }
-})();
+})(angular);

@@ -1,6 +1,8 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.markdown-parser', ['btford.markdown', 'ngSanitize'])
+  angular.module('esn.markdown-parser', ['btford.markdown', 'ngSanitize'])
+
   .config(function(markdownConverterProvider) {
     markdownConverterProvider.config({
       tables: true
@@ -13,3 +15,5 @@ angular.module('esn.markdown-parser', ['btford.markdown', 'ngSanitize'])
       return defer.promise;
     });
   });
+
+})(angular);

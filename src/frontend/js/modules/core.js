@@ -1,6 +1,10 @@
-'use strict';
+const _ = require('lodash');
 
-angular.module('esn.core', ['esn.lodash-wrapper', 'esn.email-addresses-wrapper'])
+(function(angular) {
+  'use strict';
+
+  angular.module('esn.core', ['esn.email-addresses-wrapper'])
+
   .config(function($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|skype):/);
   })
@@ -186,7 +190,7 @@ angular.module('esn.core', ['esn.lodash-wrapper', 'esn.email-addresses-wrapper']
     };
   })
 
-  .factory('esnWithPromiseResult', function(_) {
+  .factory('esnWithPromiseResult', function() {
     return withPromiseResult;
 
     function buildThenCallback(arg, callback) {
@@ -221,3 +225,7 @@ angular.module('esn.core', ['esn.lodash-wrapper', 'esn.email-addresses-wrapper']
       return $sce.trustAsHtml(DOMPurify.sanitize(dirty, {ADD_ATTR: ['target'], FORBID_TAGS: ['style', 'input', 'form']}));
     };
   });
+
+})(angular);
+
+require('./email-addresses-wrapper.js');

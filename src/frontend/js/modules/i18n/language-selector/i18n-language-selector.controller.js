@@ -1,3 +1,5 @@
+require('../i18n.constants.js');
+
 (function(angular) {
   'use strict';
 

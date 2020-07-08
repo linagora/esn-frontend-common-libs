@@ -1,8 +1,10 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.like', [
-  'esn.resource-link'
-])
+  angular.module('esn.like', [
+    'esn.resource-link'
+  ])
+
   .constant('LIKE_LINK_TYPE', 'like')
   .directive('likeButton', function($log, ResourceLinkAPI, session, LIKE_LINK_TYPE) {
 
@@ -66,3 +68,7 @@ angular.module('esn.like', [
       }
     };
   });
+
+})(angular);
+
+require('./resource-link.js');

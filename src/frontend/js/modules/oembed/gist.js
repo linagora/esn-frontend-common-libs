@@ -1,6 +1,7 @@
-'use strict';
+require('./oembed.js');
 
-(function() {
+(function(angular) {
+  'use strict';
   var gist = angular.module('esn.oembed.gist', ['esn.oembed', 'gist']);
 
   var provider = {
@@ -34,4 +35,4 @@
       }
     };
   });
-})();
+})(angular);

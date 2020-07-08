@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -7,4 +7,4 @@
       directive: 'esn-attachment-image-preview',
       contentType: ['image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/gif']
     });
-})();
+})(angular);

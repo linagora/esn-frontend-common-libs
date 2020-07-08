@@ -1,4 +1,7 @@
-(function() {
+require('../attachment-registry.service.js');
+require('./attachment-viewer.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -85,4 +88,4 @@
 
     }
   }
-})();
+})(angular);

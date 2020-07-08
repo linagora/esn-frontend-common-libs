@@ -1,6 +1,7 @@
-'use strict';
+require('./oembed.js');
 
-(function() {
+(function(angular) {
+  'use strict';
 
   var youtube = angular.module('esn.oembed.youtube', ['esn.oembed']);
 
@@ -37,4 +38,4 @@
       }
     };
   });
-})();
+})(angular);

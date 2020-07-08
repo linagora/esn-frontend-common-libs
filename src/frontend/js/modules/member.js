@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.member', ['esn.session', 'esn.router', 'esn.domain', 'esn.search', 'esn.infinite-list', 'openpaas-logo', 'esn.provider', 'esn.header', 'esn.configuration'])
+  angular.module('esn.member', ['esn.session', 'esn.router', 'esn.domain', 'esn.search', 'esn.infinite-list', 'openpaas-logo', 'esn.provider', 'esn.header', 'esn.configuration'])
   .constant('memberSearchConfiguration', {
     searchLimit: 20
   })
@@ -161,3 +162,14 @@ angular.module('esn.member', ['esn.session', 'esn.router', 'esn.domain', 'esn.se
       build: build
     };
   });
+
+})(angular);
+
+require('./config/config.module.js');
+require('./header/header.js');
+require('./infinite-list/infinite-list.module.js');
+require('./search/search.module.js');
+require('./domain.js');
+require('./esn.router.js');
+require('./provider.js');
+require('./session.js');

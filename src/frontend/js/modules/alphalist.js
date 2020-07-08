@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.alphalist', ['duScroll', 'esn.array-helper', 'esn.core', 'esn.charAPI'])
+  angular.module('esn.alphalist', ['duScroll', 'esn.array-helper', 'esn.core', 'esn.charAPI'])
 
   .constant('ALPHA_ITEMS', '#ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
@@ -186,3 +187,7 @@ angular.module('esn.alphalist', ['duScroll', 'esn.array-helper', 'esn.core', 'es
       }
     };
   });
+})(angular);
+
+require('./array-helper.js');
+require('./core.js');

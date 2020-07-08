@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.login')
@@ -12,4 +12,4 @@
 
     return loginSuccessService;
   });
-})();
+})(angular);

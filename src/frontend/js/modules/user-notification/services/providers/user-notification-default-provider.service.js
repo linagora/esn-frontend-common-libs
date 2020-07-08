@@ -1,3 +1,5 @@
+require('../../services/providers/user-notification-default.js');
+
 (function(angular) {
   'use strict';
 

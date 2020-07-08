@@ -1,3 +1,5 @@
+require('../../services/user-notification.js');
+
 (function(angular) {
   'use strict';
 

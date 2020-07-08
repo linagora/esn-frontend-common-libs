@@ -1,4 +1,6 @@
-(function() {
+require('./filter-input.controller.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.form.helper')
@@ -16,4 +18,4 @@
       controller: 'esnFilterInputController'
     });
 
-})();
+})(angular);

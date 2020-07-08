@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.previous-page', [])
+  angular.module('esn.previous-page', [])
 
   .run(function(esnPreviousPage) {
     esnPreviousPage.init();
@@ -45,3 +46,5 @@ angular.module('esn.previous-page', [])
       });
     }
   });
+
+})(angular);

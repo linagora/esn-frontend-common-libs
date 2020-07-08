@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.url', ['esn.ui'])
+  angular.module('esn.url', ['esn.ui'])
 
   .factory('urlUtils', function($window) {
 
@@ -34,3 +35,7 @@ angular.module('esn.url', ['esn.ui'])
       return createHtmlElement('a', { href: url }).href;
     };
   });
+
+})(angular);
+
+require('./ui.js');

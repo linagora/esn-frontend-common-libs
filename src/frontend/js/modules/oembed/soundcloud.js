@@ -1,6 +1,7 @@
-'use strict';
+require('./oembed.js');
 
-(function() {
+(function(angular) {
+  'use strict';
 
   var soundcloud = angular.module('esn.oembed.soundcloud', ['esn.oembed']);
 
@@ -38,4 +39,4 @@
     };
   });
 
-})();
+})(angular);

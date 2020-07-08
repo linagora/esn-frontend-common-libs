@@ -1,4 +1,6 @@
-(function() {
+require('./datetime.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.datetime')
@@ -13,4 +15,4 @@
       return esnDatetimeService.format(date, format);
     };
   }
-})();
+})(angular);

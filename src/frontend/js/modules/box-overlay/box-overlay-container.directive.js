@@ -1,3 +1,5 @@
+require('./box-overlay-manager.service.js');
+
 (function(angular) {
   'use strict';
 

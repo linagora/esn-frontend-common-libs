@@ -1,3 +1,5 @@
+require('./i18n-language-selector.controller.js');
+
 (function(angular) {
   'use strict';
 

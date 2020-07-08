@@ -1,6 +1,8 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.localstorage', ['esn.session', 'LocalForageModule'])
+  angular.module('esn.localstorage', ['esn.session', 'LocalForageModule'])
+
   .factory('localStorageService', function(session, $localForage) {
 
     function getName(name) {
@@ -40,3 +42,7 @@ angular.module('esn.localstorage', ['esn.session', 'LocalForageModule'])
       getOrCreateInstance: getOrCreateInstance
     };
   });
+
+})(angular);
+
+require('./session.js');

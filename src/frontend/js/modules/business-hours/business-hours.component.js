@@ -1,3 +1,5 @@
+require('./business-hours.controller.js');
+
 (function(angular) {
   'use strict';
 

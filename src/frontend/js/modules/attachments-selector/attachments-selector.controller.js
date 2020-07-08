@@ -1,3 +1,5 @@
+require('./attachments-selector.service.js');
+
 (function(angular) {
   'use strict';
 

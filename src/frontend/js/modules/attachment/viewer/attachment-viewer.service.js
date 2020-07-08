@@ -1,4 +1,6 @@
-(function() {
+require('./attachment-viewer-gallery.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -38,4 +40,4 @@
       viewer.open(currentItem.files, currentItem.order);
     }
   }
-})();
+})(angular);

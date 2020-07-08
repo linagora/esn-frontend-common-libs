@@ -1,3 +1,5 @@
+require('./shortcuts-global.service.js');
+
 (function(angular) {
   'use strict';
 

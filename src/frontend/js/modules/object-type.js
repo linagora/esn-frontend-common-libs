@@ -1,6 +1,8 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.object-type', [])
+  angular.module('esn.object-type', [])
+
   .run(function(objectTypeResolver, $q) {
     objectTypeResolver.register('string', function(id) {
       var defer = $q.defer();
@@ -95,3 +97,5 @@ angular.module('esn.object-type', [])
       resolve: resolve
     };
   });
+
+})(angular);

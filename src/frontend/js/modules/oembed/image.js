@@ -1,6 +1,7 @@
-'use strict';
+require('./oembed.js');
 
-(function() {
+(function(angular) {
+  'use strict';
   var image = angular.module('esn.oembed.image', ['esn.oembed']);
 
   var provider = {
@@ -59,4 +60,4 @@
     return oembedImageFilter;
   }
 
-})();
+})(angular);

@@ -1,10 +1,14 @@
+const _ = require('lodash');
+
+require('./shortcuts.constants.js');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.shortcuts')
     .factory('esnShortcutsRegistry', esnShortcutsRegistry);
 
-  function esnShortcutsRegistry(_, ESN_SHORTCUTS_DEFAULT_CATEGORY) {
+  function esnShortcutsRegistry(ESN_SHORTCUTS_DEFAULT_CATEGORY) {
     var categories = [ESN_SHORTCUTS_DEFAULT_CATEGORY];
     var shortcuts = [];
 

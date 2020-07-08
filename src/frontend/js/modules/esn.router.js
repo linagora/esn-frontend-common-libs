@@ -1,11 +1,12 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.router', [
-  'esn.session',
-  'esn.configuration',
-  'esn.constants',
-  'ui.router'
-])
+  angular.module('esn.router', [
+    'esn.session',
+    'esn.configuration',
+    'esn.constants',
+    'ui.router'
+  ])
 
   .config(function($urlMatcherFactoryProvider) {
     // This option allows to have trailing slash at the end of the browser url.
@@ -32,3 +33,9 @@ angular.module('esn.router', [
       goToHomePage: goToHomePage
     };
   });
+
+})(angular);
+
+require('../constants.js');
+require('./config/config.module.js');
+require('./session.js');

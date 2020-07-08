@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.avatar')
@@ -37,4 +37,4 @@
       return self.members.length > defaultLimit;
     }
   }
-})();
+})(angular);

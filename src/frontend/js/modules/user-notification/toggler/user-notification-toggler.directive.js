@@ -1,4 +1,6 @@
-(function() {
+require('./user-notification-toggler.controller.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.user-notification')
@@ -19,4 +21,4 @@
       scope.popover = $popover(element, ESN_USER_NOTIFICATION_POPOVER_OPTIONS);
     }
   }
-})();
+})(angular);

@@ -1,4 +1,6 @@
-(function() {
+require('../services/user-notification-state.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.user-notification')
@@ -35,4 +37,4 @@
       $scope.popover && $scope.popover.toggle();
     }
   }
-})();
+})(angular);

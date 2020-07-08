@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.form.helper')
@@ -25,4 +25,4 @@
       }
     });
 
-})();
+})(angular);

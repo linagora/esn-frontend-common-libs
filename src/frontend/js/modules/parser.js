@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.parser', ['ngSanitize'])
+  angular.module('esn.parser', ['ngSanitize'])
   .factory('parserResolver', function($q) {
 
     var parsers = {};
@@ -101,3 +102,5 @@ angular.module('esn.parser', ['ngSanitize'])
       }
     };
   });
+
+})(angular);

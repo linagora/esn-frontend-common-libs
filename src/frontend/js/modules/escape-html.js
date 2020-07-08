@@ -1,10 +1,12 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.escape-html', [])
+  angular.module('esn.escape-html', [])
+
   .factory('escapeHtmlUtils', function() {
-      function escapeHTML(str) {
-        if (!str) {
-          return str;
+    function escapeHTML(str) {
+      if (!str) {
+        return str;
         }
 
         var div = document.createElement('div');
@@ -31,3 +33,5 @@ angular.module('esn.escape-html', [])
       return escapeHtmlUtils.escapeHTML(text);
     };
   });
+
+})(angular);

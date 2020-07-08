@@ -1,11 +1,15 @@
-(function() {
+const _ = require('lodash');
+
+require('../services/providers/user-notification-providers.service.js');
+require('../user-notification.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.user-notification')
     .factory('esnUserNotificationCounter', esnUserNotificationCounter);
 
   function esnUserNotificationCounter(
-    _,
     $q,
     esnUserNotificationProviders,
     CounterFactory,
@@ -32,4 +36,4 @@
       });
     }
   }
-})();
+})(angular);

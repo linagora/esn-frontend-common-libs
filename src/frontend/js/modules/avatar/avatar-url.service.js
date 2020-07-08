@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.avatar')
@@ -36,4 +36,4 @@
       return url;
     }
   }
-})();
+})(angular);

@@ -1,4 +1,6 @@
-(function() {
+require('./attachment.controller.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -11,4 +13,4 @@
       },
       controller: 'ESNAttachmentController'
     });
-})();
+})(angular);

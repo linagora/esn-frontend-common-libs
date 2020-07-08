@@ -2,6 +2,11 @@
   'use strict';
 
   angular.module('esn.themes', [
-    'restangular'
+    'restangular',
+    'esn.http'
   ]);
 })(angular);
+
+require('../http.js');
+require('./color-contrast.service.js');
+require('./themes.service.js');

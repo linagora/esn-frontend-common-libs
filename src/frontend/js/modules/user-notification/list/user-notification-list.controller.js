@@ -1,10 +1,12 @@
+require('../services/user-notification.service.js');
+
 (function() {
   'use strict';
 
   angular.module('esn.user-notification')
     .controller('EsnUserNotificationListController', EsnUserNotificationListController);
 
-  function EsnUserNotificationListController(_, esnPaginationtionProviderBuilder, esnUserNotificationService, ELEMENTS_PER_PAGE) {
+  function EsnUserNotificationListController(esnPaginationtionProviderBuilder, esnUserNotificationService, ELEMENTS_PER_PAGE) {
     var self = this;
     var options = {
       limit: self.elementsPerPage || ELEMENTS_PER_PAGE,

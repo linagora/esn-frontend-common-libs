@@ -1,6 +1,7 @@
-'use strict';
+require('./oembed.js');
 
-(function() {
+(function(angular) {
+  'use strict';
   var instagram = angular.module('esn.oembed.instagram', ['esn.oembed']);
 
   var provider = {
@@ -36,4 +37,4 @@
       }
     };
   });
-})();
+})(angular);

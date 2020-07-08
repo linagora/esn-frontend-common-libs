@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.textarea-autosize', ['esn.form.helper'])
@@ -34,4 +34,6 @@
       });
     }
   }
-})();
+})(angular);
+
+require('./form-helper/form-helper.module.js');

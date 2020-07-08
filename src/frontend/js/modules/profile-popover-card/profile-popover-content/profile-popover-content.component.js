@@ -1,3 +1,5 @@
+require('./profile-popover-content.controller.js');
+
 (function(angular) {
   'use strict';
 

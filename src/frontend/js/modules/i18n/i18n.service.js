@@ -1,4 +1,7 @@
-(function() {
+require('./i18n.constants.js');
+require('./i18n-string.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.i18n')
@@ -41,4 +44,4 @@
         return text instanceof EsnI18nString;
       }
     });
-})();
+})(angular);

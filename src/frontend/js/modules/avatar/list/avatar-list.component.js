@@ -1,4 +1,6 @@
-(function() {
+require('./avatar-list.controller.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.avatar')
@@ -15,4 +17,4 @@
       }
     };
   }
-})();
+})(angular);

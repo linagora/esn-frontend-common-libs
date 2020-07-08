@@ -1,3 +1,6 @@
+require('./viewer/default-viewer/default-viewer.constant.js');
+require('./preview/default-preview/default-preview.constant.js');
+
 (function() {
   'use strict';
 

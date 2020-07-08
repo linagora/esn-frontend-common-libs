@@ -1,13 +1,15 @@
-'use strict';
+const _ = require('lodash');
 
-angular.module('esn.aggregator', [
-  'esn.constants',
-  'esn.lodash-wrapper'
-])
+(function(angular) {
+  'use strict';
 
-  .factory('PageAggregatorSourceWrapper', function($q) {
-    function PageAggregatorSourceWrapper(source) {
-      this.source = source;
+  angular.module('esn.aggregator', [
+  'esn.constants'
+  ])
+
+.factory('PageAggregatorSourceWrapper', function($q) {
+  function PageAggregatorSourceWrapper(source) {
+    this.source = source;
       this.lastPage = false;
     }
 
@@ -36,7 +38,7 @@ angular.module('esn.aggregator', [
     return PageAggregatorSourceWrapper;
   })
 
-  .factory('PageAggregatorService', function($q, $log, PageAggregatorSourceWrapper, _,
+  .factory('PageAggregatorService', function($q, $log, PageAggregatorSourceWrapper,
                                              AGGREGATOR_DEFAULT_RESULTS_PER_PAGE, AGGREGATOR_DEFAULT_FIRST_PAGE_SIZE) {
 
     function PageAggregatorService(id, sources, options) {
@@ -167,37 +169,40 @@ angular.module('esn.aggregator', [
       var self = this;
 
       return $q.all(_(this.sources).filter('loadRecentItems').invoke('loadRecentItems').value())
-        .then(function(resultsFromSources) {
-          return _.flatten(resultsFromSources).sort(self.options.compare);
-        });
+      .then(function(resultsFromSources) {
+        return _.flatten(resultsFromSources).sort(self.options.compare);
+      });
     };
 
     PageAggregatorService.prototype.bidirectionalFetcher = function() {
       var self = this,
-          fetcher = function() {
+      fetcher = function() {
             return self.loadNextItems().then(_.property('data'));
           };
 
-      fetcher.loadRecentItems = this.loadRecentItems.bind(this);
+          fetcher.loadRecentItems = this.loadRecentItems.bind(this);
 
-      return fetcher;
-    };
+          return fetcher;
+        };
 
-    PageAggregatorService.prototype.hasNext = function() {
-      return this._sourcesHaveData() || this._sourcesHaveNext();
-    };
+        PageAggregatorService.prototype.hasNext = function() {
+          return this._sourcesHaveData() || this._sourcesHaveNext();
+        };
 
-    PageAggregatorService.prototype._sourcesHaveNext = function() {
-      return this.wrappedSources.some(function(wrappedSource) {
-        return wrappedSource.source.hasNext();
-      });
-    };
+        PageAggregatorService.prototype._sourcesHaveNext = function() {
+          return this.wrappedSources.some(function(wrappedSource) {
+            return wrappedSource.source.hasNext();
+          });
+        };
 
-    PageAggregatorService.prototype._sourcesHaveData = function() {
-      return this.wrappedSources.some(function(source) {
+        PageAggregatorService.prototype._sourcesHaveData = function() {
+          return this.wrappedSources.some(function(source) {
         return source.data.length;
       });
     };
 
     return PageAggregatorService;
   });
+})(angular);
+
+require('../constants.js');

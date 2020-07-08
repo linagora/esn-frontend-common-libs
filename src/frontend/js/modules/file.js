@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.file', ['angularFileUpload', 'esn.http'])
+  angular.module('esn.file', ['angularFileUpload', 'esn.http'])
 
   .constant('FILES_API_URL', '/api/files')
   .constant('DEFAULT_FILE_TYPE', 'application/octet-stream')
@@ -993,3 +994,6 @@ angular.module('esn.file', ['angularFileUpload', 'esn.http'])
       };
     };
   });
+})(angular);
+
+require('./http.js');

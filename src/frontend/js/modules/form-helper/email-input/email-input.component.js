@@ -1,3 +1,5 @@
+require('./email-input.controller.js');
+
 (function(angular) {
   'use strict';
 

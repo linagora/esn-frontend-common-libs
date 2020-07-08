@@ -1,8 +1,9 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.cache', [
-  'esn.constants'
-])
+  angular.module('esn.cache', [
+    'esn.constants'
+  ])
 
   .constant('CACHE_NO_TTL', -1)
 
@@ -94,3 +95,5 @@ angular.module('esn.cache', [
     return Cache;
 
   });
+
+})(angular);

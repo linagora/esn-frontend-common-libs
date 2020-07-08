@@ -1,3 +1,5 @@
+require('./file-browser.controller.js');
+
 (function(angular) {
   'use strict';
 

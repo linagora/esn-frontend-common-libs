@@ -1,3 +1,6 @@
+require('../../context/search-context.service.js');
+require('../../query/search-query.service.js');
+
 (function(angular) {
   'use strict';
 

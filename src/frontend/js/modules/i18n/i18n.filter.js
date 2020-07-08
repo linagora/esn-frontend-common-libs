@@ -1,4 +1,6 @@
-(function() {
+require('./i18n.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.i18n')
@@ -9,4 +11,4 @@
         return translatedInput && typeof translatedInput.toString === 'function' ? translatedInput.toString() : input;
       };
     });
-})();
+})(angular);

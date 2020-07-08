@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.profile', [])
+  angular.module('esn.profile', [])
   .constant('ESN_DEFAULT_PROFILE_AVATAR_SIZE', 256)
 
   .controller('avatarController', function($scope, $timeout, ESN_DEFAULT_PROFILE_AVATAR_SIZE) {
@@ -53,3 +54,5 @@ angular.module('esn.profile', [])
       }
     };
   });
+
+})(angular);

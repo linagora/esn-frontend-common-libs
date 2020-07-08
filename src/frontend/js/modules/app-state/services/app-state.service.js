@@ -31,3 +31,5 @@
       }
     });
 })(angular);
+
+require('../app-state.constant.js');

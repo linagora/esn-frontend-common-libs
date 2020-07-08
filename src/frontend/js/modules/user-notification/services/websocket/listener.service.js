@@ -1,4 +1,7 @@
-(function() {
+require('../../services/user-notification-state.service.js');
+require('../../user-notification.constants.js');
+
+(function(angular) {
     'use strict';
 
     angular.module('esn.user-notification')
@@ -37,4 +40,4 @@
         esnUserNotificationState.refresh();
       }
     }
-})();
+})(angular);

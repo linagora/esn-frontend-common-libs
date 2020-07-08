@@ -1,6 +1,8 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.maps', ['ngGeolocation', 'leaflet-directive'])
+  angular.module('esn.maps', ['ngGeolocation', 'leaflet-directive'])
+
   .factory('osmAPI', function($http) {
 
     function reverse(latitude, longitude, config) {
@@ -138,3 +140,5 @@ angular.module('esn.maps', ['ngGeolocation', 'leaflet-directive'])
 
     };
   });
+
+})(angular);

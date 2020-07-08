@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.async-action', [
+  angular.module('esn.async-action', [
   'esn.notification',
   'esn.constants'
 ])
@@ -9,8 +10,8 @@ angular.module('esn.async-action', [
   return function(message, options) {
     options = options || {};
     var notification = options.persist === true ?
-      notificationFactory.strongError('Error', message) :
-      notificationFactory.weakError('Error', message);
+    notificationFactory.strongError('Error', message) :
+    notificationFactory.weakError('Error', message);
 
     options.onFailure && notification.setCancelAction(options.onFailure);
     options.onClose && notification.setCloseAction(options.onClose);
@@ -69,10 +70,10 @@ angular.module('esn.async-action', [
     }
 
     return action()
-      .then(function(value) {
-        !isSilent && notifySuccessWithFollowingAction(
-          _getMessage(messages, 'success', value),
-          options && options.onSuccess
+    .then(function(value) {
+      !isSilent && notifySuccessWithFollowingAction(
+        _getMessage(messages, 'success', value),
+        options && options.onSuccess
         );
 
         return value;
@@ -86,5 +87,10 @@ angular.module('esn.async-action', [
         notification && notification.close();
         timeoutPromise && $timeout.cancel(timeoutPromise);
       });
-  };
-});
+    };
+  });
+
+})(angular);
+
+require('./notification.js');
+require('../constants.js');

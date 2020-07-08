@@ -1,6 +1,7 @@
-'use strict';
+require('./oembed.js');
 
-(function() {
+(function(angular) {
+  'use strict';
 
   var vimeo = angular.module('esn.oembed.vimeo', ['esn.oembed']);
 
@@ -37,4 +38,4 @@
       }
     };
   });
-})();
+})(angular);

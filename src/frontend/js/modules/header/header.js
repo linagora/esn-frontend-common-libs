@@ -1,17 +1,19 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.header', [
-  'ui.router',
-  'hl.sticky',
-  'esn.sidebar',
-  'esn.subheader',
-  'matchmedia-ng',
-  'esn.media.query',
-  'esn.core',
-  'esn.profile',
-  'esn.search',
-  'esn.profile-menu',
-  'mgcrea.ngStrap.popover'
+  angular.module('esn.header', [
+    'ui.router',
+    'hl.sticky',
+    'esn.feature-registry',
+    'esn.sidebar',
+    'esn.subheader',
+    'matchmedia-ng',
+    'esn.media.query',
+    'esn.core',
+    'esn.profile',
+    'esn.search',
+    'esn.profile-menu',
+    'mgcrea.ngStrap.popover'
   ])
 
   .constant('MAIN_HEADER', 'main-header-middle-content')
@@ -129,3 +131,15 @@ angular.module('esn.header', [
       }
     };
   });
+
+})(angular);
+
+require('../core.js');
+require('../feature-registry/feature-registry.module.js');
+require('../media-query.js');
+require('../profile.js');
+require('../search/search.module.js');
+require('../sidebar.js');
+require('../subheader/subheader.module.js');
+require('./sticky/header-sticky.directive.js');
+require('./header-featureflip.run.js');

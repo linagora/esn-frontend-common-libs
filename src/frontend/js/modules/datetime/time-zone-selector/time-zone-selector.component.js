@@ -1,3 +1,5 @@
+require('./time-zone-selector.controller.js');
+
 (function(angular) {
   'use strict';
 

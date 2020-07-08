@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment')
@@ -7,4 +7,4 @@
       directive: 'esn-attachment-video-viewer',
       contentType: ['video/mp4', 'video/webm', 'video/ogg']
     });
-})();
+})(angular);

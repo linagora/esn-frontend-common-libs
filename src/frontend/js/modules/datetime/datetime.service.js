@@ -1,4 +1,8 @@
-(function() {
+const _ = require('lodash');
+require('../config/config.module.js');
+require('./datetime.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.datetime')
@@ -6,7 +10,6 @@
 
   function esnDatetimeService(
     $q,
-    _,
     moment,
     esnConfig,
     ESN_DATETIME_TIME_FORMATS
@@ -206,4 +209,4 @@
       return src;
     }
   }
-})();
+})(angular);

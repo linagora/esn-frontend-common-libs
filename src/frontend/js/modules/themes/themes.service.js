@@ -1,9 +1,11 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.themes').factory('themesService', themesService);
 
-  function themesService(esnRestangular, _) {
+  function themesService(esnRestangular) {
     var functions = {
       saveTheme: saveTheme,
       getTheme: getTheme

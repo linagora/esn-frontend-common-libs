@@ -1,4 +1,6 @@
-(function() {
+require('./attachment-list-providers.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment-list')
@@ -36,4 +38,4 @@
     }
   }
 
-})();
+})(angular);

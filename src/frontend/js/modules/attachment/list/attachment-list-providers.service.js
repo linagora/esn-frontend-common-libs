@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('esn.attachment-list')
@@ -7,4 +7,4 @@
   function esnAttachmentListProviders(Providers) {
     return new Providers();
   }
-})();
+})(angular);

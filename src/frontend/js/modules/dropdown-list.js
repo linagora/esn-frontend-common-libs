@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.dropdownList', [])
+  angular.module('esn.dropdownList', [])
 
   .directive('dropdownList', function($dropdown) {
 
@@ -38,3 +39,5 @@ angular.module('esn.dropdownList', [])
       }
     };
   });
+
+})(angular);

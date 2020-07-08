@@ -1,4 +1,6 @@
-(function() {
+require('./search-header.controller.js');
+
+(function(angular) {
   'use strict';
 
   angular
@@ -7,4 +9,4 @@
       template: require("./search-header.pug"),
       controller: 'ESNSearchHeaderController'
     });
-})();
+})(angular);

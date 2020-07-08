@@ -1,3 +1,6 @@
+require('./user-utils.service.js');
+require('./user-api.service.js');
+
 (function(angular) {
   'use strict';
 

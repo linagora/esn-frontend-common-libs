@@ -1,10 +1,14 @@
+const _ = require('lodash');
+
+require('../search-providers.service.js');
+require('../query/search-query.service.js');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.search').controller('ESNSearchResultController', ESNSearchResultController);
 
   function ESNSearchResultController(
-    _,
     $stateParams,
     $q,
     searchProviders,

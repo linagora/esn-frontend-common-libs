@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.touchscreen-detector', [])
+  angular.module('esn.touchscreen-detector', [])
   .service('touchscreenDetectorService', function($window) {
     return {
       hasTouchscreen: hasTouchscreen
@@ -10,3 +11,5 @@ angular.module('esn.touchscreen-detector', [])
       return 'ontouchstart' in $window || $window.navigator.maxTouchPoints > 0 || $window.navigator.msMaxTouchPoints > 0;
     }
   });
+
+})(angular);

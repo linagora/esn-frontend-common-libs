@@ -1,3 +1,5 @@
+require('./search-advanced-form.controller.js');
+
 (function(angular) {
   'use strict';
 

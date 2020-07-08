@@ -1,10 +1,14 @@
-(function() {
+const _ = require('lodash');
+
+require('../../templates/user-notification-template-provider-registry.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.user-notification')
     .directive('esnUserNotificationListItem', esnUserNotificationListItem);
 
-  function esnUserNotificationListItem(_, $compile, esnUserNotificationTemplateProviderRegistry) {
+  function esnUserNotificationListItem($compile, esnUserNotificationTemplateProviderRegistry) {
     function link(scope, element) {
       var provider = esnUserNotificationTemplateProviderRegistry.get(scope.notification.category);
       var notificationTemplate = provider && provider.template || 'esn-user-notification-external';
@@ -36,4 +40,4 @@
       link: link
     };
   }
-})();
+})(angular);

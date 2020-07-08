@@ -1,8 +1,9 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.oembed', [
-  'esn.registry'
-])
+  angular.module('esn.oembed', [
+    'esn.registry'
+  ])
 
   .directive('oembeds', function($compile, $log, oembedService) {
     return {
@@ -146,3 +147,17 @@ angular.module('esn.oembed', [
       }
     };
   });
+
+})(angular);
+
+require('../registry.js');
+require('./codepen.js');
+require('./deezer.js');
+require('./gist.js');
+require('./image.js');
+require('./instagram.js');
+require('./slideshare.js');
+require('./soundcloud.js');
+require('./twitter.js');
+require('./vimeo.js');
+require('./youtube.js');

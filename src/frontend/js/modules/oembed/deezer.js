@@ -1,6 +1,7 @@
-'use strict';
+require('./oembed.js');
 
-(function() {
+(function(angular) {
+  'use strict';
   var deezer = angular.module('esn.oembed.deezer', ['esn.oembed']);
 
   var templates = ['deezer\\.com/[\\w-]+'];
@@ -38,4 +39,4 @@
       }
     };
   });
-})();
+})(angular);

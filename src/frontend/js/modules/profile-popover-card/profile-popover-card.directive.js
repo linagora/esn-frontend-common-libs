@@ -1,3 +1,5 @@
+require('./profile-popover-card.service.js');
+
 /**
  * profile-popover-card attribute must be provided a user object.
  * profile-popover-card-show-mobile attribute must be provided a boolean

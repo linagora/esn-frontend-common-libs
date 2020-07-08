@@ -1,4 +1,6 @@
-(function() {
+require('./i18n.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('esn.i18n')
@@ -12,4 +14,4 @@
       }), ESN_I18N_AVAILABLE_LANGUAGE_ALIASES);
       $translateProvider.useSanitizeValueStrategy('escape');
     });
-})();
+})(angular);

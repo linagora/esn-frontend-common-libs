@@ -1,7 +1,9 @@
-'use strict';
 const Waves = require('../../components/waves/dist/waves');
 
-angular.module('esn.waves', [])
+(function(angular) {
+  'use strict';
+
+  angular.module('esn.waves', [])
 
   .run(function($window) {
     Waves.init();
@@ -21,3 +23,5 @@ angular.module('esn.waves', [])
       }
     };
   });
+
+})(angular);

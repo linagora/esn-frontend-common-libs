@@ -1,3 +1,5 @@
+require('./availability.constants.js');
+
 (function(angular) {
   'use strict';
 

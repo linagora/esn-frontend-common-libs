@@ -1,6 +1,7 @@
-'use strict';
+(function(angular) {
+  'use strict';
 
-angular.module('esn.multi-input', [])
+  angular.module('esn.multi-input', [])
 
   .factory('multiInputService', function($timeout) {
     var focusLastItem = function(element, className) {
@@ -116,3 +117,5 @@ angular.module('esn.multi-input', [])
       }
     };
   });
+
+})(angular);

@@ -1,10 +1,14 @@
+const _ = require('lodash');
+
+require('./attendee.constants.js');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.attendee')
     .factory('attendeeService', attendeeService);
 
-  function attendeeService(_, esnPeopleAPI, ESN_ATTENDEE_DEFAULT_TEMPLATE_URL, ESN_ATTENDEE_DEFAULT_OBJECT_TYPE) {
+  function attendeeService(esnPeopleAPI, ESN_ATTENDEE_DEFAULT_TEMPLATE_URL, ESN_ATTENDEE_DEFAULT_OBJECT_TYPE) {
     var providers = [];
 
     return {
