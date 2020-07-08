@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack-dev-server --watch --progress",
-    "build:dev": "webpack"
+    "build:dev": "webpack",
+    "lint": "eslint . --ext '.js' --cache"
   },
   "author": "",
   "license": "AGPLv4",
@@ -74,6 +75,11 @@
   },
   "devDependencies": {
     "css-loader": "^3.6.0",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-linagora-esn": "github:linagora/eslint-config-linagora-esn#v1.1.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.0",
     "exports-loader": "^1.0.0",
     "expose-loader": "^1.0.0",
     "file-loader": "^6.0.0",
