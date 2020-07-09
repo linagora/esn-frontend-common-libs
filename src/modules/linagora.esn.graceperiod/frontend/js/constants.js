@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.graceperiod')
@@ -17,4 +17,4 @@
       error: 'graceperiod:error',
       done: 'graceperiod:done'
     });
-})();
+})(angular);

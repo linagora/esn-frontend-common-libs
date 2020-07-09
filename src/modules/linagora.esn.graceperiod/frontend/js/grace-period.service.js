@@ -1,4 +1,10 @@
-(function() {
+const _ = require('lodash');
+
+require('./grace-period-restangular.service.js');
+require('./grace-period-live-notification.service.js');
+require('./constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.graceperiod')
@@ -8,7 +14,6 @@
     $timeout,
     $log,
     $q,
-    _,
     notifyService,
     gracePeriodRestangularService,
     HTTP_LAG_UPPER_BOUND,
@@ -268,4 +273,4 @@
       };
     }
   }
-})();
+})(angular);

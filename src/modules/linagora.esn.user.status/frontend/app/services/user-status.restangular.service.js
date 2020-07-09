@@ -1,4 +1,6 @@
-(function() {
+const Restangular = require('restangular');
+
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.user-status')
@@ -10,4 +12,4 @@
       RestangularConfigurer.setFullResponse(true);
     });
   }
-})();
+})(angular);

@@ -1,10 +1,16 @@
-(function() {
+const _ = require('lodash');
+
+require('./user-status-client.service.js');
+require('./user-status.service.js');
+require('../user-status.constants.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.user-status')
     .factory('userStatusSyncService', userStatusSyncService);
 
-    function userStatusSyncService($q, $rootScope, _, userStatusClientService, userStatusService, USER_STATUS_EVENTS) {
+    function userStatusSyncService($q, $rootScope, userStatusClientService, userStatusService, USER_STATUS_EVENTS) {
 
       return {
         synchronize: synchronize
@@ -39,4 +45,4 @@
         });
       }
     }
-})();
+})(angular);

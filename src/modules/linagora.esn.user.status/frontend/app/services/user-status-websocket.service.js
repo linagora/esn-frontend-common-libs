@@ -1,10 +1,13 @@
-(function() {
+require('../user-status.constants.js');
+require('./user-status.service.js');
+
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.user-status')
     .factory('userStatusWebsocketService', userStatusWebsocketService);
 
-    function userStatusWebsocketService($rootScope, _, livenotification, userStatusService, USER_STATUS_EVENTS, USER_STATUS_NAMESPACE) {
+    function userStatusWebsocketService($rootScope, livenotification, userStatusService, USER_STATUS_EVENTS, USER_STATUS_NAMESPACE) {
       var sio;
 
       return {
@@ -36,4 +39,4 @@
         $rootScope.$broadcast(USER_STATUS_EVENTS.USER_CHANGE_STATE, status);
       }
     }
-})();
+})(angular);

@@ -1,12 +1,3 @@
 require('../../frontend/index.js');
 require('./require-angular-injections.js');
 require('./frontend/app/app.js');
-require('./frontend/app/bubble/user-status-bubble.component.js');
-require('./frontend/app/bubble/user-status-bubble.controller.js');
-require('./frontend/app/services/user-status-client.service.js');
-require('./frontend/app/services/user-status-sync.service.js');
-require('./frontend/app/services/user-status-websocket.service.js');
-require('./frontend/app/services/user-status.restangular.service.js');
-require('./frontend/app/services/user-status.service.js');
-require('./frontend/app/user-status.constants.js');
-require('./frontend/app/user-status.run.js');

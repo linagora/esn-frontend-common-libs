@@ -1,3 +1,8 @@
+const _ = require('lodash');
+
+require('./constants.js');
+require('./services.js');
+
 (function(angular) {
   'use strict';
 
@@ -5,7 +10,6 @@
     .run(run);
 
   function run(
-    _,
     accountMessageRegistry,
     accountService,
     dynamicDirectiveService,

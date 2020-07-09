@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.user-status')
@@ -8,4 +8,4 @@
     })
     .constant('USER_STATUS_NAMESPACE', '/userstatus')
     .constant('USER_STATUS_SYNC_INTERVAL', 30000);
-})();
+})(angular);
