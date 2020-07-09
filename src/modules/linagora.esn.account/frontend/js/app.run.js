@@ -7,7 +7,8 @@ require('./services.js');
   'use strict';
 
   angular.module('linagora.esn.account')
-    .run(run);
+  .run(run)
+  .run(addTemplateCache);
 
   function run(
     accountMessageRegistry,
@@ -41,5 +42,9 @@ require('./services.js');
 
     var accountControlCenterMenu = new dynamicDirectiveService.DynamicDirective(true, 'controlcenter-menu-account', {priority: -2});
     dynamicDirectiveService.addInjection('controlcenter-sidebar-menu', accountControlCenterMenu);
+  }
+
+  function addTemplateCache($templateCache) {
+    $templateCache.put('/account/views/accounts', require('../views/accounts.pug'));
   }
 })(angular);
