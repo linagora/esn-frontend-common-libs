@@ -5,3 +5,4 @@
 })(angular);
 
 require('./template.provider.js');
+require('./template.run.js');
