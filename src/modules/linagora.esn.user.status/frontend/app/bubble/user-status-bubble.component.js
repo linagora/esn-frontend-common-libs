@@ -6,7 +6,7 @@
 
   function userStatusBubble() {
     return {
-      templateUrl: require('./user-status-bubble.pug'),
+      template: require('./user-status-bubble.pug'),
       controller: 'userStatusBubbleController',
       controllerAs: 'ctrl',
       bindings: {
