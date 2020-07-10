@@ -14,5 +14,5 @@
           i.mdi.mdi-dots-vertical
         ul.dropdown-menu.dropdown-menu-right
           li
-            a(ng-click='deleteAccount(account)') #{__('Delete account')}
+            a(ng-click='deleteAccount(account)') {{ 'Delete account' | translate }}
           li(dynamic-directive='account-options-items')

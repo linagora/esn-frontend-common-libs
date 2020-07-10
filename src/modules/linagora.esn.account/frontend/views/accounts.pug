@@ -1,7 +1,7 @@
 .accounts.col-xs-12
   .row
     .block-header.flex-space-between.flex-vertical-centered.flex-wrap
-      h2 #{__('Accounts Management')}
+      h2 {{ 'Accounts Management' | translate }}
       dynamic-fab-dropup(anchor='accounts-item-anchorpoint', ng-if="!error && hasAccountProvider")
 
     .col-xs-12.card(ng-if='!error && accounts.length')
@@ -10,8 +10,8 @@
     .alert-container
       .message(ng-if="!error && !accounts.length")
         .alert-icon.mdi.mdi-database-plus
-        .alert-text(ng-if="hasAccountProvider") !{__('No accounts, click %s to add a new one', '<span class="mdi mdi-plus"></span>')}
-        .alert-text(ng-if="!hasAccountProvider") !{__('No social account provider is installed, contact administrator for more information')}
+        .alert-text(ng-if="hasAccountProvider") {{ 'No account, click on the plus button to add a new one' | translate }}
+        .alert-text(ng-if="!hasAccountProvider") {{ 'No social account provider is installed, contact administrator for more information' | translate }}
       .message(ng-if="error")
         .alert-icon.mdi.mdi-alert-circle
-        .alert-text !{__('A problem occurred while getting data, try refreshing this page')}
+        .alert-text {{ 'A problem occurred while getting data, try refreshing this page' | translate }}
