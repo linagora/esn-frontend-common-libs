@@ -13,7 +13,8 @@
     'esn.profile',
     'esn.search',
     'esn.profile-menu',
-    'mgcrea.ngStrap.popover'
+    'mgcrea.ngStrap.popover',
+    'FBAngular'
   ])
 
   .constant('MAIN_HEADER', 'main-header-middle-content')
