@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 
-  angular.module('esn.fullscreen-edit-form', ['esn.scroll', 'esn.router'])
+  angular.module('esn.fullscreen-edit-form', ['esn.scroll'])
 
   .directive('fullscreenEdit', function($timeout) {
     return {
@@ -59,5 +59,4 @@
 
 })(angular);
 
-require('./esn.router.js');
 require('./scroll.js');
