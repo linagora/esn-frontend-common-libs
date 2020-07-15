@@ -1,10 +1,12 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.home-page')
     .factory('homePageService', homePageService);
 
-  function homePageService(_, esnI18nService, esnModuleRegistry) {
+  function homePageService(esnI18nService, esnModuleRegistry) {
     return {
       getHomePageCandidates: getHomePageCandidates
     };
