@@ -8,7 +8,6 @@
     return {
       currentUser: currentUser,
       user: user,
-      getActivityStreams: getActivityStreams,
       getUsersByEmail: getUsersByEmail,
       setUserEmails: setUserEmails,
       setUserStates: setUserStates,
@@ -27,11 +26,6 @@
       return esnRestangular.all('users').getList({ email: email });
     }
 
-    function getActivityStreams(options) {
-      options = options || {};
-
-      return esnRestangular.one('user').all('activitystreams').getList(options);
-    }
 
     function setUserStates(userId, states, domainId) {
       return esnRestangular.one('users', userId).customPUT(states, 'states', { domain_id: domainId || session.domain._id });

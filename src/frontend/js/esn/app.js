@@ -46,30 +46,7 @@ angular.module('esnApp', [
   .state('home', {
     url: '/'
   })
-  .state('/messages/:id/activitystreams/:asuuid', {
-    url: '/messages/:id/activitystreams/:asuuid',
-    template: require("../../views/esn/partials/message.pug"),
-    controller: 'singleMessageDisplayController',
-    resolve: {
-      message: routeResolver.api('messageAPI'),
-      activitystream: function($stateParams, $location, activitystreamAPI, objectTypeResolver) {
-        return activitystreamAPI.getResource($stateParams.asuuid).then(function(response) {
-          var objectType = response.data.objectType;
-          var id = response.data.object._id;
-
-          return objectTypeResolver.resolve(objectType, id).then(function(collaboration) {
-            return collaboration.data;
-          }, function() {
-            $location.path('/');
-          });
-
-        }, function() {
-          $location.path('/');
-        });
-      }
-    }
-  })
-
+ 
   .state('controlcenter.domainMembers', {
     url: '/domains/:domain_id/members',
     template: require("../../views/esn/partials/members.pug"),
