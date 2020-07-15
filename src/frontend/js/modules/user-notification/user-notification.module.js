@@ -8,7 +8,6 @@
     'esn.http',
     'esn.media.query',
     'esn.object-type',
-    'esn.router',
     'esn.session',
     'esn.websocket',
     'esn.registry',
@@ -18,7 +17,6 @@
 
 require('../../constants.js');
 require('../core.js');
-require('../esn.router.js');
 require('../feature-registry/feature-registry.module.js');
 require('../http.js');
 require('../media-query.js');
