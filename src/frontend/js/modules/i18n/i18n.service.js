@@ -43,5 +43,22 @@ require('./i18n-string.service.js');
       function isI18nString(text) {
         return text instanceof EsnI18nString;
       }
+    })
+
+    /**
+     * When the value of a dynamic translated text (%s) is relied on the result of a function
+     * We'll watch the translated text when it changed by the `get` method of Object.defineProperty
+     * The `get` method should return the updated value
+     *
+     * @param {Object} object         Base object to add property
+     * @param {Object} property       Name of property to watch
+     * @param {Function} callback     Function ran every time we get property value
+    */
+    .factory('watchDynamicTranslatedValue', function() {
+      return function(object, propertyName, callback) {
+        Object.defineProperty(object, propertyName, {
+          get() { return callback(); }
+        });
+      }
     });
 })(angular);
