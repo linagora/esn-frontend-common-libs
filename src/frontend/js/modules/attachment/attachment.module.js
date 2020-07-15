@@ -22,6 +22,7 @@ require('../file.js');
 require('../infinite-list/infinite-list.module.js');
 require('../provider.js');
 require('../registry.js');
+require('../file-saver.js');
 require('./attachment.constant.js');
 require('./attachment.component.js');
 require('./attachment.controller.js');
