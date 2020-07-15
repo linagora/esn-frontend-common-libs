@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
@@ -27,7 +29,7 @@
   angular.module('esn.business-hours')
     .controller('esnBusinessHoursWorkingDaysController', esnBusinessHoursWorkingDaysController);
 
-    function esnBusinessHoursWorkingDaysController(_) {
+    function esnBusinessHoursWorkingDaysController() {
       var self = this;
 
       self.$onInit = $onInit;

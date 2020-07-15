@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
@@ -72,7 +74,7 @@
     };
   })
 
-  .factory('notificationFactory', function(_, notifyService) {
+  .factory('notificationFactory', function(notifyService) {
     function notify(type, title, text, delay, options) {
       var animationDelay = 300;
       options = options || {};

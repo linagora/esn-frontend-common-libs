@@ -1,10 +1,12 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.business-hours')
     .controller('esnBusinessHoursController', esnBusinessHoursController);
 
-  function esnBusinessHoursController(_, ESN_CONFIG_DEFAULT) {
+  function esnBusinessHoursController(ESN_CONFIG_DEFAULT) {
     var self = this;
     var DEFAULT_BUSINESS_HOURS = ESN_CONFIG_DEFAULT.core.businessHours;
 
