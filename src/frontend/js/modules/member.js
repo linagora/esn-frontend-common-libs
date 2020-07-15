@@ -1,7 +1,17 @@
 (function(angular) {
   'use strict';
 
-  angular.module('esn.member', ['esn.session', 'esn.domain', 'esn.search', 'esn.infinite-list', 'openpaas-logo', 'esn.provider', 'esn.header', 'esn.configuration'])
+  angular.module('esn.member', [
+    'esn.session',
+    'esn.domain',
+    'esn.search',
+    'esn.infinite-list',
+    'openpaas-logo',
+    'esn.provider',
+    'esn.header',
+    'esn.configuration',
+    'esn.registry'
+  ])
   .constant('memberSearchConfiguration', {
     searchLimit: 20
   })
@@ -172,3 +182,5 @@ require('./search/search.module.js');
 require('./domain.js');
 require('./provider.js');
 require('./session.js');
+require('./registry');
+require('./member/member-resolver-registry.service.js');
