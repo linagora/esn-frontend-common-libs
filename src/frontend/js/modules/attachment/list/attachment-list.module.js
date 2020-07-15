@@ -14,3 +14,6 @@ require('./attachment-list-providers.service.js');
 require('./attachment-list.component.js');
 require('./attachment-list.controller.js');
 require('./item/attachment-list-item.component.js');
+require('../attachment.module.js');
+require('../../provider.js');
+require('../../../constants.js');
