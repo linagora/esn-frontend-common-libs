@@ -1,10 +1,15 @@
+const _ = require('lodash');
+
+require('../../services/collaboration-client.service.js');
+require('../../../pagination/pagination-provider-builder.service.js');
+
 (function() {
   'use strict';
 
   angular.module('esn.collaboration')
     .controller('ESNCollaborationMembersAddController', ESNCollaborationMembersAddController);
 
-  function ESNCollaborationMembersAddController(esnPaginationtionProviderBuilder, _, esnCollaborationClientService) {
+  function ESNCollaborationMembersAddController(esnPaginationtionProviderBuilder, esnCollaborationClientService) {
     var self = this;
 
     var options = {

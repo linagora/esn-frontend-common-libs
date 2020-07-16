@@ -1,9 +1,11 @@
+const _ = require('lodash');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.timeline').controller('esnTimelineEntriesController', esnTimelineEntriesController);
 
-  function esnTimelineEntriesController($scope, $log, _, esnTimelineEntriesHelper, infiniteScrollHelperBuilder, PageAggregatorService, TimelinePaginationProvider, session, TIMELINE_PAGE_SIZE) {
+  function esnTimelineEntriesController($scope, esnTimelineEntriesHelper, infiniteScrollHelperBuilder, PageAggregatorService, TimelinePaginationProvider, session, TIMELINE_PAGE_SIZE) {
     var aggregator;
 
     $scope.timelineEntries = [];
