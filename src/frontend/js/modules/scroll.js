@@ -1,3 +1,4 @@
+const _ = require('lodash');
 (function(angular) {
   'use strict';
 
@@ -66,7 +67,7 @@
     }
   })
 
-  .directive('scrollListener', function($parse, esnScrollListenerService, _, SCROLL_DIFF_DELTA) {
+  .directive('scrollListener', function($parse, esnScrollListenerService, SCROLL_DIFF_DELTA) {
     return {
       restrict: 'A',
       scope: true,
