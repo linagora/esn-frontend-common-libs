@@ -92,29 +92,44 @@
     $scope.domain = session.domain;
   })
 
+  // TODO (esn-frontend-common-libs#51): Write tests for the new changes (https://github.com/OpenPaaS-Suite/esn-frontend-common-libs/pull/48)
   .controller('sessionInitESNController', function($scope, esnTemplate, sessionFactory) {
-
     $scope.session = {
       template: esnTemplate.templates.loading
     };
 
-    sessionFactory.fetchUser(function(error) {
-      if (error) {
+    sessionFactory.bootstrapSession()
+      .then(() => {
+        $scope.session.template = esnTemplate.templates.success;
+      })
+      .catch(error => {
         $scope.session.error = error.data;
         $scope.session.template = esnTemplate.templates.error;
-      } else {
-        $scope.session.template = esnTemplate.templates.success;
-      }
-    });
+      });
   })
 
-  .factory('sessionFactory', function($log, $q, Restangular, userAPI, domainAPI, session) {
+  .factory('sessionFactory', function($log, $q, Restangular, userAPI, domainAPI, session, themesService, applyThemeService) {
 
     function onError(error, callback) {
           if (error && error.data) {
             return callback(error.data);
           }
         }
+
+    function bootstrapSession() {
+      return new Promise((resolve, reject) => {
+        fetchUser(error => {
+          if (error) return reject(error);
+
+          themesService.getTheme(session.domain._id).then(theme => {
+            applyThemeService.applyTheme(theme);
+            resolve();
+          }).catch(error => {
+            reject(error);
+          });
+        });
+      });
+    }
 
     function fetchUser(callback) {
           userAPI.currentUser().then(function(response) {
@@ -154,7 +169,8 @@
         }
 
     return {
-      fetchUser: fetchUser
+      fetchUser,
+      bootstrapSession
     };
   });
 
@@ -163,3 +179,4 @@
 require('./template/template.module.js');
 require('./user/user.module.js');
 require('./domain.js');
+require('./themes/themes.module');

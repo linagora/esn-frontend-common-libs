@@ -10,3 +10,4 @@
 require('../http.js');
 require('./color-contrast.service.js');
 require('./themes.service.js');
+require('./apply-theme.service.js');

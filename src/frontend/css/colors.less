@@ -4,15 +4,35 @@
 // @m-white: #FFFFFF
 // @m-black: #000000
 
+@plugin './plugins/color';
+
+:root {
+  --primary-color-h: hue(@m-blue);
+  --primary-color-s: saturation(@m-blue);
+  --primary-color-l: lightness(@m-blue);
+  --accent-color-h: hue(@m-amber);
+  --accent-color-s: saturation(@m-amber);
+  --accent-color-l: lightness(@m-amber);
+  --body-bg-color-h: hue(darken(@m-white, 3%));
+  --body-bg-color-s: saturation(darken(@m-white, 3%));
+  --body-bg-color-l: lightness(darken(@m-white, 3%));
+  --text-primary-color-h: hue(@m-white);
+  --text-primary-color-s: saturation(@m-white);
+  --text-primary-color-l: lightness(@m-white);
+  --text-color-h: hue(lighten(@m-black, 20%));
+  --text-color-s: saturation(lighten(@m-black, 20%));
+  --text-color-l: lightness(lighten(@m-black, 20%));
+}
+
 // main colors
-@primaryColor: @m-blue;
-@accentColor: @m-amber;
-@bodyBgColor: darken(@m-white, 3%);
+@primaryColor: hsl(var(--primary-color-h), var(--primary-color-s), var(--primary-color-l));
+@accentColor: hsl(var(--accent-color-h), var(--accent-color-s), var(--accent-color-l));
+@bodyBgColor: hsl(var(--body-bg-color-h), var(--body-bg-color-s), var(--body-bg-color-l));
 
 // text colors
-@textPrimaryColor: @m-white;
+@textPrimaryColor: hsl(var(--text-primary-color-h), var(--text-primary-color-s), var(--text-primary-color-l));
 @textAccentColor: @m-white;
-@textColor: lighten(@m-black, 20%);
+@textColor: hsl(var(--text-color-h), var(--text-color-s), var(--text-color-l));
 @secondaryTextColor: lighten(@textColor, 20%);
 
 // header colors
