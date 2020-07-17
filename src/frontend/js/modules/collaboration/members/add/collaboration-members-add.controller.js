@@ -1,7 +1,6 @@
 const _ = require('lodash');
 
 require('../../services/collaboration-client.service.js');
-require('../../../pagination/pagination-provider-builder.service.js');
 
 (function() {
   'use strict';
