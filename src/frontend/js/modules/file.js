@@ -23,7 +23,7 @@
         return processed === tasks.length;
       }
 
-      function await(done, error, progress) {
+      function awaitFor(done, error, progress) {
         done = done || function(result) {
           $log.debug('Tasks are complete:', result);
         };
@@ -111,7 +111,7 @@
       }
 
       return {
-        await: await,
+        awaitFor: awaitFor,
         addFile: addFile,
         isComplete: isComplete,
         start: start,
