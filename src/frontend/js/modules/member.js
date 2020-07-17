@@ -1,3 +1,7 @@
+const _ = require('lodash');
+
+require('../constants.js');
+
 (function(angular) {
   'use strict';
 
@@ -154,7 +158,7 @@
     return MemberPaginationProvider;
   })
 
-  .factory('MemberScrollBuilder', function(infiniteScrollHelperBuilder, PageAggregatorService, MemberPaginationProvider, _, ELEMENTS_PER_PAGE) {
+  .factory('MemberScrollBuilder', function(infiniteScrollHelperBuilder, PageAggregatorService, MemberPaginationProvider, ELEMENTS_PER_PAGE) {
 
     function build($scope, updateScope, options) {
 

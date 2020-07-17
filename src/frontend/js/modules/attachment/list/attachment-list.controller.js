@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 require('./attachment-list-providers.service.js');
 
 (function(angular) {
@@ -6,7 +8,7 @@ require('./attachment-list-providers.service.js');
   angular.module('esn.attachment-list')
     .controller('ESNAttachmentListController', ESNAttachmentListController);
 
-  function ESNAttachmentListController($q, esnAttachmentListProviders, infiniteScrollHelper, PageAggregatorService, _, ELEMENTS_PER_PAGE) {
+  function ESNAttachmentListController(esnAttachmentListProviders, infiniteScrollHelper, PageAggregatorService, ELEMENTS_PER_PAGE) {
     var self = this;
     var aggregator;
     var results_per_page = self.elementsPerPage || ELEMENTS_PER_PAGE;

@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 require('../shortcuts-registry.service.js');
 
 (function(angular) {
@@ -6,7 +8,7 @@ require('../shortcuts-registry.service.js');
   angular.module('esn.shortcuts')
     .controller('EsnShortcutsSheetController', EsnShortcutsSheetController);
 
-  function EsnShortcutsSheetController($state, _, esnShortcutsRegistry, hotkeys) {
+  function EsnShortcutsSheetController($state, esnShortcutsRegistry, hotkeys) {
     var self = this;
     var allCategories = [];
 
