@@ -1,10 +1,6 @@
-(function(angular) {
-  'use strict';
+'use strict';
 
-  angular.module('esn.attachments-selector', [
-    'esn.lodash-wrapper'
-  ]);
-})(angular);
+angular.module('esn.attachments-selector', []);
 
 require('./attachments-selector.component.js');
 require('./attachments-selector.controller.js');
