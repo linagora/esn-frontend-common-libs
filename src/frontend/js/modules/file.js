@@ -5,6 +5,7 @@
 
   .constant('FILES_API_URL', '/api/files')
   .constant('DEFAULT_FILE_TYPE', 'application/octet-stream')
+    .constant('MAX_SIZE_UPLOAD_DEFAULT', 104857600) // is equal to 100 MO
 
   .factory('fileUploadService', function($q, $timeout, $log, fileAPIService, FILES_API_URL, DEFAULT_FILE_TYPE) {
 
