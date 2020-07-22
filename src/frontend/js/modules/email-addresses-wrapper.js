@@ -1,10 +1,9 @@
-(function(angular) {
-  'use strict';
+'use strict';
 
-  angular.module('esn.email-addresses-wrapper', [])
+const emailAddresses = require('email-addresses');
 
-  .factory('emailAddresses', function($window) {
-    return $window.emailAddresses;
-  });
+angular.module('esn.email-addresses-wrapper', [])
 
-})(angular);
+.factory('emailAddresses', function($window) {
+  return emailAddresses;
+});

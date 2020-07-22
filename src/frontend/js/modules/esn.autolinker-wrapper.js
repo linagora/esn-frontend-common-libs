@@ -1,10 +1,10 @@
-(function(angular) {
-  'use strict';
+'use strict';
 
-  angular.module('esn.autolinker-wrapper', [])
+const Autolinker = require('../../components/Autolinker.js/dist/Autolinker');
 
-  .factory('autolinker', function($window) {
-    return $window.Autolinker;
-  });
-})(angular);
+angular.module('esn.autolinker-wrapper', [])
+
+.factory('autolinker', function($window) {
+  return Autolinker;
+});
 

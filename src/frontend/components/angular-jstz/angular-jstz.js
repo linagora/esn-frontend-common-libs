@@ -1,12 +1,10 @@
-/* angular-moment.js / v0.9.0 / (c) 2015  Czar Pino / MIT Licence */
+'use strict';
 
-(function (angular) {
-    'use strict';
+const jstz = require('../jstzdetect/jstz');
 
-    angular.module('AngularJstz', [])
-           .factory('jstz', ['$window', Jstz]);
+angular.module('AngularJstz', [])
+    .factory('jstz', Jstz);
 
-    function Jstz($window) {
-        return $window.jstz.jstz;
-    }
-})(window.angular);
+function Jstz() {
+    return jstz.jstz;
+}
