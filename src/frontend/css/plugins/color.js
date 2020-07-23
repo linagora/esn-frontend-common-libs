@@ -1,4 +1,4 @@
-const colorFunctions = require('less/lib/less/functions/color').default;
+const defaultColorFunctions = require('less/lib/less/functions/color').default;
 
 const SUPPORTED_COLOR_FUNCTIONS = {
   LIGHTEN: 'lighten',
@@ -7,19 +7,30 @@ const SUPPORTED_COLOR_FUNCTIONS = {
 };
 
 // TODO (esn-frontend-common-libs#51): Write tests for this plugin
-function colorFunctionInterceptor(color, amount, method, functionName) {
+/**
+ * A function that intercepts the default color functions of LESS so that they can work with CSS Variables.
+ * We mainly care about the "color" object. There are three possible cases based on the properties of the "color" object:
+ *   1. If "color.toHSL" exists, the "color" object refers to a known, concrete color value, not a CSS Variable.
+ *      For this case, we'll just use the default LESS' color functions.
+ *   2. Else, the "color" object refers to a color value that is defined by one or a set of CSS Variables.
+ *      If "color.args" exists, the "color" object has not been transformed, so the first transformation will be done.
+ *   3. Else, if "color.args" doesn't exist, it means that the "color" object refers to a color value that has already
+ *      been transformed at least once, and so, the color value will be just a string.
+ *      e.g. hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) + 20%)).
+ *      Therefore we need to process it as a string.
+ * 
+ * @param {Object} color The object that contains all the properties related to the color parsed by LESS.
+ * @returns {Object|string} A transformed color value that works with CSS Variables.
+ */
+function colorFunctionInterceptor({ color, amount, method, functionName }) {
   if (!Object.values(SUPPORTED_COLOR_FUNCTIONS).includes(functionName)) {
     throw new Error(`The LESS's color function '${functionName}' is not supported with CSS Variables`);
   }
 
-  // If the "color" argument is a known, concrete color, not a CSS Variable, we'll just use the default LESS function.
-  if (color.toHSL) return colorFunctions[functionName](color, amount, method);
+  if (color.toHSL) return defaultColorFunctions[functionName](color, amount, method);
 
-  // If the "color" argument is not a transformed one, we'll first transform it here.
   if (color.args) return _firstTransform();
 
-  // Else, if the current "color" argument has already been transformed at least once, its value will be just a string.
-  // e.g. hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) + 20%)). Therefore we need to process it as a string.
   return _nthTransform();
 
   function _firstTransform() {
@@ -31,10 +42,12 @@ function colorFunctionInterceptor(color, amount, method, functionName) {
       return `hsla(var(${h}), var(${s}), calc(var(${l})), ${amount.value}%)`
     }
 
-    if (functionName === SUPPORTED_COLOR_FUNCTIONS.LIGHTEN || functionName === SUPPORTED_COLOR_FUNCTIONS.DARKEN) {
-      const sign = functionName === SUPPORTED_COLOR_FUNCTIONS.LIGHTEN ? '+' : '-';
+    if (functionName === SUPPORTED_COLOR_FUNCTIONS.LIGHTEN) {
+      return `hsla(var(${h}), var(${s}), calc(var(${l}) + ${amount.value}%), 100%)`;
+    }
 
-      return `hsla(var(${h}), var(${s}), calc(var(${l}) ${sign} ${amount.value}%), 100%)`;
+    if (functionName === SUPPORTED_COLOR_FUNCTIONS.DARKEN) {
+      return `hsla(var(${h}), var(${s}), calc(var(${l}) - ${amount.value}%), 100%)`;
     }
   }
 
@@ -55,15 +68,15 @@ function colorFunctionInterceptor(color, amount, method, functionName) {
 module.exports = {
   install: function (less, pluginManager, functions) {
     functions.add(SUPPORTED_COLOR_FUNCTIONS.LIGHTEN, function (color, amount, method) {
-      return colorFunctionInterceptor(color, amount, method, SUPPORTED_COLOR_FUNCTIONS.LIGHTEN);
+      return colorFunctionInterceptor({ color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.LIGHTEN });
     });
 
     functions.add(SUPPORTED_COLOR_FUNCTIONS.DARKEN, function (color, amount, method) {
-      return colorFunctionInterceptor(color, amount, method, SUPPORTED_COLOR_FUNCTIONS.DARKEN);
+      return colorFunctionInterceptor({ color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.DARKEN });
     });
 
     functions.add(SUPPORTED_COLOR_FUNCTIONS.FADE, function (color, amount, method) {
-      return colorFunctionInterceptor(color, amount, method, SUPPORTED_COLOR_FUNCTIONS.FADE);
+      return colorFunctionInterceptor({ color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.FADE });
     })
   }
 };

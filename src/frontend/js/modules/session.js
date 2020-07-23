@@ -124,9 +124,7 @@
           themesService.getTheme(session.domain._id).then(theme => {
             applyThemeService.applyTheme(theme);
             resolve();
-          }).catch(error => {
-            reject(error);
-          });
+          }).catch(reject);
         });
       });
     }

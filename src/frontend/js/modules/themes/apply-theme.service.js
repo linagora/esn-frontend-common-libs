@@ -4,23 +4,9 @@ angular.module('esn.themes').factory('applyThemeService', applyThemeService);
 
 // TODO (esn-frontend-common-libs#51): Write tests for this module
 function applyThemeService() {
-  const camelToKebabCase = text => text.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`);
-
-  function _convertThemeToCSS(theme) {
-    return `
-      :root {
-        ${Object.keys(theme.colors).map(color => {
-          const [h, s, l] = hexToHsl(theme.colors[color]);
-
-          return `
-            --${camelToKebabCase(color)}-h: ${h};
-            --${camelToKebabCase(color)}-s: ${s}%;
-            --${camelToKebabCase(color)}-l: ${l}%;
-          `;
-        }).join('')}
-      }
-    `;
-  }
+  return {
+    applyTheme
+  };
 
   function applyTheme(theme) {
     const THEME_STYLE_ID = 'op-current-theme';
@@ -35,7 +21,23 @@ function applyThemeService() {
     document.head.appendChild(style);
   }
 
-  return {
-    applyTheme
-  };
+  function _camelToKebabCase(text) {
+    return text.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`);
+  }
+
+  function _convertThemeToCSS(theme) {
+    return `
+      :root {
+        ${Object.keys(theme.colors).map(color => {
+          const [h, s, l] = hexToHsl(theme.colors[color]);
+
+          return `
+            --${_camelToKebabCase(color)}-h: ${h};
+            --${_camelToKebabCase(color)}-s: ${s}%;
+            --${_camelToKebabCase(color)}-l: ${l}%;
+          `;
+        }).join('')}
+      }
+    `;
+  }
 }
