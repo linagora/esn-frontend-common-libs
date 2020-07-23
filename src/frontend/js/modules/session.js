@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 
-  angular.module('esn.session', ['esn.user', 'esn.domain', 'esn.template'])
+  angular.module('esn.session', ['esn.user', 'esn.domain', 'esn.template', 'esn.themes'])
   .factory('session', function($q) {
 
     var bootstrapDefer = $q.defer();
