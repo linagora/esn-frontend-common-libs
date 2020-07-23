@@ -1,8 +1,10 @@
 'use strict';
 
+const autosize = require('autosize');
+
 angular.module('esn.form.helper')
 .factory('autosize', function($window) {
-    return $window.autosize;
+    return autosize;
   })
 .directive('esnTrackFirstBlur', function() {
   return {
