@@ -100,11 +100,16 @@
 
     sessionFactory.bootstrapSession()
       .then(() => {
-        $scope.session.template = esnTemplate.templates.success;
+        // we $apply because otherwise sometimes angular does not detect the change
+        $scope.$apply(() => {
+          $scope.session.template = esnTemplate.templates.success;
+        });
       })
       .catch(error => {
-        $scope.session.error = error.data;
-        $scope.session.template = esnTemplate.templates.error;
+        $scope.$apply(() => {
+          $scope.session.error = error.data;
+          $scope.session.template = esnTemplate.templates.error;
+        });
       });
   })
 
