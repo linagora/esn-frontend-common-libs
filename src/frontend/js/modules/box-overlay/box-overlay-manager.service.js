@@ -7,8 +7,8 @@ require('./box-overlay.constants.js');
 
   angular.module('esn.box-overlay').service('boxOverlayManager', boxOverlayManager);
 
-  function boxOverlayManager($rootScope, $window, $compile, $http, $templateCache, notificationFactory, ESN_BOX_OVERLAY_MAX_WINDOWS) {
-    var boxTemplateUrl = '/views/modules/box-overlay/box-overlay.html';
+  function boxOverlayManager($rootScope, $window, $compile, $q, notificationFactory, ESN_BOX_OVERLAY_MAX_WINDOWS) {
+    const boxTemplate = require('./box-overlay.pug');
     var boxes = [];
 
     return {
@@ -240,24 +240,15 @@ require('./box-overlay.constants.js');
     function createElement(scope) {
       ensureContainerExists();
 
-      return buildElement(scope).then(function(element) {
-        element.addClass('box-overlay-open');
-        getContainer().prepend(element);
+      const element = buildElement(scope);
+      element.addClass('box-overlay-open');
+      getContainer().prepend(element);
 
-        return element;
-      });
+      return $q.when(element);
     }
 
     function buildElement(scope) {
-      return _fetchTemplate().then(function(template) {
-        return $compile(template)(scope);
-      });
-    }
-
-    function _fetchTemplate() {
-      return $http.get(boxTemplateUrl, {cache: $templateCache}).then(function(res) {
-        return res.data;
-      });
+      return $compile(boxTemplate)(scope);
     }
 
     function _findBoxIndex(box) {
