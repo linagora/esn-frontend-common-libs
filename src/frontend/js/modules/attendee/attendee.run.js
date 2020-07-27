@@ -19,5 +19,7 @@
           '</li>' +
         '</ul>' +
       '</div>');
+    $templateCache.put('/views/modules/auto-complete/attendees.html', require('../../../views/modules/auto-complete/attendees.pug'));
+    $templateCache.put('/views/modules/attendee/attendee-auto-complete.html', require('./attendee-auto-complete.pug'));
   }
 })(angular);
