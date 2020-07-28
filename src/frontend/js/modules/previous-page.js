@@ -4,14 +4,19 @@ angular.module('esn.previous-page', [])
     esnPreviousPage.init();
   })
 
-  .directive('esnBackButton', function(esnPreviousPage) {
+  .directive('esnBackButton', function($state, $log, esnPreviousPage) {
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
+        // TODO: Write tests for the newly changed logic https://github.com/OpenPaaS-Suite/esn-frontend-calendar/issues/12
+        const availableStates = $state.get();
+        const backState = availableStates.find(state => state.name === attrs.esnBackButton) || availableStates.find(state => state.default);
 
-        element.click(function() {
-          esnPreviousPage.back(attrs.esnBackButton);
-        });
+        if (!backState) {
+          return $log.error(`There is no ${attrs.esnBackButton} state or a default state to come back to.`)
+        }
+
+        element.click(() => esnPreviousPage.back(backState.name));
       }
     };
   })
