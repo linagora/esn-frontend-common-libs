@@ -1,7 +1,4 @@
-(function(angular) {
-  'use strict';
-
-  angular.module('esn.previous-page', [])
+angular.module('esn.previous-page', [])
 
   .run(function(esnPreviousPage) {
     esnPreviousPage.init();
@@ -20,7 +17,7 @@
   })
 
   .factory('esnPreviousPage', function($rootScope, $state, $window) {
-    var hasPreviousPage = false;
+    let hasPreviousPage = false;
 
     return {
       back: back,
@@ -36,7 +33,7 @@
     }
 
     function init() {
-      var unregister = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+      const unregister = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
         // if url updated and new history record added
         // see more at https://github.com/angular-ui/ui-router/wiki/quick-reference#stategoto--toparams--options
         if (options && options.location === true) {
@@ -46,5 +43,3 @@
       });
     }
   });
-
-})(angular);
