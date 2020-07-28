@@ -1,26 +1,28 @@
-(function(angular) {
-  'use strict';
-
-  angular.module('esn.previous-page', [])
+angular.module('esn.previous-page', [])
 
   .run(function(esnPreviousPage) {
     esnPreviousPage.init();
   })
 
-  .directive('esnBackButton', function(esnPreviousPage) {
+  .directive('esnBackButton', function($state, $log, esnPreviousPage) {
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
+        // TODO: Write tests for the newly changed logic https://github.com/OpenPaaS-Suite/esn-frontend-calendar/issues/12
+        const availableStates = $state.get();
+        const backState = availableStates.find(state => state.name === attrs.esnBackButton) || availableStates.find(state => state.default);
 
-        element.click(function() {
-          esnPreviousPage.back(attrs.esnBackButton);
-        });
+        if (!backState) {
+          return $log.error(`There is no ${attrs.esnBackButton} state or a default state to come back to.`)
+        }
+
+        element.click(() => esnPreviousPage.back(backState.name));
       }
     };
   })
 
   .factory('esnPreviousPage', function($rootScope, $state, $window) {
-    var hasPreviousPage = false;
+    let hasPreviousPage = false;
 
     return {
       back: back,
@@ -36,7 +38,7 @@
     }
 
     function init() {
-      var unregister = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
+      const unregister = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options) {
         // if url updated and new history record added
         // see more at https://github.com/angular-ui/ui-router/wiki/quick-reference#stategoto--toparams--options
         if (options && options.location === true) {
@@ -46,5 +48,3 @@
       });
     }
   });
-
-})(angular);
