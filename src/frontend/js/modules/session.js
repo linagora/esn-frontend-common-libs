@@ -1,3 +1,5 @@
+import { getAuth } from './auth';
+
 (function(angular) {
   'use strict';
 
@@ -93,17 +95,47 @@
   })
 
   // TODO (esn-frontend-common-libs#51): Write tests for the new changes (https://github.com/OpenPaaS-Suite/esn-frontend-common-libs/pull/48)
-  .controller('sessionInitESNController', function($scope, esnTemplate, sessionFactory) {
+  .controller('sessionInitESNController', function($scope, $log, esnTemplate, sessionFactory, userAPI, httpConfigurer) {
+    const onLogin = data => {
+      $log.debug('User logged in', data);
+      data.headers && httpConfigurer.setHeaders(data.headers);
+    };
+
+    const onLogout = () => {
+      $log.debug('User logged out');
+    };
+
     $scope.session = {
       template: esnTemplate.templates.loading
     };
 
-    sessionFactory.bootstrapSession()
-      .then(() => {
-        // we $apply because otherwise sometimes angular does not detect the change
-        $scope.$apply(() => {
-          $scope.session.template = esnTemplate.templates.success;
-        });
+    const authProvider = getAuth({
+      fetchUser: userAPI.currentUser,
+      onLogin,
+      onLogout
+    });
+
+    authProvider.init()
+      .then(user => {
+        if (!user) {
+          return authProvider.login().catch(err => {
+            $log.debug('Login error', err);
+            $scope.$apply(() => {
+              $scope.session.error = 'There was an issue while authenticating user';
+              $scope.session.template = esnTemplate.templates.error;
+            });
+          });
+        }
+
+        $log.debug('authProvider.getUser', user);
+
+        return sessionFactory.bootstrapSession()
+          .then(() => {
+            // we $apply because otherwise sometimes angular does not detect the change
+            $scope.$apply(() => {
+              $scope.session.template = esnTemplate.templates.success;
+            });
+          });
       })
       .catch(error => {
         $scope.$apply(() => {

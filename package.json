@@ -61,6 +61,7 @@
     "moment": "2.15.1",
     "moment-timezone": "0.5.17",
     "ng-tags-input": "3.2.0",
+    "oidc-client": "1.10.1",
     "re-tree": "0.0.2",
     "restangular": "1.6.1",
     "roboto-fontface": "0.4.3",

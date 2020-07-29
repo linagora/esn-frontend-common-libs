@@ -6,17 +6,10 @@
     'restangular'
   ])
 
-  .factory('esnRestangular', function(Restangular, httpConfigurer, httpErrorHandler) {
+  .factory('esnRestangular', function(Restangular, httpConfigurer) {
     var restangularInstance = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setFullResponse(true);
       RestangularConfigurer.setDefaultHttpFields({ withCredentials: true });
-      RestangularConfigurer.setErrorInterceptor(function(response) {
-        if (response.status === 401) {
-          httpErrorHandler.redirectToLogin();
-        }
-
-        return true;
-      });
     });
 
     httpConfigurer.manageRestangular(restangularInstance, '/api');
@@ -53,8 +46,9 @@
   })
 
   .provider('httpConfigurer', function() {
-    var restangulars = [];
-    var baseUrl = '';
+    let restangulars = [];
+    let baseUrl = '';
+    let headers;
 
     function setBaseUrl(newBaseUrl) {
       baseUrl = newBaseUrl.replace(/\/$/, '');
@@ -73,11 +67,20 @@
       moduleRestangular.restangular.setBaseUrl(getUrl(moduleRestangular.baseUri));
     }
 
+    function updateRestangularHeaders(moduleRestangular) {
+      moduleRestangular.restangular.setDefaultHeaders(headers || {});
+    }
+
     function manageRestangular(restangular, baseUri) {
       var moduleRestangular = {restangular: restangular, baseUri: baseUri};
 
       updateRestangularBaseUrl(moduleRestangular);
       restangulars.push(moduleRestangular);
+    }
+
+    function setHeaders(newHeaders) {
+      headers = newHeaders;
+      restangulars.forEach(updateRestangularHeaders);
     }
 
     this.setBaseUrl = setBaseUrl;
@@ -86,7 +89,8 @@
       return {
         setBaseUrl: setBaseUrl,
         manageRestangular: manageRestangular,
-        getUrl: getUrl
+        getUrl: getUrl,
+        setHeaders: setHeaders
       };
     };
   })
