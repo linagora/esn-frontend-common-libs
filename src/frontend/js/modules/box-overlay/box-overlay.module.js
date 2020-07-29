@@ -17,3 +17,4 @@ require('./box-overlay-state-manager.service.js');
 require('./box-overlay.constants.js');
 require('./box-overlay.directive.js');
 require('./box-overlay.provider.js');
+require('./box-overlay.run.js');
