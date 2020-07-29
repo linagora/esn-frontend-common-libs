@@ -74,7 +74,6 @@ require('./components/angular-file-upload/dist/angular-file-upload-shim.js');
 require('./components/angular-component/dist/angular-component.js');
 require('./components/ngInfiniteScroll/build/ng-infinite-scroll.js');
 require('./components/jcrop/js/jquery.Jcrop.js');
-require('./components/angular-xeditable/dist/js/xeditable.js');
 require('./components/angular-file-upload/dist/angular-file-upload.js');
 require('./components/openpaas-logo/openpaas-logo.js');
 require('./components/angular-truncate/src/truncate.js');
