@@ -3,10 +3,9 @@ import { UserManager } from 'oidc-client';
 class OIDCStrategy {
   constructor(options) {
     this.oidcUserManager = new UserManager(options);
-    this.oidcUserManager.getUser().then(user => {
-      this.user = user;
-    });
+  }
 
+  init() {
     const userManagerEvents = [
       'addUserLoaded',
       'addUserUnloaded',
@@ -16,10 +15,14 @@ class OIDCStrategy {
       'addUserSignedOut'
     ]
     userManagerEvents.forEach(eventName => {
+      console.log('Adding event listener', eventName);
       this.oidcUserManager.events[eventName](data => {
         console.log('Event occured', eventName, data);
       });
     });
+
+    return this.oidcUserManager.getUser()
+      .then(user => (this.user = user));
   }
 
   isLoggedIn() {
@@ -42,12 +45,9 @@ class OIDCStrategy {
     return this.oidcUserManager.signinRedirect();
   }
 
-  completeAuthentication() {
-    return this.oidcUserManager.signinRedirectCallback()
-      .then(user => {
-        this.user = user;
-        return this.user;
-      });
+  completeAuthentication(url) {
+    return this.oidcUserManager.signinRedirectCallback(url)
+      .then(user => this.user = user);
   }
 }
 

@@ -1,5 +1,7 @@
 import OIDCStrategy from './strategy';
 
+const URL_PATTERN = /auth\/oidc\/callback/;
+
 class OIDCAuth {
   constructor(options = {}) {
     this.options = options;
@@ -7,24 +9,28 @@ class OIDCAuth {
   }
 
   init() {
-    if (window.location.href.match(/\/auth\/oidc\/callback/)) {
-      return this.strategy.completeAuthentication().then(user => {
-        this.onLoggedIn();
+    // URL may be updated before now and the strategy.init promise resolution...
+    const currentUrl = window.location.href;
 
-        return user;
+    return this.strategy.init()
+      .then(() => {
+        if (currentUrl.match(URL_PATTERN)) {
+          return this.strategy.completeAuthentication(currentUrl)
+            .then(() => this._onLoggedIn());
+        }
+
+        if (!this.strategy.isLoggedIn()) {
+          return false;
+        }
+
+        return this._onLoggedIn();
       });
-    }
-
-    if (!this.strategy.isLoggedIn()) {
-      return Promise.resolve();
-    }
-
-    this.onLoggedIn();
-    return Promise.resolve(this.getUser())
   }
 
-  onLoggedIn() {
+  _onLoggedIn() {
     this.options.onLogin && this.options.onLogin({ headers: { Authorization: this.strategy.getAuthorizationHeaderValue()}});
+
+    return this.getUser();
   }
 
   login() {

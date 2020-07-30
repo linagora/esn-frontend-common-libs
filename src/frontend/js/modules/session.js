@@ -97,7 +97,7 @@ import { getAuth } from './auth';
   // TODO (esn-frontend-common-libs#51): Write tests for the new changes (https://github.com/OpenPaaS-Suite/esn-frontend-common-libs/pull/48)
   .controller('sessionInitESNController', function($scope, $log, esnTemplate, sessionFactory, userAPI, httpConfigurer) {
     const onLogin = data => {
-      $log.debug('User logged in', data);
+      $log.debug('User logged in');
       data.headers && httpConfigurer.setHeaders(data.headers);
     };
 
@@ -126,8 +126,6 @@ import { getAuth } from './auth';
             });
           });
         }
-
-        $log.debug('authProvider.getUser', user);
 
         return sessionFactory.bootstrapSession()
           .then(() => {

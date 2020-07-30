@@ -2,14 +2,10 @@
  * Basic Auth plugin.
  */
 class BasicAuth {
-  constructor(options = {
-    loginPath: '/login',
-    logoutPath: '/logout',
-    fetchUser: null
-  }) {
-    this.loginPath = options.loginPath || '/login';
-    this.logoutPath = options.logoutPath || '/logout';
-    this.fetchUser = options.fetchUser;
+  constructor({ loginPath = '/login', logoutPath = '/logout', fetchUser = null } = {}) {
+    this.loginPath = loginPath;
+    this.logoutPath = logoutPath;
+    this.fetchUser = fetchUser;
 
     if (!this.fetchUser) {
       throw new Error('fetchUser is required');
