@@ -1,4 +1,4 @@
-import { getAuth } from './auth';
+import { getAuth } from './auth/index';
 
 (function(angular) {
   'use strict';
