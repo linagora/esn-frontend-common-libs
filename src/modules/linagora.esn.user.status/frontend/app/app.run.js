@@ -1,17 +1,13 @@
-require('./user-status.constants.js');
+'use strict';
+
+require('./app.constants.js');
 require('./services/user-status-sync.service.js');
 require('./services/user-status-websocket.service.js');
 
-(function(angular) {
-  'use strict';
-
-  angular.module('linagora.esn.user-status').run(run);
-
-  function run($interval, userStatusSyncService, userStatusWebsocketService, session, USER_STATUS_SYNC_INTERVAL) {
+angular.module('linagora.esn.user-status')
+  .run(function($interval, userStatusSyncService, userStatusWebsocketService, session, USER_STATUS_SYNC_INTERVAL) {
     session.ready.then(function() {
       userStatusWebsocketService.listen();
       $interval(userStatusSyncService.synchronize, USER_STATUS_SYNC_INTERVAL);
     });
-  }
-
-})(angular);
+  });
