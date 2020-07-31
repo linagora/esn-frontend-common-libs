@@ -436,7 +436,6 @@
   "Show a list of existing members in current domain": "Показать список существующих участников в текущем домене",
   "Allows user to submit new external application for current domain": "Позволяет пользователю подать новое внешнее приложение для текущего домена",
   "Application Menu": "Меню приложения",
-  "No accounts, click %s to add a new one": "Нет аккаунтов, нажмите %s, чтобы добавить новый",
   "No application, click %s to add a new one": "Нет приложения, нажмите %s, чтобы добавить новое",
   "Cannot get user applications, try again later!": "Не удается получить пользовательские приложения, повторите попытку позже!",
   "Allows users to change their password": "Позволяет пользователям менять свой пароль",

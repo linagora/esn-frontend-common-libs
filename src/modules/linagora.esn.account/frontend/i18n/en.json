@@ -6,5 +6,6 @@
   "Github Account": "Github Account",
   "Delete account": "Delete account",
   "No social account provider is installed, contact administrator for more information": "No social account provider is installed, contact administrator for more information",
-  "A problem occurred while getting data, try refreshing this page": "A problem occurred while getting data, try refreshing this page"
+  "A problem occurred while getting data, try refreshing this page": "A problem occurred while getting data, try refreshing this page",
+  "No accounts, click %s to add a new one": "No accounts, click %s to add a new one"
 }

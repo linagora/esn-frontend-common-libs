@@ -6,5 +6,6 @@
   "Github Account": "Аккаунт Github",
   "Delete account": "Удалить профиль",
   "No social account provider is installed, contact administrator for more information": "Вы не можете добавить аккаунты социальных сетей, свяжитесь с администратором платформы для получения информации",
-  "A problem occurred while getting data, try refreshing this page": "Возникла проблема при получении данных, попробуйте обновить эту страницу"
+  "A problem occurred while getting data, try refreshing this page": "Возникла проблема при получении данных, попробуйте обновить эту страницу",
+  "No accounts, click %s to add a new one": "Нет аккаунтов, нажмите %s, чтобы добавить новый"
 }
