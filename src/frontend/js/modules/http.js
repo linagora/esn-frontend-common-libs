@@ -88,6 +88,11 @@
         getUrl: getUrl
       };
     };
+  })
+
+  .run(function (httpConfigurer) {
+    const baseUrl = window.openpaas && window.openpaas.OPENPAAS_API_URL || '';
+    httpConfigurer.setBaseUrl(baseUrl);
   });
 
 })(angular);
