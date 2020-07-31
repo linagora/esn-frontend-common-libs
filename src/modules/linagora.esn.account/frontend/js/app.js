@@ -18,6 +18,7 @@ require('../../../../frontend/js/modules/http.js');
 require('../../../../frontend/js/modules/notification.js');
 require('../../../linagora.esn.oauth.consumer');
 require('./app.routes.js');
+require('./app.config.js');
 require('./app.run.js');
 require('./constants.js');
 require('./controllers.js');
