@@ -7,5 +7,5 @@
   "Delete account": "Delete account",
   "No social account provider is installed, contact administrator for more information": "No social account provider is installed, contact administrator for more information",
   "A problem occurred while getting data, try refreshing this page": "A problem occurred while getting data, try refreshing this page",
-  "No accounts, click %s to add a new one": "No accounts, click %s to add a new one"
+  "No account, click on the plus button to add a new one": "No account, click on the plus button to add a new one"
 }
