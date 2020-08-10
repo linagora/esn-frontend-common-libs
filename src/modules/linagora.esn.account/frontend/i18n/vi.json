@@ -1,0 +1,11 @@
+{
+  "Accounts Management": "Quản lý tài khoản",
+  "Facebook Account": "Tài khoản Facebook",
+  "Twitter Account": "Tài khoản Twitter",
+  "Google Account": "Tài khoản Google",
+  "Github Account": "Tài khoản Github",
+  "Delete account": "Xóa tài khoản",
+  "No social account provider is installed, contact administrator for more information": "Không có mạng xã hội nào được cài đặt, liên hệ quản trị viên để biết thêm chi tiết",
+  "A problem occurred while getting data, try refreshing this page": "Có lỗi xảy ra, hãy thử tải lại trình duyệt",
+  "No account, click on the plus button to add a new one": "Không có tài khoàn nào, bấm vào nút thêm để tạo mới"
+}

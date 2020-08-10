@@ -1,4 +1,4 @@
-require('../user-status.constants.js');
+require('../app.constants.js');
 require('./user-status.service.js');
 
 (function(angular) {

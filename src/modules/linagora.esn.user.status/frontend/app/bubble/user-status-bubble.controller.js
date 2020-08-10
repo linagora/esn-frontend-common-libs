@@ -1,5 +1,5 @@
 require('../services/user-status.service.js');
-require('../user-status.constants.js');
+require('../app.constants.js');
 
 (function(angular) {
   'use strict';

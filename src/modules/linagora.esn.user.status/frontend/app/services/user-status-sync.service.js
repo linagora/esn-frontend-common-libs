@@ -2,7 +2,7 @@ const _ = require('lodash');
 
 require('./user-status-client.service.js');
 require('./user-status.service.js');
-require('../user-status.constants.js');
+require('../app.constants.js');
 
 (function(angular) {
   'use strict';

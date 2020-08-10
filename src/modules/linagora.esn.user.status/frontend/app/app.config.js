@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('linagora.esn.account')
+angular.module('linagora.esn.user-status')
   .config(registerI18N);
 
 function registerI18N($translateProvider) {

@@ -1,0 +1,11 @@
+{
+  "Accounts Management": "Accounts Management",
+  "Facebook Account": "Facebook Account",
+  "Twitter Account": "Twitter Account",
+  "Google Account": "Google Account",
+  "Github Account": "Github Account",
+  "Delete account": "Delete account",
+  "No social account provider is installed, contact administrator for more information": "No social account provider is installed, contact administrator for more information",
+  "A problem occurred while getting data, try refreshing this page": "A problem occurred while getting data, try refreshing this page",
+  "No account, click on the plus button to add a new one": "No account, click on the plus button to add a new one"
+}
