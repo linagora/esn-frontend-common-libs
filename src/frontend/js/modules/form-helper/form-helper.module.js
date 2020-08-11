@@ -1,8 +1,6 @@
-(function(angular) {
-  'use strict';
+'use strict';
 
-  angular.module('esn.form.helper', ['ngMessages', 'esn.core']);
-})(angular);
+angular.module('esn.form.helper', ['ngMessages', 'esn.core', 'materialAdmin']);
 
 require('../core.js');
 require('../i18n/i18n.module.js');
