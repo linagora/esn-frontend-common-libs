@@ -59,6 +59,7 @@ require('restangular/src/restangular.js');
 require('showdown/dist/showdown.js');
 require('summernote/dist/summernote.js');
 require('ui-router-extras/release/ct-ui-router-extras.js');
+require('ui-router-extras/release/modular/ct-ui-router-extras.dsr.js');
 require('videogular/videogular.js');
 require('videogular-buffering/vg-buffering.js');
 require('videogular-controls/vg-controls.js');
