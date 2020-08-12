@@ -11,7 +11,7 @@ angular.module('esn.default-ui-state')
           return $log.error(`There is no ${attrs.esnDefaultUiSref} state or a default state to navigate to.`)
         }
 
-        element.click(() => $state.go(defaultState, {}, { inherit: false }));
+        element.click(() => $state.go(defaultState));
       }
     };
   })
