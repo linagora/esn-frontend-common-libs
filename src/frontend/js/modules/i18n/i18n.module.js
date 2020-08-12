@@ -1,13 +1,11 @@
-(function(angular) {
-  'use strict';
+'use strict';
 
-  angular.module('esn.i18n', [
-    'pascalprecht.translate',
-    'angularMoment',
-    'esn.configuration',
-    'ngCookies'
-  ]);
-})(angular);
+angular.module('esn.i18n', [
+  'pascalprecht.translate',
+  'angularMoment',
+  'esn.configuration',
+  'ngCookies'
+]);
 
 require('../config/config.module.js');
 require('./language-selector/i18n-language-selector.component.js');
