@@ -13,6 +13,7 @@
     'esn.profile',
     'esn.search',
     'esn.profile-menu',
+    'esn.default-ui-state',
     'mgcrea.ngStrap.popover',
     'FBAngular'
   ])
@@ -144,3 +145,4 @@ require('../sidebar.js');
 require('../subheader/subheader.module.js');
 require('./sticky/header-sticky.directive.js');
 require('./header-featureflip.run.js');
+require('../default-ui-state/default-ui-state.module.js');
