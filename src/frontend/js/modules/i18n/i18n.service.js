@@ -25,15 +25,20 @@ angular.module('esn.i18n')
         });
     }
 
-    function translate(text) {
+    /**
+     * Translate a string
+     * @param {String} text The text that needs to be translated
+     * @param {Object} interpolateParams An object hash for dynamic values
+     * @param {Boolean} ignoreSanitizeStrategy Ignore sanitize strategy. Default is false and sanitize strategy is "escape".
+     */
+    // TODO: Write tests for this (https://github.com/OpenPaaS-Suite/esn-frontend-common-libs/issues/83)
+    function translate(text, interpolateParams = {}, ignoreSanitizeStrategy = false) {
       if (!text || text instanceof EsnI18nString) {
         return text;
       }
 
       if (typeof text === 'string') {
-        var params = (arguments.length > 1) ? Array.prototype.slice.call(arguments).slice(1) : [];
-
-        return new EsnI18nString(text, params);
+        return new EsnI18nString(text, interpolateParams, ignoreSanitizeStrategy);
       }
 
       throw new TypeError('The input text must be a string or an EsnI18nString object');
