@@ -22,10 +22,9 @@ describe('The esnCollaborationMembersWidget directive', function() {
       });
     });
 
-    module('jadeTemplates');
-    module('esn.core');
-    module('esn.notification');
-    module('esn.websocket');
+    angular.mock.module('esn.core');
+    angular.mock.module('esn.notification');
+    angular.mock.module('esn.websocket');
   });
 
   beforeEach(angular.mock.inject(function($rootScope, $compile) {

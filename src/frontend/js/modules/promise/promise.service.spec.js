@@ -9,7 +9,7 @@ describe('The esnPromiseService factory', function() {
   var $timeout, esnPromiseService, ESN_PROMISE_RETRY_DEFAULT_OPTIONS;
 
   beforeEach(angular.mock.module('esn.promise'));
-  beforeEach(inject(function(_$timeout_, _esnPromiseService_, _ESN_PROMISE_RETRY_DEFAULT_OPTIONS_) {
+  beforeEach(angular.mock.inject(function(_$timeout_, _esnPromiseService_, _ESN_PROMISE_RETRY_DEFAULT_OPTIONS_) {
     $timeout = _$timeout_;
     esnPromiseService = _esnPromiseService_;
     ESN_PROMISE_RETRY_DEFAULT_OPTIONS = _ESN_PROMISE_RETRY_DEFAULT_OPTIONS_;

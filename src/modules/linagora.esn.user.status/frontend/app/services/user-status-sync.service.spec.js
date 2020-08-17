@@ -26,22 +26,22 @@ describe('The linagora.esn.user-status userStatusSyncService service', function(
 
   describe('The synchronize function', function() {
     it('should not get status nor publish when cache is empty', function() {
-      $rootScope.$broadcast = sinon.spy();
+      var spy = sinon.spy($rootScope, '$broadcast');
       userStatusService.getCache = sinon.spy(function() {
         return {};
       });
 
       userStatusSyncService.synchronize();
-      $rootScope.$digest();
 
       expect(userStatusService.getCache).to.have.been.calledOnce;
-      expect($rootScope.$broadcast).to.not.have.been.called;
+      expect(spy).to.not.have.been.called;
+      $rootScope.$digest();
     });
 
     it('should fetch status from cache ids and broadcast them', function() {
       var cache = {1: 'connected', 2: 'connected', 3: 'disconnected'};
 
-      $rootScope.$broadcast = sinon.spy();
+      var spy = sinon.spy($rootScope, '$broadcast');
       userStatusService.getCache = sinon.spy(function() {
         return cache;
       });
@@ -54,7 +54,7 @@ describe('The linagora.esn.user-status userStatusSyncService service', function(
       $rootScope.$digest();
 
       expect(userStatusService.getCache).to.have.been.calledOnce;
-      expect($rootScope.$broadcast).to.have.been.calledWith(USER_STATUS_EVENTS.USER_CHANGE_STATE, cache);
+      expect(spy).to.have.been.calledWith(USER_STATUS_EVENTS.USER_CHANGE_STATE, cache);
       expect(userStatusClientService.getStatusForUsers).to.have.been.calledWith(['1', '2', '3']);
       expect(userStatusService.cacheUserStatus).to.have.been.calledThrice;
     });

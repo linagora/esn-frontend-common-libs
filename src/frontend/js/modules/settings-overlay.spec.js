@@ -17,10 +17,9 @@ describe('The esn.settings-overlay Angular module', function() {
 
   beforeEach(function() {
     angular.mock.module('esn.settings-overlay');
-    angular.mock.module('jadeTemplates');
   });
 
-  beforeEach(inject(function(_$rootScope_, _$compile_) {
+  beforeEach(angular.mock.inject(function(_$rootScope_, _$compile_) {
     $scope = _$rootScope_.$new();
     $compile = _$compile_;
   }));
@@ -48,8 +47,9 @@ describe('The esn.settings-overlay Angular module', function() {
 
     it('should contain a clickable icon', function() {
       compileDirective('<settings-overlay/>');
-
-      expect(element.find('.mdi-dots-vertical')).to.exist.and.attr('ng-click').to.equal('ctrl.openMenu($mdMenu, $event)');
+      const testElement = element.find('.mdi-dots-vertical');
+      expect(testElement).to.exist;
+      expect(testElement.attr('ng-click')).to.equal('ctrl.openMenu($mdMenu, $event)');
     });
   });
 

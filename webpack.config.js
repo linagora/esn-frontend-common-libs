@@ -1,5 +1,4 @@
 const path = require('path');
-const { accessSync } = require('fs');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 

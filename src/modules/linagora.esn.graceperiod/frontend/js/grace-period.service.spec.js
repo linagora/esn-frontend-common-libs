@@ -22,8 +22,11 @@ describe('The gracePeriodService service', function() {
   }
 
   beforeEach(function() {
-    module('esn.websocket');
-    module('linagora.esn.graceperiod');
+    angular.mock.module('esn.websocket');
+    angular.mock.module('esn.notification');
+    angular.mock.module('esn.http');
+    angular.mock.module('esn.i18n');
+    angular.mock.module('linagora.esn.graceperiod');
 
     timeoutMock = null;
     notificationMock = {
@@ -38,7 +41,7 @@ describe('The gracePeriodService service', function() {
     errorMessage = 'errorMessage';
     id = 'id';
 
-    module(function($provide) {
+    angular.mock.module(function($provide) {
 
       $provide.factory('gracePeriodLiveNotificationService', function($q) {
         taskDeferred = $q.defer();

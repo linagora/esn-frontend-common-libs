@@ -10,7 +10,8 @@ describe('The esn.summernote Angular module', function() {
   esnI18nServiceMock = {
     getFullLocale: sinon.spy(function(cb) {
       return cb(fullLocale || ESN_I18N_DEFAULT_FULL_LOCALE);
-    })
+    }),
+    getLocale: function() { return 'fr' }
   };
 
   beforeEach(function() {
@@ -18,7 +19,7 @@ describe('The esn.summernote Angular module', function() {
       $provide.value('esnI18nService', esnI18nServiceMock);
     });
 
-    inject(function(_ESN_I18N_DEFAULT_FULL_LOCALE_) {
+    angular.mock.inject(function(_ESN_I18N_DEFAULT_FULL_LOCALE_) {
       ESN_I18N_DEFAULT_FULL_LOCALE = _ESN_I18N_DEFAULT_FULL_LOCALE_;
     });
   });
@@ -30,7 +31,7 @@ describe('The esn.summernote Angular module', function() {
     it('should set the defaultFullLocale', function(done) {
       fullLocale = null;
 
-      inject(function(_summernote_) {
+      angular.mock.inject(function(_summernote_) {
         summernote = _summernote_;
       });
 
@@ -42,7 +43,7 @@ describe('The esn.summernote Angular module', function() {
     it('should return the setted fullLocale ', function(done) {
       fullLocale = 'fr-FR';
 
-      inject(function(_summernote_) {
+      angular.mock.inject(function(_summernote_) {
         summernote = _summernote_;
       });
 
@@ -59,7 +60,7 @@ describe('The esn.summernote Angular module', function() {
     describe('The add function', function() {
 
       beforeEach(function() {
-        inject(function(_summernote_, _summernotePlugins_) {
+        angular.mock.inject(function(_summernote_, _summernotePlugins_) {
           summernote = _summernote_;
           summernotePlugins = _summernotePlugins_;
         });

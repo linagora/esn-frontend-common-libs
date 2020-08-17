@@ -12,12 +12,12 @@ describe('The esnShortcutsSheet service', function() {
     modalInstance = {};
     $modalMock = sinon.stub().returns(modalInstance);
 
-    module('esn.shortcuts', function($provide) {
+    angular.mock.module('esn.shortcuts', function($provide) {
       $provide.value('$modal', $modalMock);
     });
   });
 
-  beforeEach(inject(function(_esnShortcutsSheet_) {
+  beforeEach(angular.mock.inject(function(_esnShortcutsSheet_) {
     esnShortcutsSheet = _esnShortcutsSheet_;
   }));
 

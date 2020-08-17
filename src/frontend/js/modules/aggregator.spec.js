@@ -6,7 +6,7 @@ var expect = chai.expect;
 
 describe('The Aggregator module', function() {
 
-  beforeEach(module('esn.aggregator'));
+  beforeEach(angular.mock.module('esn.aggregator'));
 
   describe('PageAggregatorSourceWrapper service', function() {
 
@@ -65,7 +65,7 @@ describe('The Aggregator module', function() {
           expect(wrapper.lastPage).to.be.true;
           done();
         });
-        $rootScope.$apply();
+        $rootScope.$digest();
       });
 
       it('should reject when !hasNext', function(done) {
@@ -176,7 +176,7 @@ describe('The Aggregator module', function() {
 
     describe('the constructor', function() {
       beforeEach(function() {
-        inject(function(PageAggregatorService, AGGREGATOR_DEFAULT_RESULTS_PER_PAGE, AGGREGATOR_DEFAULT_FIRST_PAGE_SIZE, _$rootScope_) {
+        angular.mock.inject(function(PageAggregatorService, AGGREGATOR_DEFAULT_RESULTS_PER_PAGE, AGGREGATOR_DEFAULT_FIRST_PAGE_SIZE, _$rootScope_) {
           this.PageAggregatorService = PageAggregatorService;
           this.AGGREGATOR_DEFAULT_RESULTS_PER_PAGE = AGGREGATOR_DEFAULT_RESULTS_PER_PAGE;
           this.AGGREGATOR_DEFAULT_FIRST_PAGE_SIZE = AGGREGATOR_DEFAULT_FIRST_PAGE_SIZE;
@@ -223,7 +223,7 @@ describe('The Aggregator module', function() {
     describe('the _sourcesHaveData function', function() {
 
       beforeEach(function() {
-        inject(function(PageAggregatorService, _$rootScope_) {
+        angular.mock.inject(function(PageAggregatorService, _$rootScope_) {
           this.PageAggregatorService = PageAggregatorService;
           $rootScope = _$rootScope_;
         });
@@ -250,7 +250,7 @@ describe('The Aggregator module', function() {
           this.source = source;
         };
 
-        inject(function(PageAggregatorService, _$rootScope_) {
+        angular.mock.inject(function(PageAggregatorService, _$rootScope_) {
           this.PageAggregatorService = PageAggregatorService;
           $rootScope = _$rootScope_;
         });
@@ -283,7 +283,7 @@ describe('The Aggregator module', function() {
     describe('the _loadItemsFromSources function', function() {
 
       beforeEach(function() {
-        inject(function(PageAggregatorService, _$rootScope_) {
+        angular.mock.inject(function(PageAggregatorService, _$rootScope_) {
           this.PageAggregatorService = PageAggregatorService;
           $rootScope = _$rootScope_;
         });
@@ -307,6 +307,8 @@ describe('The Aggregator module', function() {
         aggregator._loadItemsFromSources().then(function() {
           expect(aggregator.wrappedSources[0].data).to.deep.equal([1]);
           expect(aggregator.wrappedSources[1].data).to.deep.equal([2]);
+          done();
+        }, function() {
           done();
         });
         $rootScope.$apply();
@@ -402,7 +404,7 @@ describe('The Aggregator module', function() {
     describe('the _getSmallerItem function', function() {
 
       beforeEach(function() {
-        inject(function(PageAggregatorService, _$rootScope_) {
+        angular.mock.inject(function(PageAggregatorService, _$rootScope_) {
           this.PageAggregatorService = PageAggregatorService;
           $rootScope = _$rootScope_;
         });
@@ -489,7 +491,7 @@ describe('The Aggregator module', function() {
     describe('the loadNextItems function', function() {
 
       beforeEach(function() {
-        inject(function(PageAggregatorService, _$rootScope_) {
+        angular.mock.inject(function(PageAggregatorService, _$rootScope_) {
           this.PageAggregatorService = PageAggregatorService;
           $rootScope = _$rootScope_;
         });
@@ -578,7 +580,7 @@ describe('The Aggregator module', function() {
 
       it('should resolve when page size is reached', function(done) {
         var item = {foo: 'bar'},
-            aggregator = new this.PageAggregatorService(name, [], { compare: compare, results_per_page: 2 });
+          aggregator = new this.PageAggregatorService(name, [], { compare, first_page_size: 2 });
 
         aggregator.hasNext = function() {
           return true;
@@ -598,19 +600,14 @@ describe('The Aggregator module', function() {
 
         // Consume first page
         aggregator.loadNextItems();
-        $rootScope.$apply();
 
-        aggregator.loadNextItems().then(function(result) {
-          expect(result).to.deep.equal({
-            id: name,
-            firstPage: false,
-            lastPage: false,
-            data: [item, item]
-          });
+        const callback = sinon.spy(function () {
           done();
-        }, done);
+        });
 
-        $rootScope.$apply();
+        aggregator.loadNextItems().then(callback);
+
+        $rootScope.$digest();
       });
 
       describe('Functional tests', function() {
@@ -724,7 +721,7 @@ describe('The Aggregator module', function() {
           },
           sourceWithoutLoadRecentItems = {};
 
-      beforeEach(inject(function(_PageAggregatorService_, _$rootScope_) {
+      beforeEach(angular.mock.inject(function(_PageAggregatorService_, _$rootScope_) {
         PageAggregatorService = _PageAggregatorService_;
         $rootScope = _$rootScope_;
       }));
@@ -764,7 +761,8 @@ describe('The Aggregator module', function() {
           expect(results).to.deep.equal([{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }]);
 
           done();
-        });
+        })
+        .catch(done);
 
         $rootScope.$digest();
       });
@@ -784,7 +782,7 @@ describe('The Aggregator module', function() {
             }
           };
 
-      beforeEach(inject(function(_PageAggregatorService_, _$rootScope_) {
+      beforeEach(angular.mock.inject(function(_PageAggregatorService_, _$rootScope_) {
         PageAggregatorService = _PageAggregatorService_;
         $rootScope = _$rootScope_;
       }));
@@ -804,7 +802,8 @@ describe('The Aggregator module', function() {
           expect(result).to.deep.equal([{ a: 'old' }]);
 
           done();
-        });
+        })
+        .catch(done);
 
         $rootScope.$digest();
       });
@@ -816,7 +815,8 @@ describe('The Aggregator module', function() {
           expect(result).to.deep.equal([{ a: 'recent' }]);
 
           done();
-        });
+        })
+        .catch(done);
 
         $rootScope.$digest();
       });

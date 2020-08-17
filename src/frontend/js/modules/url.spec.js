@@ -12,7 +12,7 @@ describe('The esn.url Angular module', function() {
     var urlUtils;
 
     beforeEach(function() {
-      inject(function(_urlUtils_) {
+      angular.mock.inject(function(_urlUtils_) {
         urlUtils = _urlUtils_;
       });
     });
@@ -73,7 +73,7 @@ describe('The esn.url Angular module', function() {
 
     var absoluteUrl;
 
-    beforeEach(inject(function(_absoluteUrl_) {
+    beforeEach(angular.mock.inject(function(_absoluteUrl_) {
       absoluteUrl = _absoluteUrl_;
     }));
 

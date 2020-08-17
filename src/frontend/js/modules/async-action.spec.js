@@ -26,7 +26,7 @@ describe('The esn.async-action Angular module', function() {
       return $q.reject();
     }
 
-    beforeEach(module(function($provide) {
+    beforeEach(angular.mock.module(function($provide) {
       notification = {
         close: sinon.spy()
       };
@@ -47,7 +47,7 @@ describe('The esn.async-action Angular module', function() {
       $provide.value('notificationFactory', notificationFactory);
     }));
 
-    beforeEach(inject(function(_asyncAction_, _$rootScope_, _$timeout_, _EsnI18nString_, _ASYNC_ACTION_LONG_TASK_DURATION_) {
+    beforeEach(angular.mock.inject(function(_asyncAction_, _$rootScope_, _$timeout_, _EsnI18nString_, _ASYNC_ACTION_LONG_TASK_DURATION_) {
       asyncAction = _asyncAction_;
       $rootScope = _$rootScope_;
       $timeout = _$timeout_;
@@ -363,11 +363,11 @@ describe('The esn.async-action Angular module', function() {
         weakError: angular.noop
       };
 
-      module(function($provide) {
+      angular.mock.module(function($provide) {
         $provide.value('notificationFactory', notificationFactoryMock);
       });
 
-      inject(function(_$rootScope_, _rejectWithErrorNotification_) {
+      angular.mock.inject(function(_$rootScope_, _rejectWithErrorNotification_) {
         $rootScope = _$rootScope_;
         rejectWithErrorNotification = _rejectWithErrorNotification_;
       });
@@ -431,11 +431,11 @@ describe('The esn.async-action Angular module', function() {
         weakSuccess: angular.noop
       };
 
-      module(function($provide) {
+      angular.mock.module(function($provide) {
         $provide.value('notificationFactory', notificationFactoryMock);
       });
 
-      inject(function(_notifySuccessWithFollowingAction_) {
+      angular.mock.inject(function(_notifySuccessWithFollowingAction_) {
         notifySuccessWithFollowingAction = _notifySuccessWithFollowingAction_;
       });
     });

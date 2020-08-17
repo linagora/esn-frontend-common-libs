@@ -7,9 +7,9 @@ var expect = chai.expect;
 describe('The esn.http httpConfigurer service', function() {
   var httpConfigurer;
 
-  beforeEach(module('esn.http'));
+  beforeEach(angular.mock.module('esn.http'));
 
-  beforeEach(inject(function(_$httpBackend_, _httpConfigurer_) {
+  beforeEach(angular.mock.inject(function(_$httpBackend_, _httpConfigurer_) {
     httpConfigurer = _httpConfigurer_;
   }));
 

@@ -9,10 +9,10 @@ describe('The esnSubheaderSaveButtonController controller', function() {
   var $controller, $rootScope, $scope;
 
   beforeEach(function() {
-    module('esn.subheader');
+    angular.mock.module('esn.subheader');
     angular.mock.module('esn.configuration');
 
-    inject(function(_$controller_, _$rootScope_) {
+    angular.mock.inject(function(_$controller_, _$rootScope_) {
       $controller = _$controller_;
       $rootScope = _$rootScope_;
     });

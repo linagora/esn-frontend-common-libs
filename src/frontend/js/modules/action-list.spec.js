@@ -31,7 +31,6 @@ describe('directive : action-list', function() {
   });
 
   beforeEach(function() {
-    angular.mock.module('jadeTemplates');
     angular.mock.module('esn.actionList');
 
     angular.mock.module(function($provide) {

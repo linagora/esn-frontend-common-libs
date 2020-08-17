@@ -9,7 +9,7 @@ describe('The esnPaginationProvider factory', function() {
     angular.mock.module('esn.pagination');
   });
 
-  beforeEach(inject(function(_$q_, _$rootScope_, _esnPaginationProvider_) {
+  beforeEach(angular.mock.inject(function(_$q_, _$rootScope_, _esnPaginationProvider_) {
     $rootScope = _$rootScope_;
     $q = _$q_;
     esnPaginationProvider = _esnPaginationProvider_;

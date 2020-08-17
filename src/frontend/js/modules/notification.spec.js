@@ -25,7 +25,8 @@ describe('The esn.notification Angular modules', function() {
           return {
             toString: function() {return input;}
           };
-        })
+        }),
+        getLocale: sinon.stub().returns('en')
       };
 
       angular.mock.module(function($provide) {
@@ -42,7 +43,7 @@ describe('The esn.notification Angular modules', function() {
       });
     });
 
-    beforeEach(inject(function(_notifyService_) {
+    beforeEach(angular.mock.inject(function(_notifyService_) {
       notifyService = _notifyService_;
     }));
 
@@ -197,7 +198,7 @@ describe('The esn.notification Angular modules', function() {
       angular.mock.module('esn.configuration');
     });
 
-    beforeEach(inject(function(_notifyService_) {
+    beforeEach(angular.mock.inject(function(_notifyService_) {
       notifyService = _notifyService_;
     }));
 

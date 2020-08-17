@@ -32,7 +32,7 @@ describe('The ESNAttachmentListController controller', function() {
     });
   });
 
-  beforeEach(inject(function(_$controller_, _$q_, _$rootScope_) {
+  beforeEach(angular.mock.inject(function(_$controller_, _$q_, _$rootScope_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     $q = _$q_;

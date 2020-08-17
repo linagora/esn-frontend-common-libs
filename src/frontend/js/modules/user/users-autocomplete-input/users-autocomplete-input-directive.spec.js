@@ -12,33 +12,36 @@ describe('directive usersAutocompleteInput', function() {
   var query = 'aQuery';
 
   beforeEach(function() {
-    module('esn.user');
-    module('jadeTemplates');
+    angular.mock.module('esn.user');
 
     session = {
       user: {},
       domain: {
         company_name: 'test',
         _id: 'domainId'
-      }
+      },
+      ready: $q.when({})
     };
 
     user1 = {_id: 'user1', displayName: 'user1'};
     user3 = {_id: 'user3', displayName: 'user3'};
     user2 = {_id: 'user2', displayName: 'user2'};
 
-    module(function($provide) {
+    angular.mock.module(function($provide) {
       $provide.value('session', session);
       $provide.value('esnI18nService', {
         translate: function(input) {
           return input;
+        },
+        getLocale: function() {
+          return 'fr';
         }
       });
     });
   });
 
   beforeEach(function() {
-    inject(function(
+    angular.mock.inject(function(
       _$rootScope_,
       _$compile_,
       _attendeeService_,

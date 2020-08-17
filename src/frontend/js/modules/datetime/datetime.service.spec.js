@@ -10,10 +10,10 @@ describe('The esnDatetimeService', function() {
   var moment;
 
   beforeEach(function() {
-    module('esn.datetime');
-    module('esn.configuration');
+    angular.mock.module('esn.datetime');
+    angular.mock.module('esn.configuration');
 
-    module(function($provide) {
+    angular.mock.module(function($provide) {
       $provide.constant('esnConfig', function(argument) {
         switch (argument) {
           case 'core.language':
@@ -28,7 +28,7 @@ describe('The esnDatetimeService', function() {
   });
 
   beforeEach(function() {
-    inject(function(
+    angular.mock.inject(function(
       _$rootScope_,
       _esnDatetimeService_,
       _moment_

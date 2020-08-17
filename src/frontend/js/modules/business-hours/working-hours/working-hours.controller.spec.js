@@ -9,11 +9,9 @@ describe('The esnBusinessHoursWorkingHoursController', function() {
   var $controller, $rootScope, $scope, esnDatetimeService;
 
   beforeEach(function() {
-    module('esn.business-hours', function($provide) {
-      $provide.value('esnDatetimeService', esnDatetimeService);
-    });
+    angular.mock.module('esn.business-hours');
 
-    inject(function(
+    angular.mock.inject(function(
       _$controller_,
       _$rootScope_,
       _esnDatetimeService_

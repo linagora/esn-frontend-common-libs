@@ -8,7 +8,6 @@ describe('The esn-textarea-autosize directive', function() {
   var $scope, $compile, element, autosize;
 
   beforeEach(function() {
-    angular.mock.module('jadeTemplates');
     angular.mock.module('esn.textarea-autosize');
   });
 

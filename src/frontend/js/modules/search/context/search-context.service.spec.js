@@ -22,7 +22,8 @@ describe('The esnSearchContextService service', function() {
             return name;
           }
         };
-      })
+      }),
+      getLocale: sinon.stub().returns('en')
     };
 
     angular.mock.module('esn.search', function($provide) {
@@ -33,7 +34,7 @@ describe('The esnSearchContextService service', function() {
     });
   });
 
-  beforeEach(inject(function(_esnSearchContextService_, _$q_, _$rootScope_) {
+  beforeEach(angular.mock.inject(function(_esnSearchContextService_, _$q_, _$rootScope_) {
     esnSearchContextService = _esnSearchContextService_;
     $q = _$q_;
     $rootScope = _$rootScope_;

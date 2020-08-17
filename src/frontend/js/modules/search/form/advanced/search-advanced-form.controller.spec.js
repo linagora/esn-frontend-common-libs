@@ -10,9 +10,9 @@ describe('The ESNSearchAdvancedFormController', function() {
   var esnSearchQueryService;
 
   beforeEach(function() {
-    module('esn.search');
+    angular.mock.module('esn.search');
 
-    inject(function(
+    angular.mock.inject(function(
       _$rootScope_,
       _$controller_,
       _esnSearchQueryService_

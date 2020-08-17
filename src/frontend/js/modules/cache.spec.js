@@ -13,7 +13,7 @@ describe('The esn.cache Angular module', function() {
       angular.mock.module('esn.cache');
     });
 
-    beforeEach(inject(function(CacheEntry, CACHE_NO_TTL, $rootScope) {
+    beforeEach(angular.mock.inject(function(CacheEntry, CACHE_NO_TTL, $rootScope) {
       this.CacheEntry = CacheEntry;
       this.CACHE_NO_TTL = CACHE_NO_TTL;
       this.$rootScope = $rootScope;
@@ -123,7 +123,7 @@ describe('The esn.cache Angular module', function() {
       angular.mock.module('esn.cache');
     });
 
-    beforeEach(inject(function(Cache, CACHE_NO_TTL, $rootScope) {
+    beforeEach(angular.mock.inject(function(Cache, CACHE_NO_TTL, $rootScope) {
       this.Cache = Cache;
       this.CACHE_NO_TTL = CACHE_NO_TTL;
       this.$rootScope = $rootScope;

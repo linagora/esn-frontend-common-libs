@@ -11,7 +11,8 @@
     'esn.session',
     'esn.websocket',
     'esn.registry',
-    'esn.pagination'
+    'esn.pagination',
+    'esn.router'
   ]);
 })(angular);
 
@@ -25,6 +26,7 @@ require('../pagination/pagination.module.js');
 require('../registry.js');
 require('../session.js');
 require('../websocket.js');
+require('../esn.router.js');
 
 require('./list/item/user-notification-list-item.directive.js');
 require('./list/user-notification-list.component.js');

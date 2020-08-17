@@ -32,7 +32,7 @@ describe('The infiniteScrollOnGroupsHelper service', function() {
     angular.mock.module('esn.provider');
   });
 
-  beforeEach(module(function($provide) {
+  beforeEach(angular.mock.module(function($provide) {
     $provide.value('localTimezone', 'UTC');
     $provide.constant('moment', function(argument) {
       return moment.tz(argument || nowDate, localTimeZone);
@@ -54,7 +54,7 @@ describe('The infiniteScrollOnGroupsHelper service', function() {
     });
   });
 
-  beforeEach(inject(function(_infiniteScrollOnGroupsHelper_, _$q_, _$rootScope_, _$timeout_, _INFINITE_LIST_EVENTS_) {
+  beforeEach(angular.mock.inject(function(_infiniteScrollOnGroupsHelper_, _$q_, _$rootScope_, _$timeout_, _INFINITE_LIST_EVENTS_) {
     infiniteScrollOnGroupsHelper = _infiniteScrollOnGroupsHelper_;
     $q = _$q_;
     $rootScope = _$rootScope_;

@@ -12,7 +12,7 @@ describe('The esn.registry Angular module', function() {
 
     var esnRegistry;
 
-    beforeEach(inject(function(_esnRegistry_) {
+    beforeEach(angular.mock.inject(function(_esnRegistry_) {
       esnRegistry = _esnRegistry_;
     }));
 

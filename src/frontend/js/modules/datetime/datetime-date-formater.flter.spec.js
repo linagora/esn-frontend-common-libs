@@ -8,10 +8,10 @@ describe('The esnDatetime filter', function() {
   var $rootScope, $compile, esnDatetimeService;
 
   beforeEach(function() {
-    module('esn.datetime');
+    angular.mock.module('esn.datetime');
   });
 
-  beforeEach(inject(function(_$rootScope_, _$compile_, _esnDatetimeService_) {
+  beforeEach(angular.mock.inject(function(_$rootScope_, _$compile_, _esnDatetimeService_) {
     $rootScope = _$rootScope_;
     $compile = _$compile_;
     esnDatetimeService = _esnDatetimeService_;

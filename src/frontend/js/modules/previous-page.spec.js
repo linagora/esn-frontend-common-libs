@@ -9,8 +9,7 @@ describe('The esn.previous-page module', function() {
 
   var $window, $state, esnPreviousPage, $compile, $scope, $rootScope, element;
 
-  beforeEach(module('jadeTemplates'));
-  beforeEach(module('esn.previous-page', function($provide) {
+  beforeEach(angular.mock.module('esn.previous-page', function($provide) {
     $window = {
      history: {
        back: sinon.spy()
@@ -18,12 +17,15 @@ describe('The esn.previous-page module', function() {
    };
 
     $provide.value('$state', $state = {
-      go: sinon.spy()
+      go: sinon.spy(),
+      get: sinon.stub().returns({
+        find: function() { return [] }
+      })
     });
     $provide.value('$window', $window);
   }));
 
-  beforeEach(inject(function(_$compile_, _$rootScope_, _esnPreviousPage_) {
+  beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _esnPreviousPage_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
 

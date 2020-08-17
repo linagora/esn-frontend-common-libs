@@ -10,14 +10,18 @@ describe('The EsnI18nString service', function() {
   beforeEach(function() {
     angular.mock.module('esn.i18n', function($provide) {
       $translate = {
-        instant: sinon.stub().returns('translated')
+        instant: sinon.stub().returns('translated'),
+        storageKey: sinon.stub(),
+        storage: sinon.stub(),
+        preferredLanguage: sinon.stub().returns('fr'),
+        use: sinon.stub()
       };
 
       $provide.value('$translate', $translate);
     });
   });
 
-  beforeEach(inject(function(_EsnI18nString_) {
+  beforeEach(angular.mock.inject(function(_EsnI18nString_) {
     EsnI18nString = _EsnI18nString_;
   }));
 

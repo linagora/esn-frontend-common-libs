@@ -4,10 +4,10 @@ describe('The EsnUserNotificationDefault factory', function() {
   var $httpBackend, EsnUserNotificationDefault;
 
   beforeEach(function() {
-    module('esn.user-notification');
+    angular.mock.module('esn.user-notification');
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _EsnUserNotificationDefault_,
     _$httpBackend_
   ) {

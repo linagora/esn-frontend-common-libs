@@ -5,9 +5,9 @@ describe('The esnTechnicalUserAPIClient service', function() {
     var esnTechnicalUserAPIClient;
     var domainId, technicalUser;
 
-    beforeEach(module('esn.technicaluser'));
+    beforeEach(angular.mock.module('esn.technicaluser'));
 
-    beforeEach(inject(function(_$httpBackend_, _esnTechnicalUserAPIClient_) {
+    beforeEach(angular.mock.inject(function(_$httpBackend_, _esnTechnicalUserAPIClient_) {
       $httpBackend = _$httpBackend_;
       esnTechnicalUserAPIClient = _esnTechnicalUserAPIClient_;
 

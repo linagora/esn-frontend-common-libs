@@ -8,10 +8,10 @@ describe('The colorContrast service', function() {
   var colorContrastService;
 
   beforeEach(function() {
-    module('esn.themes');
+    angular.mock.module('esn.themes');
   });
 
-  beforeEach(inject(function(_colorContrastService_) {
+  beforeEach(angular.mock.inject(function(_colorContrastService_) {
     colorContrastService = _colorContrastService_;
   }));
 

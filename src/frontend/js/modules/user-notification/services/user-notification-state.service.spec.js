@@ -8,9 +8,9 @@ describe('The esnUserNotificationState factory', function() {
   var esnUserNotificationCounter, esnUserNotificationSeverity, esnUserNotificationState;
 
   beforeEach(function() {
-    module('esn.user-notification');
+    angular.mock.module('esn.user-notification');
 
-    inject(function(
+    angular.mock.inject(function(
       _esnUserNotificationCounter_,
       _esnUserNotificationSeverity_,
       _esnUserNotificationState_

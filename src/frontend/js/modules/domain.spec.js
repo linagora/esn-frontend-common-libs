@@ -12,7 +12,7 @@ describe('The Domain Angular module', function() {
     var domainAPI, $httpBackend;
     var DOMAIN_ID = '123456789';
 
-    beforeEach(inject(function(_$httpBackend_, _domainAPI_) {
+    beforeEach(angular.mock.inject(function(_$httpBackend_, _domainAPI_) {
       $httpBackend = _$httpBackend_;
       domainAPI = _domainAPI_;
     }));

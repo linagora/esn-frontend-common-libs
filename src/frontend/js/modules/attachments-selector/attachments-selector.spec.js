@@ -9,9 +9,9 @@ describe('The esnAttachmentsSelectorService\'s AttachmentServiceHolder', functio
   var $rootScope, esnAttachmentsSelectorService, target;
 
   beforeEach(function() {
-    module('esn.attachments-selector');
+    angular.mock.module('esn.attachments-selector');
 
-    inject(function(_$rootScope_, _esnAttachmentsSelectorService_) {
+    angular.mock.inject(function(_$rootScope_, _esnAttachmentsSelectorService_) {
       $rootScope = _$rootScope_;
       esnAttachmentsSelectorService = _esnAttachmentsSelectorService_;
     });

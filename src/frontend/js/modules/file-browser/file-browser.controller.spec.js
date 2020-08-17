@@ -23,9 +23,9 @@ describe('The esnFileBrowserController', function() {
   ];
 
   beforeEach(function() {
-    module('esn.file-browser');
+    angular.mock.module('esn.file-browser');
 
-    inject(function(_$controller_, _$rootScope_, _$log_) {
+    angular.mock.inject(function(_$controller_, _$rootScope_, _$log_) {
       $controller = _$controller_;
       $rootScope = _$rootScope_;
       $log = _$log_;

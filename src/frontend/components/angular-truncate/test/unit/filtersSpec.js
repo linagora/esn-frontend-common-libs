@@ -4,7 +4,7 @@
 
 describe('truncate', function () {
 
-    beforeEach(module('truncate'));
+    beforeEach(angular.mock.module('truncate'));
 
     describe('characters', function () {
         var characterFilter;

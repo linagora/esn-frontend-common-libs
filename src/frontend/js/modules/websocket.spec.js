@@ -91,7 +91,7 @@ describe('The esn.websocket Angular module', function() {
       });
     });
 
-    beforeEach(inject(function(socketIORoom) {
+    beforeEach(angular.mock.inject(function(socketIORoom) {
       this.socketIORoom = socketIORoom;
     }));
 
@@ -268,7 +268,7 @@ describe('The esn.websocket Angular module', function() {
       });
     });
 
-    beforeEach(inject(function(livenotification) {
+    beforeEach(angular.mock.inject(function(livenotification) {
       this.livenotification = livenotification;
     }));
 
@@ -972,7 +972,7 @@ describe('The esn.websocket Angular module', function() {
         $provide.value('IoAction', self.ioaction);
       });
     });
-    beforeEach(inject(function(ioOfflineBuffer, ioSocketProxy) {
+    beforeEach(angular.mock.inject(function(ioOfflineBuffer, ioSocketProxy) {
       this.ioOfflineBuffer = ioOfflineBuffer;
       this.ioSocketProxy = ioSocketProxy;
     }));
@@ -1073,9 +1073,7 @@ describe('The esn.websocket Angular module', function() {
           _id: 'user1'
         },
         domain: {},
-        ready: {
-          then: function() {}
-        },
+        ready: $q.when({}),
         setLogin: function() {},
         setLogout: function() {},
         isLoggedIn: function() { return true; }
@@ -1090,7 +1088,7 @@ describe('The esn.websocket Angular module', function() {
         $provide.value('session', self.sessionMock);
       });
     });
-    beforeEach(inject(function(ioOfflineBuffer, ioSocketProxy, ioConnectionManager, _$rootScope_) {
+    beforeEach(angular.mock.inject(function(ioOfflineBuffer, ioSocketProxy, ioConnectionManager, _$rootScope_) {
       self.ioOfflineBuffer = ioOfflineBuffer;
       self.ioSocketProxy = ioSocketProxy;
       self.icm = ioConnectionManager;
@@ -1142,7 +1140,7 @@ describe('The esn.websocket Angular module', function() {
 
       it('should reject when token API response fails', function(done) {
         self.tokenAPI.getNewToken = function() {
-          return $q.reject(new Error('test'));
+          return Promise.reject(new Error('test'));
         };
 
         self.icm.connect().then(function() {

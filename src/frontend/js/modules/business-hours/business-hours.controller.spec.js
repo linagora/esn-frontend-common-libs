@@ -9,9 +9,9 @@ describe('The esnBusinessHoursController', function() {
   var $controller, $rootScope, $scope, DEFAULT_BUSINESS_HOURS;
 
   beforeEach(function() {
-    module('esn.business-hours');
+    angular.mock.module('esn.business-hours');
 
-    inject(function(_$controller_, _$rootScope_, ESN_CONFIG_DEFAULT) {
+    angular.mock.inject(function(_$controller_, _$rootScope_, ESN_CONFIG_DEFAULT) {
       $controller = _$controller_;
       $rootScope = _$rootScope_;
       DEFAULT_BUSINESS_HOURS = ESN_CONFIG_DEFAULT.core.businessHours;

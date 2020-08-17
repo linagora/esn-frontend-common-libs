@@ -8,8 +8,8 @@ describe('The esnMemberResolverRegistry service', function() {
   var esnMemberResolverRegistry;
 
   beforeEach(function() {
-    module('esn.member');
-    inject(function(_esnMemberResolverRegistry_) {
+    angular.mock.module('esn.member');
+    angular.mock.inject(function(_esnMemberResolverRegistry_) {
       esnMemberResolverRegistry = _esnMemberResolverRegistry_;
     });
   });
