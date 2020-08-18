@@ -61,7 +61,7 @@ function colorFunctionInterceptor({ color, amount, method, functionName }) {
     const secondCommaIndex = color.value.indexOf(',', color.value.indexOf(',') + 1);
     const restOfColorString = color.value.substring(lastCommaIndex - 1);
 
-    return color.value.substring(0, secondCommaIndex) + color.value.substring(secondCommaIndex, lastCommaIndex - 1) + ` + ${amount.value}%)` + restOfColorString;
+    return color.value.substring(0, secondCommaIndex) + color.value.substring(secondCommaIndex, lastCommaIndex - 1) + ` + ${amount.value}%` + restOfColorString;
   }
 }
 
