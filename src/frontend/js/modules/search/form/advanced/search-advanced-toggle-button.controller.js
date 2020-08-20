@@ -30,7 +30,7 @@
       var config = {
         attachTo: angular.element(document.body),
         controllerAs: 'ctrl',
-        controller: function($scope) {
+        controller: /* @ngInject */ function($scope) {
           $scope.query = self.query;
           $scope.provider = self.provider;
           $scope.$hide = hide;
