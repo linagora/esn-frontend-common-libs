@@ -1,5 +1,7 @@
 'use strict';
 
+const _ = require('lodash');
+
 require('../user.constants.js');
 
 angular.module('esn.user')
@@ -7,7 +9,6 @@ angular.module('esn.user')
 
 function usersAutocompleteInput(
   $log,
-  _,
   session,
   attendeeService,
   esnI18nService,
