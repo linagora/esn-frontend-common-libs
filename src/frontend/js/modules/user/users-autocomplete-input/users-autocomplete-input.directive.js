@@ -18,7 +18,9 @@ function usersAutocompleteInput(
   return {
     restrict: 'E',
     template: require("../../../../views/modules/user/users-autocomplete-input.pug"),
-    link: link,
+    link: {
+      pre: link
+    },
     scope: {
       originalUsers: '=?',
       mutableUsers: '=',
