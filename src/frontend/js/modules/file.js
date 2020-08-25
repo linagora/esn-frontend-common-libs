@@ -7,6 +7,32 @@ angular.module('esn.file', ['angularFileUpload', 'esn.http'])
 .constant('MAX_SIZE_UPLOAD_DEFAULT', 104857600) // is equal to 100 MO
 
 .factory('fileUploadService', function($q, $timeout, $log, fileAPIService, FILES_API_URL, DEFAULT_FILE_TYPE) {
+  return {
+    get,
+    uploadFile
+  };
+
+  // TODO: Write tests for this (https://github.com/OpenPaaS-Suite/esn-frontend-calendar/issues/51)
+  /**
+   * Upload a file
+   * @param   {Object} file file to upload
+   * @returns {Promise} resolve on success with ID of the uploaded file
+   */
+  function uploadFile(file) {
+    const deferred = $q.defer();
+    const uploader = get();
+    const uploadTask = uploader.addFile(file, false);
+
+    uploadTask.defer.promise.then(function(task) {
+      deferred.resolve(task.response.data._id);
+    }, deferred.reject, function(task) {
+      deferred.notify(task.progress);
+    });
+
+    uploader.start(); // Start transferring data
+
+    return deferred.promise;
+  }
 
   function get(uploader) {
     var date = Date.now();
@@ -120,10 +146,6 @@ angular.module('esn.file', ['angularFileUpload', 'esn.http'])
       date: date
     };
   }
-
-  return {
-    get: get
-  };
 })
 .factory('fileAPIService', function($upload, esnRestangular) {
   function uploadBlob(url, blob, mime, size, canceler) {
