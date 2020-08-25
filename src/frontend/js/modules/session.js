@@ -1,9 +1,7 @@
-import { getAuth } from './auth/index';
-
 (function(angular) {
   'use strict';
 
-  angular.module('esn.session', ['esn.user', 'esn.domain', 'esn.template', 'esn.themes'])
+  angular.module('esn.session', ['esn.user', 'esn.domain', 'esn.template', 'esn.themes', 'esn.auth'])
   .factory('session', function($q) {
 
     var bootstrapDefer = $q.defer();
@@ -95,31 +93,16 @@ import { getAuth } from './auth/index';
   })
 
   // TODO (esn-frontend-common-libs#51): Write tests for the new changes (https://github.com/OpenPaaS-Suite/esn-frontend-common-libs/pull/48)
-  .controller('sessionInitESNController', function($scope, $log, esnTemplate, sessionFactory, userAPI, httpConfigurer) {
-    const onLogin = data => {
-      $log.debug('User logged in');
-      data.headers && httpConfigurer.setHeaders(data.headers);
-    };
-
-    const onLogout = () => {
-      $log.debug('User logged out');
-    };
-
+  .controller('sessionInitESNController', function($scope, $log, esnTemplate, sessionFactory, esnAuth) {
     $scope.session = {
       template: esnTemplate.templates.loading
     };
 
-    const authProvider = getAuth({
-      fetchUser: userAPI.currentUser,
-      onLogin,
-      onLogout
-    });
-
-    authProvider.init()
+    esnAuth.init()
       .then(user => {
         if (!user) {
-          return authProvider.login().catch(err => {
-            $log.debug('Login error', err);
+          return esnAuth.signin().catch(err => {
+            $log.debug('Signin error', err);
             $scope.$apply(() => {
               $scope.session.error = 'There was an issue while authenticating user';
               $scope.session.template = esnTemplate.templates.error;
@@ -213,3 +196,4 @@ require('./template/template.module.js');
 require('./user/user.module.js');
 require('./domain.js');
 require('./themes/themes.module');
+require('./auth/auth.module.js');

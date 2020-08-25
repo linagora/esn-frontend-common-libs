@@ -1,3 +1,11 @@
+import getAuthProvider from 'openpaas-auth-client';
+
+const DEFAULT_PROVIDER = 'basic';
+
+function getAuth(options) {
+  return getAuthProvider(getProvider(), { ...getSettings(), ...options });
+}
+
 function getSettings() {
   if (typeof(process.env.AUTH_PROVIDER_SETTINGS) === 'string') {
     try {
@@ -12,10 +20,7 @@ function getSettings() {
 }
 
 function getProvider() {
-  return process.env.AUTH_PROVIDER;
+  return process.env.AUTH_PROVIDER || DEFAULT_PROVIDER;
 }
 
-export {
-  getSettings,
-  getProvider
-};
+export { getAuth };

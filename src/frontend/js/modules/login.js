@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 
-  angular.module('esn.login', ['esn.notification', 'esn.http', 'op.dynamicDirective', 'esn.feature-registry'])
+  angular.module('esn.login', ['esn.notification', 'esn.http', 'op.dynamicDirective', 'esn.feature-registry', 'esn.session', 'esn.auth'])
 
   .config(function(dynamicDirectiveServiceProvider) {
     var passwordControlCenterMenu = new dynamicDirectiveServiceProvider.DynamicDirective(true, 'controlcenter-menu-password', {priority: -14});
@@ -163,9 +163,9 @@
       );
     };
   })
-  .controller('logoutController', function(session) {
+  .controller('logoutController', function(session, esnAuth) {
     session.setLogout();
-    window.location.href = '/logout';
+    esnAuth.signout();
   })
   .factory('loginAPI', function(esnRestangular, moment) {
 
@@ -227,4 +227,6 @@
 require('./login/login-success.service.js');
 require('./feature-registry/feature-registry.module.js');
 require('./http.js');
+require('./session.js');
+require('./auth/auth.module.js');
 require('./notification.js');
