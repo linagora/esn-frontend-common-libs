@@ -9,6 +9,7 @@
   .factory('esnRestangular', function(Restangular, httpConfigurer, httpErrorHandler) {
     var restangularInstance = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setFullResponse(true);
+      RestangularConfigurer.setDefaultHttpFields({ withCredentials: true });
       RestangularConfigurer.setErrorInterceptor(function(response) {
         if (response.status === 401) {
           httpErrorHandler.redirectToLogin();
