@@ -7,15 +7,15 @@
     function SearchProvider(options) {
       this.options = options || {};
       this.name = options.name;
-      this.template = options.template;
+      this.templateUrl = options.templateUrl;
       this.uid = options.uid;
 
       if (!this.name) {
         throw new Error('name is required for search provider');
       }
 
-      if (!this.template) {
-        throw new Error('template is required to render search result');
+      if (!this.templateUrl) {
+        throw new Error('templateUrl is required to render search result');
       }
 
       if (!this.uid) {
