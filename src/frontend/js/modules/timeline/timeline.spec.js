@@ -5,8 +5,7 @@ var expect = chai.expect;
 
 describe('The esn.timeline module', function() {
   beforeEach(function() {
-    module('jadeTemplates');
-    module('esn.timeline');
+    angular.mock.module('esn.timeline');
   });
 
   describe('The esnTimelineAPI factory', function() {
@@ -28,7 +27,7 @@ describe('The esn.timeline module', function() {
     var service;
 
     beforeEach(function() {
-      inject(function($injector) {
+      angular.mock.inject(function($injector) {
         service = $injector.get('esnTimelineEntryProviders');
       });
     });
@@ -85,7 +84,7 @@ describe('The esn.timeline module', function() {
 
     var service, $rootScope, esnTimelineEntryProviders;
 
-    beforeEach(inject(function(_$rootScope_, _esnTimelineEntriesHelper_, _esnTimelineEntryProviders_) {
+    beforeEach(angular.mock.inject(function(_$rootScope_, _esnTimelineEntriesHelper_, _esnTimelineEntryProviders_) {
       esnTimelineEntryProviders = _esnTimelineEntryProviders_;
       service = _esnTimelineEntriesHelper_;
       $rootScope = _$rootScope_;
@@ -180,13 +179,13 @@ describe('The esn.timeline module', function() {
       });
     });
 
-    beforeEach(inject(function(_$controller_, _$q_, _$rootScope_) {
+    beforeEach(angular.mock.inject(function(_$controller_, _$q_, _$rootScope_) {
       $q = _$q_;
       $rootScope = _$rootScope_;
     }));
 
     beforeEach(function() {
-      inject(function($injector) {
+      angular.mock.inject(function($injector) {
         TimelinePaginationProvider = $injector.get('TimelinePaginationProvider');
       });
     });
@@ -257,7 +256,7 @@ describe('The esn.timeline module', function() {
       });
     });
 
-    beforeEach(inject(function(_$controller_, _$q_, _$rootScope_) {
+    beforeEach(angular.mock.inject(function(_$controller_, _$q_, _$rootScope_) {
       $controller = _$controller_;
       $q = _$q_;
       $rootScope = _$rootScope_;

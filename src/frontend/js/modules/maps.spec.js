@@ -51,8 +51,6 @@ describe('The Maps Angular module', function() {
 
   describe('fillPosition directive', function() {
 
-    beforeEach(module('jadeTemplates'));
-
     beforeEach(function() {
       this.geoAPI = {};
       this.geoAPI.getCurrentPosition = function() {

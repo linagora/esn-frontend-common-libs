@@ -9,7 +9,7 @@ describe('The esn.rest.helper Angular module', function() {
     beforeEach(function() {
       angular.mock.module('esn.rest.helper');
     });
-    beforeEach(inject(function(filteredcursor, restcursor, $rootScope) {
+    beforeEach(angular.mock.inject(function(filteredcursor, restcursor, $rootScope) {
       this.frc = filteredcursor;
       this.rc = restcursor;
       this.$rootScope = $rootScope;
@@ -95,7 +95,7 @@ describe('The esn.rest.helper Angular module', function() {
     beforeEach(function() {
       angular.mock.module('esn.rest.helper');
     });
-    beforeEach(inject(function(restcursor, $rootScope) {
+    beforeEach(angular.mock.inject(function(restcursor, $rootScope) {
       this.restcursor = restcursor;
       this.$rootScope = $rootScope;
     }));

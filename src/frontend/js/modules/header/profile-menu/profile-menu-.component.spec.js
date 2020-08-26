@@ -8,10 +8,10 @@ describe('The profileMenu component', function() {
   var $httpBackend, element, $compile, $rootScope, session;
 
   beforeEach(function() {
-    angular.mock.module('esn.profile-menu', 'jadeTemplates');
+    angular.mock.module('esn.profile-menu');
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _$compile_,
     _$rootScope_,
     _session_,
@@ -47,18 +47,19 @@ describe('The profileMenu component', function() {
   });
 
   it('should contain a clickable avatar image', function() {
-    expect(element.find('.header-avatar')).to.exist.and.attr('ng-click').to.equal('ctrl.openMenu($mdMenu, $event)');
+    expect(element.find('.header-avatar')).to.exist;
+    expect(element.find('.header-avatar').attr('ng-click')).to.equal('ctrl.openMenu($mdMenu, $event)');
   });
 
   it('should retrieve a coherent avatarUrl', function() {
     var regexpAvatarUrl = /^\/api\/user\/profile\/avatar\?cb=\d+$/;
 
-    expect(element.find('.header-avatar')).and.attr('ng-src').to.match(regexpAvatarUrl);
+    expect(element.find('.header-avatar').attr('ng-src')).to.match(regexpAvatarUrl);
   });
 
   it('should have menu closed', function() {
-    expect(element.find('.header-avatar')).attr('aria-expanded').to.equal('false');
-    expect(element.find('md-backdrop')).to.not.exist;
+    expect(element.find('.header-avatar').attr('aria-expanded')).to.equal('false');
+    expect(element.find('md-backdrop').length).to.equal(0);
   });
 
   it('should update avatar url after updated avatar of current user', function() {

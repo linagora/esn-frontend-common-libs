@@ -3,7 +3,7 @@
 describe('Directive: bsSwitch', function () {
   var scope, $sandbox, $compile, $timeout;
 
-  beforeEach(module('frapontillo.bootstrap-switch'));
+  beforeEach(angular.mock.module('frapontillo.bootstrap-switch'));
 
   /* jshint camelcase: false */
   beforeEach(inject(function ($injector, $rootScope, _$compile_, _$timeout_) {

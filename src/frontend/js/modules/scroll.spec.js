@@ -30,7 +30,7 @@ describe('The Scroll Angular module', function() {
 
     var esnScrollListenerService;
 
-    beforeEach(inject(function(_esnScrollListenerService_) {
+    beforeEach(angular.mock.inject(function(_esnScrollListenerService_) {
       esnScrollListenerService = _esnScrollListenerService_;
     }));
 
@@ -48,10 +48,10 @@ describe('The Scroll Angular module', function() {
     var $scope;
 
     beforeEach(function() {
-      module('esn.scroll');
+      angular.mock.module('esn.scroll');
     });
 
-    beforeEach(inject(function($compile, $rootScope) {
+    beforeEach(angular.mock.inject(function($compile, $rootScope) {
       $scope = $rootScope.$new();
       $scope.setToDOM = true;
 
@@ -76,7 +76,7 @@ describe('The Scroll Angular module', function() {
     var $cacheFactory, $timeout, $scope, SCROLL_CACHE_KEY;
 
     function doInject() {
-      inject(function(_$cacheFactory_, _$timeout_, $compile, $rootScope, _SCROLL_CACHE_KEY_) {
+      angular.mock.inject(function(_$cacheFactory_, _$timeout_, $compile, $rootScope, _SCROLL_CACHE_KEY_) {
         $cacheFactory = _$cacheFactory_;
         $timeout = _$timeout_;
         SCROLL_CACHE_KEY = _SCROLL_CACHE_KEY_;
@@ -87,7 +87,7 @@ describe('The Scroll Angular module', function() {
     }
 
     it('should save scroll position on $locationChangeStart event', function() {
-      module('esn.scroll', function($provide) {
+      angular.mock.module('esn.scroll', function($provide) {
         $provide.decorator('$location', function($delegate) {
           $delegate.absUrl = function() {
             return path;
@@ -114,7 +114,7 @@ describe('The Scroll Angular module', function() {
     });
 
     it('should scroll to saved position on $locationChangeSuccess event', function(done) {
-      module('esn.scroll', function($provide) {
+      angular.mock.module('esn.scroll', function($provide) {
         $provide.decorator('$location', function($delegate) {
           $delegate.absUrl = function() {
             return path;
@@ -148,7 +148,7 @@ describe('The Scroll Angular module', function() {
 
     var $timeout, elementScrollService;
 
-    beforeEach(inject(function(_$timeout_, _elementScrollService_) {
+    beforeEach(angular.mock.inject(function(_$timeout_, _elementScrollService_) {
       $timeout = _$timeout_;
       elementScrollService = _elementScrollService_;
 
@@ -206,7 +206,7 @@ describe('The Scroll Angular module', function() {
         };
       }
 
-      beforeEach(inject(function(_$window_, _elementScrollService_) {
+      beforeEach(angular.mock.inject(function(_$window_, _elementScrollService_) {
         $window = _$window_;
         elementScrollService = _elementScrollService_;
       }));
@@ -233,7 +233,7 @@ describe('The Scroll Angular module', function() {
 
       var deviceDetector, esnScrollListenerService;
 
-      beforeEach(inject(function(_deviceDetector_, _esnScrollListenerService_) {
+      beforeEach(angular.mock.inject(function(_deviceDetector_, _esnScrollListenerService_) {
         deviceDetector = _deviceDetector_;
         esnScrollListenerService = _esnScrollListenerService_;
       }));
@@ -269,10 +269,10 @@ describe('The Scroll Angular module', function() {
     var $scope, $window, element;
 
     beforeEach(function() {
-      module('esn.scroll');
+      angular.mock.module('esn.scroll');
     });
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$window_) {
+    beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _$window_) {
       $window = _$window_;
       $scope = _$rootScope_.$new();
       element = _$compile_('<div scroll-to-on-click></div>')($scope);

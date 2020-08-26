@@ -22,7 +22,7 @@ describe('The ESNAttachmentIconController', function() {
     angular.mock.module('esn.attachment');
   });
 
-  beforeEach(inject(function(_$controller_, _$q_, _$rootScope_, _ESN_ATTACHMENT_ICONS_) {
+  beforeEach(angular.mock.inject(function(_$controller_, _$q_, _$rootScope_, _ESN_ATTACHMENT_ICONS_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     ESN_ATTACHMENT_ICONS = _ESN_ATTACHMENT_ICONS_;

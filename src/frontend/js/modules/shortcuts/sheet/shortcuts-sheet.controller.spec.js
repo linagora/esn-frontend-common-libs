@@ -12,11 +12,11 @@ describe('The EsnShortcutsSheetController', function() {
   var shortcutGlobal, shortcut1, shortcut2, shortcut3;
 
   beforeEach(function() {
-    module('esn.shortcuts');
+    angular.mock.module('esn.shortcuts');
   });
 
   beforeEach(function() {
-    inject(function(
+    angular.mock.inject(function(
       _$rootScope_,
       _$controller_,
       _$state_,

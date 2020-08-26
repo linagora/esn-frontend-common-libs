@@ -9,10 +9,10 @@ describe('The esnShortcutsRegistry service', function() {
   var ESN_SHORTCUTS_DEFAULT_CATEGORY;
 
   beforeEach(function() {
-    module('esn.shortcuts');
+    angular.mock.module('esn.shortcuts');
   });
 
-  beforeEach(inject(function(_esnShortcutsRegistry_, _ESN_SHORTCUTS_DEFAULT_CATEGORY_) {
+  beforeEach(angular.mock.inject(function(_esnShortcutsRegistry_, _ESN_SHORTCUTS_DEFAULT_CATEGORY_) {
     esnShortcutsRegistry = _esnShortcutsRegistry_;
     ESN_SHORTCUTS_DEFAULT_CATEGORY = _ESN_SHORTCUTS_DEFAULT_CATEGORY_;
   }));

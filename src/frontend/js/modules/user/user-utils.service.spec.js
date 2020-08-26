@@ -8,9 +8,9 @@ describe('userUtils service', function() {
   var userUtils;
 
   beforeEach(function() {
-    module('esn.user');
+    angular.mock.module('esn.user');
 
-    inject(function(_userUtils_) {
+    angular.mock.inject(function(_userUtils_) {
       userUtils = _userUtils_;
     });
   });

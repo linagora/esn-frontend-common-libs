@@ -12,7 +12,7 @@ describe('The esnI18nLoader service', function() {
     angular.mock.module('esn.i18n');
   });
 
-  beforeEach(inject(function(_$rootScope_, _$httpBackend_, _esnI18nLoader_) {
+  beforeEach(angular.mock.inject(function(_$rootScope_, _$httpBackend_, _esnI18nLoader_) {
     $rootScope = _$rootScope_;
     $httpBackend = _$httpBackend_;
     esnI18nLoader = _esnI18nLoader_;
@@ -30,9 +30,9 @@ describe('The esnI18nLoader service', function() {
     esnI18nLoader(options).then(function(catalog) {
       expect(catalog).to.deep.equal(catalogs.vi);
       done();
-    });
-
-    $httpBackend.flush();
+    })
+    .catch(done);
+    $rootScope.$digest();
   });
 
   it('should reject when the desired catalog not found', function(done) {
@@ -48,8 +48,7 @@ describe('The esnI18nLoader service', function() {
       expect(err.message).to.equal('No catalog found for fr');
       done();
     });
-
-    $httpBackend.flush();
+    $rootScope.$digest();
   });
 
   it('should cache the catalogs to not issue HTTP request again on next calls', function(done) {
@@ -61,7 +60,6 @@ describe('The esnI18nLoader service', function() {
 
     $httpBackend.expectGET('/api/i18n').respond(catalogs);
     esnI18nLoader(options);
-    $httpBackend.flush();
 
     esnI18nLoader(options).then(function(catalog) {
       expect(catalog).to.deep.equal(catalogs.vi);

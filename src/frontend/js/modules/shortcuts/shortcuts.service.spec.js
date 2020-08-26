@@ -8,10 +8,10 @@ describe('The esnShortcuts service', function() {
   var esnShortcutsRegistry, esnShortcuts, hotkeys, deviceDetector;
 
   beforeEach(function() {
-    module('esn.shortcuts');
+    angular.mock.module('esn.shortcuts');
   });
 
-  beforeEach(inject(function(_esnShortcutsRegistry_, _esnShortcuts_, _hotkeys_, _deviceDetector_) {
+  beforeEach(angular.mock.inject(function(_esnShortcutsRegistry_, _esnShortcuts_, _hotkeys_, _deviceDetector_) {
     esnShortcutsRegistry = _esnShortcutsRegistry_;
     esnShortcuts = _esnShortcuts_;
     hotkeys = _hotkeys_;

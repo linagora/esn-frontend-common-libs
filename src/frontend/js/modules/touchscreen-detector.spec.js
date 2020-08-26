@@ -7,15 +7,15 @@ var expect = chai.expect;
 describe('The touchscreenDetector service', function() {
   var $window, touchscreenDetectorService;
 
-  beforeEach(module(function($provide) {
+  beforeEach(angular.mock.module(function($provide) {
     $provide.value('$window', $window = {
       navigator: {}
     });
   }));
 
-  beforeEach(module('esn.touchscreen-detector'));
+  beforeEach(angular.mock.module('esn.touchscreen-detector'));
 
-  beforeEach(inject(function(_$window_, _touchscreenDetectorService_) {
+  beforeEach(angular.mock.inject(function(_$window_, _touchscreenDetectorService_) {
     touchscreenDetectorService = _touchscreenDetectorService_;
     $window = _$window_;
   }));

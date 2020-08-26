@@ -9,10 +9,10 @@ describe('The esnUserConfigurationService factory', function() {
   var ESN_USER_CONFIGURATION_DEFAULT_MODULE;
 
   beforeEach(function() {
-    module('esn.user-configuration');
+    angular.mock.module('esn.user-configuration');
   });
 
-  beforeEach(inject(function(_$rootScope_, _esnConfigApi_, _esnUserConfigurationService_, _ESN_USER_CONFIGURATION_DEFAULT_MODULE_) {
+  beforeEach(angular.mock.inject(function(_$rootScope_, _esnConfigApi_, _esnUserConfigurationService_, _ESN_USER_CONFIGURATION_DEFAULT_MODULE_) {
     $rootScope = _$rootScope_;
     esnConfigApi = _esnConfigApi_;
     esnUserConfigurationService = _esnUserConfigurationService_;

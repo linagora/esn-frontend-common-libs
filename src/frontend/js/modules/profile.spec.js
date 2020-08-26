@@ -7,12 +7,14 @@ var expect = chai.expect;
 describe('The esn.profile Angular module', function() {
 
   beforeEach(function() {
-    module('jadeTemplates');
-    module('esn.profile');
+    angular.mock.module('esn.profile');
+    angular.mock.module(function($provide) {
+      $provide.value('translateFilter', text => text);
+    });
   });
 
   describe('avatarController', function() {
-    beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(angular.mock.inject(function($rootScope, $controller) {
       this.$scope = $rootScope.$new();
       this.$rootScope = $rootScope;
       this.$timeout = function(cb) { return cb(); };
@@ -34,7 +36,7 @@ describe('The esn.profile Angular module', function() {
 
   describe('The profileMinicard directive', function() {
 
-    beforeEach(inject(function($compile, $rootScope) {
+    beforeEach(angular.mock.inject(function($compile, $rootScope) {
       this.$compile = $compile;
       this.$rootScope = $rootScope;
     }));

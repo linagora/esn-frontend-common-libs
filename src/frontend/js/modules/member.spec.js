@@ -12,9 +12,8 @@ describe('The Member Angular module', function() {
   describe.skip('memberDisplay directive', function() {
 
     //Load the karma built module containing the templates
-    beforeEach(module('jadeTemplates'));
 
-    beforeEach(inject(['$compile', '$rootScope', function($c, $r) {
+    beforeEach(angular.mock.inject(['$compile', '$rootScope', function($c, $r) {
       this.$compile = $c;
       this.$rootScope = $r;
     }]));
@@ -214,7 +213,7 @@ describe('The Member Angular module', function() {
 
     var $rootScope, memberSearchProvider, domainAPI, members;
 
-    beforeEach(module(function($provide) {
+    beforeEach(angular.mock.module(function($provide) {
       domainAPI = {};
       $provide.value('domainAPI', domainAPI);
     }));

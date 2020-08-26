@@ -52,7 +52,7 @@ describe('The esn.file module', function() {
   describe('The extension filter', function() {
 
     var extension;
-    beforeEach(inject(function($filter) {
+    beforeEach(angular.mock.inject(function($filter) {
       extension = $filter('extension');
     }));
 
@@ -69,7 +69,7 @@ describe('The esn.file module', function() {
 
     var xhrWithUploadProgress;
 
-    beforeEach(inject(function(_xhrWithUploadProgress_) {
+    beforeEach(angular.mock.inject(function(_xhrWithUploadProgress_) {
       xhrWithUploadProgress = _xhrWithUploadProgress_;
     }));
 
@@ -86,11 +86,11 @@ describe('The esn.file module', function() {
 
     var xhrWithUploadProgress, XMLHttpRequestMock;
 
-    beforeEach(module(function($provide) {
+    beforeEach(angular.mock.module(function($provide) {
       $provide.value('XMLHttpRequest', function() { return XMLHttpRequestMock; });
     }));
 
-    beforeEach(inject(function(_xhrWithUploadProgress_) {
+    beforeEach(angular.mock.inject(function(_xhrWithUploadProgress_) {
       xhrWithUploadProgress = _xhrWithUploadProgress_;
     }));
 

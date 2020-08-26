@@ -7,9 +7,9 @@ var expect = chai.expect;
 describe('The esnAvailabilityService service', function() {
   var $httpBackend, esnAvailabilityService;
 
-  beforeEach(module('esn.availability'));
+  beforeEach(angular.mock.module('esn.availability'));
 
-  beforeEach(inject(function(_$httpBackend_, _esnAvailabilityService_) {
+  beforeEach(angular.mock.inject(function(_$httpBackend_, _esnAvailabilityService_) {
     $httpBackend = _$httpBackend_;
     esnAvailabilityService = _esnAvailabilityService_;
   }));

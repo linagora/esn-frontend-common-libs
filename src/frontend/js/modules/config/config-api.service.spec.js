@@ -26,9 +26,9 @@ describe('The esnConfigApi service', function() {
     }]
   }];
 
-  beforeEach(module('esn.configuration'));
+  beforeEach(angular.mock.module('esn.configuration'));
 
-  beforeEach(inject(function(_$httpBackend_, _esnConfigApi_) {
+  beforeEach(angular.mock.inject(function(_$httpBackend_, _esnConfigApi_) {
     $httpBackend = _$httpBackend_;
     esnConfigApi = _esnConfigApi_;
   }));

@@ -30,7 +30,7 @@ describe('The Angular core module', function() {
         setTimeout(fn, 100);
       };
 
-      module(function($provide) {
+      angular.mock.module(function($provide) {
         $provide.value('$log', $log);
         $provide.value('$timeout', $timeout);
       });
@@ -102,7 +102,7 @@ describe('The Angular core module', function() {
   describe('The bytes filter', function() {
 
     var bytes;
-    beforeEach(inject(function($filter) {
+    beforeEach(angular.mock.inject(function($filter) {
       bytes = $filter('bytes');
     }));
 
@@ -144,7 +144,7 @@ describe('The Angular core module', function() {
   describe('The prefixLink filter', function() {
     var prefixLink;
 
-    beforeEach(inject(function($filter) {
+    beforeEach(angular.mock.inject(function($filter) {
       prefixLink = $filter('prefixLink');
     }));
 
@@ -210,7 +210,7 @@ describe('The Angular core module', function() {
 
     var maxPlus;
 
-    beforeEach(inject(function($filter) {
+    beforeEach(angular.mock.inject(function($filter) {
       maxPlus = $filter('maxPlus');
     }));
 
@@ -226,7 +226,7 @@ describe('The Angular core module', function() {
 
   describe('The urlencode filter', function() {
     var urlencode;
-    beforeEach(inject(function($filter) {
+    beforeEach(angular.mock.inject(function($filter) {
       urlencode = $filter('urlencode');
     }));
 
@@ -236,7 +236,7 @@ describe('The Angular core module', function() {
   });
 
   describe('The emailService service', function() {
-    beforeEach(inject(function(emailService) {
+    beforeEach(angular.mock.inject(function(emailService) {
       this.emailService = emailService;
     }));
 
@@ -267,7 +267,7 @@ describe('The Angular core module', function() {
       angular.mock.module('esn.core');
     });
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$document_) {
+    beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _$document_) {
       this.$rootScope = _$rootScope_;
       this.$scope = this.$rootScope.$new();
       this.$compile = _$compile_;
@@ -308,7 +308,7 @@ describe('The Angular core module', function() {
       });
     });
 
-    beforeEach(inject(function(_$window_, _navigateTo_) {
+    beforeEach(angular.mock.inject(function(_$window_, _navigateTo_) {
       $window = _$window_;
       navigateTo = _navigateTo_;
     }));
@@ -324,7 +324,7 @@ describe('The Angular core module', function() {
   describe('esnWithPromiseResult', function() {
     var deferred, $q, promise, esnWithPromiseResult, $rootScope;
 
-    beforeEach(inject(function(_$q_, _esnWithPromiseResult_, _$rootScope_) {
+    beforeEach(angular.mock.inject(function(_$q_, _esnWithPromiseResult_, _$rootScope_) {
       $q = _$q_;
       deferred = $q.defer();
       promise = deferred.promise;

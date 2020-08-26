@@ -6,6 +6,7 @@ var expect = chai.expect;
 
 describe('The esnCollaborationMembershipInvitationUserNotification directive', function() {
   beforeEach(function() {
+    angular.mock.module('ui.router');
     angular.mock.module('esn.collaboration');
   });
 
@@ -32,7 +33,6 @@ describe('The esnCollaborationMembershipInvitationUserNotification directive', f
       $provide.value('userAPI', userAPI);
       $provide.value('objectTypeResolver', objectTypeResolver);
     });
-    module('jadeTemplates');
   });
 
   beforeEach(angular.mock.inject(function($rootScope, $compile, esnCollaborationClientService, esnUserNotificationService, objectTypeResolver, userAPI) {

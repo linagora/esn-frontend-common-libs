@@ -9,9 +9,10 @@ describe('The homePageService factory', function() {
   var modulesMock;
 
   beforeEach(function() {
-    module('esn.home-page', function($provide) {
+    angular.mock.module('esn.home-page', function($provide) {
       $provide.value('esnI18nService', {
-        translate: function(input) { return input; }
+        translate: function(input) { return input; },
+        getLocale: function() { return 'fr' }
       });
     });
 
@@ -20,7 +21,7 @@ describe('The homePageService factory', function() {
       { homePage: 'b', title: 'B' }
     ];
 
-    inject(function(_esnModuleRegistry_, _homePageService_) {
+    angular.mock.inject(function(_esnModuleRegistry_, _homePageService_) {
       esnModuleRegistry = _esnModuleRegistry_;
       homePageService = _homePageService_;
     });

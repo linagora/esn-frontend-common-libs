@@ -9,8 +9,6 @@ describe('The fullscreen-edit-form Angular module', function() {
 
   var $compile, $rootScope, $scope, $timeout, element, elementScrollService = {};
 
-  beforeEach(module('jadeTemplates'));
-
   beforeEach(function() {
     angular.mock.module('esn.fullscreen-edit-form');
   });
@@ -19,7 +17,7 @@ describe('The fullscreen-edit-form Angular module', function() {
     $provide.value('elementScrollService', elementScrollService);
   }));
 
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$timeout_) {
+  beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _$timeout_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $timeout = _$timeout_;

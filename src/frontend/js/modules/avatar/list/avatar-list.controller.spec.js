@@ -34,7 +34,7 @@ describe('The ESNAvatarListController', function() {
     angular.mock.module('esn.avatar');
   });
 
-  beforeEach(inject(function(_$controller_, _$q_, _$rootScope_) {
+  beforeEach(angular.mock.inject(function(_$controller_, _$q_, _$rootScope_) {
     $controller = _$controller_;
     $rootScope = _$rootScope_;
     $scope = $rootScope.$new();

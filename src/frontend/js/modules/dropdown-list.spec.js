@@ -24,7 +24,6 @@ describe('The dropdown-list directive', function() {
   });
 
   beforeEach(function() {
-    angular.mock.module('jadeTemplates');
     angular.mock.module('esn.dropdownList');
 
     angular.mock.module(function($provide) {

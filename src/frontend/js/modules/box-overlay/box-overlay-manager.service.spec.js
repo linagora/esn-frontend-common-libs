@@ -8,13 +8,12 @@ describe('The boxOverlayManager service', function() {
   var $rootScope, $scope;
   var boxOverlayManager;
 
-  beforeEach(module('jadeTemplates'));
-  beforeEach(module('esn.box-overlay', function($provide) {
+  beforeEach(angular.mock.module('esn.box-overlay', function($provide) {
     $provide.value('notificationFactory', {});
   }));
 
   beforeEach(function() {
-    inject(function(_$rootScope_, _boxOverlayManager_) {
+    angular.mock.inject(function(_$rootScope_, _boxOverlayManager_) {
       $rootScope = _$rootScope_;
       $scope = $rootScope.$new();
       boxOverlayManager = _boxOverlayManager_;

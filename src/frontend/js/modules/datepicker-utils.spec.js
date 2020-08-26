@@ -20,7 +20,7 @@ describe('The datepicker utils module', function() {
       });
     });
 
-    beforeEach(inject(function(bsDatepickerDirective, clockpickerDefaultOptions) {
+    beforeEach(angular.mock.inject(function(bsDatepickerDirective, clockpickerDefaultOptions) {
       self.bsDatepickerDirective = bsDatepickerDirective;
       self.clockpickerDefaultOptions = clockpickerDefaultOptions;
     }));
@@ -36,7 +36,7 @@ describe('The datepicker utils module', function() {
 
   describe('getRequiredController', function() {
 
-    beforeEach(inject(function(getRequiredController) {
+    beforeEach(angular.mock.inject(function(getRequiredController) {
       self.getRequiredController = getRequiredController;
     }));
 
@@ -109,7 +109,7 @@ describe('The datepicker utils module', function() {
       };
     });
 
-    beforeEach(inject(function(bsDatepickerMobileWrapper, moment) {
+    beforeEach(angular.mock.inject(function(bsDatepickerMobileWrapper, moment) {
       self.bsDatepickerMobileWrapper = bsDatepickerMobileWrapper;
       self.wrapDirective();
       self.moment = moment;

@@ -6,7 +6,7 @@
 var expect = chai.expect;
 
 describe('The profilePopoverCardService service', function() {
-  var $rootScope, userObject, contactUserObject, externalUserObject, userObjectWithoutName, profilePopoverCardService, element;
+  var $rootScope, $scope, userObject, contactUserObject, externalUserObject, userObjectWithoutName, profilePopoverCardService, element;
   var touchscreenDetectorService = {hasTouchscreen: sinon.stub()};
   var stubbedModalRes = {show: sinon.spy(), hide: sinon.spy()};
   var $modal = sinon.stub().returns(stubbedModalRes);
@@ -18,7 +18,7 @@ describe('The profilePopoverCardService service', function() {
     matchmedia = {is: angular.noop};
     element = {on: sinon.spy()};
 
-    module('esn.profile-popover-card', function($provide) {
+    angular.mock.module('esn.profile-popover-card', function($provide) {
       $provide.value('$modal', $modal);
       $provide.value('$state', {go: sinon.stub()});
       $provide.value('touchscreenDetectorService', touchscreenDetectorService);
@@ -26,8 +26,9 @@ describe('The profilePopoverCardService service', function() {
       $provide.value('ESN_MEDIA_QUERY_SM_XS', '(max-width: 767px), (min-width: 768px) and (max-width: 991px)');
     });
 
-    inject(function(_$rootScope_, _profilePopoverCardService_) {
+    angular.mock.inject(function(_$rootScope_, _profilePopoverCardService_) {
       $rootScope = _$rootScope_;
+      $scope = $rootScope.$new();
       profilePopoverCardService = _profilePopoverCardService_;
     });
 
@@ -58,7 +59,8 @@ describe('The profilePopoverCardService service', function() {
 
     scope = {
       user: profilePopoverCardService.functions._normalizeUser(userObject),
-      isCurrentUser: false
+      isCurrentUser: false,
+      $new: () => {}
     };
   });
 
@@ -119,6 +121,13 @@ describe('The profilePopoverCardService service', function() {
 
   describe('_bind', function() {
     it('should bind a popover when displaying on desktop', function() {
+      profilePopoverCardService.functions.createPopover = function () {
+        return {
+          show: angular.noop,
+          hide: angular.noop
+        }
+      };
+
       sinon.stub(matchmedia, 'is').returns(false);
       sinon.spy(profilePopoverCardService.functions, 'bindModal');
       sinon.spy(profilePopoverCardService.functions, 'bindPopover');
@@ -153,7 +162,14 @@ describe('The profilePopoverCardService service', function() {
     });
 
     it('should listen for route changes', function() {
-      sinon.spy($rootScope, '$on');
+      profilePopoverCardService.functions.createPopover = function() {
+        return {
+          show: angular.noop,
+          hide: angular.noop
+        }
+      };
+
+      sinon.stub($rootScope, '$on').returns();
       var popover = profilePopoverCardService.functions
         ._bind(element, scope, {parentScope: parentScope, showMobile: false});
 
@@ -164,7 +180,7 @@ describe('The profilePopoverCardService service', function() {
   describe('bindPopover', function() {
 
     it('should create a popover', function() {
-      sinon.spy(profilePopoverCardService.functions, 'createPopover');
+      sinon.stub(profilePopoverCardService.functions, 'createPopover').returns({ show: angular.noop, hide: angular.noop });
       profilePopoverCardService.functions.bindPopover(element, scope, {parentScope: parentScope, placement: 'top'});
       expect(profilePopoverCardService.functions.createPopover).to.have.been.calledWith(element, scope, 'top');
 

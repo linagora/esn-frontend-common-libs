@@ -8,11 +8,10 @@ describe('The esnDatePicker component', function() {
   var $rootScope, $compile, moment, form;
 
   beforeEach(function() {
-    module('jadeTemplates');
-    module('esn.datetime');
+    angular.mock.module('esn.datetime');
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _$rootScope_,
     _$compile_,
     _moment_
@@ -56,7 +55,7 @@ describe('The esnDatePicker component', function() {
 
     var element = initComponent(scope);
 
-    form.date.$setViewValue('A Random Invalid String');
+    form.$commitViewValue('A Random Invalid String');
     scope.$digest();
     initialMoment.set({ second: 0, millisecond: 0 });
     scope.model = initialMoment;

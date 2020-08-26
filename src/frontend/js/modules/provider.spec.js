@@ -14,7 +14,7 @@ describe('The esn.provider module', function() {
     angular.mock.module('esn.provider');
   });
 
-  beforeEach(module(function($provide) {
+  beforeEach(angular.mock.module(function($provide) {
     $provide.value('localTimezone', 'UTC');
     $provide.constant('moment', function(argument) {
       return moment.tz(argument || nowDate, localTimeZone);
@@ -27,7 +27,7 @@ describe('The esn.provider module', function() {
   describe('The Providers factory', function() {
     var $rootScope, providers, newProvider;
 
-    beforeEach(inject(function(_$rootScope_, _Providers_, _newProvider_) {
+    beforeEach(angular.mock.inject(function(_$rootScope_, _Providers_, _newProvider_) {
       $rootScope = _$rootScope_;
       providers = new _Providers_();
       newProvider = _newProvider_;
@@ -322,7 +322,7 @@ describe('The esn.provider module', function() {
   describe('The ByTypeElementGroupingTool factory', function() {
     var ByTypeElementGroupingTool;
 
-    beforeEach(inject(function(_ByTypeElementGroupingTool_) {
+    beforeEach(angular.mock.inject(function(_ByTypeElementGroupingTool_) {
       ByTypeElementGroupingTool = _ByTypeElementGroupingTool_;
     }));
 
@@ -382,7 +382,7 @@ describe('The esn.provider module', function() {
       expect(elements[0].group.name).to.equal(groupName);
     }
 
-    beforeEach(inject(function(_ByDateElementGroupingTool_) {
+    beforeEach(angular.mock.inject(function(_ByDateElementGroupingTool_) {
       ByDateElementGroupingTool = _ByDateElementGroupingTool_;
     }));
 
@@ -645,7 +645,7 @@ describe('The esn.provider module', function() {
 
     var sortByDateInDescendingOrder;
 
-    beforeEach(inject(function(_sortByDateInDescendingOrder_) {
+    beforeEach(angular.mock.inject(function(_sortByDateInDescendingOrder_) {
       sortByDateInDescendingOrder = _sortByDateInDescendingOrder_;
     }));
 
@@ -659,7 +659,7 @@ describe('The esn.provider module', function() {
 
     var toAggregatorSource, $rootScope;
 
-    beforeEach(inject(function(_toAggregatorSource_, _$rootScope_) {
+    beforeEach(angular.mock.inject(function(_toAggregatorSource_, _$rootScope_) {
       toAggregatorSource = _toAggregatorSource_;
       $rootScope = _$rootScope_;
     }));

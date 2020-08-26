@@ -8,9 +8,8 @@ describe('The esnAttachmentImageViewer directive', function() {
   var $compile, $rootScope;
 
   beforeEach(function() {
-    module('esn.attachment');
-    module('jadeTemplates');
-    inject(function(_$rootScope_, _$compile_) {
+    angular.mock.module('esn.attachment');
+    angular.mock.inject(function(_$rootScope_, _$compile_) {
       $rootScope = _$rootScope_;
       $compile = _$compile_;
     });

@@ -46,10 +46,10 @@ describe('The esnUserNotificationListItem directive', function() {
           notification: '='
         }
       });
-    module('jadeTemplates', 'esn.user-notification', 'test.moduleA', 'test.moduleB');
+    angular.mock.module('esn.user-notification', 'test.moduleA', 'test.moduleB');
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _$compile_,
     _$rootScope_
   ) {

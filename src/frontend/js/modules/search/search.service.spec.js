@@ -8,7 +8,7 @@ describe('The esnSearchService service', function() {
   var esnSearchService, $state, query, provider;
 
   beforeEach(function() {
-    angular.mock.module('esn.search', 'jadeTemplates');
+    angular.mock.module('esn.search');
   });
 
   beforeEach(function() {
@@ -26,7 +26,7 @@ describe('The esnSearchService service', function() {
     });
   });
 
-  beforeEach(inject(function(_esnSearchService_) {
+  beforeEach(angular.mock.inject(function(_esnSearchService_) {
     esnSearchService = _esnSearchService_;
   }));
 

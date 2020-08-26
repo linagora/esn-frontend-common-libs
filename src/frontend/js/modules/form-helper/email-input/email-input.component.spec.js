@@ -8,17 +8,17 @@ describe('The esnEmailInput component', function() {
   var $rootScope, $compile;
 
   beforeEach(function() {
-    module('jadeTemplates');
-    module('esn.form.helper', function($provide) {
+    angular.mock.module('esn.form.helper', function($provide) {
       $provide.value('emailService', {
         isValidEmail: function() {
           return true;
         }
       });
+      $provide.value('translateFilter', text => text);
     });
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _$rootScope_,
     _$compile_
   ) {

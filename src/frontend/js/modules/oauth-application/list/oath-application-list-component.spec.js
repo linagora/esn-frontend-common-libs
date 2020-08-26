@@ -10,12 +10,13 @@ describe('The esnOauthApplicationList component', function() {
   var ESNOauthApplicationClient, $modalMock;
 
   beforeEach(function() {
-    module('esn.oauth-application', function($provide) {
+    angular.mock.module('ui.router');
+    angular.mock.module('esn.oauth-application', function($provide) {
       $provide.value('$modal', $modalMock);
+      $provide.value('translateFilter', text => text);
     });
-    module('jadeTemplates');
 
-    inject(function(_$rootScope_, _ESNOauthApplicationClient_, _$compile_) {
+    angular.mock.inject(function(_$rootScope_, _ESNOauthApplicationClient_, _$compile_) {
       $rootScope = _$rootScope_;
       $compile = _$compile_;
       ESNOauthApplicationClient = _ESNOauthApplicationClient_;

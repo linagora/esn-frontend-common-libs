@@ -8,13 +8,13 @@ var expect = chai.expect;
 describe('The esn.http Angular module', function() {
 
   beforeEach(function() {
-    module('esn.http');
+    angular.mock.module('esn.http');
   });
 
   describe('The httpErrorHandler service', function() {
     var windowMock, locationMock;
 
-    beforeEach(module(function($provide) {
+    beforeEach(angular.mock.module(function($provide) {
       windowMock = {
         addEventListener: angular.noop
       };
@@ -49,7 +49,7 @@ describe('The esn.http Angular module', function() {
   describe('The redirectWhenNotAuthInterceptor service', function() {
     var httpErrorHandler;
 
-    beforeEach(module(function($provide) {
+    beforeEach(angular.mock.module(function($provide) {
       httpErrorHandler = {};
       $provide.value('httpErrorHandler', httpErrorHandler);
     }));

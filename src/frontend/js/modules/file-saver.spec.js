@@ -10,7 +10,7 @@ describe('The esn.file-saver Angular module', function() {
   var BlobMock, FileSaverMock, esnFileSaver, $log;
 
   beforeEach(function() {
-    module('esn.file-saver', function($provide) {
+    angular.mock.module('esn.file-saver', function($provide) {
       BlobMock = sinon.spy();
       FileSaverMock = {};
 
@@ -18,7 +18,7 @@ describe('The esn.file-saver Angular module', function() {
       $provide.value('FileSaver', FileSaverMock);
     });
 
-    inject(function(_esnFileSaver_, _$log_) {
+    angular.mock.inject(function(_esnFileSaver_, _$log_) {
       esnFileSaver = _esnFileSaver_;
       $log = _$log_;
     });
@@ -61,7 +61,7 @@ describe('The esn.file-saver Angular module', function() {
       var $httpBackend;
 
       beforeEach(function() {
-        inject(function(_$httpBackend_) {
+        angular.mock.inject(function(_$httpBackend_) {
           $httpBackend = _$httpBackend_;
         });
       });

@@ -11,7 +11,7 @@ describe('The Alpha List module', function() {
 
     var CategoryService;
 
-    beforeEach(module('duScroll'));
+    beforeEach(angular.mock.module('duScroll'));
     beforeEach(angular.mock.inject(function(AlphaCategoryService) {
       CategoryService = AlphaCategoryService;
     }));

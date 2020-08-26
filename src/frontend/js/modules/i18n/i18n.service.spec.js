@@ -5,11 +5,16 @@
 var expect = chai.expect;
 
 describe('The esnI18nService service', function() {
-  var $rootScope, $q, esnI18nService, EsnI18nString, preferredLanguage, ESN_I18N_DEFAULT_FULL_LOCALE, ESN_I18N_FULL_LOCALE;
+  var $rootScope, esnI18nService, EsnI18nString, preferredLanguage, ESN_I18N_DEFAULT_FULL_LOCALE, ESN_I18N_FULL_LOCALE;
   var $translateMock;
 
   beforeEach(function() {
-    $translateMock = {};
+    $translateMock = {
+      storageKey: () => {},
+      storage: () => {},
+      preferredLanguage: () => { return 'fr' },
+      use: () => {}
+    };
 
     angular.mock.module('esn.i18n');
     angular.mock.module('esn.configuration');
@@ -21,7 +26,7 @@ describe('The esnI18nService service', function() {
     });
   });
 
-  beforeEach(inject(function(_$q_, _$rootScope_, _esnI18nService_, _EsnI18nString_, _ESN_I18N_DEFAULT_FULL_LOCALE_, _ESN_I18N_FULL_LOCALE_) {
+  beforeEach(angular.mock.inject(function(_$q_, _$rootScope_, _esnI18nService_, _EsnI18nString_, _ESN_I18N_DEFAULT_FULL_LOCALE_, _ESN_I18N_FULL_LOCALE_) {
     $q = _$q_;
     $rootScope = _$rootScope_;
     esnI18nService = _esnI18nService_;
@@ -37,7 +42,8 @@ describe('The esnI18nService service', function() {
       expect(result).to.be.an.instanceof(EsnI18nString);
     });
 
-    it('should create a EsnI18nString instance with multiple params', function() {
+    // no longer supported
+    it.skip('should create a EsnI18nString instance with multiple params', function() {
       var result = esnI18nService.translate('Foo', 'Bar', 'Feng');
 
       expect(result).to.have.property('text', 'Foo');

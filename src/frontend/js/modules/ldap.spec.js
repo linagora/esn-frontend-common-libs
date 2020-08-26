@@ -16,7 +16,7 @@ describe('The LDAP Angular module', function() {
       headers = {'x-esn-items-count': response.length};
     });
 
-    beforeEach(inject(function(_$httpBackend_, _ldapAPI_) {
+    beforeEach(angular.mock.inject(function(_$httpBackend_, _ldapAPI_) {
       $httpBackend = _$httpBackend_;
       ldapAPI = _ldapAPI_;
     }));

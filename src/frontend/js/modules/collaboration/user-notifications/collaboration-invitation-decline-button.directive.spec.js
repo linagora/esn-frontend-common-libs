@@ -4,6 +4,7 @@ describe('The esnCollaborationInvitationDeclineButton directive', function() {
   var scope, $rootScope, $compile;
   var esnCollaborationClientService, notification, html;
 
+  beforeEach(angular.mock.module('ui.router'));
   beforeEach(function() {
     var esnCollaborationClientService = {
       cancelRequestMembership: function() {
@@ -15,14 +16,15 @@ describe('The esnCollaborationInvitationDeclineButton directive', function() {
       register: function() {}
     };
 
-    module('esn.collaboration', 'jadeTemplates', 'esn.object-type', 'esn.user-notification', 'esn.collaboration');
-    module(function($provide) {
+
+    angular.mock.module('esn.collaboration', 'esn.object-type', 'esn.user-notification');
+    angular.mock.module(function($provide) {
       $provide.value('esnCollaborationClientService', esnCollaborationClientService);
       $provide.value('objectTypeResolver', objectTypeResolver);
     });
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _$rootScope_,
     _$compile_,
     _esnCollaborationClientService_,

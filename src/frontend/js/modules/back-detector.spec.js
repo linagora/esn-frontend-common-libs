@@ -15,7 +15,7 @@ describe('The esn.back-detector Angular module', function() {
 
   beforeEach(angular.mock.module('esn.back-detector'));
 
-  beforeEach(inject(function(_$rootScope_, _$compile_, _BACK_BTN_EVENT_) {
+  beforeEach(angular.mock.inject(function(_$rootScope_, _$compile_, _BACK_BTN_EVENT_) {
     $rootScope = _$rootScope_;
     $scope = _$rootScope_.$new();
     $compile = _$compile_;

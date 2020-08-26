@@ -40,9 +40,7 @@ describe('The infiniteList directive', function() {
     });
   }));
 
-  beforeEach(module('jadeTemplates'));
-
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$interval_, _INFINITE_LIST_POLLING_INTERVAL_) {
+  beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _$interval_, _INFINITE_LIST_POLLING_INTERVAL_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $interval = _$interval_;

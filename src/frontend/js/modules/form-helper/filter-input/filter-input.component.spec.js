@@ -23,14 +23,14 @@ describe('The esnFilterInput component', function() {
   }
 
   beforeEach(function() {
-    module('jadeTemplates', 'esn.form.helper');
+    angular.mock.module('esn.form.helper');
 
-    module(function($provide) {
+    angular.mock.module(function($provide) {
       $provide.value('esnI18nService', esnI18nService);
     });
   });
 
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$timeout_) {
+  beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _$timeout_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $scope = $rootScope.$new();

@@ -8,10 +8,18 @@ describe('The esnLoginSuccessService factory', function() {
   var esnLoginSuccessService, $window;
 
   beforeEach(function() {
-    module('esn.login');
+    angular.mock.module('esn.login');
   });
 
-  beforeEach(inject(function(_$window_, _esnLoginSuccessService_) {
+  beforeEach(function () {
+    angular.mock.module('esn.login', function ($provide) {
+      let $window = { location: { reload: sinon.spy() } };
+      $provide.value('$window', $window);
+      $window.onbeforeunload = sinon.spy();
+    });
+  });
+
+  beforeEach(angular.mock.inject(function(_$window_, _esnLoginSuccessService_) {
     $window = _$window_;
     esnLoginSuccessService = _esnLoginSuccessService_;
   }));

@@ -11,11 +11,12 @@ describe('The Login Angular module', function() {
     var momentMock = {
       tz: {
         guess: function() { return 'foobar'; }
-      }
+      },
+      locale: sinon.stub().returns('fr')
     };
 
     beforeEach(function() {
-      module(function($provide) {
+      angular.mock.module(function($provide) {
         $provide.constant('moment', momentMock);
       });
     });
@@ -56,7 +57,7 @@ describe('The Login Angular module', function() {
   describe('loginController', function() {
     var $rootScope;
 
-    beforeEach(inject(function(_$rootScope_, $controller) {
+    beforeEach(angular.mock.inject(function(_$rootScope_, $controller) {
       var self = this;
 
       this.loginAPI = {};
@@ -210,7 +211,7 @@ describe('The Login Angular module', function() {
   describe('changePasswordController', function() {
     var loginAPI, notificationFactory, $scope, locals;
 
-    beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(angular.mock.inject(function($rootScope, $controller) {
       loginAPI = {};
       notificationFactory = {};
       $scope = $rootScope.$new();

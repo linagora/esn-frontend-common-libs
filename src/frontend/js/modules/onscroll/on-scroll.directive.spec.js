@@ -8,8 +8,8 @@ describe('The onScroll directive', function() {
   var $rootScope, $compile;
 
   beforeEach(function() {
-    module('esn.onscroll');
-    inject(function(_$rootScope_, _$compile_) {
+    angular.mock.module('esn.onscroll');
+    angular.mock.inject(function(_$rootScope_, _$compile_) {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
     });
@@ -30,7 +30,7 @@ describe('The onScroll directive', function() {
     scope.testScroll = sinon.spy();
 
     var element = compileComponent('<div on-scroll on-scroll-down="testScroll()" />', scope);
-    var event = new Event('onmousewheel');
+    var event = window.$.Event('onmousewheel');
 
     event.wheelDelta = -1;
     element.triggerHandler(event);
@@ -44,7 +44,7 @@ describe('The onScroll directive', function() {
     scope.testScroll = sinon.spy();
 
     var element = compileComponent('<div on-scroll on-scroll-up="testScroll()" />', scope);
-    var event = new Event('onmousewheel');
+    var event = window.$.Event('onmousewheel');
 
     event.wheelDelta = 1;
     element.triggerHandler(event);
@@ -58,7 +58,7 @@ describe('The onScroll directive', function() {
     scope.testScroll = sinon.spy();
 
     var element = compileComponent('<div on-scroll on-scroll-down="testScroll()" />', scope);
-    var event = new Event('onmousewheel');
+    var event = window.$.Event('onmousewheel');
 
     event.wheelDelta = 1;
     element.triggerHandler(event);
@@ -72,7 +72,7 @@ describe('The onScroll directive', function() {
     scope.testScroll = sinon.spy();
 
     var element = compileComponent('<div on-scroll on-scroll-up="testScroll()" />', scope);
-    var event = new Event('onmousewheel');
+    var event = window.$.Event('onmousewheel');
 
     event.wheelDelta = -1;
     element.triggerHandler(event);
@@ -87,7 +87,7 @@ describe('The onScroll directive', function() {
     scope.prevented = true;
 
     var element = compileComponent('<div on-scroll on-scroll-up="testScroll()" />', scope);
-    var event = new Event('onmousewheel');
+    var event = window.$.Event('onmousewheel');
 
     event.wheelDelta = -1;
     event.preventDefault = sinon.spy();
@@ -103,7 +103,7 @@ describe('The onScroll directive', function() {
     scope.prevented = false;
 
     var element = compileComponent('<div on-scroll on-scroll-up="testScroll()" />', scope);
-    var event = new Event('onmousewheel');
+    var event = window.$.Event('onmousewheel');
 
     event.wheelDelta = -1;
     event.preventDefault = sinon.spy();

@@ -9,10 +9,11 @@ describe('The esnAttachmentViewer directive', function() {
   var esnAttachmentViewerService;
 
   beforeEach(function() {
-    module('esn.attachment');
-    module('jadeTemplates');
+    angular.mock.module('esn.attachment', function($provide) {
+      $provide.value('translateFilter', text => text);
+    });
 
-    inject(function(_$rootScope_, _$compile_, _esnAttachmentRegistryService_, _esnAttachmentViewerService_) {
+    angular.mock.inject(function(_$rootScope_, _$compile_, _esnAttachmentRegistryService_, _esnAttachmentViewerService_) {
       $rootScope = _$rootScope_;
       $compile = _$compile_;
       esnAttachmentViewerService = _esnAttachmentViewerService_;

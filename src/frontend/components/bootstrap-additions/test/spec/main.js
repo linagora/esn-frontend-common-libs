@@ -2,7 +2,7 @@
 
 describe('Animations', function() {
 
-  beforeEach(module('ngAnimate'));
+  beforeEach(angular.mock.module('ngAnimate'));
 
   var scope, $animate;
 

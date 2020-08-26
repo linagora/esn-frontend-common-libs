@@ -4,9 +4,9 @@ describe('The esnPeopleAPI service', function() {
   var $httpBackend;
   var esnPeopleAPI;
 
-  beforeEach(module('esn.people'));
+  beforeEach(angular.mock.module('esn.people'));
 
-  beforeEach(inject(function(_$httpBackend_, _esnPeopleAPI_) {
+  beforeEach(angular.mock.inject(function(_$httpBackend_, _esnPeopleAPI_) {
     $httpBackend = _$httpBackend_;
     esnPeopleAPI = _esnPeopleAPI_;
   }));

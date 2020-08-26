@@ -32,7 +32,7 @@ describe('The Company Angular module', function() {
 
   describe('ensureUniqueCompany directive', function() {
     var html = '<form name="form"><input type="text" name="company" ng-model="settings.company" ensure-unique-company></form>';
-    beforeEach(inject(['$compile', '$rootScope', '$httpBackend', function($c, $r, $h) {
+    beforeEach(angular.mock.inject(['$compile', '$rootScope', '$httpBackend', function($c, $r, $h) {
       this.$compile = $c;
       this.$rootScope = $r;
       this.$httpBackend = $h;

@@ -37,7 +37,7 @@ describe('The infiniteScrollHelper module', function() {
     ELEMENTS_PER_PAGE = 3;
     dbMock = [1, 2, 3, 4, 5, 6, 7];
 
-    inject(function(
+    angular.mock.inject(function(
       _$q_,
       _$rootScope_,
       _$timeout_,

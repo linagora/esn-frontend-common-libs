@@ -4,11 +4,12 @@
 /* global async: false */
 
 var expect = chai.expect;
+var async = require('async');
 
 describe('The Paginate Angular module', function() {
 
   beforeEach(angular.mock.module('esn.paginate'));
-  beforeEach(inject(function(paginator) {
+  beforeEach(angular.mock.inject(function(paginator) {
     this.paginator = paginator;
   }));
 

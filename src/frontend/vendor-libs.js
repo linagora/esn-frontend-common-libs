@@ -57,6 +57,7 @@ require('moment/locale/zh-cn.js');
 require('ng-tags-input/build/ng-tags-input.js');
 require('restangular/src/restangular.js');
 require('showdown/dist/showdown.js');
+require('showdown-twitter/dist/showdown-twitter.js');
 require('summernote/dist/summernote.js');
 require('ui-router-extras/release/ct-ui-router-extras.js');
 require('ui-router-extras/release/modular/ct-ui-router-extras.dsr.js');

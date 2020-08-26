@@ -18,10 +18,10 @@ describe('The esnUserNotificationService factory', function() {
         });
       });
 
-    module('esn.user-notification', 'esn.user-notification.test');
+    angular.mock.module('esn.user-notification', 'esn.user-notification.test');
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _esnUserNotificationService_,
     _esnUserNotificationState_,
     _esnUserNotificationProviders_

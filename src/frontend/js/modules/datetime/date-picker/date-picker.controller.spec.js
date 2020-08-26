@@ -8,15 +8,15 @@ describe('The esnDatetimeDatePickerController function', function() {
   var $controller, $rootScope, $scope, esnDatetimeService, moment, $element;
 
   beforeEach(function() {
-    module('esn.datetime');
+    angular.mock.module('esn.datetime');
 
-    module(function($provide) {
+    angular.mock.module(function($provide) {
       $provide.value('$element', function() {
         return $element;
       });
     });
 
-    inject(function(_$controller_, _$rootScope_, _$timeout_, _esnDatetimeService_, _moment_, _$element_) {
+    angular.mock.inject(function(_$controller_, _$rootScope_, _$timeout_, _esnDatetimeService_, _moment_, _$element_) {
       $controller = _$controller_;
       $rootScope = _$rootScope_;
       esnDatetimeService = _esnDatetimeService_;

@@ -351,7 +351,7 @@
           $log.info('Error while getting auth token', error.data);
         }
 
-        return $q.reject(error);
+        return Promise.reject(error);
       });
     }
 

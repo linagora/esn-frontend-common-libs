@@ -11,7 +11,6 @@ describe('The esn.api-notification Angular module', function() {
   var sessionId = '12345';
 
   beforeEach(function() {
-    module('jadeTemplates');
 
     var as$log = {
       debug: function() {}
@@ -22,9 +21,7 @@ describe('The esn.api-notification Angular module', function() {
         _id: sessionId
       },
       domain: {},
-      ready: {
-        then: function() {}
-      }
+      ready: $q.when()
     };
 
     var asNotificationFactory = {
@@ -54,7 +51,7 @@ describe('The esn.api-notification Angular module', function() {
     });
   });
 
-  beforeEach(inject(['$compile', '$rootScope', function($c, $r) {
+  beforeEach(angular.mock.inject(['$compile', '$rootScope', function($c, $r) {
     this.$compile = $c;
     this.$rootScope = $r;
     this.$scope = this.$rootScope.$new();

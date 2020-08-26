@@ -10,11 +10,12 @@ describe('The ESNAttachmentController controller', function() {
   var esnAttachmentViewerService, esnAttachmentViewerGalleryService, esnAttachmentRegistryService;
 
   beforeEach(function() {
-    module('esn.attachment', function($provide) {
+    angular.mock.module('esn.attachment', function($provide) {
       $provide.value('$element', {append: function() {return {};}});
+      $provide.value('translateFilter', text => text);
     });
 
-    inject(function(_$controller_, _$rootScope_, _esnAttachmentViewerService_, _esnAttachmentViewerGalleryService_, _esnAttachmentRegistryService_, _$log_) {
+    angular.mock.inject(function(_$controller_, _$rootScope_, _esnAttachmentViewerService_, _esnAttachmentViewerGalleryService_, _esnAttachmentRegistryService_, _$log_) {
       $controller = _$controller_;
       $rootScope = _$rootScope_;
       esnAttachmentRegistryService = _esnAttachmentRegistryService_;

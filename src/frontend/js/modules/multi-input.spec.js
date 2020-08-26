@@ -9,7 +9,6 @@ describe('The multi-input Angular module', function() {
 
   beforeEach(function() {
     angular.mock.module('esn.multi-input');
-    module('jadeTemplates');
   });
 
   describe('The MultiInputGroupController controller', function() {

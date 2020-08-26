@@ -11,19 +11,19 @@ describe('The esn.dragndrop Angular module', function() {
   var esnDragService, ESN_DRAG_DISTANCE_THRESHOLD, ESN_DRAG_ANIMATION_DURATION;
   var deviceDetectorMock;
 
-  beforeEach(module('esn.dragndrop'));
+  beforeEach(angular.mock.module('esn.dragndrop'));
 
   beforeEach(function() {
     deviceDetectorMock = {
       isMobile: function() { return false; }
     };
 
-    module('ng.deviceDetector', function($provide) {
+    angular.mock.module('ng.deviceDetector', function($provide) {
       $provide.value('deviceDetector', deviceDetectorMock);
     });
   });
 
-  beforeEach(inject(function(_$compile_, _$rootScope_, _esnDragService_, _ESN_DRAG_DISTANCE_THRESHOLD_, _ESN_DRAG_ANIMATION_DURATION_) {
+  beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _esnDragService_, _ESN_DRAG_DISTANCE_THRESHOLD_, _ESN_DRAG_ANIMATION_DURATION_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     esnDragService = _esnDragService_;
@@ -73,7 +73,7 @@ describe('The esn.dragndrop Angular module', function() {
     var $document, $timeout;
     var ESN_DRAG_ANIMATION_CLASS;
 
-    beforeEach(inject(function(_$document_, _$timeout_, _ESN_DRAG_ANIMATION_CLASS_) {
+    beforeEach(angular.mock.inject(function(_$document_, _$timeout_, _ESN_DRAG_ANIMATION_CLASS_) {
       $document = _$document_;
       $timeout = _$timeout_;
       ESN_DRAG_ANIMATION_CLASS = _ESN_DRAG_ANIMATION_CLASS_;

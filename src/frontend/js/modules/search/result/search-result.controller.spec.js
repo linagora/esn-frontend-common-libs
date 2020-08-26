@@ -59,7 +59,7 @@ describe('The ESNSearchResultController controller', function() {
     });
   });
 
-  beforeEach(inject(function(_$controller_, _$q_, _$rootScope_) {
+  beforeEach(angular.mock.inject(function(_$controller_, _$q_, _$rootScope_) {
     $controller = _$controller_;
     $q = _$q_;
     $rootScope = _$rootScope_;

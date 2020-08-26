@@ -8,15 +8,17 @@ describe('userAPI service', function() {
   var $httpBackend, userAPI, sessionMock;
 
   beforeEach(function() {
-    module('esn.user');
+    angular.mock.module('esn.user');
 
-    sessionMock = {};
+    sessionMock = {
+      ready: $q.when({})
+    };
 
-    module(function($provide) {
+    angular.mock.module(function($provide) {
       $provide.value('session', sessionMock);
     });
 
-    inject(function(_$httpBackend_, _userAPI_) {
+    angular.mock.inject(function(_$httpBackend_, _userAPI_) {
       $httpBackend = _$httpBackend_;
       userAPI = _userAPI_;
     });

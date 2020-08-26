@@ -8,9 +8,9 @@ var expect = chai.expect;
 describe('The gracePeriodLiveNotificationService service', function() {
 
   beforeEach(function() {
-    module('esn.websocket');
-    module('esn.http');
-    module('linagora.esn.graceperiod');
+    angular.mock.module('esn.websocket');
+    angular.mock.module('esn.http');
+    angular.mock.module('linagora.esn.graceperiod');
   });
 
   describe('Functions tests', function() {
@@ -26,11 +26,11 @@ describe('The gracePeriodLiveNotificationService service', function() {
         removeListener: removeListenerFn
       });
 
-      module(function($provide) {
+      angular.mock.module(function($provide) {
         $provide.value('livenotification', liveNotificationMock);
       });
 
-      inject(function(_gracePeriodLiveNotificationService_) {
+      angular.mock.inject(function(_gracePeriodLiveNotificationService_) {
         gracePeriodLiveNotificationService = _gracePeriodLiveNotificationService_;
       });
     });
@@ -118,11 +118,11 @@ describe('The gracePeriodLiveNotificationService service', function() {
         };
       };
 
-      module(function($provide) {
+      angular.mock.module(function($provide) {
         $provide.value('livenotification', liveNotificationMock);
       });
 
-      inject(function(_$rootScope_, _gracePeriodLiveNotificationService_) {
+      angular.mock.inject(function(_$rootScope_, _gracePeriodLiveNotificationService_) {
         $rootScope = _$rootScope_;
         gracePeriodLiveNotificationService = _gracePeriodLiveNotificationService_;
       });

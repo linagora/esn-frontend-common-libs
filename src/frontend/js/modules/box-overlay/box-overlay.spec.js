@@ -62,8 +62,6 @@ describe('The box-overlay Angular module', function() {
     return angular.element('.box-overlay-open');
   }
 
-  beforeEach(module('jadeTemplates'));
-
   beforeEach(function() {
     angular.mock.module('esn.box-overlay', function($provide) {
       esnI18nService = {
@@ -71,7 +69,8 @@ describe('The box-overlay Angular module', function() {
           return {
             toString: function() { return input; }
           };
-        }
+        },
+        getLocale: function() { return 'fr' }
       };
 
       $provide.value('notificationFactory', notificationFactory = {
@@ -89,7 +88,7 @@ describe('The box-overlay Angular module', function() {
 
     var $httpBackend, ESN_BOX_OVERLAY_EVENTS, ESN_BOX_OVERLAY_MAX_WINDOWS;
 
-    beforeEach(inject(function(_$window_, _$compile_, _$rootScope_, _$httpBackend_, _$timeout_,
+    beforeEach(angular.mock.inject(function(_$window_, _$compile_, _$rootScope_, _$httpBackend_, _$timeout_,
         _deviceDetector_, _DEVICES_, _ESN_BOX_OVERLAY_EVENTS_, _ESN_BOX_OVERLAY_MAX_WINDOWS_) {
       $window = _$window_;
       $compile = _$compile_;
@@ -392,7 +391,7 @@ describe('The box-overlay Angular module', function() {
 
   describe('The boxOverlayContainer directive', function() {
 
-    beforeEach(inject(function(_$compile_, _$rootScope_) {
+    beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_) {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $scope = $rootScope.$new();
@@ -419,7 +418,7 @@ describe('The box-overlay Angular module', function() {
       $provide.value('$boxOverlay', boxOverlay);
     }));
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _boxOverlayOpener_) {
+    beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _boxOverlayOpener_) {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $scope = $rootScope.$new();
@@ -451,7 +450,7 @@ describe('The box-overlay Angular module', function() {
   describe('The boxOverlay service', function() {
     var $boxOverlay, $httpBackend;
 
-    beforeEach(inject(function(_$timeout_, _$httpBackend_, _$boxOverlay_, _$q_) {
+    beforeEach(angular.mock.inject(function(_$timeout_, _$httpBackend_, _$boxOverlay_, _$q_) {
       $timeout = _$timeout_;
       $httpBackend = _$httpBackend_;
       $boxOverlay = _$boxOverlay_;
@@ -591,6 +590,7 @@ describe('The box-overlay Angular module', function() {
       });
 
       target.$scope.$digest();
+      $timeout.flush();
 
       expect($timeout.flush).to.throw();
       expect(target.destroy).not.to.have.been.called;
@@ -600,7 +600,7 @@ describe('The box-overlay Angular module', function() {
   describe('The BoxOverlayStateManager factory', function() {
     var BoxOverlayStateManager, stateManager;
 
-    beforeEach(inject(function(_BoxOverlayStateManager_) {
+    beforeEach(angular.mock.inject(function(_BoxOverlayStateManager_) {
       BoxOverlayStateManager = _BoxOverlayStateManager_;
       stateManager = new BoxOverlayStateManager();
     }));

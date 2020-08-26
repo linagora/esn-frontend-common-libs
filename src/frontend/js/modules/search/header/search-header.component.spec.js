@@ -8,11 +8,11 @@ describe('The esnSearchHeader component', function() {
   var $state, $stateParams, element, $compile, $rootScope, scope;
 
   beforeEach(function() {
-    angular.mock.module('esn.search', 'jadeTemplates');
+    angular.mock.module('esn.search');
     angular.mock.module('esn.configuration');
   });
 
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$stateParams_, _$state_) {
+  beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _$stateParams_, _$state_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $stateParams = _$stateParams_;
@@ -29,8 +29,9 @@ describe('The esnSearchHeader component', function() {
   }
 
   function submitWithText() {
-    element.find('input').val('cow').trigger('input');
-    element.find('form button[type=submit]').click();
+    element.find('.search-input').val('cow').trigger('input');
+    element.find('.search-header-form').trigger('submit');
+    scope.$digest();
   }
 
   it('should init search field with q get parameter', function() {
@@ -51,7 +52,7 @@ describe('The esnSearchHeader component', function() {
   });
 
   it('when form submitted in a different state, it should update query parameter', function() {
-    $state.go = sinon.spy($state.go);
+    $state.go = sinon.spy();
 
     compileSearchHeaderDirective();
     submitWithText();
@@ -61,7 +62,7 @@ describe('The esnSearchHeader component', function() {
 
   it('when form submitted in the same state, it should update q get parameter and replace location', function() {
     $state.go('search.main');
-    $state.go = sinon.spy($state.go);
+    $state.go = sinon.spy();
 
     compileSearchHeaderDirective();
     submitWithText();

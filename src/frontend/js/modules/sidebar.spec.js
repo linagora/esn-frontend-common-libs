@@ -8,9 +8,8 @@ var expect = chai.expect;
 describe('The Sidebar Angular module', function() {
 
   beforeEach(function() {
-    module('jadeTemplates');
-    module('esn.core');
-    module('esn.sidebar');
+    angular.mock.module('esn.core');
+    angular.mock.module('esn.sidebar');
   });
 
   describe('contextualSidebar directive', function() {
@@ -34,12 +33,11 @@ describe('The Sidebar Angular module', function() {
       angular.mock.module('esn.application-menu');
     });
 
-    beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _$timeout_, _APP_MENU_OPEN_EVENT_) {
+    beforeEach(angular.mock.inject(function(_$compile_, _$rootScope_, _$timeout_) {
       this.$compile = _$compile_;
       this.$rootScope = _$rootScope_;
       this.$scope = this.$rootScope.$new();
       this.$timeout = _$timeout_;
-      this.APP_MENU_OPEN_EVENT = _APP_MENU_OPEN_EVENT_;
 
       this.initDirective = function(html, scope) {
         this.element = this.$compile(html)(scope);

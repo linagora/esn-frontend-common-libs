@@ -26,14 +26,14 @@ describe('The esnPaginationtionProviderBuilder factory', function() {
     PageAggregatorServiceMock = sinon.spy();
     PageAggregatorServiceMock.prototype.loadNextItems = loadNextSpy;
 
-    module('esn.pagination', function($provide) {
+    angular.mock.module('esn.pagination', function($provide) {
       $provide.value('esnPaginationProvider', esnPaginationProviderMock);
       $provide.value('PageAggregatorService', PageAggregatorServiceMock);
       $provide.constant('ELEMENTS_PER_PAGE', 1);
     });
   });
 
-  beforeEach(inject(function(_$q_, _$rootScope_, _esnPaginationtionProviderBuilder_) {
+  beforeEach(angular.mock.inject(function(_$q_, _$rootScope_, _esnPaginationtionProviderBuilder_) {
     $rootScope = _$rootScope_;
     $q = _$q_;
     esnPaginationtionProviderBuilder = _esnPaginationtionProviderBuilder_;

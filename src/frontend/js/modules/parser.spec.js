@@ -183,7 +183,7 @@ describe('The esn.parser Angular module', function() {
       });
     });
 
-    beforeEach(inject(function($rootScope, $compile) {
+    beforeEach(angular.mock.inject(function($rootScope, $compile) {
       this.$rootScope = $rootScope;
       this.scope = $rootScope.$new();
       this.$compile = $compile;

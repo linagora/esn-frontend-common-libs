@@ -12,11 +12,10 @@ describe('The esnHeaderSticky directive', function() {
   var scope;
 
   beforeEach(function() {
-    module('jadeTemplates');
-    module('esn.header');
+    angular.mock.module('esn.header');
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _$rootScope_,
     _$compile_,
     _matchmedia_,

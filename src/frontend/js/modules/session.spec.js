@@ -11,7 +11,7 @@ describe('The esn.session Angular module', function() {
     beforeEach(function() {
       var self = this;
 
-      inject(function(session) {
+      angular.mock.inject(function(session) {
         self.session = session;
       });
     });
@@ -230,9 +230,7 @@ describe('The esn.session Angular module', function() {
         setLogout: function() {},
         isLoggedIn: function() {},
         domain: {},
-        ready: {
-          then: function() {}
-        }
+        ready: $q.when()
       };
 
       tokenAPI = {
@@ -242,14 +240,14 @@ describe('The esn.session Angular module', function() {
         }
       };
 
-      module(function($provide) {
+      angular.mock.module(function($provide) {
         $provide.value('userAPI', userAPI);
         $provide.value('domainAPI', domainAPI);
         $provide.value('tokenAPI', tokenAPI);
         $provide.value('session', session);
       });
 
-      inject(function($injector, _$rootScope_) {
+      angular.mock.inject(function($injector, _$rootScope_) {
         service = $injector.get('sessionFactory');
         $rootScope = _$rootScope_;
       });

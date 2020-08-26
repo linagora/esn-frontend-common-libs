@@ -7,6 +7,8 @@ var expect = chai.expect;
 describe('The esnCollaborationMembershipRequestsPaginationProvider service', function() {
   var data, provider, collaboration, options, esnCollaborationClientService, esnCollaborationMembershipRequestsPaginationProvider, $q, $rootScope;
 
+  beforeEach(angular.mock.module('ui.router'));
+
   beforeEach(function() {
     collaboration = {objectType: 'chat.conversation', id: 1};
     options = {limit: 5, offset: 0};
@@ -23,7 +25,7 @@ describe('The esnCollaborationMembershipRequestsPaginationProvider service', fun
     });
   });
 
-  beforeEach(inject(function(_$q_, _$rootScope_, _esnCollaborationMembershipRequestsPaginationProvider_) {
+  beforeEach(angular.mock.inject(function(_$q_, _$rootScope_, _esnCollaborationMembershipRequestsPaginationProvider_) {
     $rootScope = _$rootScope_;
     $q = _$q_;
     esnCollaborationMembershipRequestsPaginationProvider = _esnCollaborationMembershipRequestsPaginationProvider_;

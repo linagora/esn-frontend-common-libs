@@ -12,10 +12,8 @@ describe('The userStatusBubbleController controller', function() {
   beforeEach(function() {
     userId = 1;
     userStatusService = {};
-
     angular.mock.module('linagora.esn.user-status', function($provide) {
       $provide.value('userStatusService', userStatusService);
-      $provide.value('session', {ready: {then: function() {}}});
     });
 
     angular.mock.inject(function(_$rootScope_, _$controller_, _USER_STATUS_EVENTS_, _USER_STATUS_) {

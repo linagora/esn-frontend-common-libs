@@ -15,7 +15,7 @@ describe('The esnAvatarUrlService service', function() {
     userId = '123456789';
   });
 
-  beforeEach(inject(function(_esnAvatarUrlService_) {
+  beforeEach(angular.mock.inject(function(_esnAvatarUrlService_) {
     esnAvatarUrlService = _esnAvatarUrlService_;
   }));
 

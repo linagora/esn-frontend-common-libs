@@ -9,8 +9,8 @@ describe('The esnAttachmentViewerService service', function() {
   var $log, esnAttachmentViewerService, esnAttachmentViewerGalleryService;
 
   beforeEach(function() {
-    module('esn.attachment');
-    inject(function(_$log_, _esnAttachmentViewerService_, _esnAttachmentViewerGalleryService_) {
+    angular.mock.module('esn.attachment');
+    angular.mock.inject(function(_$log_, _esnAttachmentViewerService_, _esnAttachmentViewerGalleryService_) {
       esnAttachmentViewerService = _esnAttachmentViewerService_;
       esnAttachmentViewerGalleryService = _esnAttachmentViewerGalleryService_;
       $log = _$log_;

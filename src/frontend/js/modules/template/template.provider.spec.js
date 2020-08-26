@@ -8,11 +8,11 @@ describe('The esnTemplate provider', function() {
   var esnTemplate, template;
 
   beforeEach(function() {
-    module('esn.template');
+    angular.mock.module('esn.template');
 
     template = 'template';
 
-    inject(function(_esnTemplate_) {
+    angular.mock.inject(function(_esnTemplate_) {
       esnTemplate = _esnTemplate_;
     });
   });

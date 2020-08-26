@@ -10,7 +10,7 @@ describe('The infiniteListService service', function() {
 
   beforeEach(angular.mock.module('esn.infinite-list'));
 
-  beforeEach(inject(function(_$rootScope_, _infiniteListService_, _INFINITE_LIST_EVENTS_) {
+  beforeEach(angular.mock.inject(function(_$rootScope_, _infiniteListService_, _INFINITE_LIST_EVENTS_) {
     e1 = { e: '1' };
     e2 = { e: '2' };
 

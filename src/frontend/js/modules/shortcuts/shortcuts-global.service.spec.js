@@ -9,10 +9,10 @@ describe('The esnShortcutsGlobal service', function() {
   var ESN_SHORTCUTS_DEFAULT_CATEGORY;
 
   beforeEach(function() {
-    module('esn.shortcuts');
+    angular.mock.module('esn.shortcuts');
   });
 
-  beforeEach(inject(function(
+  beforeEach(angular.mock.inject(function(
     _esnShortcutsGlobal_,
     _esnShortcuts_,
     _ESN_SHORTCUTS_DEFAULT_CATEGORY_
