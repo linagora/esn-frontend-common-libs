@@ -130,7 +130,7 @@ require('../constants.js');
       buildFetchContext: function(options) {
         return $q.when(options.query && options.query.text);
       },
-      template: require("../../views/modules/member/member-search-item.pug")
+      templateUrl: "/views/modules/member/member-search-item.html"
     });
   })
 
