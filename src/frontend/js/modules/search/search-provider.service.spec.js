@@ -19,7 +19,7 @@ describe('The esnSearchProvider service', function() {
     it('should throw error when name is not defined', function() {
       var test = function() {
         new SearchProvider({
-          template: 'template',
+          templateUrl: '/path/to/template',
           uid: 'op.members'
         });
       };
@@ -27,7 +27,7 @@ describe('The esnSearchProvider service', function() {
       expect(test).to.throw('name is required for search provider');
     });
 
-    it('should throw error when template is not defined', function() {
+    it('should throw error when templateUrl is not defined', function() {
       var test = function() {
         new SearchProvider({
           name: 'My search provider',
@@ -35,14 +35,14 @@ describe('The esnSearchProvider service', function() {
         });
       };
 
-      expect(test).to.throw('template is required to render search result');
+      expect(test).to.throw('templateUrl is required to render search result');
     });
 
     it('should throw error when uid is not defined', function() {
       var test = function() {
         new SearchProvider({
           name: 'My search provider',
-          template: 'template'
+          templateUrl: '/path/to/template'
         });
       };
 
@@ -55,7 +55,7 @@ describe('The esnSearchProvider service', function() {
       var provider = new SearchProvider({
         uid: 'uid',
         name: 'My search provider',
-        template: 'template',
+        templateUrl: '/path/to/template',
         searchTemplateUrl: '/my/search/provider/form.html'
       });
 
@@ -66,7 +66,7 @@ describe('The esnSearchProvider service', function() {
       var provider = new SearchProvider({
         uid: 'uid',
         name: 'My search provider',
-        template: 'template'
+        templateUrl: '/path/to/template'
       });
 
       expect(provider.hasAdvancedSearch).to.be.false;
