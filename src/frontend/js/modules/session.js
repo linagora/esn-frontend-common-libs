@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 
-  angular.module('esn.session', ['esn.user', 'esn.domain', 'esn.template', 'esn.themes'])
+  angular.module('esn.session', ['esn.user', 'esn.domain', 'esn.template', 'esn.themes', 'esn.auth'])
   .factory('session', function($q) {
 
     var bootstrapDefer = $q.defer();
@@ -93,17 +93,30 @@
   })
 
   // TODO (esn-frontend-common-libs#51): Write tests for the new changes (https://github.com/OpenPaaS-Suite/esn-frontend-common-libs/pull/48)
-  .controller('sessionInitESNController', function($scope, esnTemplate, sessionFactory) {
+  .controller('sessionInitESNController', function($scope, $log, esnTemplate, sessionFactory, esnAuth) {
     $scope.session = {
       template: esnTemplate.templates.loading
     };
 
-    sessionFactory.bootstrapSession()
-      .then(() => {
-        // we $apply because otherwise sometimes angular does not detect the change
-        $scope.$apply(() => {
-          $scope.session.template = esnTemplate.templates.success;
-        });
+    esnAuth.init()
+      .then(user => {
+        if (!user) {
+          return esnAuth.signin().catch(err => {
+            $log.debug('Signin error', err);
+            $scope.$apply(() => {
+              $scope.session.error = 'There was an issue while authenticating user';
+              $scope.session.template = esnTemplate.templates.error;
+            });
+          });
+        }
+
+        return sessionFactory.bootstrapSession()
+          .then(() => {
+            // we $apply because otherwise sometimes angular does not detect the change
+            $scope.$apply(() => {
+              $scope.session.template = esnTemplate.templates.success;
+            });
+          });
       })
       .catch(error => {
         $scope.$apply(() => {
@@ -183,3 +196,4 @@ require('./template/template.module.js');
 require('./user/user.module.js');
 require('./domain.js');
 require('./themes/themes.module');
+require('./auth/auth.module.js');
