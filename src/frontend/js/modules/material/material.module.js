@@ -1,10 +1,7 @@
-(function(angular) {
-  'use strict';
+'use strict';
 
-  angular.module('esn.material', [
-    'material.core'
-  ]);
-
-})(angular);
+angular.module('esn.material', [
+  'material.core'
+]);
 
 require('./material-colors.config.js');
