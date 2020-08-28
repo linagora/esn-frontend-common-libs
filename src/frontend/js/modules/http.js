@@ -9,7 +9,6 @@
   .factory('esnRestangular', function(Restangular, httpConfigurer) {
     var restangularInstance = Restangular.withConfig(function(RestangularConfigurer) {
       RestangularConfigurer.setFullResponse(true);
-      RestangularConfigurer.setDefaultHttpFields({ withCredentials: true });
     });
 
     httpConfigurer.manageRestangular(restangularInstance, '/api');
