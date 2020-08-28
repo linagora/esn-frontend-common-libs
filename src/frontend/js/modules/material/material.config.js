@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('esn.material').config(configBlock);
+angular.module('esn.material')
+  .config(configTheme)
+  .config(configDefaultIcon);
 
-function configBlock($mdThemingProvider) {
+function configTheme($mdThemingProvider) {
   const openpaasPalette = $mdThemingProvider.extendPalette('indigo', {
     50: 'e4f2fe',
     100: 'bce0fb',
@@ -22,4 +24,8 @@ function configBlock($mdThemingProvider) {
 
   $mdThemingProvider.definePalette('openpaas', openpaasPalette);
   $mdThemingProvider.theme('default').primaryPalette('openpaas');
+}
+
+function configDefaultIcon($mdIconProvider) {
+  $mdIconProvider.defaultIconSet('images/mdi/mdi.svg', 24);
 }

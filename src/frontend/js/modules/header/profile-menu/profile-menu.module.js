@@ -11,5 +11,4 @@ angular.module('esn.profile-menu', [
 require('../../avatar.js');
 require('../../session.js');
 require('./profile-menu.component.js');
-require('./profile-menu.config.js');
 require('./profile-menu.controller.js');
