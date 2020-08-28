@@ -4,4 +4,4 @@ angular.module('esn.material', [
   'material.core'
 ]);
 
-require('./material-colors.config.js');
+require('./material.config.js');

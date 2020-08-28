@@ -3,7 +3,7 @@
 angular.module('esn.material').config(configBlock);
 
 function configBlock($mdThemingProvider) {
-  var openpaasPalette = $mdThemingProvider.extendPalette('indigo', {
+  const openpaasPalette = $mdThemingProvider.extendPalette('indigo', {
     50: 'e4f2fe',
     100: 'bce0fb',
     200: '90cbf9',
