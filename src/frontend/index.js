@@ -281,7 +281,6 @@ require('./js/modules/textarea-autosize.js');
 require('./js/modules/login.js');
 require('./js/modules/login/login-success.service.js');
 require('./js/modules/material/material.module.js');
-require('./js/modules/material/material-colors.config.js');
 require('./js/modules/company.js');
 require('./js/modules/i18n/i18n.module.js');
 require('./js/modules/i18n/i18n.run.js');
