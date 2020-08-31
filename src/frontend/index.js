@@ -17,7 +17,6 @@ require('./js/modules/header/sticky/header-sticky.directive.js');
 require('./js/modules/header/profile-menu/profile-menu.module.js');
 require('./js/modules/header/profile-menu/profile-menu.component.js');
 require('./js/modules/header/profile-menu/profile-menu.controller.js');
-require('./js/modules/header/profile-menu/profile-menu.config.js');
 require('./js/modules/subheader/subheader.module.js');
 require('./js/modules/subheader/subheader.constants.js');
 require('./js/modules/subheader/sub-header.service.js');
