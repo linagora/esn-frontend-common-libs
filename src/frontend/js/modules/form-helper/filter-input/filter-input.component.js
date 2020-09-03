@@ -6,7 +6,7 @@ require('./filter-input.controller.js');
   angular.module('esn.form.helper')
 
     .component('esnFilterInput', {
-      template: require("./filter-input.pug"),
+      template: require('./filter-input.pug'),
       bindings: {
         onChange: '&',
         onBlur: '&',

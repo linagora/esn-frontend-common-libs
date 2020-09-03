@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('directive : action-list', function() {
   var element, controller;
@@ -118,7 +118,7 @@ describe('directive : action-list', function() {
 
     this.opened.$isShown = function() { return false; };
 
-    onResize({matches: false});
+    onResize({ matches: false });
     element.click();
     expect($popover).to.have.been.called;
   });
@@ -133,7 +133,7 @@ describe('directive : action-list', function() {
 
     expect($modal).to.have.been.called;
     this.opened.scope = {};
-    onResize({matches: false});
+    onResize({ matches: false });
     expect($popover).to.not.have.been.called;
   });
 
@@ -145,7 +145,7 @@ describe('directive : action-list', function() {
     element.click();
     expect($popover).to.have.been.called;
 
-    onResize({matches: true});
+    onResize({ matches: true });
     element.click();
     expect($modal).to.have.been.called;
   });
@@ -157,7 +157,7 @@ describe('directive : action-list', function() {
     this.initDirective('<button action-list>Click Me</button>');
     element.click();
 
-    onResize({matches: false});
+    onResize({ matches: false });
     expect($popover).to.have.been.callCount(1);
     expect($modal).to.have.not.been.called;
   });
@@ -169,7 +169,7 @@ describe('directive : action-list', function() {
     this.initDirective('<button action-list>Click Me</button>');
     element.click();
 
-    onResize({matches: true});
+    onResize({ matches: true });
     expect($modal).to.have.been.callCount(1);
     expect($popover).to.have.not.been.called;
   });
@@ -252,7 +252,7 @@ describe('directive : action-list', function() {
     element.click();
     expect($popover).to.have.been.called;
 
-    onResize({matches: true});
+    onResize({ matches: true });
     element.click();
     expect($modal).to.have.been.called;
     expect(this.opened.hide).to.have.been.called;
@@ -299,7 +299,8 @@ describe('directive : action-list', function() {
   it('should not destroy the dialog belong to other element on action-list.hide', function() {
     var scope1;
 
-    scope1 = $scope = $rootScope.$new();
+    scope1 = $rootScope.$new();
+    $scope = scope1;
     this.initDirective('<button action-list>1</button>');
 
     $scope = $rootScope.$new();

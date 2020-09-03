@@ -2,7 +2,7 @@
 
 /* global chai: false, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnOauthApplicationList component', function() {
 
@@ -35,6 +35,7 @@ describe('The esnOauthApplicationList component', function() {
 
   it('should only display loading indicator while loading applications', function() {
     var deferred = $q.defer();
+
     ESNOauthApplicationClient.created = sinon.spy(function() {
       return deferred.promise;
     });
@@ -42,7 +43,7 @@ describe('The esnOauthApplicationList component', function() {
     var element = compileComponent('<esn-oauth-application-list/>');
 
     expect(element.find('.loading-indicator').length).to.equal(1);
-    deferred.resolve({data: []});
+    deferred.resolve({ data: [] });
     $rootScope.$digest();
     expect(element.find('.loading-indicator').length).to.equal(0);
   });

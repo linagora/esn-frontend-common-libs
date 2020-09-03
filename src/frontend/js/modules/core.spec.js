@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Angular core module', function() {
   beforeEach(angular.mock.module('esn.core'));
@@ -15,6 +15,7 @@ describe('The Angular core module', function() {
       callTimes = 0;
       refreshFn = function() {
         unreadDefer = $q.defer();
+
         return unreadDefer.promise;
       };
 
@@ -102,6 +103,7 @@ describe('The Angular core module', function() {
   describe('The bytes filter', function() {
 
     var bytes;
+
     beforeEach(angular.mock.inject(function($filter) {
       bytes = $filter('bytes');
     }));
@@ -112,6 +114,7 @@ describe('The Angular core module', function() {
 
     it('should round the filesize based on the configured precision', function() {
       var size = 1024 + 512;
+
       expect(bytes(size)).to.equal('1.5KB');
       expect(bytes(size, 2)).to.equal('1.50KB');
     });
@@ -150,6 +153,7 @@ describe('The Angular core module', function() {
 
     it('should return original input if type is undefined', function() {
       var input = 'abcxyz';
+
       expect(prefixLink(input)).to.equal(input);
     });
 
@@ -226,6 +230,7 @@ describe('The Angular core module', function() {
 
   describe('The urlencode filter', function() {
     var urlencode;
+
     beforeEach(angular.mock.inject(function($filter) {
       urlencode = $filter('urlencode');
     }));
@@ -280,6 +285,7 @@ describe('The Angular core module', function() {
       };
       var element = this.$compile('<div><div click-outside="callMe()"><span>Hello</span></div></div>')(this.$scope);
       var body = this.$document.find('body').eq(0);
+
       body.append(element);
       this.$scope.$digest();
       element.click();
@@ -290,8 +296,10 @@ describe('The Angular core module', function() {
         done(new Error());
       };
       var element = this.$compile('<div><div click-outside="callMe()"><span class="findme">Hello</span></div></div>')(this.$scope);
+
       this.$scope.$digest();
       var body = this.$document.find('body').eq(0);
+
       body.append(element);
       element.find('.findme').click();
       done();

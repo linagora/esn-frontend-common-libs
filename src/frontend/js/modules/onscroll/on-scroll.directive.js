@@ -1,8 +1,8 @@
 (function(angular) {
-'use strict';
+  'use strict';
 
-angular.module('esn.onscroll')
-  .directive('onScroll', onScroll);
+  angular.module('esn.onscroll')
+    .directive('onScroll', onScroll);
 
   function onScroll($window) {
     return function(scope, element, attrs) {

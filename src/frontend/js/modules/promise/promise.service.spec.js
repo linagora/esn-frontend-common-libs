@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnPromiseService factory', function() {
   var $timeout, esnPromiseService, ESN_PROMISE_RETRY_DEFAULT_OPTIONS;

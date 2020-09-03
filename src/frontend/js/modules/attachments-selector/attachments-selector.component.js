@@ -6,7 +6,7 @@ require('./attachments-selector.controller.js');
   angular
     .module('esn.attachments-selector')
     .component('esnAttachmentsSelector', {
-      template: require("../../../views/modules/attachments-selector/attachments-selector.pug"),
+      template: require('../../../views/modules/attachments-selector/attachments-selector.pug'),
       controller: 'esnAttachmentsSelectorController',
       bindings: {
         attachments: '<?',

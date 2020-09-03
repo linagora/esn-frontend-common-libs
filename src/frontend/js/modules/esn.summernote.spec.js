@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.summernote Angular module', function() {
   var fullLocale, esnI18nServiceMock, ESN_I18N_DEFAULT_FULL_LOCALE;
@@ -11,7 +11,7 @@ describe('The esn.summernote Angular module', function() {
     getFullLocale: sinon.spy(function(cb) {
       return cb(fullLocale || ESN_I18N_DEFAULT_FULL_LOCALE);
     }),
-    getLocale: function() { return 'fr' }
+    getLocale: function() { return 'fr'; }
   };
 
   beforeEach(function() {

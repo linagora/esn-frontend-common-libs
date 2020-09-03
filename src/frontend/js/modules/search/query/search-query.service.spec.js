@@ -2,7 +2,7 @@
 
 /* global chai, sinon: true */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnSearchQueryService service', function() {
   var esnSearchQueryService;
@@ -103,7 +103,7 @@ describe('The esnSearchQueryService service', function() {
     });
 
     it('should empty the advanced object when defined', function() {
-      var query = { advanced: { value: 'I am defined' }};
+      var query = { advanced: { value: 'I am defined' } };
 
       expect(esnSearchQueryService.clear(query)).to.shallowDeepEqual({
         advanced: {}
@@ -117,15 +117,15 @@ describe('The esnSearchQueryService service', function() {
     });
 
     it('should return true when text is empty and advanced is empty', function() {
-      expect(esnSearchQueryService.isEmpty({ text: '', advanced: {}})).to.be.true;
+      expect(esnSearchQueryService.isEmpty({ text: '', advanced: {} })).to.be.true;
     });
 
     it('should return false when text is not empty and advanced is empty', function() {
-      expect(esnSearchQueryService.isEmpty({ text: 'I am not empty', advanced: {}})).to.be.false;
+      expect(esnSearchQueryService.isEmpty({ text: 'I am not empty', advanced: {} })).to.be.false;
     });
 
     it('should return false when text is empty and advanced is not empty', function() {
-      expect(esnSearchQueryService.isEmpty({ text: '', advanced: { value: 'I am not empty' }})).to.be.false;
+      expect(esnSearchQueryService.isEmpty({ text: '', advanced: { value: 'I am not empty' } })).to.be.false;
     });
   });
 });

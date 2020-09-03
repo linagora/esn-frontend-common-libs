@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.file module', function() {
 
@@ -52,6 +52,7 @@ describe('The esn.file module', function() {
   describe('The extension filter', function() {
 
     var extension;
+
     beforeEach(angular.mock.inject(function($filter) {
       extension = $filter('extension');
     }));

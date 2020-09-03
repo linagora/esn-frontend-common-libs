@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnFileBrowserController', function() {
   var $controller, $rootScope, $scope, $log;
@@ -54,6 +54,7 @@ describe('The esnFileBrowserController', function() {
       };
       var filesBrowser = initController(bindings);
       var node = { name: 'example' };
+
       filesBrowser.$onInit();
       filesBrowser.open(node);
 

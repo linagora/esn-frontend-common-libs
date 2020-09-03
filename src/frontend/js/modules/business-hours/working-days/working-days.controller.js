@@ -29,24 +29,24 @@ const _ = require('lodash');
   angular.module('esn.business-hours')
     .controller('esnBusinessHoursWorkingDaysController', esnBusinessHoursWorkingDaysController);
 
-    function esnBusinessHoursWorkingDaysController() {
-      var self = this;
+  function esnBusinessHoursWorkingDaysController() {
+    var self = this;
 
-      self.$onInit = $onInit;
-      self.onDayChange = onDayChange;
+    self.$onInit = $onInit;
+    self.onDayChange = onDayChange;
 
-      function $onInit() {
-        self.days = angular.copy(DAYS_OF_WEEK).map(function(day) {
-          day.selected = self.daysOfWeek.indexOf(day.value) > -1;
+    function $onInit() {
+      self.days = angular.copy(DAYS_OF_WEEK).map(function(day) {
+        day.selected = self.daysOfWeek.indexOf(day.value) > -1;
 
-          return day;
-        });
-      }
-
-      function onDayChange() {
-        self.daysOfWeek = self.days
-          .filter(_.property('selected'))
-          .map(_.property('value'));
-      }
+        return day;
+      });
     }
+
+    function onDayChange() {
+      self.daysOfWeek = self.days
+        .filter(_.property('selected'))
+        .map(_.property('value'));
+    }
+  }
 })(angular);

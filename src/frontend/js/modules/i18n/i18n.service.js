@@ -63,5 +63,5 @@ angular.module('esn.i18n')
       Object.defineProperty(object, propertyName, {
         get() { return callback(); }
       });
-    }
+    };
   });

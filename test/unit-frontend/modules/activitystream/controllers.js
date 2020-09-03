@@ -61,7 +61,7 @@ describe('The esn.activitystream Angular module', function() {
           return {
             loadMoreElements: function(callback) {
               self.loadCount++;
-              callback(null, [{thread1: {}}, {thread2: {}}, {thread3: {}}]);
+              callback(null, [{ thread1: {} }, { thread2: {} }, { thread3: {} }]);
             },
             endOfStream: false
           };
@@ -80,7 +80,7 @@ describe('The esn.activitystream Angular module', function() {
       it('should not call the aggregator loadMoreElements method if a rest request is active', function() {
         self.loadCount = 0;
         self.scope.updateMessagesActive = true;
-        self.scope.streams = [{activity_stream: {uuid: '0987654321'}}];
+        self.scope.streams = [{ activity_stream: { uuid: '0987654321' } }];
         self.scope.loadMoreElements();
         expect(self.loadCount).to.equal(0);
       });
@@ -96,7 +96,7 @@ describe('The esn.activitystream Angular module', function() {
       it('should call the aggregator loadMoreElements method', function() {
         self.loadCount = 0;
         self.scope.restActive = {};
-        self.scope.streams = [{activity_stream: {uuid: '0987654321'}}];
+        self.scope.streams = [{ activity_stream: { uuid: '0987654321' } }];
         self.scope.loadMoreElements();
         expect(self.loadCount).to.equal(1);
       });
@@ -105,11 +105,12 @@ describe('The esn.activitystream Angular module', function() {
         it('should handle error', function() {
           var id = '0987654321';
           var errorMsg = 'An Error';
+
           self.aggregatorService = function() {
             return {
               loadMoreElements: function(callback) {
                 self.loadCount++;
-                callback(errorMsg, [{thread1: {}}]);
+                callback(errorMsg, [{ thread1: {} }]);
               },
               endOfStream: false
             };
@@ -131,7 +132,7 @@ describe('The esn.activitystream Angular module', function() {
 
           self.loadCount = 0;
           self.scope.updateMessagesActive = false;
-          self.scope.streams = [{activity_stream: {uuid: id}}];
+          self.scope.streams = [{ activity_stream: { uuid: id } }];
           self.scope.displayError = function(err) {
             self.thrownError = err;
           };
@@ -153,7 +154,7 @@ describe('The esn.activitystream Angular module', function() {
 
           self.loadCount = 0;
           self.scope.updateMessagesActive = false;
-          self.scope.streams = [{activity_stream: {uuid: '0987654321'}}];
+          self.scope.streams = [{ activity_stream: { uuid: '0987654321' } }];
           self.thrownError = null;
           self.scope.displayError = function(err) {
             self.thrownError = err;
@@ -171,6 +172,7 @@ describe('The esn.activitystream Angular module', function() {
 
       it('should start and stop the spinner service', function(done) {
         var isSpinning = false;
+
         self.usSpinnerService.spin = function(id) {
           expect(id).to.equal('activityStreamSpinner');
           isSpinning = true;
@@ -181,7 +183,7 @@ describe('The esn.activitystream Angular module', function() {
           done();
         };
 
-        self.scope.streams = [{activity_stream: {uuid: '123'}}];
+        self.scope.streams = [{ activity_stream: { uuid: '123' } }];
         self.scope.loadMoreElements();
       });
 
@@ -279,9 +281,11 @@ describe('The esn.activitystream Angular module', function() {
         self.scope.selectedStream = 'selectedStream';
         var testThread = 'testThread';
         var result = 'testResult';
+
         self.activityStreamHelper.messageIsSharedInStreams = function(thread, arrayOfStream) {
           expect(thread).to.equal(testThread);
           expect(arrayOfStream).to.deep.equal([self.scope.selectedStream]);
+
           return result;
         };
         expect(self.scope.filterMessagesInSelectedStream(testThread)).to.equal(result);

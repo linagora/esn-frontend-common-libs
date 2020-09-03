@@ -36,12 +36,13 @@ describe('The esn.router Angular module', function() {
           emails: [],
           configurations: {
             domain_id: 'domain123',
-              modules: [
-                { name: 'core',
-                  configurations: [
-                    { name: 'homePage', value: homePage },
-                    { name: 'config2', value: 'value2' }
-                  ]
+            modules: [
+              {
+                name: 'core',
+                configurations: [
+                  { name: 'homePage', value: homePage },
+                  { name: 'config2', value: 'value2' }
+                ]
               }
             ]
           }
@@ -65,7 +66,8 @@ describe('The esn.router Angular module', function() {
           configurations: {
             domain_id: 'domain123',
             modules: [
-              { name: 'core',
+              {
+                name: 'core',
                 configurations: [
                   { name: 'homePage', value: homePage },
                   { name: 'config2', value: 'value2' }

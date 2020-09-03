@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The EsnI18nString service', function() {
   var EsnI18nString, $translate;

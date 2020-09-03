@@ -26,51 +26,51 @@ angular.module('esnApp', [
   'ngTagsInput'
 ].concat(angularInjections))
 
-.config(function(routeResolver, $urlRouterProvider, $stateProvider) {
+  .config(function(routeResolver, $urlRouterProvider, $stateProvider) {
 
-  // don't remove $injector, otherwise $location is not correctly injected...
-  $urlRouterProvider.otherwise(function($injector, $location) {
-    return $location.search().continue || '/';
-  });
+    // don't remove $injector, otherwise $location is not correctly injected...
+    $urlRouterProvider.otherwise(function($injector, $location) {
+      return $location.search().continue || '/';
+    });
 
-  $urlRouterProvider.when('/', function($location, esnRouterHelper) {
-    if ($location.search().continue) {
-      return $location.search().continue;
-    }
+    $urlRouterProvider.when('/', function($location, esnRouterHelper) {
+      if ($location.search().continue) {
+        return $location.search().continue;
+      }
 
-    esnRouterHelper.goToHomePage();
-  });
+      esnRouterHelper.goToHomePage();
+    });
 
-  $stateProvider
-  .state('home', {
-    url: '/'
+    $stateProvider
+      .state('home', {
+        url: '/'
+      })
+
+      .state('controlcenter.domainMembers', {
+        url: '/domains/:domain_id/members',
+        template: require('../../views/esn/partials/members.pug'),
+        controller: 'memberscontroller'
+      })
+      .state('controlcenter.changepassword', {
+        url: '/changepassword',
+        template: require('../../views/modules/login/changepassword.pug'),
+        controller: 'changePasswordController'
+      })
+      .state('controlcenter.timeline', {
+        url: '/timeline',
+        template: '<esn-timeline-entries></esn-timeline-entries>'
+      })
+      .state('logout', {
+        url: '/logout',
+        controller: 'logoutController'
+      });
+
   })
- 
-  .state('controlcenter.domainMembers', {
-    url: '/domains/:domain_id/members',
-    template: require("../../views/esn/partials/members.pug"),
-    controller: 'memberscontroller'
-  })
-  .state('controlcenter.changepassword', {
-    url: '/changepassword',
-    template: require("../../views/modules/login/changepassword.pug"),
-    controller: 'changePasswordController'
-  })
-  .state('controlcenter.timeline', {
-    url: '/timeline',
-    template: '<esn-timeline-entries></esn-timeline-entries>'
-  })
-  .state('logout', {
-    url: '/logout',
-    controller: 'logoutController'
-  });
 
-})
-
-.config(function(tagsInputConfigProvider) {
+  .config(function(tagsInputConfigProvider) {
   // Override default placeholder on user-autocomplete-input component
-  tagsInputConfigProvider.setActiveInterpolation('tagsInput', {
-    placeholder: true,
-    displayProperty: true
+    tagsInputConfigProvider.setActiveInterpolation('tagsInput', {
+      placeholder: true,
+      displayProperty: true
+    });
   });
-});

@@ -124,6 +124,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
           unread_count: 4
         });
         var self = this;
+
         this.AStrackerHelpers.getActivityStreamsWithUnreadCount('community', function(err, activityStreamsWithUnreadCount) {
           expect(err).to.not.exist;
           expect(activityStreamsWithUnreadCount).to.exist;
@@ -184,13 +185,14 @@ describe('The esn.activitystreams-tracker Angular module', function() {
         $timeout: this.timeout
       });
 
-      this.$rootScope.$emit('activitystream:updated', {activitystreamUuid: 123});
+      this.$rootScope.$emit('activitystream:updated', { activitystreamUuid: 123 });
     });
 
     describe('on collaboration:join event', function() {
 
       beforeEach(function() {
         var self = this;
+
         this.roomJoinCalled = false;
         this.rootScopeMock = {
           $on: function(eventName, eventCallback) {
@@ -241,7 +243,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
           ASTrackerSubscriptionService: ASTrackerSubscriptionService
         });
 
-        this.scope.$emit('collaboration:join', {test: 'pipo'});
+        this.scope.$emit('collaboration:join', { test: 'pipo' });
         this.checkRoomJoinCalled(done);
       });
 
@@ -263,6 +265,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
             _id: 123
           }
         };
+
         this.scope.$emit('collaboration:join', eventData);
         this.checkRoomJoinCalled(done);
       });
@@ -280,6 +283,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
         var ASTrackerSubscriptionService = {
           get: function(collabType) {
             expect(collabType).to.equal(objectType);
+
             return handlerIds.map(function(id) {
               return {
                 onJoin: function(data) {
@@ -312,6 +316,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
         var ASTrackerSubscriptionService = {
           get: function(collabType) {
             expect(collabType).to.equal(objectType);
+
             return [
               {
                 onJoin: function(data) {
@@ -349,6 +354,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
 
       beforeEach(function() {
         var self = this;
+
         this.roomLeaveCalled = false;
         this.rootScopeMock = {
           $on: function(eventName, eventCallback) {
@@ -399,7 +405,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
           ASTrackerSubscriptionService: ASTrackerSubscriptionService
         });
 
-        this.scope.$emit('collaboration:leave', {test: 'pipo'});
+        this.scope.$emit('collaboration:leave', { test: 'pipo' });
         this.checkRoomLeaveCalled(done);
       });
 
@@ -421,6 +427,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
             _id: 123
           }
         };
+
         this.scope.$emit('collaboration:leave', eventData);
         this.checkRoomLeaveCalled(done);
       });
@@ -438,6 +445,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
         var ASTrackerSubscriptionService = {
           get: function(collabType) {
             expect(collabType).to.equal(objectType);
+
             return handlerIds.map(function(id) {
               return {
                 onLeave: function(data) {
@@ -470,6 +478,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
         var ASTrackerSubscriptionService = {
           get: function(collabType) {
             expect(collabType).to.equal(objectType);
+
             return [{
               onLeave: function(data) {
                 expect(data).to.deep.equal(eventData);
@@ -508,7 +517,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
     beforeEach(function() {
       var self = this;
 
-      this.livenotificationCallback = this.livenotificationCallback = function() {
+      this.livenotificationCallback = function() {
         return {
           on: function() {
             return {
@@ -569,7 +578,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
     describe('removeItem function', function() {
       beforeEach(function() {
         this.streams = [
-          {uuid: 'as1'}, {uuid: 'as2'}, {uuid: 'as3'}
+          { uuid: 'as1' }, { uuid: 'as2' }, { uuid: 'as3' }
         ];
         this.streams.forEach(this.ASTrackerNotificationService.addItem, this);
       });
@@ -582,7 +591,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
       it('should remove the activityStream from the given id', function() {
         this.ASTrackerNotificationService.removeItem('as2');
         expect(this.ASTrackerNotificationService.streams).to.deep.equal([
-          {uuid: 'as1'}, {uuid: 'as3'}
+          { uuid: 'as1' }, { uuid: 'as3' }
         ]);
       });
 
@@ -595,26 +604,28 @@ describe('The esn.activitystreams-tracker Angular module', function() {
     describe('updateUnread function', function() {
       it('should do nothing if no stream stored in the service', function() {
         var streamsBefore = angular.copy(this.ASTrackerNotificationService.streams);
+
         this.ASTrackerNotificationService.updateUnread('anUUID', 10);
         expect(this.ASTrackerNotificationService.streams).to.deep.equal(streamsBefore);
       });
 
       it('should do nothing if the stream to update is not stored in the service', function() {
-        this.ASTrackerNotificationService.addItem({uuid: 'uuid1'});
-        this.ASTrackerNotificationService.addItem({uuid: 'uuid2'});
-        this.ASTrackerNotificationService.addItem({uuid: 'uuid3'});
+        this.ASTrackerNotificationService.addItem({ uuid: 'uuid1' });
+        this.ASTrackerNotificationService.addItem({ uuid: 'uuid2' });
+        this.ASTrackerNotificationService.addItem({ uuid: 'uuid3' });
         var streamsBefore = angular.copy(this.ASTrackerNotificationService.streams);
+
         this.ASTrackerNotificationService.updateUnread('anotherUUID', 10);
         expect(this.ASTrackerNotificationService.streams).to.deep.equal(streamsBefore);
       });
 
       it('should update the unread count of the given activity stream', function() {
-        this.ASTrackerNotificationService.addItem({uuid: 'uuid1'});
-        this.ASTrackerNotificationService.addItem({uuid: 'uuid2'});
-        this.ASTrackerNotificationService.addItem({uuid: 'uuid3'});
+        this.ASTrackerNotificationService.addItem({ uuid: 'uuid1' });
+        this.ASTrackerNotificationService.addItem({ uuid: 'uuid2' });
+        this.ASTrackerNotificationService.addItem({ uuid: 'uuid3' });
         this.ASTrackerNotificationService.updateUnread('uuid2', 10);
         expect(this.ASTrackerNotificationService.streams).to.deep.equal([
-            {uuid: 'uuid1'}, {uuid: 'uuid2', unread_count: 10}, {uuid: 'uuid3'}
+          { uuid: 'uuid1' }, { uuid: 'uuid2', unread_count: 10 }, { uuid: 'uuid3' }
         ]);
       });
     });
@@ -622,9 +633,11 @@ describe('The esn.activitystreams-tracker Angular module', function() {
     describe('subscribeToStreamNotification function', function() {
       it('should return true and subscribe to a socketIO room', function() {
         var streamId = 'uuid';
+
         this.livenotificationCallback = function(namespace, id) {
           expect(namespace).to.equal('/activitystreams');
           expect(id).to.equal(streamId);
+
           return {
             on: function() {}
           };
@@ -634,9 +647,11 @@ describe('The esn.activitystreams-tracker Angular module', function() {
 
       it('should return false if there already is a subscription for this stream', function() {
         var streamId = 'anUUID';
+
         this.livenotificationCallback = function(namespace, id) {
           expect(namespace).to.equal('/activitystreams');
           expect(id).to.equal(streamId);
+
           return {
             on: function() {
               return 'socketIORoom';
@@ -677,6 +692,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
 
     beforeEach(function() {
       var self = this;
+
       this.ASTrackerNotificationService = {};
       angular.mock.module(function($provide) {
         $provide.value('ASTrackerNotificationService', self.ASTrackerNotificationService);
@@ -690,6 +706,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
     describe('register function', function() {
       it('should register nothing if handler parameter is not defined', function() {
         var objectType = 'objectType';
+
         this.ASTrackerSubscriptionService.register(objectType);
         expect(this.ASTrackerSubscriptionService.get(objectType)).to.deep.equal([]);
       });
@@ -699,8 +716,10 @@ describe('The esn.activitystreams-tracker Angular module', function() {
         var handler1 = {
           fake: function() {}
         };
+
         this.ASTrackerSubscriptionService.register(objectType, handler1);
         var registered = this.ASTrackerSubscriptionService.get(objectType);
+
         expect(registered).to.have.length(1);
         expect(registered[0].onJoin).to.exist;
         expect(registered[0].onLeave).to.exist;
@@ -708,6 +727,7 @@ describe('The esn.activitystreams-tracker Angular module', function() {
         var handler2 = {
           fake: 'fakeString'
         };
+
         this.ASTrackerSubscriptionService.register(objectType, handler2);
         registered = this.ASTrackerSubscriptionService.get(objectType);
         expect(registered).to.have.length(2);
@@ -732,10 +752,12 @@ describe('The esn.activitystreams-tracker Angular module', function() {
         var handler1 = {
           fake: function() {}
         };
+
         this.ASTrackerSubscriptionService.register(objectType, handler1);
         var handler2 = {
           fake: 'fakeString'
         };
+
         this.ASTrackerSubscriptionService.register(objectType, handler2);
         expect(this.ASTrackerSubscriptionService.get(objectType)).to.have.length(2);
       });

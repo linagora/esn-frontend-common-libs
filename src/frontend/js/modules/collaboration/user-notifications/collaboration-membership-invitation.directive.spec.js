@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnCollaborationMembershipInvitationUserNotification directive', function() {
   beforeEach(function() {
@@ -60,7 +60,7 @@ describe('The esnCollaborationMembershipInvitationUserNotification directive', f
   describe('The controller', function() {
     it('should resolve notification data', function() {
       var displayName = 'john doe';
-      var scope = this.scope;
+      var { scope } = this;
       var user = { _id: scope.notification.subject.id, displayName: sinon.stub().returns(displayName) };
 
       this.objectTypeResolver.resolve = function(type) {
@@ -133,7 +133,7 @@ describe('The esnCollaborationMembershipInvitationUserNotification directive', f
     });
 
     it('should set scope.error if community fetch fails', function() {
-      var scope = this.scope;
+      var { scope } = this;
       var error = new Error('I failed to get community');
 
       this.objectTypeResolver.resolve = function(type) {
@@ -160,7 +160,7 @@ describe('The esnCollaborationMembershipInvitationUserNotification directive', f
     });
 
     it('should set scope.error if user fetch fails', function() {
-      var scope = this.scope;
+      var { scope } = this;
 
       this.objectTypeResolver.resolve = function(type) {
         if (type === 'user') {

@@ -2,7 +2,7 @@
 
 /* global chai: false, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The attendeeService service', function() {
   var $rootScope, attendeeService, esnPeopleAPI, query, limit, ESN_ATTENDEE_DEFAULT_TEMPLATE_URL, ESN_ATTENDEE_DEFAULT_OBJECT_TYPE;
@@ -30,13 +30,13 @@ describe('The attendeeService service', function() {
     });
 
     it('should set the provider objectType to ESN_ATTENDEE_DEFAULT_OBJECT_TYPE when not defined', function() {
-      attendeeService.addProvider({_id: 'provider'});
+      attendeeService.addProvider({ _id: 'provider' });
 
       expect(attendeeService.getProviders()[0].objectType).to.deep.equals(ESN_ATTENDEE_DEFAULT_OBJECT_TYPE);
     });
 
     it('should set the provider objectType to ESN_ATTENDEE_DEFAULT_OBJECT_TYPE when null', function() {
-      attendeeService.addProvider({_id: 'provider', objectType: null, searchAttendee: function() {}});
+      attendeeService.addProvider({ _id: 'provider', objectType: null, searchAttendee: function() {} });
 
       expect(attendeeService.getProviders()[0].objectType).to.deep.equals(ESN_ATTENDEE_DEFAULT_OBJECT_TYPE);
     });
@@ -44,7 +44,7 @@ describe('The attendeeService service', function() {
     it('should not modify the provider objectType when defined', function() {
       var objectType = 'foo';
 
-      attendeeService.addProvider({_id: 'provider', objectType: objectType});
+      attendeeService.addProvider({ _id: 'provider', objectType: objectType });
 
       expect(attendeeService.getProviders()[0].objectType).to.equals(objectType);
     });
@@ -61,9 +61,15 @@ describe('The attendeeService service', function() {
     }
 
     beforeEach(function() {
-      attendee1 = {_id: 'attendee1', objectType: 'user', emailAddresses: [{value: 'attendee1@open-paas.org' }], names: [{ displayName: 'Bruce Lee'}], photos: [{ url: '/foo/bar/attendee1.png' }]};
-      attendee2 = {_id: 'attendee2', objectType: 'contact', emailAddresses: [{value: 'attendee2@open-paas.org' }], names: [{ displayName: 'Bruce Willis'}], photos: [{ url: '/foo/bar/attendee1.png' }]};
-      attendee3 = {_id: 'attendee3', objectType: 'ldap', emailAddresses: [{value: 'attendee3@open-paas.org' }], names: [{ displayName: 'Walker'}], photos: [{ url: '/foo/bar/attendee1.png' }]};
+      attendee1 = {
+        _id: 'attendee1', objectType: 'user', emailAddresses: [{ value: 'attendee1@open-paas.org' }], names: [{ displayName: 'Bruce Lee' }], photos: [{ url: '/foo/bar/attendee1.png' }]
+      };
+      attendee2 = {
+        _id: 'attendee2', objectType: 'contact', emailAddresses: [{ value: 'attendee2@open-paas.org' }], names: [{ displayName: 'Bruce Willis' }], photos: [{ url: '/foo/bar/attendee1.png' }]
+      };
+      attendee3 = {
+        _id: 'attendee3', objectType: 'ldap', emailAddresses: [{ value: 'attendee3@open-paas.org' }], names: [{ displayName: 'Walker' }], photos: [{ url: '/foo/bar/attendee1.png' }]
+      };
     });
 
     it('should set template urls correctly', function(done) {
@@ -79,8 +85,8 @@ describe('The attendeeService service', function() {
       attendeeService.getAttendeeCandidates(query, limit, objectTypes).then(function(attendeeCandidates) {
         expect(stub).to.has.been.calledWith(query, objectTypes, limit);
         expect(attendeeCandidates).to.shallowDeepEqual([
-          {_id: 'attendee1', displayName: 'Bruce Lee', templateUrl: '/template/user' },
-          {_id: 'attendee2', displayName: 'Bruce Willis', templateUrl: ESN_ATTENDEE_DEFAULT_TEMPLATE_URL }
+          { _id: 'attendee1', displayName: 'Bruce Lee', templateUrl: '/template/user' },
+          { _id: 'attendee2', displayName: 'Bruce Willis', templateUrl: ESN_ATTENDEE_DEFAULT_TEMPLATE_URL }
         ]);
         done();
       }, done);
@@ -101,8 +107,12 @@ describe('The attendeeService service', function() {
       attendeeService.getAttendeeCandidates(query, limit, objectTypes).then(function(attendeeCandidates) {
         expect(stub).to.has.been.calledWith(query, objectTypes, limit);
         expect(attendeeCandidates).to.shallowDeepEqual([
-          {displayName: attendee1.names[0].displayName, avatarUrl: attendee1.photos[0].url, email: attendee1.emailAddresses[0].value, preferredEmail: attendee1.emailAddresses[0].value },
-          {displayName: attendee2.names[0].displayName, avatarUrl: attendee2.photos[0].url, email: attendee2.emailAddresses[0].value, preferredEmail: attendee2.emailAddresses[0].value }
+          {
+            displayName: attendee1.names[0].displayName, avatarUrl: attendee1.photos[0].url, email: attendee1.emailAddresses[0].value, preferredEmail: attendee1.emailAddresses[0].value
+          },
+          {
+            displayName: attendee2.names[0].displayName, avatarUrl: attendee2.photos[0].url, email: attendee2.emailAddresses[0].value, preferredEmail: attendee2.emailAddresses[0].value
+          }
         ]);
         done();
       }, done);
@@ -122,8 +132,8 @@ describe('The attendeeService service', function() {
       attendeeService.getAttendeeCandidates(query, limit).then(function(attendeeCandidates) {
         expect(stub).to.has.been.calledWith(query, [ESN_ATTENDEE_DEFAULT_OBJECT_TYPE], limit);
         expect(attendeeCandidates).to.shallowDeepEqual([
-          {_id: 'attendee1', displayName: 'Bruce Lee', templateUrl: '/template/user' },
-          {_id: 'attendee2', displayName: 'Bruce Willis', templateUrl: ESN_ATTENDEE_DEFAULT_TEMPLATE_URL }
+          { _id: 'attendee1', displayName: 'Bruce Lee', templateUrl: '/template/user' },
+          { _id: 'attendee2', displayName: 'Bruce Willis', templateUrl: ESN_ATTENDEE_DEFAULT_TEMPLATE_URL }
         ]);
         done();
       }, done);
@@ -146,8 +156,8 @@ describe('The attendeeService service', function() {
         attendeeService.getAttendeeCandidates(query, limit, objectTypes).then(function(attendeeCandidates) {
           expect(stub).to.has.been.calledWith(query, objectTypes, limit);
           expect(attendeeCandidates).to.shallowDeepEqual([
-            {_id: 'attendee1', displayName: 'Bruce Lee' },
-            {_id: 'attendee2', displayName: 'Bruce Willis'}
+            { _id: 'attendee1', displayName: 'Bruce Lee' },
+            { _id: 'attendee2', displayName: 'Bruce Willis' }
           ]);
           done();
         }, done);
@@ -169,8 +179,8 @@ describe('The attendeeService service', function() {
         attendeeService.getAttendeeCandidates(query, limit, objectTypes).then(function(attendeeCandidates) {
           expect(stub).to.has.been.calledWith(query, objectTypes, limit);
           expect(attendeeCandidates).to.shallowDeepEqual([
-            {_id: 'attendee1', displayName: 'Me' },
-            {_id: 'attendee2', displayName: 'You'}
+            { _id: 'attendee1', displayName: 'Me' },
+            { _id: 'attendee2', displayName: 'You' }
           ]);
           done();
         }, done);
@@ -189,11 +199,11 @@ describe('The attendeeService service', function() {
         stub.returns($q.when(people));
 
         attendeeService.getAttendeeCandidates(query, limit)
-        .then(function(attendeeCandidates) {
-          expect(attendeeCandidates).to.deep.equal([attendee1]);
-          done();
-        })
-        .catch(done);
+          .then(function(attendeeCandidates) {
+            expect(attendeeCandidates).to.deep.equal([attendee1]);
+            done();
+          })
+          .catch(done);
 
         $rootScope.$digest();
       });

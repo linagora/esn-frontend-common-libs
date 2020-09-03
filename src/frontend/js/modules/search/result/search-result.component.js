@@ -4,7 +4,7 @@ require('./search-result.controller.js');
   'use strict';
 
   angular.module('esn.search').component('esnSearchResult', {
-    template: require("./search-result.pug"),
+    template: require('./search-result.pug'),
     controller: 'ESNSearchResultController',
     controllerAs: 'ctrl'
   });

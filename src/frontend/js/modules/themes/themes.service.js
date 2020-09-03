@@ -12,12 +12,14 @@ const _ = require('lodash');
     };
 
     var service = angular.copy(functions);
+
     service.forDomain = forDomain;
 
     return service;
 
     function forDomain(domainId) {
       var bound = {};
+
       for(var key in functions) { // eslint-disable-line
         bound[key] = _.partial(functions[key], domainId);
       }
@@ -31,7 +33,7 @@ const _ = require('lodash');
 
     function getTheme(domainId) {
       return _getRestangular(domainId).get().then(function(result) {
-        return {colors: result.data.colors || {}, logos: result.data.logos || {}};
+        return { colors: result.data.colors || {}, logos: result.data.logos || {} };
       });
     }
 

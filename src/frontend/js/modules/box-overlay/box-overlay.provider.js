@@ -16,7 +16,8 @@ require('./box-overlay.constants.js');
         var $boxOverlay = { $scope: scope };
         var stateManager = new BoxOverlayStateManager();
 
-        $boxOverlay.$isShown = scope.$isShown = false;
+        $boxOverlay.$isShown = false;
+        scope.$isShown = false;
 
         scope.allowMinimize = _allow.bind(null, BoxOverlayStateManager.STATES.MINIMIZED);
         scope.allowMaximize = _allow.bind(null, BoxOverlayStateManager.STATES.MAXIMIZED);
@@ -115,7 +116,8 @@ require('./box-overlay.constants.js');
             return;
           }
 
-          $boxOverlay.$isShown = scope.$isShown = true;
+          $boxOverlay.$isShown = true;
+          scope.$isShown = true;
           boxOverlayManager.createElement(scope).then(function(element) {
             $boxOverlay.$element = element;
             boxOverlayManager.onShow($boxOverlay);
@@ -142,7 +144,8 @@ require('./box-overlay.constants.js');
             return;
           }
 
-          $boxOverlay.$isShown = scope.$isShown = false;
+          $boxOverlay.$isShown = false;
+          scope.$isShown = false;
           boxOverlayManager.removeBox($boxOverlay);
 
           if ($boxOverlay.$element) {

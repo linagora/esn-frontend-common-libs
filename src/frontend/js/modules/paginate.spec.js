@@ -1,9 +1,8 @@
 'use strict';
 
 /* global chai: false */
-/* global async: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 var async = require('async');
 
 describe('The Paginate Angular module', function() {
@@ -26,6 +25,7 @@ describe('The Paginate Angular module', function() {
         }
       };
       var pager = this.paginator([], 5, 10, loader);
+
       pager.nextPage();
     });
 
@@ -36,6 +36,7 @@ describe('The Paginate Angular module', function() {
         }
       };
       var pager = this.paginator([], 5, 10, loader);
+
       pager.previousPage();
     });
 
@@ -46,6 +47,7 @@ describe('The Paginate Angular module', function() {
         }
       };
       var pager = this.paginator([], 5, 10, loader);
+
       pager.currentPage();
     });
 
@@ -55,10 +57,12 @@ describe('The Paginate Angular module', function() {
           expect(items).to.deep.equal(['1']);
           expect(limit).to.equal(5);
           expect(offset).to.equal(0);
+
           return done();
         }
       };
       var pager = this.paginator(['1'], 5, 10, loader);
+
       pager.currentPage();
     });
 
@@ -69,13 +73,16 @@ describe('The Paginate Angular module', function() {
           call++;
           expect(limit).to.equal(5);
           expect(offset).to.equal(call * 5);
+
           return callback();
         }
       };
       var pager = this.paginator(['1'], 5, 25, loader);
+
       pager.nextPage(function() {
         pager.nextPage(function() {
           expect(call).to.equal(2);
+
           return done();
         });
       });
@@ -89,6 +96,7 @@ describe('The Paginate Angular module', function() {
         }
       };
       var pager = this.paginator(result, 5, 25, loader);
+
       pager.nextPage(function() {
         expect(pager.getItems()).to.deep.equal(result);
         done();
@@ -106,6 +114,7 @@ describe('The Paginate Angular module', function() {
         }
       };
       var pager = this.paginator(result, 2, 9, loader);
+
       async.series([
         function(callback) {
           pager.currentPage(function(err, items, currentPage) {

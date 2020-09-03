@@ -102,7 +102,9 @@ describe('The esn.follow Angular module', function() {
 
     function compileDirective(html) {
       var element = $compile(html)($scope);
+
       $scope.$digest();
+
       return element;
     }
 
@@ -149,11 +151,13 @@ describe('The esn.follow Angular module', function() {
 
         followAPIMock.unfollow = function(_user) {
           expect(_user).to.deep.equal($scope.user);
+
           return $q.when(true);
         };
 
         var element = compileDirective('<follow-button following="following", user="user", on-followed="spyFollow()", on-unfollowed="spyUnfollow()"/>');
         var scope = element.isolateScope();
+
         scope.unfollow();
         $rootScope.$digest();
         expect($scope.spyFollow).to.not.have.been.called;
@@ -192,11 +196,13 @@ describe('The esn.follow Angular module', function() {
 
         followAPIMock.follow = function(_user) {
           expect(_user).to.deep.equal($scope.user);
+
           return $q.when(true);
         };
 
         var element = compileDirective('<follow-button following="false", user="user", on-followed="spyFollow()", on-unfollowed="spyUnfollow()"/>');
         var scope = element.isolateScope();
+
         scope.follow();
         $rootScope.$digest();
         expect($scope.spyFollow).to.have.been.called;
@@ -212,9 +218,11 @@ describe('The esn.follow Angular module', function() {
 
     function generateData(size) {
       var result = [];
+
       for (var i = 0; i < size; i++) {
-        result.push({link: {type: 'follow', actor: {objectType: 'user', _id: 1}, object: {objectType: 'user', _id: 2}}, user: {_id: 1}});
+        result.push({ link: { type: 'follow', actor: { objectType: 'user', _id: 1 }, object: { objectType: 'user', _id: 2 } }, user: { _id: 1 } });
       }
+
       return result;
     }
 
@@ -232,16 +240,17 @@ describe('The esn.follow Angular module', function() {
     describe('The loadNextItems function', function() {
       it('should send back data and lastPage flag to false when end is not reached', function(done) {
         var size = 10;
-        var options = {limit: size};
+        var options = { limit: size };
         var user = {
           _id: 1
         };
 
         var paginable = function() {
-          return $q.when({data: generateData(size)});
+          return $q.when({ data: generateData(size) });
         };
 
         var service = new FollowPaginationProvider(paginable, options, user);
+
         service.loadNextItems().then(function(result) {
           expect(result.data.length).to.equal(size);
           expect(result.lastPage).to.be.false;
@@ -253,16 +262,17 @@ describe('The esn.follow Angular module', function() {
 
       it('should send back data and lastPage flag to true when end is reached', function(done) {
         var size = 10;
-        var options = {limit: size};
+        var options = { limit: size };
         var user = {
           _id: 1
         };
 
         var paginable = function() {
-          return $q.when({data: generateData(size / 2)});
+          return $q.when({ data: generateData(size / 2) });
         };
 
         var service = new FollowPaginationProvider(paginable, options, user);
+
         service.loadNextItems().then(function(result) {
           expect(result.data.length).to.equal(size / 2);
           expect(result.lastPage).to.be.true;

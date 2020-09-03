@@ -14,7 +14,6 @@
         '  <span ng-bind="$getDisplayText()"></span>',
         '  <i class="mdi mdi-close-circle" ng-click="$removeTag()"></i>',
         '</div>'
-      ].join('\n')
-    );
+      ].join('\n'));
   }
 })(angular);

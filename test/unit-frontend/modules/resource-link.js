@@ -55,7 +55,7 @@ describe('The esn.resource-link Angular module', function() {
           source: source,
           target: target,
           type: type
-        }, {'Content-Type': 'application/json', Accept: 'application/json, text/plain, */*'}).respond(204);
+        }, { 'Content-Type': 'application/json', Accept: 'application/json, text/plain, */*' }).respond(204);
         this.ResourceLinkAPI
           .remove(source, target, type)
           .then(function() {

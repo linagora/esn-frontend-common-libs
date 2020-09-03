@@ -8,6 +8,6 @@
     },
     controller: 'ESNCollaborationMemberController',
     controllerAs: 'ctrl',
-    template: require("./collaboration-member.pug")
+    template: require('./collaboration-member.pug')
   });
 })(angular);

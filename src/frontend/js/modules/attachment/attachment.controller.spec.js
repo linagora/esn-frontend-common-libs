@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNAttachmentController controller', function() {
   var $controller, $rootScope, $log;
@@ -11,7 +11,7 @@ describe('The ESNAttachmentController controller', function() {
 
   beforeEach(function() {
     angular.mock.module('esn.attachment', function($provide) {
-      $provide.value('$element', {append: function() {return {};}});
+      $provide.value('$element', { append: function() {return {};} });
       $provide.value('translateFilter', text => text);
     });
 
@@ -27,7 +27,7 @@ describe('The ESNAttachmentController controller', function() {
 
   function initController(scope) {
     var $scope = scope || $rootScope.$new();
-    var controller = $controller('ESNAttachmentController', {$scope: $scope});
+    var controller = $controller('ESNAttachmentController', { $scope: $scope });
 
     $scope.$digest();
 
@@ -41,7 +41,9 @@ describe('The ESNAttachmentController controller', function() {
       controller = initController();
       spy = sinon.spy(esnAttachmentViewerGalleryService, 'addFileToGallery');
 
-      controller.attachment = {_id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'};
+      controller.attachment = {
+        _id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'
+      };
     });
 
     it('should call addFileToGallery if viewer option is enabled', function() {
@@ -72,7 +74,9 @@ describe('The ESNAttachmentController controller', function() {
     beforeEach(function() {
       controller = initController();
       spy = sinon.spy(esnAttachmentViewerService, 'open');
-      controller.attachment = {_id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'};
+      controller.attachment = {
+        _id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'
+      };
     });
 
     it('should call esnAttachmentViewerService.open if viewer option is enabled', function() {
@@ -115,7 +119,9 @@ describe('The ESNAttachmentController controller', function() {
     it('should call esnAttachmentRegistryService.getPreviewer to get previewer', function() {
       var spy = sinon.spy(esnAttachmentRegistryService, 'getPreviewer');
 
-      controller._attachment = {_id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'};
+      controller._attachment = {
+        _id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'
+      };
       controller.renderContent();
 
       expect(spy).to.have.been.calledOnce;
@@ -124,7 +130,9 @@ describe('The ESNAttachmentController controller', function() {
     it('should call esnAttachmentRegistryService.getDefaultPreviewer if preview option is disabled', function() {
       var spy = sinon.spy(esnAttachmentRegistryService, 'getDefaultPreviewer');
 
-      controller._attachment = {_id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'};
+      controller._attachment = {
+        _id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'
+      };
       controller.preview = false;
       controller.renderContent();
 
@@ -134,7 +142,9 @@ describe('The ESNAttachmentController controller', function() {
     it('should call esnAttachmentRegistryService.getDefaultPreviewer if preview is not available', function() {
       var spy = sinon.spy(esnAttachmentRegistryService, 'getDefaultPreviewer');
 
-      controller._attachment = {_id: 1, name: 'attachment', contentType: 'not-available', length: '102302'};
+      controller._attachment = {
+        _id: 1, name: 'attachment', contentType: 'not-available', length: '102302'
+      };
       controller.renderContent();
 
       expect(spy).to.have.been.calledOnce;
@@ -143,7 +153,9 @@ describe('The ESNAttachmentController controller', function() {
     it('should not call esnAttachmentRegistryService.getDefaultPreviewer if file preview is available and preview option is enabled', function() {
       var spy = sinon.spy(esnAttachmentRegistryService, 'getDefaultPreviewer');
 
-      controller._attachment = {_id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'};
+      controller._attachment = {
+        _id: 1, name: 'attachment', contentType: 'image/x-png', length: '102302'
+      };
       controller.preview = true;
 
       expect(spy).not.to.have.been.called;

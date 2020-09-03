@@ -51,7 +51,7 @@
         },
         disableParentScroll: true,
         panelClass: 'search-header-settings-panel',
-        template: require("./search-advanced-form-content.pug"),
+        template: require('./search-advanced-form-content.pug'),
         hasBackdrop: false,
         position: position,
         trapFocus: true,

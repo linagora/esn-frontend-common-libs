@@ -5,7 +5,7 @@ require('./email-input.controller.js');
 
   angular.module('esn.form.helper')
     .component('esnEmailInput', {
-      template: require("./email-input.pug"),
+      template: require('./email-input.pug'),
       controller: 'esnEmailInputController',
       bindings: {
         email: '=',

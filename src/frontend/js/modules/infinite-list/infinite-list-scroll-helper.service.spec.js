@@ -1,7 +1,7 @@
 'use strict';
 
 /* global chai, sinon: false */
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The infiniteScrollHelper module', function() {
   var $q, $timeout, $rootScope;

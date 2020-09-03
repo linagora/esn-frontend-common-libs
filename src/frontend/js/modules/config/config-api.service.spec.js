@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnConfigApi service', function() {
 
@@ -61,7 +61,7 @@ describe('The esnConfigApi service', function() {
           done();
         });
 
-        $httpBackend.flush();
+      $httpBackend.flush();
     });
   });
 

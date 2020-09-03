@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Scroll Angular module', function() {
 
@@ -157,9 +157,10 @@ describe('The Scroll Angular module', function() {
 
     describe('the autoScrollDown method with an element that has a scrollHeight attribute', function() {
       var element, scrollHeight, scrollTopSpy;
+
       beforeEach(function() {
         scrollTopSpy = sinon.spy();
-        element = [{scrollHeight: scrollHeight}];
+        element = [{ scrollHeight: scrollHeight }];
         element.scrollTop = scrollTopSpy;
       });
 
@@ -178,6 +179,7 @@ describe('The Scroll Angular module', function() {
 
     describe('the autoScrollDown method with an element that does not have a scrollHeight attribute', function() {
       var element, scrollTopSpy;
+
       beforeEach(function() {
         scrollTopSpy = sinon.spy();
         element = {
@@ -281,6 +283,7 @@ describe('The Scroll Angular module', function() {
 
     it('should scroll to top when the element is clicked', function() {
       var windowElt = angular.element($window);
+
       $window.scrollTo(500);
       element.click();
       expect(windowElt.scrollTop()).to.equal(0);

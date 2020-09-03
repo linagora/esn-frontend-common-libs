@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNAttachmentListController controller', function() {
   var $controller, $scope, $q, esnAttachmentListProviders, $rootScope;
@@ -11,9 +11,8 @@ describe('The ESNAttachmentListController controller', function() {
 
   function initController(objectType, id) {
     var controller = $controller('ESNAttachmentListController',
-      {$scope: $scope},
-      {objectType: objectType, id: id}
-    );
+      { $scope: $scope },
+      { objectType: objectType, id: id });
 
     $scope.$digest();
 
@@ -46,7 +45,7 @@ describe('The ESNAttachmentListController controller', function() {
 
       ctrl.loadMoreElements();
 
-      expect(esnAttachmentListProviders.getAll).to.have.been.calledWith({objectType: objectType, id: id, acceptedTypes: [objectType]});
+      expect(esnAttachmentListProviders.getAll).to.have.been.calledWith({ objectType: objectType, id: id, acceptedTypes: [objectType] });
     });
   });
 });

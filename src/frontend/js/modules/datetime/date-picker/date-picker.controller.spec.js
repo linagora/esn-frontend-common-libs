@@ -2,7 +2,7 @@
 
 /* global chai, sinon: true */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnDatetimeDatePickerController function', function() {
   var $controller, $rootScope, $scope, esnDatetimeService, moment, $element;
@@ -42,6 +42,7 @@ describe('The esnDatetimeDatePickerController function', function() {
     it('should set a new value to $ctrl.uiValue based on ngModel', function() {
       var initialMoment = moment('2020-06-08T12:00:00.000Z');
       var controller = initController();
+
       controller.ngModel = initialMoment;
       controller.$onInit();
       expect(controller.uiValue).to.deep.equal(initialMoment);
@@ -52,6 +53,7 @@ describe('The esnDatetimeDatePickerController function', function() {
     it('should change ngModel according to $ctrl.uiValue', function() {
       var initialMoment = moment('2020-06-08T12:00:00.000Z');
       var controller = initController();
+
       controller.uiValue = initialMoment;
       controller.onChange();
       expect(controller.ngModel).to.deep.equal(initialMoment);

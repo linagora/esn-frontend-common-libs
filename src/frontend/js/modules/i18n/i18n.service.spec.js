@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnI18nService service', function() {
   var $rootScope, esnI18nService, EsnI18nString, preferredLanguage, ESN_I18N_DEFAULT_FULL_LOCALE, ESN_I18N_FULL_LOCALE;
@@ -12,7 +12,7 @@ describe('The esnI18nService service', function() {
     $translateMock = {
       storageKey: () => {},
       storage: () => {},
-      preferredLanguage: () => { return 'fr' },
+      preferredLanguage: () => 'fr',
       use: () => {}
     };
 
@@ -26,8 +26,7 @@ describe('The esnI18nService service', function() {
     });
   });
 
-  beforeEach(angular.mock.inject(function(_$q_, _$rootScope_, _esnI18nService_, _EsnI18nString_, _ESN_I18N_DEFAULT_FULL_LOCALE_, _ESN_I18N_FULL_LOCALE_) {
-    $q = _$q_;
+  beforeEach(angular.mock.inject(function(_$rootScope_, _esnI18nService_, _EsnI18nString_, _ESN_I18N_DEFAULT_FULL_LOCALE_, _ESN_I18N_FULL_LOCALE_) {
     $rootScope = _$rootScope_;
     esnI18nService = _esnI18nService_;
     EsnI18nString = _EsnI18nString_;
@@ -59,7 +58,7 @@ describe('The esnI18nService service', function() {
 
     it('should returnt an error if input object is neither string or EsnI18nString', function() {
       function test() {
-        esnI18nService.translate({text: 'Invalid Obj'});
+        esnI18nService.translate({ text: 'Invalid Obj' });
       }
 
       expect(test).to.throw(TypeError);

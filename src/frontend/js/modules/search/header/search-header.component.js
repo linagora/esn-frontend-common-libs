@@ -6,7 +6,7 @@ require('./search-header.controller.js');
   angular
     .module('esn.search')
     .component('esnSearchHeader', {
-      template: require("./search-header.pug"),
+      template: require('./search-header.pug'),
       controller: 'ESNSearchHeaderController'
     });
 })(angular);

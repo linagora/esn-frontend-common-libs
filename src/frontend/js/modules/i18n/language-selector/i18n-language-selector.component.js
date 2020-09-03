@@ -5,7 +5,7 @@ require('./i18n-language-selector.controller.js');
 
   angular.module('esn.i18n')
     .component('esnI18nLanguageSelector', {
-      template: require("./i18n-language-selector.pug"),
+      template: require('./i18n-language-selector.pug'),
       bindings: {
         language: '=',
         mode: '@'

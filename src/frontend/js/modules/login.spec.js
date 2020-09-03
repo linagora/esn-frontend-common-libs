@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Login Angular module', function() {
   beforeEach(angular.mock.module('esn.login'));
@@ -49,6 +49,7 @@ describe('The Login Angular module', function() {
 
       it('should return a promise', function() {
         var promise = this.loginAPI.login(this.request);
+
         expect(promise.then).to.be.a.function;
       });
     });
@@ -88,7 +89,7 @@ describe('The Login Angular module', function() {
     describe('login() method', function() {
 
       it('should call the loginAPI.login() method', function(done) {
-        this.scope.form = {$invalid: false};
+        this.scope.form = { $invalid: false };
         this.loginAPI.login = function() {
           done();
         };
@@ -96,7 +97,7 @@ describe('The Login Angular module', function() {
       });
 
       it('should call the loginAPI.login() method with scope credentials', function(done) {
-        this.scope.form = {$invalid: false};
+        this.scope.form = { $invalid: false };
         this.scope.credentials.username = 'foo@bar.com';
         this.scope.credentials.password = 'secret';
         this.scope.credentials.rememberme = true;
@@ -110,7 +111,7 @@ describe('The Login Angular module', function() {
       });
 
       it('should fire the esnLoginSuccessService function on successful login', function() {
-        this.scope.form = {$invalid: false};
+        this.scope.form = { $invalid: false };
         this.searchObject = {
           continue: '/dummy'
         };
@@ -130,7 +131,7 @@ describe('The Login Angular module', function() {
       });
 
       it('should display an error message when login fails', function(done) {
-        this.scope.form = {$invalid: false};
+        this.scope.form = { $invalid: false };
 
         this.notificationFactory.weakError = function(message, text) {
           expect(message).to.match(/Login error/);
@@ -139,14 +140,14 @@ describe('The Login Angular module', function() {
         };
 
         this.loginAPI.login = function() {
-          return $q.reject({data: {}});
+          return $q.reject({ data: {} });
         };
         this.scope.login(this.scope.form);
         this.scope.$digest();
       });
 
       it('should display an error message when account has been disabled', function(done) {
-        this.scope.form = {$invalid: false};
+        this.scope.form = { $invalid: false };
 
         this.notificationFactory.weakError = function(message, text) {
           expect(message).to.match(/Login disabled/);
@@ -155,7 +156,7 @@ describe('The Login Angular module', function() {
         };
 
         this.loginAPI.login = function() {
-          return $q.reject({data: {error: {details: 'The specified account is disabled'}}});
+          return $q.reject({ data: { error: { details: 'The specified account is disabled' } } });
         };
         this.scope.login(this.scope.form);
         this.scope.$digest();
@@ -172,8 +173,9 @@ describe('The Login Angular module', function() {
     }));
 
     it('should save the credentials and error', function(done) {
-      var credentials = {username: 'foo@bar.com', password: 'secret', rememberme: true};
-      var error = { error: {code: 404, message: 'this is an error message', details: 'these are details'}};
+      var credentials = { username: 'foo@bar.com', password: 'secret', rememberme: true };
+      var error = { error: { code: 404, message: 'this is an error message', details: 'these are details' } };
+
       this.loginErrorService.set(credentials, error);
 
       var data = this.loginErrorService.getData();
@@ -186,8 +188,9 @@ describe('The Login Angular module', function() {
     });
 
     it('should reset the data on route change if location is /', function(done) {
-      var credentials = {username: 'foo@bar.com', password: 'secret', rememberme: true};
-      var error = { error: {code: 404, message: 'this is an error message', details: 'these are details'}};
+      var credentials = { username: 'foo@bar.com', password: 'secret', rememberme: true };
+      var error = { error: { code: 404, message: 'this is an error message', details: 'these are details' } };
+
       this.loginErrorService.set(credentials, error);
       this.$location.path('/');
       this.$rootScope.$emit('$stateChangeSuccess');
@@ -196,8 +199,9 @@ describe('The Login Angular module', function() {
     });
 
     it('should not reset the data on route change if location is not /', function(done) {
-      var credentials = {username: 'foo@bar.com', password: 'secret', rememberme: true};
-      var error = { error: {code: 404, message: 'this is an error message', details: 'these are details'}};
+      var credentials = { username: 'foo@bar.com', password: 'secret', rememberme: true };
+      var error = { error: { code: 404, message: 'this is an error message', details: 'these are details' } };
+
       this.loginErrorService.set(credentials, error);
       this.$location.path('/another');
       this.$rootScope.$emit('$stateChangeSuccess');
@@ -224,7 +228,7 @@ describe('The Login Angular module', function() {
     }));
 
     it('should call loginAPI.changePassword()', function(done) {
-      $scope.form = {$invalid: false};
+      $scope.form = { $invalid: false };
 
       loginAPI.changePassword = function() {
         done();
@@ -238,7 +242,7 @@ describe('The Login Angular module', function() {
         newpassword: 'newpassword'
       };
 
-      $scope.form = {$invalid: false};
+      $scope.form = { $invalid: false };
       $scope.credentials = credentials;
 
       loginAPI.changePassword = function(oldpassword, newpassword) {
@@ -251,10 +255,10 @@ describe('The Login Angular module', function() {
     });
 
     it('should show an error notification incase of invalid password', function(done) {
-      $scope.form = {$invalid: false};
+      $scope.form = { $invalid: false };
 
       loginAPI.changePassword = function() {
-        return $q.reject({data: {error: {details: 'The passwords do not match'}}});
+        return $q.reject({ data: { error: { details: 'The passwords do not match' } } });
       };
       notificationFactory.weakError = function(message, text) {
         expect(text).to.match(/Old password is invalid/);
@@ -266,13 +270,13 @@ describe('The Login Angular module', function() {
     });
 
     it('should show a general error notification in case of server error', function(done) {
-      $scope.form = {$invalid: false};
+      $scope.form = { $invalid: false };
       notificationFactory.weakError = function(message, text) {
         expect(text).to.match(/Failed to change password, try again later/);
         done();
       };
       loginAPI.changePassword = function() {
-        return $q.reject({data: {error: {details: 'Failed to change password'}}});
+        return $q.reject({ data: { error: { details: 'Failed to change password' } } });
       };
       $scope.changePassword($scope.form);
       $scope.$digest();

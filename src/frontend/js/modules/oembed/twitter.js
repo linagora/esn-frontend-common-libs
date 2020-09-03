@@ -2,6 +2,7 @@ require('./oembed.js');
 
 (function(angular) {
   'use strict';
+
   var twitter = angular.module('esn.oembed.twitter', ['esn.oembed', 'esn.twitter']);
 
   var provider = {
@@ -27,6 +28,7 @@ require('./oembed.js');
 
         function parseTweetId() {
           var tweetId = $scope.url.split('/').pop();
+
           if (!tweetId) {
             return null;
           }
@@ -35,6 +37,7 @@ require('./oembed.js');
         }
 
         var tweetId = parseTweetId();
+
         if (tweetId) {
           twitterWidgetService.widgets.createTweet(
             tweetId,

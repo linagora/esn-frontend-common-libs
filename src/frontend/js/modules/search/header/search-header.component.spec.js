@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnSearchHeader component', function() {
   var $state, $stateParams, element, $compile, $rootScope, scope;
@@ -67,6 +67,6 @@ describe('The esnSearchHeader component', function() {
     compileSearchHeaderDirective();
     submitWithText();
 
-    expect($state.go).to.have.been.calledWith('search.main', { a: null, p: null, q: 'cow'}, { location: 'replace', reload: true });
+    expect($state.go).to.have.been.calledWith('search.main', { a: null, p: null, q: 'cow' }, { location: 'replace', reload: true });
   });
 });

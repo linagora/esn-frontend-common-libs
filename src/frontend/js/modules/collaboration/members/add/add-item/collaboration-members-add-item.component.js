@@ -6,7 +6,7 @@
 
   function esnCollaborationMembersAddItem() {
     return {
-      template: require("./collaboration-members-add-item.pug"),
+      template: require('./collaboration-members-add-item.pug'),
       controller: 'ESNCollaborationMembersAddItemController',
       controllerAs: 'ctrl',
       bindings: {

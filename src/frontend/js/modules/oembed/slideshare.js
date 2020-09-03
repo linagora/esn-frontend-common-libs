@@ -2,6 +2,7 @@ require('./oembed.js');
 
 (function(angular) {
   'use strict';
+
   var slideshare = angular.module('esn.oembed.slideshare', ['esn.oembed']);
 
   var templates = ['slideshare\\.net/[\\w-]+'];

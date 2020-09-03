@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.previous-page module', function() {
 
@@ -11,15 +11,15 @@ describe('The esn.previous-page module', function() {
 
   beforeEach(angular.mock.module('esn.previous-page', function($provide) {
     $window = {
-     history: {
-       back: sinon.spy()
-     }
-   };
+      history: {
+        back: sinon.spy()
+      }
+    };
 
     $provide.value('$state', $state = {
       go: sinon.spy(),
       get: sinon.stub().returns({
-        find: function() { return [] }
+        find: function() { return []; }
       })
     });
     $provide.value('$window', $window);

@@ -9,12 +9,12 @@ angular.module('esn.application-menu', [])
       restrict: 'E',
       scope: true,
       replace: true,
-      template: require("../../views/modules/application-menu/application-menu-toggler.pug"),
+      template: require('../../views/modules/application-menu/application-menu-toggler.pug'),
       link: function($scope) {
         $scope.appGridItems = process.env.APP_GRID_ITEMS;
 
         if (!$scope.appGridItems) {
-          $log.error('The environment variable APP_GRID_ITEMS has not been defined yet, and the application grid will break.')
+          $log.error('The environment variable APP_GRID_ITEMS has not been defined yet, and the application grid will break.');
         }
       }
     };

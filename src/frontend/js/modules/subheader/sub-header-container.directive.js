@@ -8,7 +8,7 @@ require('./sub-header.service.js');
     .directive('subHeaderContainer', function(subHeaderService, matchmedia, ESN_MEDIA_QUERY_SM_XS) {
       return {
         restrict: 'E',
-        template: require("../../../views/modules/subheader/sub-header-container.pug"),
+        template: require('../../../views/modules/subheader/sub-header-container.pug'),
         link: function(scope, element) {
           var container = element.find('#sub-header');
 

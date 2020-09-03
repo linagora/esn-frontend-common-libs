@@ -15,7 +15,7 @@
       scope: {
         notification: '='
       },
-      template: require("./user-notification-external-template.pug")
+      template: require('./user-notification-external-template.pug')
     };
 
     function controller($scope) {

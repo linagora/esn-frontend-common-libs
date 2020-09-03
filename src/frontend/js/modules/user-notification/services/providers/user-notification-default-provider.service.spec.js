@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnUserNotificationDefaultProvider factory', function() {
   var $httpBackend, esnUserNotificationDefaultProvider;

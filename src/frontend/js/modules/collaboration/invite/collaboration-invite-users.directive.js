@@ -22,7 +22,7 @@
         objectType: '@',
         collaboration: '='
       },
-      template: require("./collaboration-invite-users.pug"),
+      template: require('./collaboration-invite-users.pug'),
       link: link
     };
 

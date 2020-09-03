@@ -7,8 +7,8 @@ require('./services.js');
   'use strict';
 
   angular.module('linagora.esn.account')
-  .run(run)
-  .run(addTemplateCache);
+    .run(run)
+    .run(addTemplateCache);
 
   function run(
     accountMessageRegistry,
@@ -33,14 +33,16 @@ require('./services.js');
           var directive = new dynamicDirectiveService.DynamicDirective(
             function() {
               return true;
-            }, 'account-menu-item', options);
+            }, 'account-menu-item', options
+          );
 
           dynamicDirectiveService.addInjection(FAB_ANCHOR_POINT, directive);
           accountMessageRegistry.register(provider, socialHelper.getAccountMessages(provider));
         });
       });
 
-    var accountControlCenterMenu = new dynamicDirectiveService.DynamicDirective(true, 'controlcenter-menu-account', {priority: -2});
+    var accountControlCenterMenu = new dynamicDirectiveService.DynamicDirective(true, 'controlcenter-menu-account', { priority: -2 });
+
     dynamicDirectiveService.addInjection('controlcenter-sidebar-menu', accountControlCenterMenu);
   }
 

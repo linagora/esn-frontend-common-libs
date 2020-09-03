@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-require('../services/providers/user-notification-providers.service.js');
+require('./providers/user-notification-providers.service.js');
 require('../user-notification.constants.js');
 
 (function(angular) {

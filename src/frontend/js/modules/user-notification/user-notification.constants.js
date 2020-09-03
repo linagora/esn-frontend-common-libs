@@ -9,7 +9,7 @@
       placement: 'bottom',
       prefixEvent: 'user-notification',
       container: 'body',
-      template: require("./popover/user-notification-popover.pug")
+      template: require('./popover/user-notification-popover.pug')
     })
     .constant('ESN_USER_NOTIFICATION_UNREAD_REFRESH_TIMER', 10 * 1000)
     .constant('ESN_USER_NOTIFICATION_WEBSOCKET', {

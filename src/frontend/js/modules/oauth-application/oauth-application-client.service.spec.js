@@ -1,7 +1,7 @@
 'use strict';
 
 /* global chai: false */
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNOauthApplicationClient factory', function() {
   beforeEach(angular.mock.module('ui.router'));

@@ -9,7 +9,7 @@ require('./pagination.constants.js');
   function esnPaginationProvider(ESN_PAGINATION_DEFAULT_LIMIT) {
     function PaginationProvider(paginable, options) {
       this.paginable = paginable;
-      this.options = angular.extend({limit: ESN_PAGINATION_DEFAULT_LIMIT, offset: 0}, options);
+      this.options = angular.extend({ limit: ESN_PAGINATION_DEFAULT_LIMIT, offset: 0 }, options);
     }
 
     PaginationProvider.prototype.loadNextItems = function() {

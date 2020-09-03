@@ -2,14 +2,14 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnAttachmentDefaultViewer directive', function() {
   var $rootScope, $compile;
 
   beforeEach(function() {
     angular.mock.module('esn.attachment');
-    angular.mock.module(function ($provide) {
+    angular.mock.module(function($provide) {
       $provide.value('translateFilter', text => text);
     });
 
@@ -23,9 +23,9 @@ describe('The esnAttachmentDefaultViewer directive', function() {
     var $scope = scope || $rootScope.$new();
     var element = $compile(html)($scope);
 
-   $scope.$digest();
+    $scope.$digest();
 
-   return element;
+    return element;
   }
 
   it('should display attachment default icon', function() {

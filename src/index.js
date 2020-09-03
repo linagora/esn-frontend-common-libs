@@ -1,4 +1,4 @@
-require("./all.less");
+require('./all.less');
 require('./frontend/index.js');
 require('./angular-common.js');
 require('./require-angular-injections.js');

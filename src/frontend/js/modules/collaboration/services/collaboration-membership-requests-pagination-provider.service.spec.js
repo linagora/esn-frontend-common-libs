@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnCollaborationMembershipRequestsPaginationProvider service', function() {
   var data, provider, collaboration, options, esnCollaborationClientService, esnCollaborationMembershipRequestsPaginationProvider, $q, $rootScope;
@@ -10,13 +10,13 @@ describe('The esnCollaborationMembershipRequestsPaginationProvider service', fun
   beforeEach(angular.mock.module('ui.router'));
 
   beforeEach(function() {
-    collaboration = {objectType: 'chat.conversation', id: 1};
-    options = {limit: 5, offset: 0};
+    collaboration = { objectType: 'chat.conversation', id: 1 };
+    options = { limit: 5, offset: 0 };
     data = [];
 
     esnCollaborationClientService = {
       getRequestMemberships: sinon.spy(function() {
-        return $q.when({data: data});
+        return $q.when({ data: data });
       })
     };
 

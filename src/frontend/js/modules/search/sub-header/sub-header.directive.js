@@ -6,8 +6,8 @@
   function esnSearchSubHeader() {
     return {
       restrict: 'E',
-      template: require("./sub-header.pug")
+      template: require('./sub-header.pug')
     };
-}
+  }
 
 })(angular);

@@ -2,7 +2,7 @@
 
 /* global chai: false, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The infiniteListService service', function() {
   var $rootScope, infiniteListService, INFINITE_LIST_EVENTS;

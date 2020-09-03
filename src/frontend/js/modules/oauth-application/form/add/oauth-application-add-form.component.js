@@ -7,6 +7,6 @@
         onCreated: '&'
       },
       controller: 'ESNOauthApplicationAddFormController',
-      template: require("./oauth-application-add-form.pug")
+      template: require('./oauth-application-add-form.pug')
     });
 })();

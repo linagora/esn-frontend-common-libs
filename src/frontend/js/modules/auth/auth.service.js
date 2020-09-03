@@ -1,6 +1,6 @@
 'use strict';
 
-import { getAuth } from './client';
+const { getAuth } = require('./client');
 
 angular.module('esn.auth').factory('esnAuth', esnAuth);
 
@@ -15,7 +15,7 @@ function esnAuth($log, userAPI, httpConfigurer) {
   if (!auth) {
     auth = getAuth({
       fetchUser: userAPI.currentUser,
-      onSignInComplete,
+      onSignInComplete
     });
 
     auth.addEventListener('userSignedOut', () => {

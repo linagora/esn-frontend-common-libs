@@ -14,7 +14,7 @@
     function toggle() {
       if (!modal) {
         modal = $modal({
-          template: require("./shortcuts-sheet.pug"),
+          template: require('./shortcuts-sheet.pug'),
           controller: 'EsnShortcutsSheetController',
           controllerAs: '$ctrl',
           placement: 'center'

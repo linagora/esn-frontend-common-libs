@@ -9,7 +9,7 @@
       { key: 'fr', label: 'Français' },
       { key: 'vi', label: 'Tiếng Việt' },
       { key: 'zh', label: '中文' },
-      { key: 'ru', label: 'Pусский'}
+      { key: 'ru', label: 'Pусский' }
     ])
     .constant('ESN_I18N_AVAILABLE_LANGUAGE_ALIASES', {
       'en_*': 'en',

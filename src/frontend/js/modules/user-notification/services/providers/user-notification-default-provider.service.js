@@ -1,10 +1,10 @@
-require('../../services/providers/user-notification-default.js');
+require('./user-notification-default.js');
 
 (function(angular) {
   'use strict';
 
   angular.module('esn.user-notification')
-  .factory('esnUserNotificationDefaultProvider', esnUserNotificationDefaultProvider);
+    .factory('esnUserNotificationDefaultProvider', esnUserNotificationDefaultProvider);
 
   function esnUserNotificationDefaultProvider(
     esnRestangular,
@@ -55,7 +55,7 @@ require('../../services/providers/user-notification-default.js');
     }
 
     function setRead(id, read) {
-      return esnRestangular.one('user').one('notifications', id).one('read').customPUT({value: read});
+      return esnRestangular.one('user').one('notifications', id).one('read').customPUT({ value: read });
     }
   }
 })(angular);

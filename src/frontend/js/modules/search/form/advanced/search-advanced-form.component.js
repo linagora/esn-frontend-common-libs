@@ -4,7 +4,7 @@ require('./search-advanced-form.controller.js');
   'use strict';
 
   angular.module('esn.search').component('esnSearchAdvancedForm', {
-    template: require("./search-advanced-form.pug"),
+    template: require('./search-advanced-form.pug'),
     controller: 'ESNSearchAdvancedFormController',
     controllerAs: 'ctrl',
     bindings: {

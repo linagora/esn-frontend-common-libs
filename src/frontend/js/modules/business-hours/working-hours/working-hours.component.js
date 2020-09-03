@@ -5,7 +5,7 @@ require('./working-hours.controller.js');
 
   angular.module('esn.business-hours')
     .component('esnBusinessHoursWorkingHours', {
-      template: require("./working-hours.pug"),
+      template: require('./working-hours.pug'),
       bindings: {
         start: '=', // string like 08:40
         end: '='

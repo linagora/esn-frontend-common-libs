@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const _ = require('lodash');
 
@@ -6,7 +6,7 @@ require('./constants.js');
 require('./services.js');
 
 angular.module('linagora.esn.account')
-  .config(config)
+  .config(config);
 
 function config($stateProvider, routeResolver) {
   $stateProvider.state('controlcenter.accounts', {

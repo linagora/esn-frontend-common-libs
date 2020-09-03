@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The LDAP Angular module', function() {
   beforeEach(angular.mock.module('esn.ldap'));
@@ -12,8 +12,8 @@ describe('The LDAP Angular module', function() {
     var response, headers;
 
     beforeEach(function() {
-      response = [{firstname: 'firstname', lastname: 'lastname'}];
-      headers = {'x-esn-items-count': response.length};
+      response = [{ firstname: 'firstname', lastname: 'lastname' }];
+      headers = { 'x-esn-items-count': response.length };
     });
 
     beforeEach(angular.mock.inject(function(_$httpBackend_, _ldapAPI_) {
@@ -23,7 +23,7 @@ describe('The LDAP Angular module', function() {
 
     describe('The searchUsers fn', function() {
       it('should send a GET to /api/ldap/search?limit=20&search=a', function() {
-        var query = {search: 'a', limit: 20};
+        var query = { search: 'a', limit: 20 };
 
         $httpBackend.expectGET('/api/ldap/search?limit=20&search=a').respond(200, response, headers);
         ldapAPI.searchUsers(query);
@@ -31,7 +31,7 @@ describe('The LDAP Angular module', function() {
       });
 
       it('should be able to get the count header from the response', function(done) {
-        var query = {search: 'a', limit: 20};
+        var query = { search: 'a', limit: 20 };
 
         $httpBackend.expectGET('/api/ldap/search?limit=20&search=a').respond(200, response, headers);
 
@@ -44,7 +44,8 @@ describe('The LDAP Angular module', function() {
           },
           function(err) {
             done(err);
-          });
+          }
+        );
         $httpBackend.flush();
       });
 

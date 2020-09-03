@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnUserNotificationWebsocketListenerService factory', function() {
   var liveNotification, scope, esnUserNotificationCounter, esnUserNotificationWebsocketListenerService, ESN_USER_NOTIFICATION_WEBSOCKET;
@@ -47,12 +47,12 @@ describe('The esnUserNotificationWebsocketListenerService factory', function() {
         return {
           on: function(event, handler) {
             switch (event) {
-              case ESN_USER_NOTIFICATION_WEBSOCKET.NOTIFICATION.CREATED:
-                wsUserNotificationCreatedListener = handler;
-                break;
-              case ESN_USER_NOTIFICATION_WEBSOCKET.NOTIFICATION.UPDATED:
-                wsUserNotificationUpdatedListener = handler;
-                break;
+            case ESN_USER_NOTIFICATION_WEBSOCKET.NOTIFICATION.CREATED:
+              wsUserNotificationCreatedListener = handler;
+              break;
+            case ESN_USER_NOTIFICATION_WEBSOCKET.NOTIFICATION.UPDATED:
+              wsUserNotificationUpdatedListener = handler;
+              break;
             }
           }
         };
@@ -81,14 +81,14 @@ describe('The esnUserNotificationWebsocketListenerService factory', function() {
 
     describe('on NOTIFICATION.CREATED event', function() {
       it('should increase counter by 1', function() {
-        wsUserNotificationCreatedListener({acknowledged: false});
+        wsUserNotificationCreatedListener({ acknowledged: false });
         scope.$digest();
 
         expect(esnUserNotificationCounter.increaseBy).to.have.been.calledWith(1);
       });
 
       it('should call refresh once', function() {
-        wsUserNotificationCreatedListener({acknowledged: false});
+        wsUserNotificationCreatedListener({ acknowledged: false });
         scope.$digest();
 
         expect(esnUserNotificationCounter.increaseBy).to.have.been.calledOnce;
@@ -97,28 +97,28 @@ describe('The esnUserNotificationWebsocketListenerService factory', function() {
 
     describe('on NOTIFICATION.UPDATED event', function() {
       it('should decrease counter by 1 if notification is already acknowledged', function() {
-        wsUserNotificationUpdatedListener({acknowledged: true});
+        wsUserNotificationUpdatedListener({ acknowledged: true });
         scope.$digest();
 
         expect(esnUserNotificationCounter.decreaseBy).to.have.been.calledWith(1);
       });
 
       it('should NOT decrease counter by 1 if notification is not acknowledged', function() {
-        wsUserNotificationUpdatedListener({acknowledged: false});
+        wsUserNotificationUpdatedListener({ acknowledged: false });
         scope.$digest();
 
         expect(esnUserNotificationCounter.decreaseBy).to.not.have.been.called;
       });
 
       it('should call refresh once if notification is acknowledged', function() {
-        wsUserNotificationUpdatedListener({acknowledged: true});
+        wsUserNotificationUpdatedListener({ acknowledged: true });
         scope.$digest();
 
         expect(esnUserNotificationCounter.refresh).to.have.been.calledOnce;
       });
 
       it('should call refresh once if notification is not acknowledged', function() {
-        wsUserNotificationUpdatedListener({acknowledged: false});
+        wsUserNotificationUpdatedListener({ acknowledged: false });
         scope.$digest();
 
         expect(esnUserNotificationCounter.refresh).to.have.been.calledOnce;

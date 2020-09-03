@@ -4,7 +4,7 @@ require('./search-advanced-toggle-button.controller.js');
   'use strict';
 
   angular.module('esn.search').component('esnSearchAdvancedToggleButton', {
-    template: require("./search-advanced-toggle-button.pug"),
+    template: require('./search-advanced-toggle-button.pug'),
     controller: 'ESNSearchAdvancedToggleButtonController',
     controllerAs: 'ctrl',
     bindings: {

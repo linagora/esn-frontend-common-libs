@@ -1,7 +1,7 @@
 'use strict';
 
 /* global chai, moment, sinon: false */
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The infiniteScrollOnGroupsHelper service', function() {
 
@@ -87,7 +87,7 @@ describe('The infiniteScrollOnGroupsHelper service', function() {
 
     it('should reset the groups', function() {
       var scope = $rootScope.$new(),
-          helper = infiniteScrollOnGroupsHelper(scope, null, elementGroupingTool);
+        helper = infiniteScrollOnGroupsHelper(scope, null, elementGroupingTool);
 
       helper.destroy();
 
@@ -96,8 +96,8 @@ describe('The infiniteScrollOnGroupsHelper service', function() {
 
     it('should unregister the ADD_ELEMENTS listener', function() {
       var scope = $rootScope.$new(),
-          item = { a: 'b' },
-          helper = infiniteScrollOnGroupsHelper(scope, null, elementGroupingTool);
+        item = { a: 'b' },
+        helper = infiniteScrollOnGroupsHelper(scope, null, elementGroupingTool);
 
       helper.destroy();
       scope.$emit(INFINITE_LIST_EVENTS.ADD_ELEMENTS, item);
@@ -107,8 +107,8 @@ describe('The infiniteScrollOnGroupsHelper service', function() {
 
     it('should unregister the REMOVE_ELEMENTS listener', function() {
       var scope = $rootScope.$new(),
-          item = { a: 'b' },
-          helper = infiniteScrollOnGroupsHelper(scope, null, elementGroupingTool);
+        item = { a: 'b' },
+        helper = infiniteScrollOnGroupsHelper(scope, null, elementGroupingTool);
 
       helper.destroy();
       scope.$emit(INFINITE_LIST_EVENTS.REMOVE_ELEMENTS, item);

@@ -5,7 +5,7 @@ require('./working-days.controller.js');
 
   angular.module('esn.business-hours')
     .component('esnBusinessHoursWorkingDays', {
-      template: require("./working-days.pug"),
+      template: require('./working-days.pug'),
       bindings: {
         daysOfWeek: '='
       },

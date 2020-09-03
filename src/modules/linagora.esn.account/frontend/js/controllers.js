@@ -1,7 +1,7 @@
 require('./services.js');
 require('./constants');
 
-(function(angular){
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.account')
@@ -29,6 +29,7 @@ require('./constants');
           account.provider = account.data.provider;
           account.id = account.data.id;
         }
+
         return account;
       }).filter(function(account) {
         return !!account.provider;

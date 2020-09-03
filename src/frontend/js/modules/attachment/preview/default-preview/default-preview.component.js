@@ -6,6 +6,6 @@
       bindings: {
         attachment: '<'
       },
-      template: require("./default-preview.pug")
+      template: require('./default-preview.pug')
     });
 })(angular);

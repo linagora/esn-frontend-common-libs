@@ -134,12 +134,14 @@ describe('The Setup Angular module', function() {
     describe('The testConnection method', function() {
       it('should issue a PUT request to /api/document-store/connection/:hostname/:port/:dbname', function(done) {
         var responseData = {};
+
         this.$httpBackend.expectPUT('/api/document-store/connection/hi/80/there', {}).respond(200, responseData);
         var promise = this.setupAPI.testConnection({
           hostname: 'hi',
           port: 80,
           dbname: 'there'
         });
+
         expect(promise).to.be.an.object;
         expect(promise).to.have.property('then');
         expect(promise.then).to.be.a.function;
@@ -153,8 +155,9 @@ describe('The Setup Angular module', function() {
 
       it('should issue a PUT request to /api/document-store/connection/:hostname/:port/:dbname, with auth settings in body', function(done) {
         var responseData = {};
-        this.$httpBackend.expectPUT('/api/document-store/connection/hi/80/there', {username: 'john', password: 'doe'})
-        .respond(200, responseData);
+
+        this.$httpBackend.expectPUT('/api/document-store/connection/hi/80/there', { username: 'john', password: 'doe' })
+          .respond(200, responseData);
         var promise = this.setupAPI.testConnection({
           hostname: 'hi',
           port: 80,
@@ -162,6 +165,7 @@ describe('The Setup Angular module', function() {
           username: 'john',
           password: 'doe'
         });
+
         expect(promise).to.be.an.object;
         expect(promise).to.have.property('then');
         expect(promise.then).to.be.a.function;

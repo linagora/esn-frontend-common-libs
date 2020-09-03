@@ -19,7 +19,7 @@
       esnCollaborationClientService.join(self.objectType, self.collaboration._id, self.user._id).then(function() {
         self.done = true;
         $rootScope.$emit(ESN_COLLABORATION_MEMBER_EVENTS.ACCEPTED, {
-          collaboration: {objectType: self.objectType, id: self.collaboration._id},
+          collaboration: { objectType: self.objectType, id: self.collaboration._id },
           user: self.user._id
         });
       }, function() {
@@ -35,7 +35,7 @@
       esnCollaborationClientService.cancelRequestMembership(self.objectType, self.collaboration._id, self.user._id).then(function() {
         self.done = true;
         $rootScope.$emit(ESN_COLLABORATION_MEMBER_EVENTS.DECLINED, {
-          collaboration: {objectType: self.objectType, id: self.collaboration._id},
+          collaboration: { objectType: self.objectType, id: self.collaboration._id },
           user: self.user._id
         });
       }, function() {

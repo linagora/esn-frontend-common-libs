@@ -6,6 +6,6 @@
       bindings: {
         onCreated: '&'
       },
-      template: require("./oauth-application-add-form-modal.pug")
+      template: require('./oauth-application-add-form-modal.pug')
     });
 })();

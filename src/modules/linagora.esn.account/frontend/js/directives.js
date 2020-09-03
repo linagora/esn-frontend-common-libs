@@ -1,4 +1,4 @@
-(function(angular){
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.account')
@@ -14,6 +14,7 @@
 
           $scope.hide = function() {
             var e = getModal();
+
             if (!e) {
               return;
             }
@@ -25,6 +26,7 @@
 
           $scope.onClick = function() {
             var e = getModal();
+
             if (!e) {
               return;
             }
@@ -52,6 +54,7 @@
       function link(scope, elem, attr) {
         scope.openAccount = oauthStrategyRegistry.get(attr.type);
       }
+
       return {
         replace: true,
         restrict: 'E',

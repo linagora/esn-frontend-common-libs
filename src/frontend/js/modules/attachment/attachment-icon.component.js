@@ -13,7 +13,7 @@ require('./attachment-icon.controller.js');
       },
       controller: 'ESNAttachmentIconController',
       controllerAs: 'ctrl',
-      template: require("./attachment-icon.pug")
+      template: require('./attachment-icon.pug')
     };
   }
 })(angular);

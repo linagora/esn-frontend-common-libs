@@ -160,7 +160,7 @@
             return response.data ? response.data[0] : null;
           });
       }
-  });
+    });
 
 })(angular);
 

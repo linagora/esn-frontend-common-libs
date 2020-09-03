@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn-textarea-autosize directive', function() {
   var $scope, $compile, element, autosize;

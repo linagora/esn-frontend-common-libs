@@ -12,7 +12,7 @@
       },
       controller: 'CollaborationRequestMembershipActionUserNotificationController',
       controllerAs: 'ctrl',
-      template: require("./collaboration-membership-request-declined.pug")
+      template: require('./collaboration-membership-request-declined.pug')
     };
   }
 })();

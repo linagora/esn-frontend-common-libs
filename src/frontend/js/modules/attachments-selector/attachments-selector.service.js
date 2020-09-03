@@ -30,6 +30,7 @@ const _ = require('lodash');
                 options[key] = val;
               }
             };
+
             Object.defineProperty(this, key, descriptor);
           }.bind(this));
 
