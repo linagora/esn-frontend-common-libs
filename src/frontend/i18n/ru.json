@@ -491,6 +491,7 @@
   "No pending request": "Нет ожидающего запроса",
   "Cannot upload %s files": "Не удается загрузить файлы %s",
   "Cannot upload a file": "Невозможно загрузить файл",
+  "Your account": "Ваш аккаунт",
   "Your file cannot be uploaded because its size exceeds the %s limit": "Ваш файл не может быть загружен, так как его размер превышает предел %s",
   "Your files cannot be uploaded because their sizes exceed the %s limit": "Ваши файлы не могут быть загружены, потому что их размеры превышают предел %s",
   "OK": "OK",
