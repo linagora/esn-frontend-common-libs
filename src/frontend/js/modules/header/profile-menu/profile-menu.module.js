@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('esn.profile-menu', [
+  'material.components.menu',
   'esn.session',
   'esn.avatar'
 ]);
