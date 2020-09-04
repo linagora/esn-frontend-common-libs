@@ -3,19 +3,20 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The gracePeriodService service', function() {
 
   var gracePeriodService, $httpBackend, $rootScope, gracePeriodLiveNotificationServiceMock,
-      notifyServiceMock, taskDeferred, timeoutMock, GRACE_DELAY, HTTP_LAG_UPPER_BOUND,
-      httpSpy, notificationMock, notificationCancelCallback,
-      errorMessage, id;
+    notifyServiceMock, taskDeferred, timeoutMock, GRACE_DELAY, HTTP_LAG_UPPER_BOUND,
+    httpSpy, notificationMock, notificationCancelCallback,
+    errorMessage, id;
 
   function initTimeout() {
     timeoutMock = sinon.spy(function(callback, delay) {
       if (delay === GRACE_DELAY - HTTP_LAG_UPPER_BOUND) {
         $httpBackend.whenDELETE('/graceperiod/api/tasks/' + id).respond(404, errorMessage);
+
         return $q.when(callback());
       }
     });
@@ -88,7 +89,7 @@ describe('The gracePeriodService service', function() {
     });
 
     it('should call PUT when id exists', function(done) {
-      gracePeriodService.grace({id: id});
+      gracePeriodService.grace({ id: id });
 
       gracePeriodService.flush(id).then(function() {
         done();
@@ -112,7 +113,7 @@ describe('The gracePeriodService service', function() {
     it('should call DELETE when task exists', function() {
       var spy = sinon.spy();
 
-      gracePeriodService.grace({id: id});
+      gracePeriodService.grace({ id: id });
       gracePeriodService.cancel(id).then(spy);
 
       $httpBackend.expectDELETE('/graceperiod/api/tasks/' + id).respond(200, {});
@@ -130,11 +131,12 @@ describe('The gracePeriodService service', function() {
       timeoutMock = sinon.spy(function(callback, delay) {
         if (delay === GRACE_DELAY - HTTP_LAG_UPPER_BOUND) {
           $httpBackend.expectDELETE('/graceperiod/api/tasks/' + id).respond(200, responseData);
+
           return $q.when(callback());
         }
       });
 
-      gracePeriodService.grace({id: id});
+      gracePeriodService.grace({ id: id });
 
       gracePeriodService.cancel(id).then(function(response) {
         expect(response).to.shallowDeepEqual({
@@ -152,14 +154,16 @@ describe('The gracePeriodService service', function() {
     it('should try to DELETE a second time before the end of the graceperiod and fail if it fail on the second time', function(done) {
       var id = '123';
       var errorMessage = 'not found';
+
       timeoutMock = sinon.spy(function(callback, delay) {
         if (delay === GRACE_DELAY - HTTP_LAG_UPPER_BOUND) {
           $httpBackend.expectDELETE('/graceperiod/api/tasks/' + id).respond(404, errorMessage);
+
           return $q.when(callback());
         }
       });
 
-      gracePeriodService.grace({id: id});
+      gracePeriodService.grace({ id: id });
 
       gracePeriodService.cancel(id).then(done.bind(null, 'This promise should have fail'), function(error) {
         expect(error).to.shallowDeepEqual({
@@ -181,11 +185,12 @@ describe('The gracePeriodService service', function() {
       timeoutMock = sinon.spy(function(callback, delay) {
         if (delay === GRACE_DELAY - HTTP_LAG_UPPER_BOUND) {
           $httpBackend.expectDELETE('/graceperiod/api/tasks/' + id).respond(404, 'test');
+
           return $q.when(callback());
         }
       });
 
-      gracePeriodService.grace({id: id});
+      gracePeriodService.grace({ id: id });
 
       gracePeriodService.cancel(id).finally(function() {
         expect(httpSpy).to.have.been.calledWith(sinon.match.has('timeout', HTTP_LAG_UPPER_BOUND));
@@ -201,15 +206,17 @@ describe('The gracePeriodService service', function() {
       var id = '123';
 
       var promiseBeforeEndOfGraceperiod;
+
       timeoutMock = sinon.spy(function(callback, delay) {
         if (delay === GRACE_DELAY - HTTP_LAG_UPPER_BOUND) {
           $httpBackend.expectDELETE('/graceperiod/api/tasks/' + id).respond(404, 'test');
           promiseBeforeEndOfGraceperiod = $q.when(callback());
+
           return promiseBeforeEndOfGraceperiod;
         }
       });
 
-      gracePeriodService.grace({id: id});
+      gracePeriodService.grace({ id: id });
 
       gracePeriodService.cancel(id).finally(function() {
         expect(httpSpy).to.have.been.calledWith(sinon.match.has('timeout', promiseBeforeEndOfGraceperiod));
@@ -237,14 +244,14 @@ describe('The gracePeriodService service', function() {
     });
 
     it('should register listener for the given id', function() {
-      gracePeriodService.grace({id: id});
+      gracePeriodService.grace({ id: id });
       expect(gracePeriodLiveNotificationServiceMock.registerListeners).to.have.been.calledWith(id);
     });
 
     it('should not resolve the promise when the delay elapses if the task did not success yet', function() {
       var spy = sinon.spy();
 
-      gracePeriodService.grace({id: 'Test'}).then(spy);
+      gracePeriodService.grace({ id: 'Test' }).then(spy);
       $rootScope.$digest();
       expect(spy).to.not.have.been.called;
     });
@@ -252,20 +259,21 @@ describe('The gracePeriodService service', function() {
     it('should resolve the promise when the task success if not cancel has been asked', function() {
       var spy = sinon.spy();
 
-      gracePeriodService.grace({id: 'Test'}).then(spy);
+      gracePeriodService.grace({ id: 'Test' }).then(spy);
       taskDeferred.resolve();
       $rootScope.$digest();
-      expect(spy).to.have.been.calledWith({cancelled: false});
+      expect(spy).to.have.been.calledWith({ cancelled: false });
     });
 
     it('should resolve the promise when the task success if cancel has been asked but has not responded yet', function() {
       var spy = sinon.spy();
+
       $httpBackend.expect('DELETE', '/graceperiod/api/tasks/' + id).respond(200);
-      gracePeriodService.grace({id: id}).then(spy);
+      gracePeriodService.grace({ id: id }).then(spy);
       notificationCancelCallback();
       taskDeferred.resolve();
       $rootScope.$digest();
-      expect(spy).to.have.been.calledWith({cancelled: true, cancelFailed: true});
+      expect(spy).to.have.been.calledWith({ cancelled: true, cancelFailed: true });
     });
 
     it('should resolve the promise when the task success if cancel has been asked and the cancel failed', function() {
@@ -274,12 +282,12 @@ describe('The gracePeriodService service', function() {
       initTimeout();
 
       $httpBackend.expect('DELETE', '/graceperiod/api/tasks/' + id).respond(500);
-      gracePeriodService.grace({id: id}).then(spy);
+      gracePeriodService.grace({ id: id }).then(spy);
       notificationCancelCallback();
       taskDeferred.resolve();
       $httpBackend.flush();
       $rootScope.$digest();
-      expect(spy).to.have.been.calledWith({cancelFailed: true, cancelled: true});
+      expect(spy).to.have.been.calledWith({ cancelFailed: true, cancelled: true });
     });
 
     it('should resolve if cancel has been asked and the cancel failed', function() {
@@ -288,7 +296,7 @@ describe('The gracePeriodService service', function() {
       initTimeout();
 
       $httpBackend.expect('DELETE', '/graceperiod/api/tasks/' + id).respond(500);
-      gracePeriodService.grace({id: id}).then(spy);
+      gracePeriodService.grace({ id: id }).then(spy);
       notificationCancelCallback();
       $httpBackend.flush();
       $rootScope.$digest();
@@ -299,7 +307,7 @@ describe('The gracePeriodService service', function() {
       var spy = sinon.spy();
 
       $httpBackend.expect('DELETE', '/graceperiod/api/tasks/' + id).respond(200);
-      gracePeriodService.grace({id: id}).catch(spy);
+      gracePeriodService.grace({ id: id }).catch(spy);
       notificationCancelCallback();
       $httpBackend.flush();
       $rootScope.$digest();
@@ -311,10 +319,10 @@ describe('The gracePeriodService service', function() {
     it('should make the promise fail if the task fail', function() {
       var spy = sinon.spy();
 
-      gracePeriodService.grace({id: id}).catch(spy);
+      gracePeriodService.grace({ id: id }).catch(spy);
       taskDeferred.reject();
       $rootScope.$digest();
-      expect(spy).to.have.been.calledWith({cancelled: false});
+      expect(spy).to.have.been.calledWith({ cancelled: false });
     });
 
     it('should make the promise fail if cancel tentative fail but the task fail meanwhile', function() {
@@ -323,7 +331,7 @@ describe('The gracePeriodService service', function() {
       initTimeout();
 
       $httpBackend.expect('DELETE', '/graceperiod/api/tasks/' + id).respond(500);
-      gracePeriodService.grace({id: id}).catch(spy);
+      gracePeriodService.grace({ id: id }).catch(spy);
 
       notificationCancelCallback();
 
@@ -331,7 +339,7 @@ describe('The gracePeriodService service', function() {
       $rootScope.$digest();
 
       $rootScope.$digest();
-      expect(spy).to.have.been.calledWith({cancelled: true, cancelFailed: false});
+      expect(spy).to.have.been.calledWith({ cancelled: true, cancelFailed: false });
     });
   });
 
@@ -349,7 +357,7 @@ describe('The gracePeriodService service', function() {
     });
 
     beforeEach(function() {
-      gracePeriodService.grace({id: taskId, context: context});
+      gracePeriodService.grace({ id: taskId, context: context });
     });
 
     it('should return an empty array if no context query is passed as parameter', function() {
@@ -357,14 +365,14 @@ describe('The gracePeriodService service', function() {
     });
 
     it('should return an empty array if no task exists for this context query', function() {
-      expect(gracePeriodService.getTasksFor({id: 'anotherId'})).to.deep.equal([]);
-      expect(gracePeriodService.getTasksFor({id: 'anId', p: 'anotherProperty', p2: 'yolo'})).to.deep.equal([]);
+      expect(gracePeriodService.getTasksFor({ id: 'anotherId' })).to.deep.equal([]);
+      expect(gracePeriodService.getTasksFor({ id: 'anId', p: 'anotherProperty', p2: 'yolo' })).to.deep.equal([]);
     });
 
     it('should return the tasks matching this context query', function() {
       expect(gracePeriodService.getTasksFor(context)).to.deep.equal([taskId]);
-      expect(gracePeriodService.getTasksFor({id: context.id})).to.deep.equal([taskId]);
-      expect(gracePeriodService.getTasksFor({p: context.p})).to.deep.equal([taskId]);
+      expect(gracePeriodService.getTasksFor({ id: context.id })).to.deep.equal([taskId]);
+      expect(gracePeriodService.getTasksFor({ p: context.p })).to.deep.equal([taskId]);
     });
   });
 
@@ -373,7 +381,7 @@ describe('The gracePeriodService service', function() {
     var taskId = 'taskId';
 
     beforeEach(function() {
-      gracePeriodService.grace({id: taskId});
+      gracePeriodService.grace({ id: taskId });
     });
 
     it('should return false if no id is given', function() {

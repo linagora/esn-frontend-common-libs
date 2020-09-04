@@ -6,17 +6,17 @@ require('./attachment-list.controller.js');
   angular.module('esn.attachment-list')
     .component('esnAttachmentList', esnAttachmentList());
 
-    function esnAttachmentList() {
-      return {
-        template: require("./attachment-list.pug"),
-        controller: 'ESNAttachmentListController',
-        controllerAs: 'ctrl',
-        bindings: {
-          objectType: '@',
-          id: '@',
-          elementsPerPage: '=?',
-          scrollInsideContainer: '@?'
-        }
-      };
-    }
-  })(angular);
+  function esnAttachmentList() {
+    return {
+      template: require('./attachment-list.pug'),
+      controller: 'ESNAttachmentListController',
+      controllerAs: 'ctrl',
+      bindings: {
+        objectType: '@',
+        id: '@',
+        elementsPerPage: '=?',
+        scrollInsideContainer: '@?'
+      }
+    };
+  }
+})(angular);

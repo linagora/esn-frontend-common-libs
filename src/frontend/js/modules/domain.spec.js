@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Domain Angular module', function() {
   beforeEach(angular.mock.module('esn.domain'));
@@ -113,8 +113,8 @@ describe('The Domain Angular module', function() {
       var response, headers;
 
       beforeEach(function() {
-        response = [{name: 'MyDomain', company_name: 'MyAwesomeCompany'}];
-        headers = {'x-esn-items-count': response.length};
+        response = [{ name: 'MyDomain', company_name: 'MyAwesomeCompany' }];
+        headers = { 'x-esn-items-count': response.length };
       });
 
       it('should send a request to /api/domains/:uuid', function() {
@@ -124,7 +124,7 @@ describe('The Domain Angular module', function() {
       });
 
       it('should send a request to /api/domains/:uuid/members?limit=10&offset=20', function() {
-        var query = {limit: 10, offset: 20};
+        var query = { limit: 10, offset: 20 };
 
         $httpBackend.expectGET('/api/domains/' + DOMAIN_ID + '/members?limit=' + query.limit + '&offset=20').respond(200, response, headers);
         domainAPI.getMembers(DOMAIN_ID, query);
@@ -132,7 +132,7 @@ describe('The Domain Angular module', function() {
       });
 
       it('should send a request to /api/domains/:uuid?search=foo+bar', function() {
-        var query = {search: 'foo bar'};
+        var query = { search: 'foo bar' };
 
         $httpBackend.expectGET('/api/domains/' + DOMAIN_ID + '/members?search=foo+bar').respond(200, response, headers);
         domainAPI.getMembers(DOMAIN_ID, query);
@@ -152,7 +152,8 @@ describe('The Domain Angular module', function() {
           },
           function(err) {
             done(err);
-          });
+          }
+        );
         $httpBackend.flush();
       });
 
@@ -167,7 +168,7 @@ describe('The Domain Angular module', function() {
       var headers;
 
       beforeEach(function() {
-        headers = {'x-esn-items-count': '1013'};
+        headers = { 'x-esn-items-count': '1013' };
       });
 
       it('should do a HTTP HEAD request to the right endpoint', function(done) {
@@ -190,7 +191,7 @@ describe('The Domain Angular module', function() {
       var response;
 
       beforeEach(function() {
-        response = {name: 'MyDomain', company_name: 'MyAwesomeCompany'};
+        response = { name: 'MyDomain', company_name: 'MyAwesomeCompany' };
       });
 
       it('should send a request to /api/domains/:uuid/manager', function() {
@@ -205,7 +206,7 @@ describe('The Domain Angular module', function() {
       var response;
 
       beforeEach(function() {
-        response = {name: 'MyDomain', company_name: 'MyAwesomeCompany'};
+        response = { name: 'MyDomain', company_name: 'MyAwesomeCompany' };
       });
 
       it('should send a request to /api/domains/:uuid', function() {

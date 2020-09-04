@@ -29,14 +29,14 @@ function applyThemeService() {
     return `
       :root {
         ${Object.keys(theme.colors).map(color => {
-          const [h, s, l] = hexToHsl(theme.colors[color]);
+    const [h, s, l] = hexToHsl(theme.colors[color]);
 
-          return `
+    return `
             --${_camelToKebabCase(color)}-h: ${h};
             --${_camelToKebabCase(color)}-s: ${s}%;
             --${_camelToKebabCase(color)}-l: ${l}%;
           `;
-        }).join('')}
+  }).join('')}
       }
     `;
   }

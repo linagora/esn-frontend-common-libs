@@ -43,7 +43,8 @@ describe('The esn.message Angular module', function() {
       var html = '<message-attachments message="testMessage"></message-attachments>';
       var element = this.$compile(html)(this.$rootScope);
 
-      this.$rootScope.testMessage = { _id: 123456789,
+      this.$rootScope.testMessage = {
+        _id: 123456789,
         objectType: 'whatsup',
         content: 'This is the message content',
         published: '123',
@@ -53,8 +54,12 @@ describe('The esn.message Angular module', function() {
           lastname: 'Bar'
         },
         attachments: [
-          {id: 123, name: 'foo.png', contentType: 'application/png', length: 1024},
-          {id: 456, name: 'ms.doc', contentType: 'application/doc', length: 10240}
+          {
+            id: 123, name: 'foo.png', contentType: 'application/png', length: 1024
+          },
+          {
+            id: 456, name: 'ms.doc', contentType: 'application/doc', length: 10240
+          }
         ]
       };
 
@@ -88,8 +93,12 @@ describe('The esn.message Angular module', function() {
       expect(element.find('div.attachments').hasClass('ng-hide')).to.be.true;
 
       scope.testMessage.attachments = [
-        {id: 123, name: 'foo.png', contentType: 'application/png', length: 1024},
-        {id: 456, name: 'ms.doc', contentType: 'application/doc', length: 10240}
+        {
+          id: 123, name: 'foo.png', contentType: 'application/png', length: 1024
+        },
+        {
+          id: 456, name: 'ms.doc', contentType: 'application/doc', length: 10240
+        }
       ];
       scope.$digest();
       expect(element.find('div.attachments').hasClass('ng-hide')).to.be.false;
@@ -113,7 +122,8 @@ describe('The esn.message Angular module', function() {
       var html = '<messages-display message="testMessage"></messages-display>';
       var element = this.$compile(html)(this.$rootScope);
 
-      this.$rootScope.testMessage = { _id: 123456789,
+      this.$rootScope.testMessage = {
+        _id: 123456789,
         objectType: 'whatsup',
         content: 'This is the message content',
         published: '123',
@@ -224,7 +234,8 @@ describe('The esn.message Angular module', function() {
       var html = '<messages-thread message="testMessage"></messages-thread>';
       var element = this.$compile(html)(this.$rootScope);
 
-      this.$rootScope.testMessage = { _id: 123456789,
+      this.$rootScope.testMessage = {
+        _id: 123456789,
         objectType: 'whatsup',
         content: 'This is the message content',
         published: '123',
@@ -286,13 +297,14 @@ describe('The esn.message Angular module', function() {
 
     it('should display error with duplicated choices insensitively ', function() {
       var html = '<poll-edition poll="newpoll"></poll-edition>';
+
       this.$compile(html)(this.$rootScope);
       this.$rootScope.$digest();
       this.$rootScope.messageContent = 'New poll';
       this.$rootScope.additionalData = {
         pollChoices: [
-          {label: 'yes'},
-          {label: 'Yes'}
+          { label: 'yes' },
+          { label: 'Yes' }
         ]
       };
       this.$rootScope.validators[0]();
@@ -301,13 +313,14 @@ describe('The esn.message Angular module', function() {
 
     it('should not display error with different choices', function() {
       var html = '<poll-edition poll="newpoll"></poll-edition>';
+
       this.$compile(html)(this.$rootScope);
       this.$rootScope.$digest();
       this.$rootScope.messageContent = 'New poll';
       this.$rootScope.additionalData = {
         pollChoices: [
-          {label: 'yes'},
-          {label: 'no'}
+          { label: 'yes' },
+          { label: 'no' }
         ]
       };
       this.$rootScope.validators[0]();
@@ -330,6 +343,7 @@ describe('The esn.message Angular module', function() {
       var scope = this.$rootScope.$new();
 
       var element = this.$compile(html)(scope);
+
       scope.$digest();
 
       expect(element.length).to.equal(1);
@@ -351,6 +365,7 @@ describe('The esn.message Angular module', function() {
       var scope = this.$rootScope.$new();
 
       var element = this.$compile(html)(scope);
+
       scope.$digest();
 
       expect(element.length).to.equal(1);
@@ -371,10 +386,12 @@ describe('The esn.message Angular module', function() {
       var html = '<message-date-link message="message" activitystream="activitystream"></message-date-link>';
 
       var scope = this.$rootScope.$new();
+
       scope.message = { _id: '1234' };
       scope.activitystream = { activity_stream: { uuid: '5678' } };
 
       var element = this.$compile(html)(scope);
+
       scope.$digest();
 
       expect(element.find('a').attr('href'))
@@ -385,9 +402,11 @@ describe('The esn.message Angular module', function() {
       var html = '<message-date-link message="message" activitystream="activitystream"></message-date-link>';
 
       var scope = this.$rootScope.$new();
+
       scope.message = { published: new Date() };
 
       var element = this.$compile(html)(scope);
+
       scope.$digest();
 
       expect(element.find('a').find('small').text())
@@ -398,9 +417,11 @@ describe('The esn.message Angular module', function() {
       var html = '<message-date-link message="message" activitystream="activitystream"></message-date-link>';
 
       var scope = this.$rootScope.$new();
+
       scope.message = { timestamps: { creation: new Date() } };
 
       var element = this.$compile(html)(scope);
+
       scope.$digest();
 
       expect(element.find('a').find('small').text())
@@ -422,6 +443,7 @@ describe('The esn.message Angular module', function() {
       var scope = this.$rootScope.$new();
 
       var element = this.$compile(html)(scope);
+
       scope.$digest();
 
       expect(element.length).to.equal(1);
@@ -507,14 +529,15 @@ describe('The esn.message Angular module', function() {
         this.scope.displayError = function() {
           done(new Error());
         };
-        this.scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+        this.scope.activitystream = { activity_stream: { uuid: '0987654321' } };
         this.scope.messageContent = 'Hey Oh, let\'s go';
         this.scope.sendMessage();
         this.scope.$digest();
       });
 
       it('should call $messageAPI.post with position when set', function(done) {
-        var coords = {latitude: 123, longitude: 456};
+        var coords = { latitude: 123, longitude: 456 };
+
         this.messageAPI.post = function(type, data) {
           expect(data.position).to.exist;
           expect(data.position.coords).to.deep.equal(coords);
@@ -523,7 +546,7 @@ describe('The esn.message Angular module', function() {
         this.scope.position = {
           coords: coords
         };
-        this.scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+        this.scope.activitystream = { activity_stream: { uuid: '0987654321' } };
         this.scope.messageContent = 'Hey Oh, let\'s go';
         this.scope.sendMessage();
         this.scope.$digest();
@@ -537,7 +560,7 @@ describe('The esn.message Angular module', function() {
           expect(err).to.match(/You do not have enough rights to write a new message here/);
           done();
         };
-        this.scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+        this.scope.activitystream = { activity_stream: { uuid: '0987654321' } };
         this.scope.messageContent = 'Hey Oh, let\'s go';
         this.scope.sendMessage();
         this.scope.$digest();
@@ -569,7 +592,7 @@ describe('The esn.message Angular module', function() {
           this.scope.displayError = function() {
             done(new Error());
           };
-          this.scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+          this.scope.activitystream = { activity_stream: { uuid: '0987654321' } };
           this.scope.messageContent = 'Hey Oh, let\'s go';
           this.rootScope.$on('message:posted', function(evt, data) {
             expect(data.activitystreamUuid).to.equal('0987654321');
@@ -619,13 +642,13 @@ describe('The esn.message Angular module', function() {
         };
 
         this.controller('messageCommentController', {
-            $scope: this.scope,
-            $q: $q,
-            messageAPI: this.messageAPI,
-            $alert: this.alert,
-            $rootScope: this.rootScope,
-            geoAPI: this.geoAPI
-          });
+          $scope: this.scope,
+          $q: $q,
+          messageAPI: this.messageAPI,
+          $alert: this.alert,
+          $rootScope: this.rootScope,
+          geoAPI: this.geoAPI
+        });
 
         this.scope.message = {
           _id: 123,
@@ -682,6 +705,7 @@ describe('The esn.message Angular module', function() {
 
       it('should set $scope.sending to true when all data is set', function(done) {
         var scope = this.scope;
+
         this.messageAPI.addComment = function() {
           expect(scope.sending).to.be.true;
           done();
@@ -715,7 +739,7 @@ describe('The esn.message Angular module', function() {
       });
 
       it('should call the addComment API with position when set', function(done) {
-        var coords = {latitude: 123, longitude: 456};
+        var coords = { latitude: 123, longitude: 456 };
 
         this.messageAPI.addComment = function(type, data) {
           expect(data.position).to.exist;
@@ -756,7 +780,7 @@ describe('The esn.message Angular module', function() {
           this.messageAPI.addComment = function() {
             return {
               then: function(callback) {
-                callback({data: {_id: 'comment1'}});
+                callback({ data: { _id: 'comment1' } });
               }
             };
           };
@@ -775,8 +799,9 @@ describe('The esn.message Angular module', function() {
 
         it('should set scope.sending to false', function(done) {
           var scope = this.scope;
+
           this.messageAPI.addComment = function() {
-            return $q.when({data: {_id: 1}});
+            return $q.when({ data: { _id: 1 } });
           };
           this.scope.shrink = function() {};
           this.scope.displayError = function() {
@@ -796,6 +821,7 @@ describe('The esn.message Angular module', function() {
 
         it('should set scope.commentContent to an empty string', function(done) {
           var scope = this.scope;
+
           this.messageAPI.addComment = function() {
             return $q.when({ data: { _id: 1 } });
           };
@@ -818,6 +844,7 @@ describe('The esn.message Angular module', function() {
 
         it('should emit a message:comment event on rootScope', function(done) {
           var scope = this.scope;
+
           this.messageAPI.addComment = function() {
             return $q.when({ data: { _id: 'comment1' } });
           };
@@ -882,13 +909,13 @@ describe('The esn.message Angular module', function() {
 
       it('should allow passing parameters given as argument', function() {
         this.$httpBackend.expectGET('/api/messages?foo=bar&test=true').respond([]);
-        this.api.get({test: true, foo: 'bar'});
+        this.api.get({ test: true, foo: 'bar' });
         this.$httpBackend.flush();
       });
 
       it('should tokenize array like parameters', function() {
         this.$httpBackend.expectGET('/api/messages?test%5B%5D=foo&test%5B%5D=bar').respond([]);
-        this.api.get({'test[]': ['foo', 'bar']});
+        this.api.get({ 'test[]': ['foo', 'bar'] });
         this.$httpBackend.flush();
       });
     });
@@ -919,7 +946,7 @@ describe('The esn.message Angular module', function() {
       });
 
       it('should send a POST request to /api/messages with attachments', function() {
-        var attachments = [{id: 1}, {id: 2}];
+        var attachments = [{ id: 1 }, { id: 2 }];
         var object = {
           objectType: 'whatsup',
           description: 'whatsup message content'
@@ -935,6 +962,7 @@ describe('The esn.message Angular module', function() {
           object: object,
           targets: targets
         };
+
         message.object.attachments = attachments;
 
         this.$httpBackend.expectPOST('/api/messages', message).respond();
@@ -943,7 +971,7 @@ describe('The esn.message Angular module', function() {
       });
 
       it('should send a POST request to /api/messages without attachments when format is wrong', function() {
-        var attachments = {id: 1};
+        var attachments = { id: 1 };
         var object = {
           objectType: 'whatsup',
           description: 'whatsup message content'
@@ -988,7 +1016,7 @@ describe('The esn.message Angular module', function() {
       });
 
       it('should send a POST request to /api/messages with attachments', function() {
-        var attachments = [{id: 1}, {id: 2}];
+        var attachments = [{ id: 1 }, { id: 2 }];
         var object = {
           objectType: 'whatsup',
           description: 'whatsup response content'
@@ -1004,6 +1032,7 @@ describe('The esn.message Angular module', function() {
           object: object,
           inReplyTo: inReplyTo
         };
+
         message.object.attachments = attachments;
 
         this.$httpBackend.expectPOST('/api/messages', message).respond();
@@ -1013,7 +1042,7 @@ describe('The esn.message Angular module', function() {
     });
 
     it('should send a POST request to /api/messages without attachments when format is wrong', function() {
-      var attachments = {id: 1};
+      var attachments = { id: 1 };
       var object = {
         objectType: 'whatsup',
         description: 'whatsup response content'

@@ -16,7 +16,7 @@ describe('The linagora.esn.user-status userStatusClientService service', functio
     it('should call GET /user-status/api/users/:userId', function() {
       var id = '123';
 
-      $httpBackend.expectGET('/user-status/api/users/' + id).respond({_id: id, status: 'connected'});
+      $httpBackend.expectGET('/user-status/api/users/' + id).respond({ _id: id, status: 'connected' });
       userStatusClientService.getStatusForUser(id);
       $httpBackend.flush();
     });

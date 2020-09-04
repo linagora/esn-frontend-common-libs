@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnCollaborationMembersWidget directive', function() {
   beforeEach(angular.mock.module('esn.collaboration'));
@@ -119,7 +119,7 @@ describe('The esnCollaborationMembersWidget directive', function() {
 
     expect(call).to.equal(1);
 
-    this.$rootScope.$emit('collaboration:join', {data: 'fake'});
+    this.$rootScope.$emit('collaboration:join', { data: 'fake' });
     expect(call).to.equal(2);
   });
 
@@ -137,7 +137,7 @@ describe('The esnCollaborationMembersWidget directive', function() {
     this.$compile(this.html)(this.scope);
     this.scope.$digest();
     expect(call).to.equal(1);
-    this.$rootScope.$emit('collaboration:leave', {data: 'fake'});
+    this.$rootScope.$emit('collaboration:leave', { data: 'fake' });
     expect(call).to.equal(2);
   });
 
@@ -158,11 +158,11 @@ describe('The esnCollaborationMembersWidget directive', function() {
 
       this.scope.$digest();
       expect(call).to.equal(1);
-      this.$rootScope.$emit('collaboration:join', {data: 'fake'});
+      this.$rootScope.$emit('collaboration:join', { data: 'fake' });
       expect(call).to.equal(2);
       element.remove();
       this.$rootScope.$digest();
-      this.$rootScope.$emit('collaboration:join', {data: 'fake'});
+      this.$rootScope.$emit('collaboration:join', { data: 'fake' });
       expect(call).to.equal(2);
     });
 
@@ -181,11 +181,11 @@ describe('The esnCollaborationMembersWidget directive', function() {
 
       this.scope.$digest();
       expect(call).to.equal(1);
-      this.$rootScope.$emit('collaboration:leave', {data: 'fake'});
+      this.$rootScope.$emit('collaboration:leave', { data: 'fake' });
       expect(call).to.equal(2);
       element.remove();
       this.$rootScope.$digest();
-      this.$rootScope.$emit('collaboration:leave', {data: 'fake'});
+      this.$rootScope.$emit('collaboration:leave', { data: 'fake' });
       expect(call).to.equal(2);
     });
   });

@@ -11,7 +11,7 @@
         attachment: '=',
         viewer: '='
       },
-      template: require("./default-viewer.pug")
+      template: require('./default-viewer.pug')
     };
 
   }

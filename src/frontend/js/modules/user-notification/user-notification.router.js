@@ -8,7 +8,7 @@
     $stateProvider
       .state('user-notification', {
         url: '/user-notification',
-        template: require("./user-notification.pug"),
+        template: require('./user-notification.pug'),
         deepStateRedirect: {
           default: 'user-notification.list',
           fn: function() {

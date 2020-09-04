@@ -8,7 +8,7 @@ require('./clipboard-url.controller.js');
       bindings: {
         url: '<'
       },
-      template: require("./clipboard-url.pug"),
+      template: require('./clipboard-url.pug'),
       controller: 'esnClipboardUrlController',
       controllerAs: 'ctrl'
     });

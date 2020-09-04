@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Member Angular module', function() {
 
@@ -48,7 +48,8 @@ describe('The Member Angular module', function() {
       var html = '<member-display member="testuser"></member-display>';
       var element = this.$compile(html)(this.$rootScope);
 
-      this.$rootScope.testuser = { _id: 123456789,
+      this.$rootScope.testuser = {
+        _id: 123456789,
         firstname: 'John',
         lastname: 'Doe',
         emails: ['johndoe@linagora.com']
@@ -138,7 +139,7 @@ describe('The Member Angular module', function() {
                 self.scope.loadMoreElements();
               }
             };
-          } else if (self.callCount === self.maxCount) {
+          } if (self.callCount === self.maxCount) {
             done();
           }
         };
@@ -224,8 +225,8 @@ describe('The Member Angular module', function() {
       domainAPI = _domainAPI_;
 
       members = [
-        {_id: 1, firstname: 'Nicolas', lastname: 'Cage'},
-        {_id: 2, firstname: 'Bruce', lastname: 'Willis'}
+        { _id: 1, firstname: 'Nicolas', lastname: 'Cage' },
+        { _id: 2, firstname: 'Bruce', lastname: 'Willis' }
       ];
 
       domainAPI.getMembers = function() {
@@ -286,8 +287,12 @@ describe('The Member Angular module', function() {
 
       it('should override existing member.date with current date', function(done) {
         var members = [
-          {_id: 1, firstname: 'Nicolas', lastname: 'Cage', date: 'Mon Feb 10 2016 15:16:41 GMT+0100 (CET)'},
-          {_id: 2, firstname: 'Bruce', lastname: 'Willis', date: 'Mon Feb 10 2016 15:16:41 GMT+0100 (CET)'}
+          {
+            _id: 1, firstname: 'Nicolas', lastname: 'Cage', date: 'Mon Feb 10 2016 15:16:41 GMT+0100 (CET)'
+          },
+          {
+            _id: 2, firstname: 'Bruce', lastname: 'Willis', date: 'Mon Feb 10 2016 15:16:41 GMT+0100 (CET)'
+          }
         ];
 
         domainAPI.getMembers = function() {

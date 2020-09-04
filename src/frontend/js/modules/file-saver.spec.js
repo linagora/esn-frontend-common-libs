@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.file-saver Angular module', function() {
 
@@ -50,7 +50,7 @@ describe('The esn.file-saver Angular module', function() {
 
         esnFileSaver.saveText(textContent, filename);
 
-        expect(BlobMock).to.have.been.calledWith([textContent], {type: 'text/plain;charset=utf-8'});
+        expect(BlobMock).to.have.been.calledWith([textContent], { type: 'text/plain;charset=utf-8' });
         expect(FileSaverMock.saveAs).to.have.been.calledOnce;
         expect(FileSaverMock.saveAs).to.have.been.calledWith(sinon.match.instanceOf(BlobMock), filename);
       });
@@ -75,7 +75,7 @@ describe('The esn.file-saver Angular module', function() {
       it('should return data if receive file data from server', function() {
         var response;
 
-        $httpBackend.whenGET('/url/to/file').respond(200, {name: 'file'});
+        $httpBackend.whenGET('/url/to/file').respond(200, { name: 'file' });
         esnFileSaver.getFile('/url/to/file').then(function(data) {
           response = data;
         });

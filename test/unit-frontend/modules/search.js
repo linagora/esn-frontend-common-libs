@@ -30,6 +30,7 @@ describe('The Search Form Angular module', function() {
     it('should fill the search-form template with default throbber values if no values were defined in the scope', inject(function(defaultSpinnerConfiguration) {
       var html = '<search-form></search-form>';
       var element = this.$compile(html)(this.$rootScope);
+
       this.$rootScope.$digest();
 
       this.checkGeneratedElement(element, defaultSpinnerConfiguration.spinnerKey, defaultSpinnerConfiguration.spinnerConf);
@@ -39,12 +40,12 @@ describe('The Search Form Angular module', function() {
       var html = '<search-form></search-form>';
 
       this.$rootScope.spinnerKey = 'spinnerKey';
-      this.$rootScope.spinnerConf = {radius: 30, width: 8, length: 16};
+      this.$rootScope.spinnerConf = { radius: 30, width: 8, length: 16 };
 
       var element = this.$compile(html)(this.$rootScope);
 
       this.$rootScope.$digest();
-      this.checkGeneratedElement(element, 'spinnerKey', {radius: 30, width: 8, length: 16});
+      this.checkGeneratedElement(element, 'spinnerKey', { radius: 30, width: 8, length: 16 });
     });
   });
 

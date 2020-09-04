@@ -6,6 +6,6 @@ angular.module('pascalprecht.translate', [])
   })
   .factory('$translate', function() {
     return {
-      instant: function(input, params) {return input;}
+      instant: function(input) { return input; }
     };
   });

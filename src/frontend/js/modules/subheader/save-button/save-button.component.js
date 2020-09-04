@@ -5,7 +5,7 @@ require('./save-button.controller.js');
 
   angular.module('esn.subheader')
     .component('esnSubheaderSaveButton', {
-      template: require("./save-button.pug"),
+      template: require('./save-button.pug'),
       controller: 'esnSubheaderSaveButtonController',
       bindings: {
         onClick: '&',

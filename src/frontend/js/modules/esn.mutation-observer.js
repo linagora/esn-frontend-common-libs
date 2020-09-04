@@ -3,5 +3,5 @@
 
   angular.module('esn.mutation-observer', [])
 
-  .constant('MutationObserver', window.MutationObserver);
+    .constant('MutationObserver', window.MutationObserver);
 })(angular);

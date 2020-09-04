@@ -13,7 +13,7 @@ angular.module('esn.previous-page', [])
         const backState = availableStates.find(state => state.name === attrs.esnBackButton) || availableStates.find(state => state.default);
 
         if (!backState) {
-          $log.warn(`There is no ${attrs.esnBackButton} state or a default state to come back to.`)
+          $log.warn(`There is no ${attrs.esnBackButton} state or a default state to come back to.`);
         }
 
         element.click(() => esnPreviousPage.back(backState ? backState.name : attrs.esnBackButton));

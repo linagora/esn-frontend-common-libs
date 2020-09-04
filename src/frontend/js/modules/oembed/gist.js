@@ -2,6 +2,7 @@ require('./oembed.js');
 
 (function(angular) {
   'use strict';
+
   var gist = angular.module('esn.oembed.gist', ['esn.oembed', 'gist']);
 
   var provider = {
@@ -29,6 +30,7 @@ require('./oembed.js');
         $scope.gistId = $scope.url.split('/')[4];
         $timeout(function() {
           var gistDirective = angular.element('<gist id={{gistId}}></div>');
+
           $element.append(gistDirective);
           $compile(gistDirective)($scope);
         }, 0);

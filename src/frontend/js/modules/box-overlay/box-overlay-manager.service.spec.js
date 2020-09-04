@@ -2,7 +2,7 @@
 
 /* global chai: false*/
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The boxOverlayManager service', function() {
   var $rootScope, $scope;

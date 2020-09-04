@@ -1,4 +1,5 @@
 const _ = require('lodash');
+
 require('../config/config.module.js');
 require('./datetime.constants.js');
 
@@ -15,14 +16,14 @@ require('./datetime.constants.js');
     ESN_DATETIME_TIME_FORMATS
   ) {
     var humanTimeGroupings = [
-      {name: 'Today', dateFormat: 'shortTime', accepts: _isToday},
-      {name: 'Yesterday', dateFormat: 'ddd', accepts: _isYesterday},
-      {name: 'This week', dateFormat: 'ddd', accepts: _isThisWeek},
-      {name: 'Last week', dateFormat: 'MMM D', accepts: _isLastWeek},
-      {name: 'This month', dateFormat: 'MMM D', accepts: _isThisMonth},
-      {name: 'Last month', dateFormat: 'MMM D', accepts: _isLastMonth},
-      {name: 'This year', dateFormat: 'MMM D', accepts: _isThisYear},
-      {name: 'Old messages', dateFormat: 'shortDate', accepts: _.constant(true)}
+      { name: 'Today', dateFormat: 'shortTime', accepts: _isToday },
+      { name: 'Yesterday', dateFormat: 'ddd', accepts: _isYesterday },
+      { name: 'This week', dateFormat: 'ddd', accepts: _isThisWeek },
+      { name: 'Last week', dateFormat: 'MMM D', accepts: _isLastWeek },
+      { name: 'This month', dateFormat: 'MMM D', accepts: _isThisMonth },
+      { name: 'Last month', dateFormat: 'MMM D', accepts: _isLastMonth },
+      { name: 'This year', dateFormat: 'MMM D', accepts: _isThisYear },
+      { name: 'Old messages', dateFormat: 'shortDate', accepts: _.constant(true) }
     ];
 
     var timeZone;
@@ -69,28 +70,29 @@ require('./datetime.constants.js');
           time: formatTime,
           shortTime: formatTime
         }[format];
+
         return formatFunction ? formatFunction(date) : _getMoment(date).format(format);
       }).join(' ');
     }
 
     function formatMediumDate(date) {
-      return _getMoment(date).format('LL');  // June 9 2014
+      return _getMoment(date).format('LL'); // June 9 2014
     }
 
     function formatFullDate(date) {
-      return _getMoment(date).format('LLLL');  // Monday, June 9 2014 9:32 PM
+      return _getMoment(date).format('LLLL'); // Monday, June 9 2014 9:32 PM
     }
 
     function formatShortDate(date) {
-      return _getMoment(date).format('L');  // 06/09/2014
+      return _getMoment(date).format('L'); // 06/09/2014
     }
 
     function formatLongDate(date) {
-      return _getMoment(date).format('LLL');  // June 9 2014 9:32 PM
+      return _getMoment(date).format('LLL'); // June 9 2014 9:32 PM
     }
 
     function formatTime(date) {
-      return _getMoment(date).format('LT');  // 8:30 PM
+      return _getMoment(date).format('LT'); // 8:30 PM
     }
 
     function formatRelative(date) {
@@ -115,12 +117,14 @@ require('./datetime.constants.js');
 
     function _getMoment(date) {
       var m;
+
       if (_.isDate(date)) {
         m = moment(date.toISOString());
       } else if (_.isString(date) && !_.isNaN(Date.parse(date))) {
         m = moment(new Date(date).toISOString());
       } else if (_.isNumber(date)) {
         var d = new Date();
+
         d.setTime(date);
         m = moment(d.toISOString());
       }
@@ -128,7 +132,7 @@ require('./datetime.constants.js');
       try {
         return m.locale(locale).tz(timeZone);
       } catch (_) {
-        return {format: function() { return date; }};
+        return { format: function() { return date; } };
       }
     }
 

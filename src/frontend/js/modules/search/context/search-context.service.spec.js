@@ -2,7 +2,7 @@
 
 /* global chai, sinon: true */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnSearchContextService service', function() {
   var $rootScope, $state, $stateParams, $q, searchProviders, esnSearchContextService, esnI18nService;
@@ -49,14 +49,14 @@ describe('The esnSearchContextService service', function() {
     });
 
     it('should return false when activeOn array is empty', function() {
-      var provider = {activeOn: [], id: 'op.members'};
+      var provider = { activeOn: [], id: 'op.members' };
 
       expect(esnSearchContextService.isActive(provider)).to.be.false;
       expect($state.includes).to.not.have.been.called;
     });
 
     it('should return false if current state is not included in activeOn array', function() {
-      var provider = {activeOn: ['foo', 'bar', 'baz'], id: 'op.members'};
+      var provider = { activeOn: ['foo', 'bar', 'baz'], id: 'op.members' };
 
       $state.includes.returns(false);
 
@@ -65,7 +65,7 @@ describe('The esnSearchContextService service', function() {
     });
 
     it('should return true when current state is defined in one activeOn element', function() {
-      var provider = {activeOn: ['foo', 'bar', 'baz'], id: 'op.members'};
+      var provider = { activeOn: ['foo', 'bar', 'baz'], id: 'op.members' };
 
       $state.includes.onFirstCall().returns(true);
       $state.includes.returns(false);
@@ -75,7 +75,7 @@ describe('The esnSearchContextService service', function() {
     });
 
     it('should return true when current state is defined in more than one activeOn element', function() {
-      var provider = {activeOn: ['foo', 'bar', 'baz'], id: 'op.members'};
+      var provider = { activeOn: ['foo', 'bar', 'baz'], id: 'op.members' };
 
       $state.includes.onSecondCall().returns(true);
       $state.includes.returns(false);
@@ -85,7 +85,7 @@ describe('The esnSearchContextService service', function() {
     });
 
     it('should return true when the $stateParams.p is the identifier of the provider', function() {
-      var provider = {activeOn: [], uid: 'op.members'};
+      var provider = { activeOn: [], uid: 'op.members' };
 
       $stateParams.p = 'op.members';
 
@@ -113,16 +113,16 @@ describe('The esnSearchContextService service', function() {
 
     it('should resolve with the mapped providers', function(done) {
       var providers = [
-        {id: 1, name: 'emailsearchprovider'},
-        {id: 2, name: 'contactsearchprovider'}
+        { id: 1, name: 'emailsearchprovider' },
+        { id: 2, name: 'contactsearchprovider' }
       ];
 
       searchProviders.getAll.returns($q.when(providers));
 
       esnSearchContextService.getProvidersContext().then(function(result) {
         expect(result).to.shallowDeepEqual([
-          {id: 1, name: 'emailsearchprovider', active: false},
-          {id: 2, name: 'contactsearchprovider', active: false}
+          { id: 1, name: 'emailsearchprovider', active: false },
+          { id: 2, name: 'contactsearchprovider', active: false }
         ]);
         done();
       }, function() {

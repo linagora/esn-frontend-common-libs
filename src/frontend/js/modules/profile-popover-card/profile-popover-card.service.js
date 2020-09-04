@@ -240,7 +240,7 @@ const _ = require('lodash');
 
     function createModal(scope) {
       var modal = $modal({
-        template: require("./profile-popover-content/profile-popover-modal.pug"),
+        template: require('./profile-popover-content/profile-popover-modal.pug'),
         scope: scope,
         show: false
       });

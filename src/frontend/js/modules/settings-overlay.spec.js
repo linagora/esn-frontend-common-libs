@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.settings-overlay Angular module', function() {
 
@@ -48,6 +48,7 @@ describe('The esn.settings-overlay Angular module', function() {
     it('should contain a clickable icon', function() {
       compileDirective('<settings-overlay/>');
       const testElement = element.find('.mdi-dots-vertical');
+
       expect(testElement).to.exist;
       expect(testElement.attr('ng-click')).to.equal('ctrl.openMenu($mdMenu, $event)');
     });

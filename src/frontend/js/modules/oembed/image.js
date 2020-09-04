@@ -2,6 +2,7 @@ require('./oembed.js');
 
 (function(angular) {
   'use strict';
+
   var image = angular.module('esn.oembed.image', ['esn.oembed']);
 
   var provider = {
@@ -29,11 +30,13 @@ require('./oembed.js');
         var imageUrl = url[1] + '://' + url[2] + url[3];
 
         var html = '<a href="' + imageUrl + '" target="_blank">';
+
         html += '<img src="' + imageUrl + '" class="img-responsive attachments"/>';
         html += '</a>';
 
         var element = angular.element(html);
         var e = $compile(element)($scope);
+
         $element.append(e);
       }
     };

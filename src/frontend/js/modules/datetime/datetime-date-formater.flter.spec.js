@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnDatetime filter', function() {
   var $rootScope, $compile, esnDatetimeService;

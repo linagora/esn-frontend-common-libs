@@ -3,6 +3,7 @@
 describe('The esnCollaborationInvitationAcceptButton directive', function() {
   var scope, $rootScope, $compile;
   var esnCollaborationClientService, notification, html;
+
   beforeEach(angular.mock.module('ui.router'));
 
   beforeEach(function() {

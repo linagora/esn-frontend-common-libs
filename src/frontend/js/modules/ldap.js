@@ -26,6 +26,6 @@
   }
 })(angular);
 
-require('./attendee/attendee.module.js')
+require('./attendee/attendee.module.js');
 require('./user/user.module.js');
 require('./http.js');

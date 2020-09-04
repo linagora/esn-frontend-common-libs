@@ -26,6 +26,6 @@ require('../app.constants.js');
         self.status = USER_STATUS.unknown;
       });
     }
-}
+  }
 
 })(angular);

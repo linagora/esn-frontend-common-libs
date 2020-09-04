@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnI18nLoader service', function() {
   var $httpBackend, $rootScope;
@@ -31,7 +31,7 @@ describe('The esnI18nLoader service', function() {
       expect(catalog).to.deep.equal(catalogs.vi);
       done();
     })
-    .catch(done);
+      .catch(done);
     $rootScope.$digest();
   });
 

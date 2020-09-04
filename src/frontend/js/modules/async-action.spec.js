@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.async-action Angular module', function() {
 
@@ -147,8 +147,8 @@ describe('The esn.async-action Angular module', function() {
 
     it('should return a promise resolving to the resolved value of the action', function(done) {
       asyncAction('Test', function() {
-          return $q.when(1);
-        })
+        return $q.when(1);
+      })
         .then(function(result) {
           expect(result).to.equal(1);
 
@@ -160,8 +160,8 @@ describe('The esn.async-action Angular module', function() {
 
     it('should return a promise rejecting with the rejection value of the action', function(done) {
       asyncAction('Test', function() {
-          return $q.reject('Bouh !');
-        })
+        return $q.reject('Bouh !');
+      })
         .then(function() {
           done('The promise should not be resolved !');
         }, function(result) {
@@ -185,8 +185,8 @@ describe('The esn.async-action Angular module', function() {
 
     it('should notify error even when options has silent', function(done) {
       asyncAction('Test', qReject, {
-          silent: true
-        })
+        silent: true
+      })
         .then(function() {
           done('The promise should not be resolved !');
         }, function() {
@@ -204,8 +204,8 @@ describe('The esn.async-action Angular module', function() {
       };
 
       asyncAction(messages, function() {
-          return $timeout(angular.noop, ASYNC_ACTION_LONG_TASK_DURATION + 1);
-        })
+        return $timeout(angular.noop, ASYNC_ACTION_LONG_TASK_DURATION + 1);
+      })
         .then(function() {
           expect(notificationFactory.strongInfo).to.have.been.calledWith('', 'Hey there, I am a custom progressing message !');
           expect(notificationFactory.weakSuccess).to.have.been.calledWith('Success', 'Yeepee');
@@ -222,8 +222,8 @@ describe('The esn.async-action Angular module', function() {
       };
 
       asyncAction(messages, function() {
-          return $timeout(angular.noop, ASYNC_ACTION_LONG_TASK_DURATION + 1).then(qReject);
-        })
+        return $timeout(angular.noop, ASYNC_ACTION_LONG_TASK_DURATION + 1).then(qReject);
+      })
         .then(null, function() {
           expect(notificationFactory.strongInfo).to.have.been.calledWith('', 'Hey there, I am a custom progressing message !');
           expect(notificationFactory.weakError).to.have.been.calledWith('Error', 'Booooh, I failed');
@@ -320,8 +320,8 @@ describe('The esn.async-action Angular module', function() {
       };
 
       asyncAction(messages, function() {
-          return $timeout(angular.noop, ASYNC_ACTION_LONG_TASK_DURATION + 1).then(qReject);
-        });
+        return $timeout(angular.noop, ASYNC_ACTION_LONG_TASK_DURATION + 1).then(qReject);
+      });
       $rootScope.$digest();
       $timeout.flush();
 
@@ -388,7 +388,7 @@ describe('The esn.async-action Angular module', function() {
 
       notificationFactoryMock.strongError = sinon.spy();
 
-      rejectWithErrorNotification(msg, {persist: true});
+      rejectWithErrorNotification(msg, { persist: true });
 
       expect(notificationFactoryMock.strongError).to.have.been.calledWithExactly('Error', msg);
     });
@@ -402,7 +402,7 @@ describe('The esn.async-action Angular module', function() {
         return notification;
       });
 
-      rejectWithErrorNotification('error message', {onFailure: {a: 'b'}});
+      rejectWithErrorNotification('error message', { onFailure: { a: 'b' } });
 
       expect(notification.setCancelAction).to.have.been.calledWith({
         a: 'b'

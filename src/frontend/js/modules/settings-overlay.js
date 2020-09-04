@@ -3,7 +3,7 @@
 
   angular.module('esn.settings-overlay', [])
     .component('settingsOverlay', {
-      template: require("../../views/modules/settings-overlay/template.pug"),
+      template: require('../../views/modules/settings-overlay/template.pug'),
       transclude: true,
       controller: function() {
         var self = this;

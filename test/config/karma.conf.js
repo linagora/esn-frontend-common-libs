@@ -31,7 +31,7 @@ module.exports = function(config) {
         base: 'Firefox',
         flags: ['--headless'],
         prefs: { 'network.proxy.type': 0 }
-      }    
+      }
     },
 
     reporters: ['spec'],

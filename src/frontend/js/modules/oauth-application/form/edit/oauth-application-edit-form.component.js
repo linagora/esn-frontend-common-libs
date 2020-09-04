@@ -7,6 +7,6 @@
         application: '<'
       },
       controller: 'ESNOauthApplicationEditFormController',
-      template: require("./oauth-application-edit-form.pug")
+      template: require('./oauth-application-edit-form.pug')
     });
 })();

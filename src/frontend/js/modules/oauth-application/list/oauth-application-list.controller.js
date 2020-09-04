@@ -13,7 +13,7 @@
 
     function openModal() {
       $modal({
-        template: require("../form/add/oauth-application-add-form-modal.pug"),
+        template: require('../form/add/oauth-application-add-form-modal.pug'),
         placement: 'center',
         controller: function($scope) {
           $scope.onCreated = function(application) {

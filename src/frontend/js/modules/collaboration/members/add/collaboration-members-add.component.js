@@ -6,7 +6,7 @@
 
   function esnCollaborationMembersAdd() {
     return {
-      template: require("./collaboration-members-add.pug"),
+      template: require('./collaboration-members-add.pug'),
       controller: 'ESNCollaborationMembersAddController',
       controllerAs: 'ctrl',
       bindings: {

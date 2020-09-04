@@ -2,7 +2,7 @@
 
 /* global chai: false, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The infiniteList directive', function() {
   var $rootScope, $compile, $interval, infiniteListService, element, INFINITE_LIST_POLLING_INTERVAL;

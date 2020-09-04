@@ -5,7 +5,7 @@ require('./date-picker.controller.js');
 
   angular.module('esn.datetime')
     .component('esnDatePicker', {
-      template: require("./date-picker.pug"),
+      template: require('./date-picker.pug'),
       bindings: {
         ngModel: '=',
         ngChange: '&',

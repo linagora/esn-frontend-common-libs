@@ -12,7 +12,7 @@
         readable: '='
       },
       controllerAs: 'ctrl',
-      template: require("./collaboration-members.pug")
+      template: require('./collaboration-members.pug')
     };
   }
 })();

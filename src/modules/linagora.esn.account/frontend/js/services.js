@@ -1,9 +1,8 @@
 const _ = require('lodash');
-const Restangular = require('restangular');
 
 require('./constants.js');
 
-(function(angular){
+(function(angular) {
   'use strict';
 
   angular.module('linagora.esn.account')

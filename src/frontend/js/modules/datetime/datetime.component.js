@@ -3,7 +3,7 @@
 
   angular.module('esn.datetime')
     .component('esnDatetime', {
-      template: require("./datetime.pug"),
+      template: require('./datetime.pug'),
       bindings: {
         datetime: '=',
         mode: '@'

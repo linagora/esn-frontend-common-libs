@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 require('../../templates/user-notification-template-provider-registry.service.js');
 
 (function(angular) {

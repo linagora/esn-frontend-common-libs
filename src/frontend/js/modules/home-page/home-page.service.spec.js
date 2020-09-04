@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The homePageService factory', function() {
   var esnModuleRegistry, homePageService;
@@ -12,7 +12,7 @@ describe('The homePageService factory', function() {
     angular.mock.module('esn.home-page', function($provide) {
       $provide.value('esnI18nService', {
         translate: function(input) { return input; },
-        getLocale: function() { return 'fr' }
+        getLocale: function() { return 'fr'; }
       });
     });
 
@@ -33,7 +33,7 @@ describe('The homePageService factory', function() {
 
   describe('The getHomePageCandidates fn', function() {
     it('should return a list homePage', function() {
-      var expectResult = {a: 'A', b: 'B'};
+      var expectResult = { a: 'A', b: 'B' };
 
       expect(homePageService.getHomePageCandidates()).to.deep.equal(expectResult);
     });

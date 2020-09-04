@@ -2,7 +2,7 @@
 
 /* global chai, sinon, _: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('directive usersAutocompleteInput', function() {
   var session, attendeeService;
@@ -23,9 +23,9 @@ describe('directive usersAutocompleteInput', function() {
       ready: $q.when({})
     };
 
-    user1 = {_id: 'user1', displayName: 'user1'};
-    user3 = {_id: 'user3', displayName: 'user3'};
-    user2 = {_id: 'user2', displayName: 'user2'};
+    user1 = { _id: 'user1', displayName: 'user1' };
+    user3 = { _id: 'user3', displayName: 'user3' };
+    user2 = { _id: 'user2', displayName: 'user2' };
 
     angular.mock.module(function($provide) {
       $provide.value('session', session);
@@ -72,7 +72,7 @@ describe('directive usersAutocompleteInput', function() {
       var element = initDirective($scope);
 
       var expectedResult = [user1, user2, user3].map(function(user) {
-        return _.assign(user, {_id: user.id}, {templateUrl: USER_AUTO_COMPLETE_TEMPLATE_URL});
+        return _.assign(user, { _id: user.id }, { templateUrl: USER_AUTO_COMPLETE_TEMPLATE_URL });
       });
 
       attendeeService.getAttendeeCandidates = sinon.stub().returns($q.when([user1, user2, user3]));
@@ -99,7 +99,7 @@ describe('directive usersAutocompleteInput', function() {
           query,
           AUTOCOMPLETE_MAX_RESULTS,
           ['user'],
-          [{id: session.user.id, objectType: 'user'}]
+          [{ id: session.user.id, objectType: 'user' }]
         );
         done();
       }).catch(done);
@@ -149,8 +149,8 @@ describe('directive usersAutocompleteInput', function() {
           AUTOCOMPLETE_MAX_RESULTS,
           ['user'],
           [
-            {id: 'user2', objectType: 'user'},
-            {id: 'user1', objectType: 'user'}
+            { id: 'user2', objectType: 'user' },
+            { id: 'user1', objectType: 'user' }
           ]
         );
         done();
@@ -176,7 +176,7 @@ describe('directive usersAutocompleteInput', function() {
           AUTOCOMPLETE_MAX_RESULTS,
           ['user'],
           [
-            {id: 'user1', objectType: 'user'}
+            { id: 'user1', objectType: 'user' }
           ]
         );
         done();

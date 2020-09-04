@@ -8,7 +8,7 @@
     $stateProvider
       .state('controlcenter.oauth-application', {
         url: '/oauth-application',
-        template: require("./oauth-application.pug"),
+        template: require('./oauth-application.pug'),
         views: {
           'root@controlcenter': {
             template: '<esn-oauth-application-list/>'
@@ -17,7 +17,7 @@
       })
       .state('oauth-application', {
         url: '/oauth-application',
-        template: require("./oauth-application.pug"),
+        template: require('./oauth-application.pug'),
         deepStateRedirect: {
           default: 'oauth-application.list',
           fn: function() {
@@ -41,5 +41,5 @@
           }
         }
       });
-    }
+  }
 })();

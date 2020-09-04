@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnShortcutsGlobal service', function() {
   var esnShortcutsGlobal, esnShortcuts;

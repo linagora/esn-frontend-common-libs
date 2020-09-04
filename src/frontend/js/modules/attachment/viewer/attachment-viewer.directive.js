@@ -10,7 +10,7 @@ require('./attachment-viewer.service.js');
   function esnAttachmentViewer($compile, esnAttachmentRegistryService, esnAttachmentViewerService) {
     return {
       restrict: 'E',
-      template: require("./attachment-viewer.pug"),
+      template: require('./attachment-viewer.pug'),
       link: link
     };
 
@@ -35,7 +35,7 @@ require('./attachment-viewer.service.js');
       }
 
       function open(files, order) {
-        currentItem = {files: files, order: order};
+        currentItem = { files: files, order: order };
         scope.displayNav = files.length > 1;
         getViewer(order);
         renderDirective();
@@ -55,6 +55,7 @@ require('./attachment-viewer.service.js');
 
       function renderDirective() {
         var newElt = $compile('<' + scope.viewer.directive + ' attachment="attachment", viewer="viewer" />')(scope);
+
         element.find('.av-attachment-content').html(newElt);
       }
 

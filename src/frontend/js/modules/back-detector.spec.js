@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.back-detector Angular module', function() {
 
@@ -42,6 +42,7 @@ describe('The esn.back-detector Angular module', function() {
 
     it('should call on-back fn when the user goes back', function() {
       var callCount = 0;
+
       $scope.back = function() {
         callCount++;
       };

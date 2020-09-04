@@ -9,6 +9,6 @@ require('./search-result-item.controller.js');
       query: '='
     },
     controller: 'ESNSearchResultItemController',
-    template: require("./search-result-item.pug")
+    template: require('./search-result-item.pug')
   });
 })(angular);

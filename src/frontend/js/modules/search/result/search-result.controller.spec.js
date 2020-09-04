@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNSearchResultController controller', function() {
   var $controller, $scope, controller, $stateParams, $q, searchProviders, providers, $rootScope, ELEMENTS_PER_PAGE;
@@ -21,7 +21,7 @@ describe('The ESNSearchResultController controller', function() {
     var i = 0;
 
     return function() {
-      return $q.when({data: list[i++]});
+      return $q.when({ data: list[i++] });
     };
   }
 
@@ -40,13 +40,13 @@ describe('The ESNSearchResultController controller', function() {
         return $q.when([{
           name: 'cat',
           loadNextItems: buildIterator([
-            [{name: 'cat1', date: new Date(2016, 4, 1)}, {name: 'cat2', date: new Date(2016, 3, 1)}],
-            [{name: 'cat3', date: new Date(2016, 2, 1)}, {name: 'cat4', date: new Date(2016, 1, 1)}]])
+            [{ name: 'cat1', date: new Date(2016, 4, 1) }, { name: 'cat2', date: new Date(2016, 3, 1) }],
+            [{ name: 'cat3', date: new Date(2016, 2, 1) }, { name: 'cat4', date: new Date(2016, 1, 1) }]])
         }, {
           name: 'dog',
           loadNextItems: buildIterator([
-            [{name: 'dog1', date: new Date(2016, 4, 2)}, {name: 'dog2', date: new Date(2016, 3, 2)}],
-            [{name: 'dog3', date: new Date(2016, 2, 2)}, {name: 'dog4', date: new Date(2016, 1, 2)}]])
+            [{ name: 'dog1', date: new Date(2016, 4, 2) }, { name: 'dog2', date: new Date(2016, 3, 2) }],
+            [{ name: 'dog3', date: new Date(2016, 2, 2) }, { name: 'dog4', date: new Date(2016, 1, 2) }]])
         }]);
       })
     };
@@ -73,7 +73,7 @@ describe('The ESNSearchResultController controller', function() {
   it('should init query for highlight', function() {
     initController();
 
-    expect(controller.query).to.deep.equal({text: '', advanced: {}});
+    expect(controller.query).to.deep.equal({ text: '', advanced: {} });
   });
 
   it('should not call loadMoreElements when query is falsy', function() {
@@ -92,7 +92,7 @@ describe('The ESNSearchResultController controller', function() {
     controller.loadMoreElements();
     $rootScope.$digest();
 
-    expect(searchProviders.getAll).to.have.been.calledWith({query: {text: $stateParams.q, advanced: {}}, acceptedIds: ['123', '456', '789']});
+    expect(searchProviders.getAll).to.have.been.calledWith({ query: { text: $stateParams.q, advanced: {} }, acceptedIds: ['123', '456', '789'] });
   });
 
   it('should map filters and call searchProviders with acceptedIds when provider is defined in stateParams', function() {
@@ -103,7 +103,7 @@ describe('The ESNSearchResultController controller', function() {
     controller.loadMoreElements();
     $rootScope.$digest();
 
-    expect(searchProviders.getAll).to.have.been.calledWith({ query: {text: $stateParams.q, advanced: {}}, acceptedIds: ['456'] });
+    expect(searchProviders.getAll).to.have.been.calledWith({ query: { text: $stateParams.q, advanced: {} }, acceptedIds: ['456'] });
   });
 
   it('should call searchProviders with all providers when provider defined in stateParams is not found', function() {
@@ -114,7 +114,7 @@ describe('The ESNSearchResultController controller', function() {
     controller.loadMoreElements();
     $rootScope.$digest();
 
-    expect(searchProviders.getAll).to.have.been.calledWith({ query: {text: $stateParams.q, advanced: {}}, acceptedIds: ['123', '456', '789'] });
+    expect(searchProviders.getAll).to.have.been.calledWith({ query: { text: $stateParams.q, advanced: {} }, acceptedIds: ['123', '456', '789'] });
   });
 
   describe('controller elements', function() {
@@ -128,7 +128,7 @@ describe('The ESNSearchResultController controller', function() {
       callLoadMoreElements(1);
 
       expect(controller.elements.length).to.equal(ELEMENTS_PER_PAGE);
-      expect(controller.elements).to.shallowDeepEqual([{name: 'dog1'}, {name: 'cat1'}]);
+      expect(controller.elements).to.shallowDeepEqual([{ name: 'dog1' }, { name: 'cat1' }]);
     });
 
     it('should be pushed by ELEMENTS_PER_PAGE elements after each loadMoreElements() and always respect the order by date', function() {
@@ -138,7 +138,7 @@ describe('The ESNSearchResultController controller', function() {
 
       expect(controller.elements.length).to.equal(ELEMENTS_PER_PAGE * iterations);
       expect(controller.elements).to.shallowDeepEqual(
-        [{name: 'dog1'}, {name: 'cat1'}, {name: 'dog2'}, {name: 'cat2'}, {name: 'dog3'}, {name: 'cat3'}]
+        [{ name: 'dog1' }, { name: 'cat1' }, { name: 'dog2' }, { name: 'cat2' }, { name: 'dog3' }, { name: 'cat3' }]
       );
     });
   });

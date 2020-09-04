@@ -2,7 +2,7 @@
 
 /* global chai, sinon */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnDatetimeService', function() {
   var $rootScope;
@@ -16,12 +16,12 @@ describe('The esnDatetimeService', function() {
     angular.mock.module(function($provide) {
       $provide.constant('esnConfig', function(argument) {
         switch (argument) {
-          case 'core.language':
-            return $q.when('en');
-          case 'core.datetime':
-            return $q.when({timeZone: 'Europe/Berlin', use24hourFormat: true});
-          default:
-            break;
+        case 'core.language':
+          return $q.when('en');
+        case 'core.datetime':
+          return $q.when({ timeZone: 'Europe/Berlin', use24hourFormat: true });
+        default:
+          break;
         }
       });
     });
@@ -44,6 +44,7 @@ describe('The esnDatetimeService', function() {
       esnDatetimeService.init().then(function() {
         var date = new Date(Date.UTC(2017, 6, 5));
         var formatted = esnDatetimeService.format(date, 'mediumDate');
+
         expect(formatted).to.eq('July 5, 2017');
         done();
       });
@@ -54,6 +55,7 @@ describe('The esnDatetimeService', function() {
       esnDatetimeService.init().then(function() {
         var date = new Date(Date.UTC(2017, 6, 5));
         var formatted = esnDatetimeService.format(date, 'shortDate');
+
         expect(formatted).to.eq('07/05/2017');
         done();
       });
@@ -64,6 +66,7 @@ describe('The esnDatetimeService', function() {
       esnDatetimeService.init().then(function() {
         var date = new Date(Date.UTC(2017, 6, 5));
         var formatted = esnDatetimeService.format(date, 'fullDate');
+
         expect(formatted).to.eq('Wednesday, July 5, 2017 2:00 AM');
         done();
       });
@@ -74,6 +77,7 @@ describe('The esnDatetimeService', function() {
       esnDatetimeService.init().then(function() {
         var date = new Date(Date.UTC(2017, 6, 5));
         var formatted = esnDatetimeService.format(date, 'longDate');
+
         expect(formatted).to.eq('July 5, 2017 2:00 AM');
         done();
       });
@@ -84,6 +88,7 @@ describe('The esnDatetimeService', function() {
       esnDatetimeService.init().then(function() {
         var timeFormatExpected = 'H:mm';
         var timeFormat = esnDatetimeService.getTimeFormat();
+
         expect(timeFormat).to.eq(timeFormatExpected);
         done();
       });
@@ -94,6 +99,7 @@ describe('The esnDatetimeService', function() {
       esnDatetimeService.init().then(function() {
         var date = new Date(Date.UTC(2017, 11, 23, 18, 33, 11));
         var formatted = esnDatetimeService.format(date, 'mediumDate time');
+
         expect(formatted).to.eq('December 23, 2017 7:33 PM');
         done();
       });
@@ -104,6 +110,7 @@ describe('The esnDatetimeService', function() {
       esnDatetimeService.init().then(function() {
         var date = new Date(Date.UTC(2017, 11, 23, 18, 33, 11));
         var formatted = esnDatetimeService.format(date, 'LLLL');
+
         expect(formatted).to.eq('Saturday, December 23, 2017 7:33 PM');
         done();
       });
@@ -114,6 +121,7 @@ describe('The esnDatetimeService', function() {
       esnDatetimeService.init().then(function() {
         var date = 'Mon, 05 Jun 2017 00:00:00 GMT';
         var formatted = esnDatetimeService.format(date, 'mediumDate');
+
         expect(formatted).to.eq('June 5, 2017');
         done();
       });
@@ -138,7 +146,9 @@ describe('The esnDatetimeService', function() {
       minusWeeks: function(weeks) { return targetDate.minusDays(7 * weeks); },
       minusMonths: function(months) {
         var d = targetDate.now();
+
         d.setMonth(d.getMonth() - months);
+
         return d;
       },
       minusYears: function(years) { return targetDate.minusMonths(12 * years); }
@@ -161,6 +171,7 @@ describe('The esnDatetimeService', function() {
     it('Should convert correct to user setting time zone', function(done) {
       var initialMoment = moment.utc('2020-06-08T12:00:00.000Z');
       var expectedMoment = moment.utc('2020-06-08T10:00:00.000Z');
+
       esnDatetimeService.init().then(function() {
         expect(esnDatetimeService.updateObjectToUserTimeZone(initialMoment).valueOf()).to.equal(expectedMoment.valueOf());
         done();
@@ -171,11 +182,13 @@ describe('The esnDatetimeService', function() {
     it('Should convert correct to browser time zone', function(done) {
       var temp = moment.tz.guess;
       // Mock browser local time zone
+
       moment.tz.guess = function() {
         return 'Asia/Ho_Chi_Minh';
       };
       var initialMoment = moment.utc('2020-06-08T12:00:00.000Z');
       var expectedMoment = moment.utc('2020-06-08T05:00:00.000Z');
+
       esnDatetimeService.init().then(function() {
         expect(esnDatetimeService.updateObjectToBrowserTimeZone(initialMoment).valueOf()).to.equal(expectedMoment.valueOf());
         // Rebind moment function

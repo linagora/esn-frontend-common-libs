@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnDatePicker component', function() {
   var $rootScope, $compile, moment, form;
@@ -39,11 +39,13 @@ describe('The esnDatePicker component', function() {
   it('should display date correctly no matter what time zone', function() {
     var scope = $rootScope.$new();
     var initialMoment = moment();
-    initialMoment.set({second: 0, millisecond: 0 });
+
+    initialMoment.set({ second: 0, millisecond: 0 });
 
     scope.model = initialMoment;
 
     var element = initComponent(scope);
+
     expect(element.find('input[ng-model="$ctrl.uiValue"]')[0].value).to.equal(scope.model.toString());
   });
 

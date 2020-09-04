@@ -1,4 +1,5 @@
-const injections = require('./frontend/require-angular-injections.js')
+const injections = require('./frontend/require-angular-injections.js');
+
 require('./modules/linagora.esn.account/require-angular-injections.js');
 
 require('./modules/linagora.esn.graceperiod/require-angular-injections.js');

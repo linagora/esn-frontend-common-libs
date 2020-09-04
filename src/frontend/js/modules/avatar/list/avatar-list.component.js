@@ -8,7 +8,7 @@ require('./avatar-list.controller.js');
 
   function esnAvatarList() {
     return {
-      template: require("./avatar-list.pug"),
+      template: require('./avatar-list.pug'),
       controller: 'ESNAvatarListController',
       bindings: {
         members: '<',

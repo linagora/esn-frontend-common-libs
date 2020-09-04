@@ -1,7 +1,7 @@
 'use strict';
 
 /* global chai, sinon: false */
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.timeline module', function() {
   beforeEach(function() {
@@ -75,8 +75,8 @@ describe('The esn.timeline module', function() {
       service.register(providerB);
       service.register(providerC);
 
-      expect(service.get('like')).to.shallowDeepEqual([{verb: 'like'}]);
-      expect(service.get('post')).to.shallowDeepEqual([{verb: 'post'}, {verb: 'post'}]);
+      expect(service.get('like')).to.shallowDeepEqual([{ verb: 'like' }]);
+      expect(service.get('post')).to.shallowDeepEqual([{ verb: 'post' }, { verb: 'post' }]);
     });
   });
 
@@ -93,7 +93,8 @@ describe('The esn.timeline module', function() {
     describe('The getProvidersForTimelineEntry function', function() {
 
       it('should return empty array when no provider can handle the entry', function() {
-        var providers = service.getProvidersForTimelineEntry({verb: 'like'});
+        var providers = service.getProvidersForTimelineEntry({ verb: 'like' });
+
         expect(providers).to.shallowDeepEqual([]);
       });
 
@@ -117,8 +118,9 @@ describe('The esn.timeline module', function() {
         esnTimelineEntryProviders.register(providerA);
         esnTimelineEntryProviders.register(providerB);
 
-        var providers = service.getProvidersForTimelineEntry({verb: 'like'});
-        expect(providers).to.shallowDeepEqual([{verb: 'like', name: 'A'}]);
+        var providers = service.getProvidersForTimelineEntry({ verb: 'like' });
+
+        expect(providers).to.shallowDeepEqual([{ verb: 'like', name: 'A' }]);
       });
 
     });
@@ -134,6 +136,7 @@ describe('The esn.timeline module', function() {
             return true;
           }
         };
+
         esnTimelineEntryProviders.register(providerA);
 
         function check(data) {
@@ -144,12 +147,12 @@ describe('The esn.timeline module', function() {
           ]);
           done();
         }
-        service.denormalizeAPIResponse([{verb: 'like'}]).then(check, done);
+        service.denormalizeAPIResponse([{ verb: 'like' }]).then(check, done);
         $rootScope.$digest();
       });
 
       it('should filter the entry if no provider is available', function(done) {
-        service.denormalizeAPIResponse([{verb: 'like'}]).then(check, done);
+        service.denormalizeAPIResponse([{ verb: 'like' }]).then(check, done);
         $rootScope.$digest();
 
         function check(data) {
@@ -166,9 +169,11 @@ describe('The esn.timeline module', function() {
 
     function generateData(size) {
       var result = [];
+
       for (var i = 0; i < size; i++) {
-        result.push({verb: 'post', actor: {objectType: 'user', _id: 1}, object: {objectType: 'whatsup', _id: 2}});
+        result.push({ verb: 'post', actor: { objectType: 'user', _id: 1 }, object: { objectType: 'whatsup', _id: 2 } });
       }
+
       return result;
     }
 
@@ -193,12 +198,14 @@ describe('The esn.timeline module', function() {
     describe('The loadNextItems function', function() {
       it('should send back data and lastPage flag to false when end is not reached', function(done) {
         var size = 10;
-        var options = {limit: size};
+        var options = { limit: size };
+
         esnTimelineAPI.getUserTimelineEntries = function() {
-          return $q.when({data: generateData(size)});
+          return $q.when({ data: generateData(size) });
         };
 
         var service = new TimelinePaginationProvider(options);
+
         service.loadNextItems().then(function(result) {
           expect(result.data.length).to.equal(size);
           expect(result.lastPage).to.be.false;
@@ -209,12 +216,14 @@ describe('The esn.timeline module', function() {
 
       it('should send back data and lastPage flag to true when end is reached', function(done) {
         var size = 10;
-        var options = {limit: size};
+        var options = { limit: size };
+
         esnTimelineAPI.getUserTimelineEntries = function() {
-          return $q.when({data: generateData(size / 2)});
+          return $q.when({ data: generateData(size / 2) });
         };
 
         var service = new TimelinePaginationProvider(options);
+
         service.loadNextItems().then(function(result) {
           expect(result.data.length).to.equal(size / 2);
           expect(result.lastPage).to.be.true;
@@ -228,14 +237,14 @@ describe('The esn.timeline module', function() {
   describe('The esnTimelineEntriesController controller', function() {
     var $controller, $scope, $q, $rootScope, PageAggregatorService, sessionMock, esnTimelineEntriesHelper;
     var timelineEntries = [
-      {verb: 'post', actor: {objectType: 'user', _id: 1}, object: {objectType: 'whatsup', _id: 2}},
-      {verb: 'like', actor: {objectType: 'user', _id: 1}, object: {objectType: 'whatsup', _id: 3}},
-      {verb: 'foo', actor: {objectType: 'user', _id: 1}, object: {objectType: 'bar', _id: 4}}
+      { verb: 'post', actor: { objectType: 'user', _id: 1 }, object: { objectType: 'whatsup', _id: 2 } },
+      { verb: 'like', actor: { objectType: 'user', _id: 1 }, object: { objectType: 'whatsup', _id: 3 } },
+      { verb: 'foo', actor: { objectType: 'user', _id: 1 }, object: { objectType: 'bar', _id: 4 } }
     ];
 
     function initController() {
       $scope = {};
-      $controller('esnTimelineEntriesController', {$scope: $scope});
+      $controller('esnTimelineEntriesController', { $scope: $scope });
       $rootScope.$digest();
     }
 
@@ -266,7 +275,7 @@ describe('The esn.timeline module', function() {
 
       it('should load data and update the timelineentries', function() {
         esnTimelineEntriesHelper.denormalizeAPIResponse = sinon.stub().returns($q.when(timelineEntries));
-        PageAggregatorService.prototype.loadNextItems = sinon.stub().returns($q.when({data: timelineEntries}));
+        PageAggregatorService.prototype.loadNextItems = sinon.stub().returns($q.when({ data: timelineEntries }));
 
         initController();
 

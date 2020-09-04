@@ -7,36 +7,36 @@ require('./user-status.service.js');
   angular.module('linagora.esn.user-status')
     .factory('userStatusWebsocketService', userStatusWebsocketService);
 
-    function userStatusWebsocketService($rootScope, livenotification, userStatusService, USER_STATUS_EVENTS, USER_STATUS_NAMESPACE) {
-      var sio;
+  function userStatusWebsocketService($rootScope, livenotification, userStatusService, USER_STATUS_EVENTS, USER_STATUS_NAMESPACE) {
+    var sio;
 
-      return {
-        listen: listen
-      };
+    return {
+      listen: listen
+    };
 
-      function listen() {
-        if (sio) {
+    function listen() {
+      if (sio) {
+        return;
+      }
+
+      sio = livenotification(USER_STATUS_NAMESPACE);
+
+      sio.on(USER_STATUS_EVENTS.USER_CHANGE_STATE, function(data) {
+        var status = {};
+        var cached = userStatusService.cacheUserStatus(data);
+
+        if (!cached) {
           return;
         }
 
-        sio = livenotification(USER_STATUS_NAMESPACE);
+        status[cached._id] = cached;
 
-        sio.on(USER_STATUS_EVENTS.USER_CHANGE_STATE, function(data) {
-          var status = {};
-          var cached = userStatusService.cacheUserStatus(data);
-
-          if (!cached) {
-            return;
-          }
-
-          status[cached._id] = cached;
-
-          publishStatus(status);
-        });
-      }
-
-      function publishStatus(status) {
-        $rootScope.$broadcast(USER_STATUS_EVENTS.USER_CHANGE_STATE, status);
-      }
+        publishStatus(status);
+      });
     }
+
+    function publishStatus(status) {
+      $rootScope.$broadcast(USER_STATUS_EVENTS.USER_CHANGE_STATE, status);
+    }
+  }
 })(angular);

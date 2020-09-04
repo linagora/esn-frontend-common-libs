@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNCollaborationMembersAddItemController controller', function() {
 
@@ -42,7 +42,7 @@ describe('The ESNCollaborationMembersAddItemController controller', function() {
   });
 
   function initController(options) {
-    var controller = $controller('ESNCollaborationMembersAddItemController as ctrl', {$scope: scope}, options);
+    var controller = $controller('ESNCollaborationMembersAddItemController as ctrl', { $scope: scope }, options);
 
     scope.$digest();
 
@@ -51,7 +51,7 @@ describe('The ESNCollaborationMembersAddItemController controller', function() {
 
   describe('the inviteMember function', function() {
     it('should call esnCollaborationClientService.requestMembership', function() {
-      var controller = initController({collaboration: collaboration, objectType: objectType, member: member});
+      var controller = initController({ collaboration: collaboration, objectType: objectType, member: member });
 
       controller.inviteMember();
 

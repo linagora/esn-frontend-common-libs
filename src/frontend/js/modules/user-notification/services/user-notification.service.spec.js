@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnUserNotificationService factory', function() {
   var esnUserNotificationService, esnUserNotificationState, esnUserNotificationProviders;

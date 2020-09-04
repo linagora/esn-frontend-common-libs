@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The multi-input Angular module', function() {
 
@@ -40,12 +40,12 @@ describe('The multi-input Angular module', function() {
     });
 
     it('should affect content value if inputValue is defined', function() {
-      $scope.inputValue = [{value: 'current Value'}];
+      $scope.inputValue = [{ value: 'current Value' }];
       $controller('MultiInputGroupController', {
         $scope: $scope
       });
       $scope.$digest();
-      expect($scope.content).to.deep.equal([{value: 'current Value'}]);
+      expect($scope.content).to.deep.equal([{ value: 'current Value' }]);
     });
 
     it('should init showDeleteButton array', function() {
@@ -85,8 +85,8 @@ describe('The multi-input Angular module', function() {
 
     describe('The verifyNew fn', function() {
       beforeEach(function() {
-        $scope.content = [{value: ''}];
-        $scope.inputValue = [{value: ''}];
+        $scope.content = [{ value: '' }];
+        $scope.inputValue = [{ value: '' }];
       });
 
       it('should affect true value to showAddButton', function() {
@@ -107,7 +107,7 @@ describe('The multi-input Angular module', function() {
       });
 
       it('should update inputValue if content is not empty', function() {
-        $scope.content = [{street: 'my street'}];
+        $scope.content = [{ street: 'my street' }];
         $scope.verifyNew(0);
         expect($scope.inputValue).to.deep.equal($scope.content);
       });
@@ -224,6 +224,7 @@ describe('The multi-input Angular module', function() {
         var element = {
           find: function(element) {
             expect(element).to.equal(className);
+
             return {
               last: function() {
                 return {
@@ -233,6 +234,7 @@ describe('The multi-input Angular module', function() {
             };
           }
         };
+
         multiInputService.focusLastItem(element, className);
         timeout.flush();
       });

@@ -6,6 +6,6 @@
       bindings: {
         application: '<'
       },
-      template: require("./oauth-application-card.pug")
+      template: require('./oauth-application-card.pug')
     });
 })();

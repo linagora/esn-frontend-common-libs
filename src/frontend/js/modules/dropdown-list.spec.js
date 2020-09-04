@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The dropdown-list directive', function() {
   var $scope, $compile, $dropdown, element;
@@ -19,6 +19,7 @@ describe('The dropdown-list directive', function() {
 
     $dropdown = sinon.spy(function() {
       self.opened.$isShown = true;
+
       return self.opened;
     });
   });

@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('esn.app-state')
-  .run(run);
+    .run(run);
 
   function run(esnAppStateService) {
     esnAppStateService.listenStateEvents();

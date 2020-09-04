@@ -6,9 +6,9 @@ require('./datetime.service.js');
   angular.module('esn.datetime')
     .run(run);
 
-    function run(moment, esnDatetimeService) {
-      esnDatetimeService.init().then(function() {
-        moment.tz.setDefault(esnDatetimeService.getTimeZone());
-      });
-    }
+  function run(moment, esnDatetimeService) {
+    esnDatetimeService.init().then(function() {
+      moment.tz.setDefault(esnDatetimeService.getTimeZone());
+    });
+  }
 })(angular);

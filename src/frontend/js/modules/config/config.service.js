@@ -7,7 +7,7 @@ const _ = require('lodash');
 
     .factory('esnConfig', function(session, featureFlags) {
       var sessionReady = session.ready.then(function() {
-        var configurations = session.user.configurations;
+        var { configurations } = session.user;
         var featuresConfigName = 'features';
 
         if (configurations) {

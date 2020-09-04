@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnAttachmentViewerGalleryService service', function() {
   var esnAttachmentViewerGalleryService, $log;
@@ -61,8 +61,8 @@ describe('The esnAttachmentViewerGalleryService service', function() {
     });
 
     it('should log the error if file is not belong to gallery', function() {
-      var file1 = {name: 'file1'};
-      var file2 = {name: 'file2'};
+      var file1 = { name: 'file1' };
+      var file2 = { name: 'file2' };
 
       esnAttachmentViewerGalleryService.addFileToGallery(file1, 'gallery1');
       esnAttachmentViewerGalleryService.addFileToGallery(file2, 'gallery2');

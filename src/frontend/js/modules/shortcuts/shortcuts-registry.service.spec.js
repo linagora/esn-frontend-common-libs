@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnShortcutsRegistry service', function() {
   var esnShortcutsRegistry;
@@ -149,7 +149,9 @@ describe('The esnShortcutsRegistry service', function() {
     });
 
     it('should throw error when add child category for unregisted parent category', function() {
-      var category = { id: 'my_category', name: 'My Category', moduleDetector: true, parentId: 'parent_category' };
+      var category = {
+        id: 'my_category', name: 'My Category', moduleDetector: true, parentId: 'parent_category'
+      };
 
       expect(function() {
         esnShortcutsRegistry.addCategory(category);
@@ -185,7 +187,9 @@ describe('The esnShortcutsRegistry service', function() {
   describe('The getTopCategories fn', function() {
     it('should return an array of categories which has no parent', function() {
       var parentCategory = { id: 'parent_category', name: 'Parent Category', moduleDetector: true };
-      var childCategory = { id: 'child_category', name: 'Child Category', moduleDetector: true, parentId: parentCategory.id};
+      var childCategory = {
+        id: 'child_category', name: 'Child Category', moduleDetector: true, parentId: parentCategory.id
+      };
 
       esnShortcutsRegistry.addCategory(parentCategory);
       esnShortcutsRegistry.addCategory(childCategory);
@@ -200,8 +204,12 @@ describe('The esnShortcutsRegistry service', function() {
   describe('The getSubCategoriesByCategoryId fn', function() {
     it('should return all sub-categories of a given category', function() {
       var parentCategory = { id: 'parent_category', name: 'Parent Category', moduleDetector: true };
-      var childCategory1 = { id: 'child_category1', name: 'Child Category 1', moduleDetector: true, parentId: parentCategory.id };
-      var childCategory2 = { id: 'child_category2', name: 'Child Category 2', moduleDetector: true, parentId: parentCategory.id };
+      var childCategory1 = {
+        id: 'child_category1', name: 'Child Category 1', moduleDetector: true, parentId: parentCategory.id
+      };
+      var childCategory2 = {
+        id: 'child_category2', name: 'Child Category 2', moduleDetector: true, parentId: parentCategory.id
+      };
 
       esnShortcutsRegistry.addCategory(parentCategory);
       esnShortcutsRegistry.addCategory(childCategory1);

@@ -2,6 +2,7 @@ require('./oembed.js');
 
 (function(angular) {
   'use strict';
+
   var deezer = angular.module('esn.oembed.deezer', ['esn.oembed']);
 
   var templates = ['deezer\\.com/[\\w-]+'];

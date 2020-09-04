@@ -2,7 +2,7 @@
 
 /* global chai*/
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The profileMenu component', function() {
   var $httpBackend, element, $compile, $rootScope, session;
@@ -25,8 +25,8 @@ describe('The profileMenu component', function() {
     // in the header we put a profileMenu component which use an icon provider that load this icon set
     // if this icon provider is moved somewhere else, this test will have to be moved as well probable.
     $httpBackend
-        .whenGET('images/mdi/mdi.svg')
-        .respond('');
+      .whenGET('images/mdi/mdi.svg')
+      .respond('');
   }));
 
   beforeEach(function() {

@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The linagora.esn.user-status userStatusSyncService service', function() {
   var $q, $rootScope, USER_STATUS_EVENTS, userStatusSyncService, userStatusClientService, userStatusService;
@@ -27,6 +27,7 @@ describe('The linagora.esn.user-status userStatusSyncService service', function(
   describe('The synchronize function', function() {
     it('should not get status nor publish when cache is empty', function() {
       var spy = sinon.spy($rootScope, '$broadcast');
+
       userStatusService.getCache = sinon.spy(function() {
         return {};
       });
@@ -39,15 +40,16 @@ describe('The linagora.esn.user-status userStatusSyncService service', function(
     });
 
     it('should fetch status from cache ids and broadcast them', function() {
-      var cache = {1: 'connected', 2: 'connected', 3: 'disconnected'};
+      var cache = { 1: 'connected', 2: 'connected', 3: 'disconnected' };
 
       var spy = sinon.spy($rootScope, '$broadcast');
+
       userStatusService.getCache = sinon.spy(function() {
         return cache;
       });
       userStatusService.cacheUserStatus = sinon.spy();
       userStatusClientService.getStatusForUsers = sinon.spy(function() {
-        return $q.when({data: [{_id: '1', status: 'connected'}, {_id: '2', status: 'disconnected'}, {_id: '3', status: 'disconnected'}]});
+        return $q.when({ data: [{ _id: '1', status: 'connected' }, { _id: '2', status: 'disconnected' }, { _id: '3', status: 'disconnected' }] });
       });
 
       userStatusSyncService.synchronize();

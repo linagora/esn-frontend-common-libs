@@ -5,7 +5,7 @@ require('./file-browser.controller.js');
 
   angular.module('esn.file-browser')
     .component('esnFileBrowser', {
-      template: require("./file-browser.pug"),
+      template: require('./file-browser.pug'),
       bindings: {
         loadNode: '&',
         selectedNodes: '=',

@@ -8,20 +8,20 @@
    */
   angular.module('esn.summernote-wrapper', ['summernote', 'ng.deviceDetector', 'esn.scroll', 'esn.i18n'])
 
-  .factory('summernote', function(esnI18nService) {
-    return esnI18nService.getFullLocale(function(fullLocale) {
-      $.summernote.options.lang = fullLocale;
+    .factory('summernote', function(esnI18nService) {
+      return esnI18nService.getFullLocale(function(fullLocale) {
+        $.summernote.options.lang = fullLocale;
 
-      return $.summernote;
+        return $.summernote;
+      });
+
+    })
+
+    .factory('summernotePlugins', function(summernote) {
+      return {
+        add: function(name, plugin) { summernote.plugins[name] = plugin; }
+      };
     });
-
-  })
-
-  .factory('summernotePlugins', function(summernote) {
-    return {
-      add: function(name, plugin) { summernote.plugins[name] = plugin; }
-    };
-  });
 
 })(angular);
 
