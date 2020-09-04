@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnLoginSuccessService factory', function() {
   var esnLoginSuccessService, $window;
@@ -11,9 +11,10 @@ describe('The esnLoginSuccessService factory', function() {
     angular.mock.module('esn.login');
   });
 
-  beforeEach(function () {
-    angular.mock.module('esn.login', function ($provide) {
-      let $window = { location: { reload: sinon.spy() } };
+  beforeEach(function() {
+    angular.mock.module('esn.login', function($provide) {
+      const $window = { location: { reload: sinon.spy() } };
+
       $provide.value('$window', $window);
       $window.onbeforeunload = sinon.spy();
     });

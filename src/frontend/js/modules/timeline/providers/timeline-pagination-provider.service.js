@@ -6,7 +6,7 @@
   function TimelinePaginationProvider(esnTimelineAPI) {
 
     function TimelinePaginationProvider(options) {
-      this.options = angular.extend({limit: 20, offset: 0}, {}, options);
+      this.options = angular.extend({ limit: 20, offset: 0 }, {}, options);
     }
 
     TimelinePaginationProvider.prototype.loadNextItems = function() {

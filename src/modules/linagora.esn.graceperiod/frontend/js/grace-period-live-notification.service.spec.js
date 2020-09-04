@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The gracePeriodLiveNotificationService service', function() {
 
@@ -144,7 +144,7 @@ describe('The gracePeriodLiveNotificationService service', function() {
           gracePeriodLiveNotificationService.registerListeners('bar', spyThatShouldNotBeCalled);
 
           $rootScope.$digest();
-          sio.emit('graceperiod:error', {id: id});
+          sio.emit('graceperiod:error', { id: id });
           $rootScope.$digest();
 
           expect(spyThatShouldBeCalled).to.have.been.called;
@@ -162,9 +162,9 @@ describe('The gracePeriodLiveNotificationService service', function() {
           gracePeriodLiveNotificationService.registerListeners(id).catch(errorSpy2);
 
           $rootScope.$digest();
-          sio.emit('graceperiod:error', {id: id});
+          sio.emit('graceperiod:error', { id: id });
           $rootScope.$digest();
-          sio.emit('graceperiod:error', {id: id});
+          sio.emit('graceperiod:error', { id: id });
           $rootScope.$digest();
           expect(errorSpy1).to.have.been.calledOnce;
           expect(errorSpy2).to.have.been.calledOnce;
@@ -184,7 +184,7 @@ describe('The gracePeriodLiveNotificationService service', function() {
           gracePeriodLiveNotificationService.registerListeners('bar').catch(spyThatShouldNotBeCalled, spyThatShouldNotBeCalled);
 
           $rootScope.$digest();
-          sio.emit('graceperiod:done', {id: id});
+          sio.emit('graceperiod:done', { id: id });
           $rootScope.$digest();
 
           expect(spyThatShouldBeCalled).to.have.been.called;
@@ -202,9 +202,9 @@ describe('The gracePeriodLiveNotificationService service', function() {
           gracePeriodLiveNotificationService.registerListeners(id).then(spy2);
 
           $rootScope.$digest();
-          sio.emit('graceperiod:done', {id: id});
+          sio.emit('graceperiod:done', { id: id });
           $rootScope.$digest();
-          sio.emit('graceperiod:done', {id: id});
+          sio.emit('graceperiod:done', { id: id });
           $rootScope.$digest();
           expect(spy1).to.have.been.calledOnce;
           expect(spy2).to.have.been.calledOnce;

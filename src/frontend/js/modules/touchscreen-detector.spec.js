@@ -2,7 +2,7 @@
 
 /* global chai */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The touchscreenDetector service', function() {
   var $window, touchscreenDetectorService;

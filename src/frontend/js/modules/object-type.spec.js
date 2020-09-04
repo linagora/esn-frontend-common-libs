@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ObjectType Angular module', function() {
 
@@ -46,6 +46,7 @@ describe('The ObjectType Angular module', function() {
         } catch (err) {
           return done(new Error());
         }
+
         return done();
       });
     });
@@ -58,6 +59,7 @@ describe('The ObjectType Angular module', function() {
         return done(new Error());
       }, function(err) {
         expect(err).to.exist;
+
         return done();
       });
       self.$rootScope.$digest();
@@ -68,6 +70,7 @@ describe('The ObjectType Angular module', function() {
         return done(new Error());
       }, function(err) {
         expect(err).to.exist;
+
         return done();
       });
       self.$rootScope.$digest();
@@ -78,6 +81,7 @@ describe('The ObjectType Angular module', function() {
         return done(new Error());
       }, function(err) {
         expect(err).to.exist;
+
         return done();
       });
       self.$rootScope.$digest();
@@ -94,6 +98,7 @@ describe('The ObjectType Angular module', function() {
 
       var resolver = function(id) {
         call = id;
+
         return $q.when(resolved);
       };
 
@@ -116,12 +121,12 @@ describe('The ObjectType Angular module', function() {
 
     it('should support multiple ids', function(done) {
       var resolver = function(id1, id2, id3) {
-        return $q.when({id1: id1, id2: id2, id3: id3});
+        return $q.when({ id1: id1, id2: id2, id3: id3 });
       };
 
       self.objectTypeResolver.register('user', resolver);
       self.objectTypeResolver.resolve('user', '1', '2', '3').then(function(result) {
-        expect(result).to.deep.equal({id1: '1', id2: '2', id3: '3'});
+        expect(result).to.deep.equal({ id1: '1', id2: '2', id3: '3' });
         done();
       }, done);
       self.$rootScope.$digest();

@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.api-notification Angular module', function() {
   var callbackOnStrongInfo;
@@ -71,17 +71,19 @@ describe('The esn.api-notification Angular module', function() {
       };
 
       var html = '<api-notification></api-notification>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
       var msg = {
-        target: [{objectType: 'user', id: sessionId}, {objectType: 'user', id: '1234'}],
+        target: [{ objectType: 'user', id: sessionId }, { objectType: 'user', id: '1234' }],
         title: '',
         author: '',
         action: '',
         object: '',
         link: ''
       };
+
       callbackOnNotification(msg);
     });
 
@@ -93,16 +95,18 @@ describe('The esn.api-notification Angular module', function() {
       };
 
       var html = '<api-notification></api-notification>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
       var msg = {
-        target: [{objectType: 'user', id: sessionId}, {objectType: 'user', id: '1234'}],
+        target: [{ objectType: 'user', id: sessionId }, { objectType: 'user', id: '1234' }],
         author: '',
         action: '',
         object: '',
         link: ''
       };
+
       callbackOnNotification(msg);
     });
 
@@ -115,13 +119,15 @@ describe('The esn.api-notification Angular module', function() {
       };
 
       var html = '<api-notification></api-notification>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
       var msg = {
-        target: [{objectType: 'user', id: sessionId}, {objectType: 'user', id: '1234'}],
+        target: [{ objectType: 'user', id: sessionId }, { objectType: 'user', id: '1234' }],
         link: ''
       };
+
       callbackOnNotification(msg);
     });
 
@@ -132,13 +138,15 @@ describe('The esn.api-notification Angular module', function() {
       };
 
       var html = '<api-notification></api-notification>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
       var msg = {
-        target: [{objectType: 'user', id: '9876'}, {objectType: 'user', id: '123'}],
+        target: [{ objectType: 'user', id: '9876' }, { objectType: 'user', id: '123' }],
         link: ''
       };
+
       callbackOnNotification(msg);
       // Wait to see if the callback is called
       setTimeout(function() {

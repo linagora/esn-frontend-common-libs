@@ -8,7 +8,7 @@
       .state('search', {
         url: '/search',
         abstract: true,
-        template: require("./index.pug")
+        template: require('./index.pug')
       })
       .state('search.main', {
         url: '/?q&p&{a:json}',
@@ -34,6 +34,6 @@
           }
         }
       });
-    }
+  }
 
 })(angular);

@@ -100,7 +100,7 @@ require('./constants.js');
       if (!listeners[taskId]) {
         listeners[taskId] = [];
       }
-      listeners[taskId].push({onError: deferred.reject, onDone: deferred.resolve});
+      listeners[taskId].push({ onError: deferred.reject, onDone: deferred.resolve });
 
       return deferred.promise;
     }

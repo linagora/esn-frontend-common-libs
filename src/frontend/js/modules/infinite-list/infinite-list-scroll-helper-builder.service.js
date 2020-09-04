@@ -7,49 +7,49 @@ require('./infinite-list.constants.js');
   angular.module('esn.infinite-list')
     .factory('infiniteScrollHelperBuilder', infiniteScrollHelperBuilder);
 
-    function infiniteScrollHelperBuilder($q, $timeout, infiniteListService, INFINITE_LIST_THROTTLE, ELEMENTS_PER_PAGE) {
-      return function(scope, loadNextItems, updateScope, elements_per_page) {
-        elements_per_page = elements_per_page || ELEMENTS_PER_PAGE;
+  function infiniteScrollHelperBuilder($q, $timeout, infiniteListService, INFINITE_LIST_THROTTLE, ELEMENTS_PER_PAGE) {
+    return function(scope, loadNextItems, updateScope, elements_per_page) {
+      elements_per_page = elements_per_page || ELEMENTS_PER_PAGE;
 
-        return function() {
-          if (scope.infiniteScrollDisabled || scope.infiniteScrollCompleted) {
-            return $q.reject();
-          }
+      return function() {
+        if (scope.infiniteScrollDisabled || scope.infiniteScrollCompleted) {
+          return $q.reject();
+        }
 
-          scope.infiniteScrollDisabled = true;
+        scope.infiniteScrollDisabled = true;
 
-          return loadNextItems()
-            .then(function(elements) {
-              if (!elements || !elements.length) {
-                scope.infiniteScrollCompleted = true;
-
-                return $q.when([]);
-              }
-
-              updateScope(elements);
-
-              elements = elements || [];
-              if (elements.length < elements_per_page) {
-                scope.infiniteScrollCompleted = true;
-              }
-
-              return elements;
-            }, function(err) {
+        return loadNextItems()
+          .then(function(elements) {
+            if (!elements || !elements.length) {
               scope.infiniteScrollCompleted = true;
 
-              return $q.reject(err);
-            })
-            .then(function(result) {
-              $timeout(function() {
-                infiniteListService.loadMoreElements();
-              }, INFINITE_LIST_THROTTLE, false);
+              return $q.when([]);
+            }
 
-              return result;
-            })
-            .finally(function() {
-              scope.infiniteScrollDisabled = false;
-            });
-        };
+            updateScope(elements);
+
+            elements = elements || [];
+            if (elements.length < elements_per_page) {
+              scope.infiniteScrollCompleted = true;
+            }
+
+            return elements;
+          }, function(err) {
+            scope.infiniteScrollCompleted = true;
+
+            return $q.reject(err);
+          })
+          .then(function(result) {
+            $timeout(function() {
+              infiniteListService.loadMoreElements();
+            }, INFINITE_LIST_THROTTLE, false);
+
+            return result;
+          })
+          .finally(function() {
+            scope.infiniteScrollDisabled = false;
+          });
       };
-    }
+    };
+  }
 })(angular);

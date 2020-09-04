@@ -2,7 +2,7 @@
 
 /* global chai, sinon: true */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnSearchService service', function() {
   var esnSearchService, $state, query, provider;

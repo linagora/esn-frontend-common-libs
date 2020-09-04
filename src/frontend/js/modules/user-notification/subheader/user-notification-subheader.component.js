@@ -6,7 +6,7 @@
 
   function esnUserNotificationSubheader() {
     return {
-      template: require("./user-notification-subheader.pug")
+      template: require('./user-notification-subheader.pug')
     };
   }
 

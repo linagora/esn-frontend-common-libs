@@ -1,4 +1,4 @@
-require('../services/user-status-client.service.js');
+require('./user-status-client.service.js');
 
 (function(angular) {
   'use strict';
@@ -6,36 +6,36 @@ require('../services/user-status-client.service.js');
   angular.module('linagora.esn.user-status')
     .factory('userStatusService', userStatusService);
 
-    function userStatusService($q, userStatusClientService) {
-      var cache = {};
+  function userStatusService($q, userStatusClientService) {
+    var cache = {};
 
-      return {
-        cacheUserStatus: cacheUserStatus,
-        getCache: getCache,
-        getCurrentStatus: getCurrentStatus
-      };
+    return {
+      cacheUserStatus: cacheUserStatus,
+      getCache: getCache,
+      getCurrentStatus: getCurrentStatus
+    };
 
-      function cacheUserStatus(data) {
-        if (!data || !data._id || !data.status) {
-          return;
-        }
-        cache[data._id] = data;
-
-        return data;
+    function cacheUserStatus(data) {
+      if (!data || !data._id || !data.status) {
+        return;
       }
+      cache[data._id] = data;
 
-      function getCache() {
-        return cache;
-      }
-
-      function getCurrentStatus(userId) {
-        if (angular.isDefined(cache[userId])) {
-          return $q.when(cache[userId]);
-        }
-
-        return userStatusClientService.getStatusForUser(userId).then(function(response) {
-          return cacheUserStatus(response.data);
-        });
-      }
+      return data;
     }
+
+    function getCache() {
+      return cache;
+    }
+
+    function getCurrentStatus(userId) {
+      if (angular.isDefined(cache[userId])) {
+        return $q.when(cache[userId]);
+      }
+
+      return userStatusClientService.getStatusForUser(userId).then(function(response) {
+        return cacheUserStatus(response.data);
+      });
+    }
+  }
 })(angular);

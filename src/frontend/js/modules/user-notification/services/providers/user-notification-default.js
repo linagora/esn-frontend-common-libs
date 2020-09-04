@@ -1,4 +1,4 @@
-require('../../services/user-notification.js');
+require('../user-notification.js');
 
 (function(angular) {
   'use strict';
@@ -19,7 +19,7 @@ require('../../services/user-notification.js');
         .one('user')
         .one('notifications', self._id)
         .one('acknowledged')
-        .customPUT({value: acknowledged})
+        .customPUT({ value: acknowledged })
         .then(function() {
           self.acknowledged = acknowledged;
         });

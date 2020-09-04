@@ -53,7 +53,7 @@ describe('The esn.header Angular module', function() {
   describe('The mainHeader directive', function() {
 
     var hasInjectionsSpy = sinon.spy(),
-        matchmediaQuery, matchmediaCallback;
+      matchmediaQuery, matchmediaCallback;
 
     beforeEach(angular.mock.module(function($provide) {
       $provide.provider('sidebarDirective', function() {
@@ -88,6 +88,7 @@ describe('The esn.header Angular module', function() {
       this.ESN_MEDIA_QUERY_SM_XS = _ESN_MEDIA_QUERY_SM_XS_;
 
       var html = '<main-header></main-header>';
+
       this.element = this.$compile(html)(this.$scope);
 
       this.$httpBackend = _$httpBackend_;
@@ -95,11 +96,11 @@ describe('The esn.header Angular module', function() {
       // in the header we put a profileMenu component which use an icon provider that load this icon set
       // if this icon provider is moved somewhere else, this test will have to be moved as well probable.
       this.$httpBackend
-          .whenGET('images/mdi/mdi.svg')
-          .respond('');
+        .whenGET('images/mdi/mdi.svg')
+        .respond('');
 
       this.$scope.$digest();
-      }));
+    }));
 
     it('should recompute sub header injections on \'sub-header:hasInjection\'', function() {
       this.$rootScope.$broadcast('sub-header:hasInjection', true);
@@ -117,19 +118,19 @@ describe('The esn.header Angular module', function() {
 
       it('should be called with xs and sm size when the directive is linked', function() {
         expect(matchmediaQuery).to.equal(this.ESN_MEDIA_QUERY_SM_XS);
-        matchmediaCallback({matches: true});
+        matchmediaCallback({ matches: true });
         expect(this.$scope.enableScrollListener).to.equal(true);
       });
 
       it('should set enableScrollListener to false when screenSize update to not match media', function() {
-        matchmediaCallback({matches: true});
-        matchmediaCallback({matches: false});
+        matchmediaCallback({ matches: true });
+        matchmediaCallback({ matches: false });
         expect(this.$scope.enableScrollListener).to.equal(false);
       });
 
       it('should set enableScrollListener to true when screenSize update to match media', function() {
-        matchmediaCallback({matches: false});
-        matchmediaCallback({matches: true});
+        matchmediaCallback({ matches: false });
+        matchmediaCallback({ matches: true });
         expect(this.$scope.enableScrollListener).to.equal(true);
       });
 

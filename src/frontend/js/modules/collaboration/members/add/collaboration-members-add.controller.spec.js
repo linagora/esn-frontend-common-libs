@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNCollaborationMembersAddController controller', function() {
 
@@ -27,7 +27,7 @@ describe('The ESNCollaborationMembersAddController controller', function() {
         _id: 'foo'
       },
       {
-      _id: 'bar'
+        _id: 'bar'
       }
     ];
 
@@ -55,7 +55,7 @@ describe('The ESNCollaborationMembersAddController controller', function() {
   });
 
   function initController(options) {
-    var controller = $controller('ESNCollaborationMembersAddController as ctrl', {$scope: scope}, options);
+    var controller = $controller('ESNCollaborationMembersAddController as ctrl', { $scope: scope }, options);
 
     scope.$digest();
 
@@ -70,6 +70,7 @@ describe('The ESNCollaborationMembersAddController controller', function() {
         loadMoreElements: loadMoreElements,
         options: options
       });
+
       controller.$onInit();
       $rootScope.$digest();
 
@@ -79,7 +80,9 @@ describe('The ESNCollaborationMembersAddController controller', function() {
 
   describe('the onChange function', function() {
     it('should call esnPaginationtionProviderBuilder service when the query is not empty', function() {
-      var controller = initController({collaboration: collaboration, objectType: objectType, loadMoreElements: loadMoreElements, options: options});
+      var controller = initController({
+        collaboration: collaboration, objectType: objectType, loadMoreElements: loadMoreElements, options: options
+      });
 
       controller.query = ' ';
       controller.onChange();

@@ -5,7 +5,7 @@ require('./business-hours.controller.js');
 
   angular.module('esn.business-hours')
     .component('esnBusinessHours', {
-      template: require("./business-hours.pug"),
+      template: require('./business-hours.pug'),
       bindings: {
         businessHours: '='
       },

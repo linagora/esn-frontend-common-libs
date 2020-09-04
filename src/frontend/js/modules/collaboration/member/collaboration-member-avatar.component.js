@@ -12,7 +12,7 @@
       },
       controller: 'ESNCollaborationMemberAvatarController',
       controllerAs: 'ctrl',
-      template: require("./collaboration-member-avatar.pug")
+      template: require('./collaboration-member-avatar.pug')
     };
   }
 })();

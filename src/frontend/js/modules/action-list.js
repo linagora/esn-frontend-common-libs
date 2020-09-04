@@ -76,6 +76,7 @@
                 handleWindowResizement();
               }
             }, dialogLock.scope);
+
             dialogLock.scope.$on('$destroy', unregister);
           };
 

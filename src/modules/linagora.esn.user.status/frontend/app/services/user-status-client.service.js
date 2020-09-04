@@ -6,19 +6,19 @@ require('./user-status.restangular.service.js');
   angular.module('linagora.esn.user-status')
     .factory('userStatusClientService', userStatusClientService);
 
-    function userStatusClientService(userStatusRestangular) {
+  function userStatusClientService(userStatusRestangular) {
 
-      return {
-        getStatusForUser: getStatusForUser,
-        getStatusForUsers: getStatusForUsers
-      };
+    return {
+      getStatusForUser: getStatusForUser,
+      getStatusForUsers: getStatusForUsers
+    };
 
-      function getStatusForUser(userId) {
-        return userStatusRestangular.one('users', userId).get();
-      }
-
-      function getStatusForUsers(usersId) {
-        return userStatusRestangular.one('users').customPOST(usersId);
-      }
+    function getStatusForUser(userId) {
+      return userStatusRestangular.one('users', userId).get();
     }
+
+    function getStatusForUsers(usersId) {
+      return userStatusRestangular.one('users').customPOST(usersId);
+    }
+  }
 })(angular);

@@ -18,7 +18,7 @@ describe('The esnPaginationProvider factory', function() {
   describe('The loadNextItems function', function() {
     it('should call the given paginable', function() {
       var paginable = sinon.spy(function() {
-        return $q.when({data: []});
+        return $q.when({ data: [] });
       });
       var provider = new esnPaginationProvider(paginable, {});
 
@@ -32,7 +32,7 @@ describe('The esnPaginationProvider factory', function() {
       var thenSpy = sinon.spy();
       var data = [1];
       var paginable = sinon.spy(function() {
-        return $q.when({data: data});
+        return $q.when({ data: data });
       });
       var options = { limit: 5, offset: 0 };
       var provider = new esnPaginationProvider(paginable, options);
@@ -40,14 +40,14 @@ describe('The esnPaginationProvider factory', function() {
       provider.loadNextItems().then(thenSpy);
       $rootScope.$digest();
 
-      expect(thenSpy).to.have.been.calledWith({data: data, lastPage: true});
+      expect(thenSpy).to.have.been.calledWith({ data: data, lastPage: true });
     });
 
     it('should set the lastPage property to false when returned data length is = input limit', function() {
       var data = [1, 2, 3, 4, 5];
       var thenSpy = sinon.spy();
       var paginable = sinon.spy(function() {
-        return $q.when({data: data});
+        return $q.when({ data: data });
       });
       var options = { limit: 5, offset: 0 };
       var provider = new esnPaginationProvider(paginable, options);
@@ -55,17 +55,17 @@ describe('The esnPaginationProvider factory', function() {
       provider.loadNextItems().then(thenSpy);
       $rootScope.$digest();
 
-      expect(thenSpy).to.have.been.calledWith({data: data, lastPage: false});
+      expect(thenSpy).to.have.been.calledWith({ data: data, lastPage: false });
     });
 
     it('should call the paginable with updated offset when the lastPage property is false after first call', function() {
       var options = { limit: 5, offset: 0 };
       var paginable = sinon.spy(function() {
-        return $q.when({data: [1, 2, 3, 4, 5]});
+        return $q.when({ data: [1, 2, 3, 4, 5] });
       });
 
-      var firstCall = paginable.withArgs(sinon.match({offset: 0, limit: 5}));
-      var secondCall = paginable.withArgs(sinon.match({offset: 5, limit: 5}));
+      var firstCall = paginable.withArgs(sinon.match({ offset: 0, limit: 5 }));
+      var secondCall = paginable.withArgs(sinon.match({ offset: 5, limit: 5 }));
 
       var provider = new esnPaginationProvider(paginable, options);
 

@@ -5,7 +5,7 @@ require('./timeformat-selector.controller.js');
 
   angular.module('esn.datetime')
     .component('esnDatetimeTimeFormatSelector', {
-      template: require("./timeformat-selector.pug"),
+      template: require('./timeformat-selector.pug'),
       bindings: {
         use24hourFormat: '='
       },

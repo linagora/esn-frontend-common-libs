@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.parser Angular module', function() {
 
@@ -44,6 +44,7 @@ describe('The esn.parser Angular module', function() {
         } catch (err) {
           return done(new Error());
         }
+
         return done();
       });
     });
@@ -54,6 +55,7 @@ describe('The esn.parser Angular module', function() {
           return done(new Error());
         }, function(err) {
           expect(err).to.exist;
+
           return done();
         });
         this.$rootScope.$digest();
@@ -64,6 +66,7 @@ describe('The esn.parser Angular module', function() {
           return done(new Error());
         }, function(err) {
           expect(err).to.exist;
+
           return done();
         });
         this.$rootScope.$digest();
@@ -74,6 +77,7 @@ describe('The esn.parser Angular module', function() {
           return done(new Error());
         }, function(err) {
           expect(err).to.exist;
+
           return done();
         });
         this.$rootScope.$digest();
@@ -86,6 +90,7 @@ describe('The esn.parser Angular module', function() {
           return done(new Error());
         }, function(err) {
           expect(err).to.exist;
+
           return done();
         });
         this.$rootScope.$digest();
@@ -96,6 +101,7 @@ describe('The esn.parser Angular module', function() {
           return done(new Error());
         }, function(err) {
           expect(err).to.exist;
+
           return done();
         });
         this.$rootScope.$digest();
@@ -106,6 +112,7 @@ describe('The esn.parser Angular module', function() {
           return done(new Error());
         }, function(err) {
           expect(err).to.exist;
+
           return done();
         });
         this.$rootScope.$digest();
@@ -116,6 +123,7 @@ describe('The esn.parser Angular module', function() {
           return done(new Error());
         }, function(err) {
           expect(err).to.exist;
+
           return done();
         });
         this.$rootScope.$digest();
@@ -130,6 +138,7 @@ describe('The esn.parser Angular module', function() {
 
         var resolver = function(text) {
           call = text;
+
           return $q.when(text);
         };
 
@@ -158,7 +167,7 @@ describe('The esn.parser Angular module', function() {
 
         this.parserResolver.register('parser1', parser1);
         this.parserResolver.register('parser2', parser2);
-        this.parserResolver.resolveChain([{name: 'parser1'}, {name: 'parser2'}], 'text').then(function(result) {
+        this.parserResolver.resolveChain([{ name: 'parser1' }, { name: 'parser2' }], 'text').then(function(result) {
           expect(result).to.exist;
           expect(result).to.deep.equal('textparser1parser2');
           done();
@@ -199,6 +208,7 @@ describe('The esn.parser Angular module', function() {
     it('should write the text without modification', function(done) {
       this.html = '<text-parser text="text"></text-parser>';
       var element = this.$compile(this.html)(this.scope);
+
       expect(element.html()).to.equal('text');
       done();
     });
@@ -206,6 +216,7 @@ describe('The esn.parser Angular module', function() {
     it('should write the text parse with linky', function(done) {
       this.html = '<text-parser text="http://google.com"></text-parser>';
       var element = this.$compile(this.html)(this.scope);
+
       expect(element.html()).to.equal('<a target="_blank" href="http://google.com">http://google.com</a>');
       done();
     });
@@ -214,12 +225,14 @@ describe('The esn.parser Angular module', function() {
       parserResolverMock.resolveChain = function resolveChain(parsers, text) {
         expect(parsers).to.exist;
         expect(text).to.exist;
-        expect(parsers).to.deep.equal([{name: 'markdown'}]);
+        expect(parsers).to.deep.equal([{ name: 'markdown' }]);
         expect(text).to.equal('text');
+
         return $q.when(text + 'parser');
       };
       this.html = '<text-parser parsers=\'[{"name":"markdown"}]\' text="text"></text-parser>';
       var element = this.$compile(this.html)(this.scope);
+
       this.scope.$digest();
       expect(element.html()).to.equal('textparser');
       done();

@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Sidebar Angular module', function() {
 
@@ -22,11 +22,13 @@ describe('The Sidebar Angular module', function() {
       hide = sinon.spy();
       var contextualSidebarService = function(opt) {
         options = opt;
+
         return {
           toggle: toggle,
           hide: hide
         };
       };
+
       angular.mock.module(function($provide) {
         $provide.value('contextualSidebarService', contextualSidebarService);
       });
@@ -42,6 +44,7 @@ describe('The Sidebar Angular module', function() {
       this.initDirective = function(html, scope) {
         this.element = this.$compile(html)(scope);
         scope.$digest();
+
         return this.element;
       };
     }));
@@ -135,6 +138,7 @@ describe('The Sidebar Angular module', function() {
         '<div contextual-sidebar/>',
         this.$scope
       );
+
       element.triggerHandler('click');
       expect(toggle).to.have.been.called;
     });
@@ -144,6 +148,7 @@ describe('The Sidebar Angular module', function() {
         '<div contextual-sidebar/>',
         this.$scope
       );
+
       element.scope().$destroy();
       expect(hide).to.have.been.called;
     });

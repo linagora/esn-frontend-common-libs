@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.notification Angular modules', function() {
   beforeEach(function() {
@@ -50,7 +50,7 @@ describe('The esn.notification Angular modules', function() {
     it('should contain defaultSettings when the hideCross option is not defined', function() {
       var settings = {};
       var expectedSettings = {
-        placement: { from: 'bottom', align: 'center'},
+        placement: { from: 'bottom', align: 'center' },
         animate: { enter: 'animated fadeInUp', exit: 'animated fadeOutDown' },
         offset: 0,
         template: '<div data-notify="container" class="alert alert-{0} flex-space-between" role="alert">' +
@@ -73,7 +73,7 @@ describe('The esn.notification Angular modules', function() {
     it('should contain defaultSettings with no tag "a" that contains the cross when the hideCross option is true', function() {
       var settings = {};
       var expectedSettings = {
-        placement: { from: 'bottom', align: 'center'},
+        placement: { from: 'bottom', align: 'center' },
         animate: { enter: 'animated fadeInUp', exit: 'animated fadeOutDown' },
         offset: 0,
         template: '<div data-notify="container" class="alert alert-{0} flex-space-between" role="alert">' +
@@ -179,7 +179,7 @@ describe('The esn.notification Angular modules', function() {
       });
 
       it('should have a update method that escapes the html of the value of an object when called with this object has an argument', function() {
-        wrappedNotifyObj.update({key: dirtyValue});
+        wrappedNotifyObj.update({ key: dirtyValue });
         expect(this.escapeHTMLMock.escapeHTML).to.have.been.calledWith(dirtyValue);
         expect(rawUpdate).to.have.been.calledOnce;
       });
@@ -203,8 +203,8 @@ describe('The esn.notification Angular modules', function() {
     }));
 
     it('should provide a clickable link that triggers provided function', function() {
-      var cancelActionConfig = {linkText: 'cancel', action: sinon.spy()};
-      var notification = notifyService({title: 'title', message: 'message', type: 'danger'}, {});
+      var cancelActionConfig = { linkText: 'cancel', action: sinon.spy() };
+      var notification = notifyService({ title: 'title', message: 'message', type: 'danger' }, {});
 
       notification.setCancelAction(cancelActionConfig);
       notification.$ele.find('a.cancel-task').click();
@@ -227,6 +227,7 @@ describe('The esn.notification Angular modules', function() {
       var notification = notifyService({ title: 'title', message: 'message', type: 'danger' }, {});
 
       var closeCallback = sinon.spy();
+
       notification.setCloseAction(closeCallback);
       notification.$ele.find('a.close').click();
 

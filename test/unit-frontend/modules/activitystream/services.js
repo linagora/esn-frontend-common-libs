@@ -12,6 +12,7 @@ describe('The esn.activitystream Angular module', function() {
         nextItems: function() {},
         endOfStream: false
       };
+
       this.asAPI = { get: function() {} };
       this.asDecorator = function(callback) { return callback; };
       this.restcursor = function() {
@@ -52,18 +53,21 @@ describe('The esn.activitystream Angular module', function() {
     });
 
     it('should return an object having a endOfStream property', function() {
-      var instance = this.agg({activity_stream: {uuid: 'ID1'}}, {activity_stream: {uuid: 'ID2'}}, [], 30);
+      var instance = this.agg({ activity_stream: { uuid: 'ID1' } }, { activity_stream: { uuid: 'ID2' } }, [], 30);
+
       expect(instance).to.have.property('endOfStream');
     });
 
     it('should return an object having a loadMoreElements method', function() {
-      var instance = this.agg({activity_stream: {uuid: 'ID1'}}, {activity_stream: {uuid: 'ID2'}}, [], 30);
+      var instance = this.agg({ activity_stream: { uuid: 'ID1' } }, { activity_stream: { uuid: 'ID2' } }, [], 30);
+
       expect(instance).to.respondTo('loadMoreElements');
     });
 
     describe('endOfStream property', function() {
       it('should return the endofstream property of the associated filteredcursor', function() {
-        var instance = this.agg({activity_stream: {uuid: 'ID1'}}, {activity_stream: {uuid: 'ID2'}}, [], 30);
+        var instance = this.agg({ activity_stream: { uuid: 'ID1' } }, { activity_stream: { uuid: 'ID2' } }, [], 30);
+
         expect(instance.endOfStream).to.be.false;
         this.filteredcursorInstance.endOfStream = true;
         expect(instance.endOfStream).to.be.true;
@@ -72,7 +76,8 @@ describe('The esn.activitystream Angular module', function() {
 
     describe('loadMoreElements method', function() {
       it('should call the nextItems method of the associated filteredcursor', function(done) {
-        var instance = this.agg({activity_stream: {uuid: 'ID1'}}, {activity_stream: {uuid: 'ID2'}}, [], 30);
+        var instance = this.agg({ activity_stream: { uuid: 'ID1' } }, { activity_stream: { uuid: 'ID2' } }, [], 30);
+
         this.filteredcursorInstance.nextItems = function() {done();};
         instance.loadMoreElements();
       });
@@ -104,6 +109,7 @@ describe('The esn.activitystream Angular module', function() {
 
     it('should return a function', function() {
       var instance = this.decorator(function() {});
+
       expect(instance).to.be.a('function');
     });
 
@@ -112,50 +118,58 @@ describe('The esn.activitystream Angular module', function() {
         expect(err).to.equal('ERROR');
         done();
       });
+
       instance('ERROR');
     });
 
     it('should call messageAPI.get with according ids', function(done) {
       var tl = [
-        {object: { _id: 'ID5' }},
-        {object: { _id: 'ID2' }}
+        { object: { _id: 'ID5' } },
+        { object: { _id: 'ID2' } }
       ];
+
       this.msgAPI.get = function(options) {
-        expect(options).to.deep.equal({'ids[]': ['ID5', 'ID2']});
+        expect(options).to.deep.equal({ 'ids[]': ['ID5', 'ID2'] });
         done();
       };
       var instance = this.decorator(function() { });
+
       instance(null, tl);
     });
 
     it('should call messageAPI.get with parent message ids when there is a inReplyTo field', function(done) {
       var tl = [
-        {object: { _id: 'ID5' }},
-        {object: { _id: 'ID2' }, inReplyTo: [{_id: 'ID3'}]}
+        { object: { _id: 'ID5' } },
+        { object: { _id: 'ID2' }, inReplyTo: [{ _id: 'ID3' }] }
       ];
+
       this.msgAPI.get = function(options) {
-        expect(options).to.deep.equal({'ids[]': ['ID5', 'ID3']});
+        expect(options).to.deep.equal({ 'ids[]': ['ID5', 'ID3'] });
         done();
       };
       var instance = this.decorator(function() { });
+
       instance(null, tl);
     });
 
     it('should not call messageAPI.get if the array of ids is empty', function() {
       var msgAPIcalled = false;
+
       this.msgAPI.get = function() {
         msgAPIcalled = true;
       };
       var instance = this.decorator(function() { });
+
       instance(null, []);
       expect(msgAPIcalled).to.be.false;
     });
 
     it('should forward messageAPI.get error', function(done) {
       var tl = [
-        {object: { _id: 'ID5' }},
-        {object: { _id: 'ID2' }}
+        { object: { _id: 'ID5' } },
+        { object: { _id: 'ID2' } }
       ];
+
       this.msgAPI.get = function() {
         return $q.reject({ data: 'ERROR' });
       };
@@ -163,20 +177,22 @@ describe('The esn.activitystream Angular module', function() {
         expect(err).to.equal('ERROR');
         done();
       });
+
       instance(null, tl);
       this.$rootScope.$digest();
     });
 
     it('should return an error if some messages cannot be fetched', function(done) {
       var tl = [
-        {object: { _id: 'ID5' }},
-        {object: { _id: 'ID2' }}
+        { object: { _id: 'ID5' } },
+        { object: { _id: 'ID2' } }
       ];
 
       var msgResp = [
-        {_id: 'ID5', objectType: 'whatsup' },
-        {error: 404, message: 'Not found', details: 'message ID2 could not be found'}
+        { _id: 'ID5', objectType: 'whatsup' },
+        { error: 404, message: 'Not found', details: 'message ID2 could not be found' }
       ];
+
       this.msgAPI.get = function() {
         return $q.when({ data: msgResp });
       };
@@ -187,30 +203,33 @@ describe('The esn.activitystream Angular module', function() {
         expect(err.details).to.have.length(1);
         done();
       });
+
       instance(null, tl);
       this.$rootScope.$digest();
     });
 
     it('should return the decorated timeline object', function(done) {
       var tl = [
-        {object: { _id: 'ID5' }},
-        {object: { _id: 'ID2' }}
+        { object: { _id: 'ID5' } },
+        { object: { _id: 'ID2' } }
       ];
 
       var msgResp = [
-        {_id: 'ID5', objectType: 'whatsup', content: 'yolo' },
-        {_id: 'ID2', objectType: 'whatsup', content: 'lgtm' }
+        { _id: 'ID5', objectType: 'whatsup', content: 'yolo' },
+        { _id: 'ID2', objectType: 'whatsup', content: 'lgtm' }
       ];
+
       this.msgAPI.get = function() {
         return $q.when({ data: msgResp });
       };
       var instance = this.decorator(function(err, response) {
         expect(response).to.deep.equal([
-          {object: {_id: 'ID5', objectType: 'whatsup', content: 'yolo' }},
-          {object: {_id: 'ID2', objectType: 'whatsup', content: 'lgtm' }}
+          { object: { _id: 'ID5', objectType: 'whatsup', content: 'yolo' } },
+          { object: { _id: 'ID2', objectType: 'whatsup', content: 'lgtm' } }
         ]);
         done();
       });
+
       instance(null, tl);
       this.$rootScope.$digest();
     });
@@ -240,7 +259,7 @@ describe('The esn.activitystream Angular module', function() {
 
       it('should send a request GET /api/activitystreams/:uuid, allowing passing some options', function() {
         this.$httpBackend.expectGET('/api/activitystreams/test?before=someID&limit=30').respond([]);
-        this.api.get('test', {before: 'someID', limit: 30});
+        this.api.get('test', { before: 'someID', limit: 30 });
         this.$httpBackend.flush();
       });
     });
@@ -261,6 +280,7 @@ describe('The esn.activitystream Angular module', function() {
 
     it('should return an object with filter, addToSentList and addToRemovedList methods', function() {
       var f = this.filter();
+
       expect(f).to.respondTo('filter');
       expect(f).to.respondTo('addToSentList');
       expect(f).to.respondTo('addToRemovedList');
@@ -275,6 +295,7 @@ describe('The esn.activitystream Angular module', function() {
             _id: 'ID1'
           }
         };
+
         expect(f.filter(tle)).to.be.true;
       });
 
@@ -286,6 +307,7 @@ describe('The esn.activitystream Angular module', function() {
             _id: 'ID1'
           }
         };
+
         expect(f.filter(tle)).to.be.false;
       });
 
@@ -297,6 +319,7 @@ describe('The esn.activitystream Angular module', function() {
             _id: 'ID1'
           }
         };
+
         f.filter(tle);
         expect(f.filter(tle)).to.be.false;
       });
@@ -315,6 +338,7 @@ describe('The esn.activitystream Angular module', function() {
             _id: 'ID1'
           }
         };
+
         f.filter(tle2);
         expect(f.filter(tle)).to.be.false;
       });
@@ -325,8 +349,9 @@ describe('The esn.activitystream Angular module', function() {
           var cmt = {
             verb: 'post',
             object: { _id: 'comment1' },
-            inReplyTo: [{_id: 'message1'}]
+            inReplyTo: [{ _id: 'message1' }]
           };
+
           expect(f.filter(cmt)).to.be.true;
         });
         it('should respond false for a new comment when a comment has already been posted for the same parent message', function() {
@@ -334,13 +359,14 @@ describe('The esn.activitystream Angular module', function() {
           var cmt = {
             verb: 'post',
             object: { _id: 'comment1' },
-            inReplyTo: [{_id: 'message1'}]
+            inReplyTo: [{ _id: 'message1' }]
           };
           var cmt2 = {
             verb: 'post',
             object: { _id: 'comment2' },
-            inReplyTo: [{_id: 'message1'}]
+            inReplyTo: [{ _id: 'message1' }]
           };
+
           f.filter(cmt);
           expect(f.filter(cmt2)).to.be.false;
         });
@@ -349,12 +375,13 @@ describe('The esn.activitystream Angular module', function() {
           var cmt = {
             verb: 'post',
             object: { _id: 'comment1' },
-            inReplyTo: [{_id: 'message1'}]
+            inReplyTo: [{ _id: 'message1' }]
           };
           var parent = {
             verb: 'post',
             object: { _id: 'message1' }
           };
+
           f.filter(parent);
           expect(f.filter(cmt)).to.be.false;
         });
@@ -363,12 +390,13 @@ describe('The esn.activitystream Angular module', function() {
           var cmt = {
             verb: 'post',
             object: { _id: 'comment1' },
-            inReplyTo: [{_id: 'message1'}]
+            inReplyTo: [{ _id: 'message1' }]
           };
           var parent = {
             verb: 'remove',
             object: { _id: 'message1' }
           };
+
           f.filter(parent);
           expect(f.filter(cmt)).to.be.false;
         });
@@ -392,6 +420,7 @@ describe('The esn.activitystream Angular module', function() {
 
     it('must be a function', function() {
       var self = this;
+
       angular.mock.module(function($provide) {
         $provide.value('activitystreamAPI', self.asAPI);
         $provide.value('messageAPI', self.messageAPI);
@@ -404,11 +433,13 @@ describe('The esn.activitystream Angular module', function() {
 
     it('must create a restcursor', function(done) {
       var self = this;
+
       this.restcursor = function() {
         expect(arguments).to.have.length(3);
         expect(arguments[0]).to.be.a('function');
         expect(arguments[1]).to.be.an.object;
         done();
+
         return {
           nextItems: function() {},
           endOfStream: false
@@ -420,12 +451,13 @@ describe('The esn.activitystream Angular module', function() {
         $provide.value('restcursor', self.restcursor);
       });
       inject(function(activityStreamUpdates) {
-        activityStreamUpdates('0987654321', {mostRecentActivityId: 'message1'});
+        activityStreamUpdates('0987654321', { mostRecentActivityId: 'message1' });
       });
     });
 
     it('must call cursor.nextItems', function(done) {
       var self = this;
+
       this.restcursor = function() {
         return {
           nextItems: function() {done();},
@@ -438,24 +470,28 @@ describe('The esn.activitystream Angular module', function() {
         $provide.value('restcursor', self.restcursor);
       });
       inject(function(activityStreamUpdates) {
-        activityStreamUpdates('0987654321', {mostRecentActivityId: 'message1'});
+        activityStreamUpdates('0987654321', { mostRecentActivityId: 'message1' });
       });
     });
 
     describe('provided API', function() {
       it('must use the activitystreamAPI with provided activity stream ID', function(done) {
         var self = this;
+
         this.restcursor = function(api) {
           api();
+
           return {
             nextItems: function() {},
             endOfStream: false
           };
         };
-        this.asAPI = { get: function() {
-          expect(arguments[0]).to.equal('0987654321');
-          done();
-        }};
+        this.asAPI = {
+          get: function() {
+            expect(arguments[0]).to.equal('0987654321');
+            done();
+          }
+        };
 
         angular.mock.module(function($provide) {
           $provide.value('activitystreamAPI', self.asAPI);
@@ -463,7 +499,7 @@ describe('The esn.activitystream Angular module', function() {
           $provide.value('restcursor', self.restcursor);
         });
         inject(function(activityStreamUpdates) {
-          activityStreamUpdates('0987654321', {mostRecentActivityId: 'message1'});
+          activityStreamUpdates('0987654321', { mostRecentActivityId: 'message1' });
         });
       });
     });
@@ -471,6 +507,7 @@ describe('The esn.activitystream Angular module', function() {
     describe('on REST call error', function() {
       it('should forward the error', function(done) {
         var self = this;
+
         this.restcursor = function() {
           return {
             nextItems: function(callback) {return callback(new Error('down'));},
@@ -483,7 +520,7 @@ describe('The esn.activitystream Angular module', function() {
           $provide.value('restcursor', self.restcursor);
         });
         inject(function(activityStreamUpdates, $rootScope) {
-          activityStreamUpdates('0987654321', {mostRecentActivityId: 'message1'}).then(
+          activityStreamUpdates('0987654321', { mostRecentActivityId: 'message1' }).then(
             function() {done(new Error('I should not be called'));},
             function() {done();}
           );
@@ -496,16 +533,19 @@ describe('The esn.activitystream Angular module', function() {
       it('should update the scope with the provided timeline entries', function(done) {
         var self = this;
         var entries = [
-          {_id: 'tl1', object: {_id: 'msg1'}},
-          {_id: 'tl2', object: {_id: 'msg2'}},
-          {_id: 'tl3', object: {_id: 'msg3'}},
-          {_id: 'tl4', object: {_id: 'msg4'}},
-          {_id: 'tl5', object: {_id: 'msg5'}}
+          { _id: 'tl1', object: { _id: 'msg1' } },
+          { _id: 'tl2', object: { _id: 'msg2' } },
+          { _id: 'tl3', object: { _id: 'msg3' } },
+          { _id: 'tl4', object: { _id: 'msg4' } },
+          { _id: 'tl5', object: { _id: 'msg5' } }
         ];
+
         this.restcursor = function() {
           return {
             nextItems: function(callback) {
-              this.endOfStream = true; return callback(null, entries);
+              this.endOfStream = true;
+
+              return callback(null, entries);
             },
             endOfStream: false
           };
@@ -543,16 +583,19 @@ describe('The esn.activitystream Angular module', function() {
       it('should update the scope, taking care of the elements ordering', function(done) {
         var self = this;
         var entries = [
-          {_id: 'tl1', object: {_id: 'msg1'}},
-          {_id: 'tl2', object: {_id: 'msg2'}},
-          {_id: 'tl3', object: {_id: 'msg3'}},
-          {_id: 'tl4', object: {_id: 'msg2'}},
-          {_id: 'tl5', object: {_id: 'msg5'}}
+          { _id: 'tl1', object: { _id: 'msg1' } },
+          { _id: 'tl2', object: { _id: 'msg2' } },
+          { _id: 'tl3', object: { _id: 'msg3' } },
+          { _id: 'tl4', object: { _id: 'msg2' } },
+          { _id: 'tl5', object: { _id: 'msg5' } }
         ];
+
         this.restcursor = function() {
           return {
             nextItems: function(callback) {
-              this.endOfStream = true; return callback(null, entries);
+              this.endOfStream = true;
+
+              return callback(null, entries);
             },
             endOfStream: false
           };
@@ -561,7 +604,7 @@ describe('The esn.activitystream Angular module', function() {
           return callback;
         };
 
-        var scope = {mostRecentActivityId: 'message1', threads: [] };
+        var scope = { mostRecentActivityId: 'message1', threads: [] };
 
         angular.mock.module(function($provide) {
           $provide.value('activitystreamAPI', self.asAPI);
@@ -589,43 +632,43 @@ describe('The esn.activitystream Angular module', function() {
       it('should update the scope, recursively fetching timeline entries per batches of 30', function(done) {
         var self = this;
         var entries1 = [
-          {_id: 'tl1', object: {_id: 'msg1'}},
-          {_id: 'tl2', object: {_id: 'msg2'}},
-          {_id: 'tl3', object: {_id: 'msg2'}},
-          {_id: 'tl4', object: {_id: 'msg2'}},
-          {_id: 'tl5', object: {_id: 'msg2'}},
-          {_id: 'tl6', object: {_id: 'msg2'}},
-          {_id: 'tl7', object: {_id: 'msg2'}},
-          {_id: 'tl8', object: {_id: 'msg2'}},
-          {_id: 'tl9', object: {_id: 'msg2'}},
-          {_id: 'tl10', object: {_id: 'msg18'}},
-          {_id: 'tl11', object: {_id: 'msg2'}},
-          {_id: 'tl12', object: {_id: 'msg2'}},
-          {_id: 'tl13', object: {_id: 'msg14'}},
-          {_id: 'tl14', object: {_id: 'msg2'}},
-          {_id: 'tl15', object: {_id: 'msg2'}},
-          {_id: 'tl16', object: {_id: 'msg2'}},
-          {_id: 'tl17', object: {_id: 'msg1'}},
-          {_id: 'tl18', object: {_id: 'msg2'}},
-          {_id: 'tl19', object: {_id: 'msg2'}},
-          {_id: 'tl20', object: {_id: 'msg2'}},
-          {_id: 'tl21', object: {_id: 'msg2'}},
-          {_id: 'tl22', object: {_id: 'msg2'}},
-          {_id: 'tl23', object: {_id: 'msg2'}},
-          {_id: 'tl24', object: {_id: 'msg2'}},
-          {_id: 'tl25', object: {_id: 'msg3'}},
-          {_id: 'tl26', object: {_id: 'msg2'}},
-          {_id: 'tl27', object: {_id: 'msg2'}},
-          {_id: 'tl28', object: {_id: 'msg2'}},
-          {_id: 'tl29', object: {_id: 'msg2'}},
-          {_id: 'tl30', object: {_id: 'msg4'}}
+          { _id: 'tl1', object: { _id: 'msg1' } },
+          { _id: 'tl2', object: { _id: 'msg2' } },
+          { _id: 'tl3', object: { _id: 'msg2' } },
+          { _id: 'tl4', object: { _id: 'msg2' } },
+          { _id: 'tl5', object: { _id: 'msg2' } },
+          { _id: 'tl6', object: { _id: 'msg2' } },
+          { _id: 'tl7', object: { _id: 'msg2' } },
+          { _id: 'tl8', object: { _id: 'msg2' } },
+          { _id: 'tl9', object: { _id: 'msg2' } },
+          { _id: 'tl10', object: { _id: 'msg18' } },
+          { _id: 'tl11', object: { _id: 'msg2' } },
+          { _id: 'tl12', object: { _id: 'msg2' } },
+          { _id: 'tl13', object: { _id: 'msg14' } },
+          { _id: 'tl14', object: { _id: 'msg2' } },
+          { _id: 'tl15', object: { _id: 'msg2' } },
+          { _id: 'tl16', object: { _id: 'msg2' } },
+          { _id: 'tl17', object: { _id: 'msg1' } },
+          { _id: 'tl18', object: { _id: 'msg2' } },
+          { _id: 'tl19', object: { _id: 'msg2' } },
+          { _id: 'tl20', object: { _id: 'msg2' } },
+          { _id: 'tl21', object: { _id: 'msg2' } },
+          { _id: 'tl22', object: { _id: 'msg2' } },
+          { _id: 'tl23', object: { _id: 'msg2' } },
+          { _id: 'tl24', object: { _id: 'msg2' } },
+          { _id: 'tl25', object: { _id: 'msg3' } },
+          { _id: 'tl26', object: { _id: 'msg2' } },
+          { _id: 'tl27', object: { _id: 'msg2' } },
+          { _id: 'tl28', object: { _id: 'msg2' } },
+          { _id: 'tl29', object: { _id: 'msg2' } },
+          { _id: 'tl30', object: { _id: 'msg4' } }
         ];
 
         var entries2 = [
-          {_id: 'tl31', object: {_id: 'msg14'}},
-          {_id: 'tl32', object: {_id: 'msg2'}},
-          {_id: 'tl33', object: {_id: 'msg2'}},
-          {_id: 'tl34', object: {_id: 'msg18'}}
+          { _id: 'tl31', object: { _id: 'msg14' } },
+          { _id: 'tl32', object: { _id: 'msg2' } },
+          { _id: 'tl33', object: { _id: 'msg2' } },
+          { _id: 'tl34', object: { _id: 'msg18' } }
         ];
 
         var entries = [entries1, entries2];
@@ -636,6 +679,7 @@ describe('The esn.activitystream Angular module', function() {
               if (entries.length === 1) {
                 this.endOfStream = true;
               }
+
               return callback(null, entries.shift());
             },
             endOfStream: false
@@ -645,7 +689,7 @@ describe('The esn.activitystream Angular module', function() {
           return callback;
         };
 
-        var scope = {mostRecentActivityId: 'message1', threads: [] };
+        var scope = { mostRecentActivityId: 'message1', threads: [] };
 
         angular.mock.module(function($provide) {
           $provide.value('activitystreamAPI', self.asAPI);

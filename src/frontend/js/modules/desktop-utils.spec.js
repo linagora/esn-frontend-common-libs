@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.desktop-utils angular module', function() {
   var element, $scope, $compile, isMobile;
@@ -15,7 +15,7 @@ describe('The esn.desktop-utils angular module', function() {
     angular.mock.module('esn.desktop-utils', function($provide) {
       isMobile = false;
 
-      $provide.value('deviceDetector', { isMobile: function() { return isMobile; }});
+      $provide.value('deviceDetector', { isMobile: function() { return isMobile; } });
     });
   });
 

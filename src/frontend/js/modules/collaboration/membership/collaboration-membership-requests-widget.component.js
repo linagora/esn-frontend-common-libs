@@ -15,7 +15,7 @@
       },
       controller: 'ESNCollaborationMembershipRequestsWidgetController',
       controllerAs: 'ctrl',
-      template: require("./collaboration-membership-requests-widget.pug")
+      template: require('./collaboration-membership-requests-widget.pug')
     };
   }
 })();

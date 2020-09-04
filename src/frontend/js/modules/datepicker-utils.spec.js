@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The datepicker utils module', function() {
   var self = this;
@@ -41,22 +41,24 @@ describe('The datepicker utils module', function() {
     }));
 
     it('should fail if require is not a array but is not the expected controller', function() {
-      expect(self.getRequiredController.bind(null, 'controllerName', {}, {require: 'badRequire'})).to.throw(Error);
+      expect(self.getRequiredController.bind(null, 'controllerName', {}, { require: 'badRequire' })).to.throw(Error);
     });
 
     it('should fail if require is a array that does not contains the expected controller', function() {
-      expect(self.getRequiredController.bind(null, 'controllerName', [{}], {require: ['badRequire']})).to.throw(Error);
+      expect(self.getRequiredController.bind(null, 'controllerName', [{}], { require: ['badRequire'] })).to.throw(Error);
     });
 
     it('should return given controller if require is a string and correct', function() {
       var controller = {};
-      expect(self.getRequiredController('controllerName', controller, {require: 'controllerName' })).to.equal(controller);
+
+      expect(self.getRequiredController('controllerName', controller, { require: 'controllerName' })).to.equal(controller);
     });
 
     it('should return given controller if require and controller are array that contain expected require', function() {
       var controller = {};
       var controllers = [{}, controller, {}];
-      var directive = {require: ['toto', 'controllerName', '']};
+      var directive = { require: ['toto', 'controllerName', ''] };
+
       expect(self.getRequiredController('controllerName', controllers, directive)).to.equal(controller);
     });
 
@@ -160,6 +162,7 @@ describe('The datepicker utils module', function() {
       });
 
       var formatter = self.ngModelControllerMock.$formatters[1];
+
       expect(formatter(self.moment('1991-10-03').toDate())).to.equal('1991-10-03');
     });
 
@@ -178,6 +181,7 @@ describe('The datepicker utils module', function() {
       it('should parse a date correctly', function() {
         var strDate = '1991-10-03';
         var date = self.parser(strDate);
+
         expect(self.moment(date).format('YYYY-MM-DD')).to.equal(strDate);
       });
 
@@ -188,6 +192,7 @@ describe('The datepicker utils module', function() {
       it('should keep hour of previous date if any', function() {
         self.ngModelControllerMock.$modelValue = self.moment('1941-09-15 12:42');
         var date = self.parser('2016-01-28');
+
         expect(self.moment(date).format('YYYY-MM-DD HH:mm')).to.equal('2016-01-28 12:42');
       });
     });
@@ -206,6 +211,7 @@ describe('The datepicker utils module', function() {
           expect(self.element.attr).to.have.not.been.calledWith(o.destField);
           fn('1991-10-03 10:32');
           expect(self.element.attr).to.have.been.calledWith(o.destField, '1991-10-03');
+
           return true;
         }));
       }, this);

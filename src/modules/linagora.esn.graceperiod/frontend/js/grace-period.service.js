@@ -52,7 +52,7 @@ require('./constants.js');
         return gracePeriodRestangularService
           .one('tasks')
           .one(id)
-          .withHttpConfig({timeout: HTTP_LAG_UPPER_BOUND}).remove();
+          .withHttpConfig({ timeout: HTTP_LAG_UPPER_BOUND }).remove();
       }, function() {
 
         throw previousError;
@@ -69,7 +69,7 @@ require('./constants.js');
       return gracePeriodRestangularService
         .one('tasks')
         .one(id)
-        .withHttpConfig({timeout: task.justBeforeEnd})
+        .withHttpConfig({ timeout: task.justBeforeEnd })
         .remove()
         .catch(function(error) {
           $log.error('Could not cancel graceperiod, we will try again at the end of the graceperiod', error);
@@ -131,7 +131,7 @@ require('./constants.js');
     }
 
     function grace(options) {
-      options = angular.extend({delay: GRACE_DELAY}, DEFAULT_GRACE_MESSAGE, options);
+      options = angular.extend({ delay: GRACE_DELAY }, DEFAULT_GRACE_MESSAGE, options);
 
       if (!options.id) {
         throw new Error('You should at least provide an id');
@@ -159,10 +159,10 @@ require('./constants.js');
 
       taskPromise.then(checkNotResolved(function() {
         displaySuccess(options.successText);
-        deferred.resolve(cancelInTry ? {cancelled: true, cancelFailed: true} : {cancelled: false});
+        deferred.resolve(cancelInTry ? { cancelled: true, cancelFailed: true } : { cancelled: false });
       }), checkNotResolved(function() {
         displayError(options.gracePeriodFail);
-        deferred.reject(cancelInTry ? {cancelled: true, cancelFailed: false} : {cancelled: false});
+        deferred.reject(cancelInTry ? { cancelled: true, cancelFailed: false } : { cancelled: false });
       }));
 
       userCancelPromise.then(function(result) {
@@ -177,11 +177,11 @@ require('./constants.js');
           cancelInTry = true;
           cancel(options.id).then(checkNotResolved(function() {
             displaySuccess(options.cancelSuccess);
-            deferred.reject({cancelled: true, cancelFailed: false});
+            deferred.reject({ cancelled: true, cancelFailed: false });
             result.success();
           }), checkNotResolved(function(error) {
             result.error(options.cancelFailed, error.statusTask);
-            deferred.resolve({cancelled: true, cancelFailed: true});
+            deferred.resolve({ cancelled: true, cancelFailed: true });
           }));
         }
       });

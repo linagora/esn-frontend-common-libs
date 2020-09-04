@@ -13,7 +13,7 @@
     ESN_COLLABORATION_MEMBER_EVENTS,
     ELEMENTS_PER_PAGE,
     _
-    ) {
+  ) {
     var self = this;
     var aggregator;
     var results_per_page = self.elementsPerPage || ELEMENTS_PER_PAGE;

@@ -2,34 +2,34 @@
   'use strict';
 
   angular.module('esn.background', [])
-  .service('backgroundProcessorService', function() {
+    .service('backgroundProcessorService', function() {
 
-    var tasks = [];
+      var tasks = [];
 
-    function add(task) {
-      if (!task) {
-        return;
+      function add(task) {
+        if (!task) {
+          return;
+        }
+
+        tasks.push(task);
+
+        task.finally(function() {
+          tasks.splice(tasks.indexOf(task), 1);
+        });
+
+        return task;
       }
 
-      tasks.push(task);
+      return {
+        add: add,
+        tasks: tasks
+      };
+    })
 
-      task.finally(function() {
-        tasks.splice(tasks.indexOf(task), 1);
-      });
-
-      return task;
-    }
-
-    return {
-      add: add,
-      tasks: tasks
-    };
-  })
-
-  .factory('inBackground', function(backgroundProcessorService) {
-    return function(task) {
-      return backgroundProcessorService.add(task);
-    };
-  });
+    .factory('inBackground', function(backgroundProcessorService) {
+      return function(task) {
+        return backgroundProcessorService.add(task);
+      };
+    });
 
 })(angular);

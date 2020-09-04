@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The UI module', function() {
 
@@ -124,6 +124,7 @@ describe('The UI module', function() {
         stopPropagation: sinon.spy(),
         preventDefault: sinon.spy()
       };
+
       element.triggerHandler(event);
 
       expect(event.stopPropagation).to.have.been.called;
@@ -136,7 +137,7 @@ describe('The UI module', function() {
       initDirective('<fab-scroll-top></fab-scroll-top>');
       $scope.show();
 
-      element.triggerHandler({type: 'click'});
+      element.triggerHandler({ type: 'click' });
 
       expect(elementScrollService.scrollToTop).to.have.been.called;
       expect(element.hasClass('hidden')).to.equal(true);
@@ -156,7 +157,9 @@ describe('The UI module', function() {
       this.initDirective = function(scope) {
         var html = '<div><dynamic-fab-dropup anchor="{{anchor}}"/></div>';
         var element = this.$compile(html)(scope);
+
         scope.$digest();
+
         return element;
       };
     }));
@@ -166,6 +169,7 @@ describe('The UI module', function() {
       var element = this.initDirective(this.$scope);
       var button = element.find('.btn');
       var dropup = element.find('.fab-modal-dropup');
+
       expect(dropup.hasClass('active')).to.be.false;
       button.click();
       expect(dropup.hasClass('active')).to.be.true;
@@ -176,6 +180,7 @@ describe('The UI module', function() {
       var element = this.initDirective(this.$scope);
       var button = element.find('.btn');
       var dropup = element.find('.fab-modal-dropup');
+
       expect(dropup.hasClass('active')).to.be.false;
       button.click();
       expect(dropup.hasClass('active')).to.be.true;
@@ -187,9 +192,11 @@ describe('The UI module', function() {
       this.$scope.anchor = 'MyAnchor';
       var element = this.initDirective(this.$scope);
       var body = this.$document.find('body').eq(0);
+
       body.append(element);
       var button = element.find('.btn');
       var dropup = element.find('.fab-modal-dropup');
+
       expect(dropup.hasClass('active')).to.be.false;
       button.click();
       expect(dropup.hasClass('active')).to.be.true;
@@ -258,7 +265,7 @@ describe('The UI module', function() {
     });
 
     it('should add classes in the resulting element', function() {
-      expect(createHtmlElement('div', { class: 'classA classB'}).attributes[0]).to.shallowDeepEqual({
+      expect(createHtmlElement('div', { class: 'classA classB' }).attributes[0]).to.shallowDeepEqual({
         name: 'class',
         value: 'classA classB'
       });

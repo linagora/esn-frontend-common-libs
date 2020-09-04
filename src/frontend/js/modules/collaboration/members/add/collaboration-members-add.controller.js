@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 require('../../services/collaboration-client.service.js');
 
 (function() {
@@ -40,8 +38,7 @@ require('../../services/collaboration-client.service.js');
       options = options || {};
 
       return esnCollaborationClientService.getInvitablePeople(self.objectType, self.collaboration._id,
-        Object.assign({}, options, {search: self.query})
-      ).then(function(response) {
+        { ...options, search: self.query }).then(function(response) {
         response.data = response.data.map(function(user) {
           if (!user.emails) {
             user.emails = [];

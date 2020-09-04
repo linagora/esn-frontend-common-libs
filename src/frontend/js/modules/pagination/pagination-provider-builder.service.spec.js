@@ -14,13 +14,13 @@ describe('The esnPaginationtionProviderBuilder factory', function() {
 
   beforeEach(function() {
     paginable = sinon.spy(function() {
-      return $q.when({data: result});
+      return $q.when({ data: result });
     });
     result = [1, 2, 3];
     name = 'My provider';
     scope = {};
     loadNextSpy = sinon.spy(function() {
-      return $q.when({data: result});
+      return $q.when({ data: result });
     });
     esnPaginationProviderMock = function() {};
     PageAggregatorServiceMock = sinon.spy();

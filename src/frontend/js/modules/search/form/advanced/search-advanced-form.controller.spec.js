@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNSearchAdvancedFormController', function() {
   var $rootScope, $controller;

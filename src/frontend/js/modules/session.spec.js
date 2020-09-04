@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.session Angular module', function() {
   beforeEach(angular.mock.module('esn.session'));
@@ -31,7 +31,7 @@ describe('The esn.session Angular module', function() {
 
     describe('setUser method', function() {
       it('should set the session.user object', function() {
-        var user = this.session.user;
+        var { user } = this.session;
         var user1 = {
           _id: '1',
           name: 'hello',
@@ -54,7 +54,7 @@ describe('The esn.session Angular module', function() {
 
     describe('setDomain method', function() {
       it('should set the session.domain object', function() {
-        var domain = this.session.domain;
+        var { domain } = this.session;
         var domain1 = {
           _id: '1',
           name: 'hello'
@@ -208,10 +208,12 @@ describe('The esn.session Angular module', function() {
       userAPI = {
         currentUser: function() {
           userdefer = $q.defer();
+
           return userdefer.promise;
         },
         user: function() {
           userdefer = $q.defer();
+
           return userdefer.promise;
         }
       };
@@ -219,6 +221,7 @@ describe('The esn.session Angular module', function() {
       domainAPI = {
         get: function() {
           domaindefer = $q.defer();
+
           return domaindefer.promise;
         }
       };
@@ -236,6 +239,7 @@ describe('The esn.session Angular module', function() {
       tokenAPI = {
         getNewToken: function() {
           tokendefer = $q.defer();
+
           return tokendefer.promise;
         }
       };
@@ -256,26 +260,28 @@ describe('The esn.session Angular module', function() {
     it('should callback(error.data) if there is an error with error.data in the user request', function(done) {
       service.fetchUser(function(error) {
         if (error) {
-          expect(error).to.deep.equal({error: 'error', message: 'message'});
+          expect(error).to.deep.equal({ error: 'error', message: 'message' });
           done();
         } else {
           done(new Error());
         }
       });
-      userdefer.reject({data: {error: 'error', message: 'message'}});
+      userdefer.reject({ data: { error: 'error', message: 'message' } });
       $rootScope.$digest();
     });
 
     it('should render the error template if the user does not belong to a domain', function(done) {
       service.fetchUser(function(error) {
         if (error) {
-          expect(error).to.deep.equal({error: 400, message: 'Invalid user', details: 'User does not belong to a domain', displayLogout: true});
+          expect(error).to.deep.equal({
+            error: 400, message: 'Invalid user', details: 'User does not belong to a domain', displayLogout: true
+          });
           done();
         } else {
           done(new Error());
         }
       });
-      userdefer.resolve({data: {_id: 'user1', name: 'foo'}});
+      userdefer.resolve({ data: { _id: 'user1', name: 'foo' } });
       $rootScope.$digest();
     });
 
@@ -285,23 +291,23 @@ describe('The esn.session Angular module', function() {
         done();
       };
       service.fetchUser(function() {});
-      userdefer.resolve({data: {_id: 'user1', name: 'foo', domains: [{domain_id: 'I1'}, {domain_id: 'I2'}]}});
+      userdefer.resolve({ data: { _id: 'user1', name: 'foo', domains: [{ domain_id: 'I1' }, { domain_id: 'I2' }] } });
       $rootScope.$digest();
     });
 
     it('should render the error template if there is an error in the domain request', function(done) {
       service.fetchUser(function(error) {
         if (error) {
-          expect(error).to.deep.equal({error: 'error', message: 'message'});
+          expect(error).to.deep.equal({ error: 'error', message: 'message' });
           done();
         } else {
           done(new Error());
         }
       });
 
-      userdefer.resolve({data: {_id: 'user1', name: 'foo', domains: [{domain_id: 'I1'}, {domain_id: 'I2'}]}});
+      userdefer.resolve({ data: { _id: 'user1', name: 'foo', domains: [{ domain_id: 'I1' }, { domain_id: 'I2' }] } });
       $rootScope.$digest();
-      domaindefer.reject({data: {error: 'error', message: 'message'}});
+      domaindefer.reject({ data: { error: 'error', message: 'message' } });
       $rootScope.$digest();
     });
 
@@ -314,15 +320,15 @@ describe('The esn.session Angular module', function() {
         }
       });
 
-      userdefer.resolve({data: {_id: 'user1', name: 'foo', domains: [{domain_id: 'I1'}, {domain_id: 'I2'}]}});
+      userdefer.resolve({ data: { _id: 'user1', name: 'foo', domains: [{ domain_id: 'I1' }, { domain_id: 'I2' }] } });
       $rootScope.$digest();
-      domaindefer.resolve({data: {_id: 'D1', name: 'domain1'}});
+      domaindefer.resolve({ data: { _id: 'D1', name: 'domain1' } });
       $rootScope.$digest();
     });
 
     it('should call session.setUser when user is retrieved', function(done) {
       session.setUser = function(user) {
-        expect(user).to.deep.equal({_id: 'user1', name: 'foo', domains: [{domain_id: 'I1'}, {domain_id: 'I2'}]});
+        expect(user).to.deep.equal({ _id: 'user1', name: 'foo', domains: [{ domain_id: 'I1' }, { domain_id: 'I2' }] });
         done();
       };
       service.fetchUser(function(error) {
@@ -334,20 +340,20 @@ describe('The esn.session Angular module', function() {
       });
       service.fetchUser(function() {});
 
-      userdefer.resolve({data: {_id: 'user1', name: 'foo', domains: [{domain_id: 'I1'}, {domain_id: 'I2'}]}});
+      userdefer.resolve({ data: { _id: 'user1', name: 'foo', domains: [{ domain_id: 'I1' }, { domain_id: 'I2' }] } });
       $rootScope.$digest();
     });
 
     it('should call session.setDomain when domain is retrieved', function(done) {
       session.setDomain = function(domain) {
-        expect(domain).to.deep.equal({_id: 'D1', name: 'domain1'});
+        expect(domain).to.deep.equal({ _id: 'D1', name: 'domain1' });
         done();
       };
       service.fetchUser(function() {});
 
-      userdefer.resolve({data: {_id: 'user1', name: 'foo', domains: [{domain_id: 'I1'}, {domain_id: 'I2'}]}});
+      userdefer.resolve({ data: { _id: 'user1', name: 'foo', domains: [{ domain_id: 'I1' }, { domain_id: 'I2' }] } });
       $rootScope.$digest();
-      domaindefer.resolve({data: {_id: 'D1', name: 'domain1'}});
+      domaindefer.resolve({ data: { _id: 'D1', name: 'domain1' } });
       $rootScope.$digest();
     });
 

@@ -37,7 +37,7 @@ describe('The esn app', function() {
       var page = '/logout';
 
       location.path('unknown');
-      location.search({continue: page});
+      location.search({ continue: page });
       rootScope.$digest();
       expect(location.path()).to.equal(page);
       expect(stateParams).to.deep.equal({});
@@ -45,7 +45,7 @@ describe('The esn app', function() {
 
     it('should load the / page when routing to an unknown path and continue parameter is not an existing page', function() {
       location.path('/unknown');
-      location.search({continue: '/notAPage'});
+      location.search({ continue: '/notAPage' });
       rootScope.$digest();
       expect(location.path()).to.equal('/');
       expect(stateParams).to.deep.equal({});

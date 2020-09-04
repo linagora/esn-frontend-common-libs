@@ -12,7 +12,7 @@
       bindings: {
         notification: '='
       },
-      template: require("./collaboration-membership-request-accepted.pug")
+      template: require('./collaboration-membership-request-accepted.pug')
     };
   }
 })();

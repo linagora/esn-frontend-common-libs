@@ -241,6 +241,7 @@ require('./box-overlay.constants.js');
       ensureContainerExists();
 
       const element = buildElement(scope);
+
       element.addClass('box-overlay-open');
       getContainer().prepend(element);
 

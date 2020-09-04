@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNAvatarListController', function() {
   var $controller, $scope, $rootScope, members;
@@ -10,7 +10,7 @@ describe('The ESNAvatarListController', function() {
   function addMember(numberOfMembers) {
     members = [];
     for (var i = 0; i < numberOfMembers; i++) {
-      members.push({member: { id: i + 1 }});
+      members.push({ member: { id: i + 1 } });
     }
 
     return members;
@@ -18,9 +18,8 @@ describe('The ESNAvatarListController', function() {
 
   function initController(members) {
     var controller = $controller('ESNAvatarListController',
-      {$scope: $scope},
-      {members: members}
-    );
+      { $scope: $scope },
+      { members: members });
 
     controller.limit = 5;
     $scope.$digest();

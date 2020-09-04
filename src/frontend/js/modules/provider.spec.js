@@ -1,13 +1,13 @@
 'use strict';
 
 /* global chai, moment, sinon, _: false */
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.provider module', function() {
 
   var nowDate = new Date('2015-08-20T04:00:00Z'),
-      localTimeZone = 'Europe/Paris',
-      uuid4;
+    localTimeZone = 'Europe/Paris',
+    uuid4;
 
   beforeEach(function() {
     angular.mock.module('angularMoment');
@@ -68,7 +68,7 @@ describe('The esn.provider module', function() {
 
       it('should return the provider\'s main fetcher', function() {
         var fetcher = function() {},
-            provider = newProvider({ id: 'id', fetch: fetcher });
+          provider = newProvider({ id: 'id', fetch: fetcher });
 
         expect(provider.fetch).to.be.a('function');
       });
@@ -90,8 +90,12 @@ describe('The esn.provider module', function() {
       it('should return an array containing names, ids and uids of added providers', function() {
         var spy = sinon.spy();
 
-        providers.add($q.when({ id: 1, name: 'provider1', uid: 'uid1', property: 'value' }));
-        providers.add({ id: 2, name: 'provider2', uid: 'uid2', another: 'value2' });
+        providers.add($q.when({
+          id: 1, name: 'provider1', uid: 'uid1', property: 'value'
+        }));
+        providers.add({
+          id: 2, name: 'provider2', uid: 'uid2', another: 'value2'
+        });
 
         providers.getAllProviderDefinitions().then(spy);
         $rootScope.$digest();
@@ -107,19 +111,21 @@ describe('The esn.provider module', function() {
     describe('The getAll function', function() {
 
       it('should return all providers when no acceptedTypes is given', function(done) {
-        providers.add({ name: 'provider', type: 'type1',
+        providers.add({
+          name: 'provider', type: 'type1',
           buildFetchContext: sinon.stub().returns($q.when()),
           fetch: sinon.stub().returns($q.when())
         });
-        providers.add($q.when({ name: 'provider2', type: 'type2',
+        providers.add($q.when({
+          name: 'provider2', type: 'type2',
           buildFetchContext: sinon.stub().returns($q.when()),
           fetch: sinon.stub().returns($q.when())
         }));
 
         providers.getAll({}).then(function(resolvedProviders) {
           expect(resolvedProviders).to.shallowDeepEqual([
-            { name: 'provider', type: 'type1'},
-            { name: 'provider2', type: 'type2'}
+            { name: 'provider', type: 'type1' },
+            { name: 'provider2', type: 'type2' }
           ]);
 
           done();
@@ -129,17 +135,19 @@ describe('The esn.provider module', function() {
       });
 
       it('should filter providers that are not in the acceptedTypes array', function(done) {
-        providers.add({ name: 'provider', type: 'type1',
+        providers.add({
+          name: 'provider', type: 'type1',
           buildFetchContext: sinon.stub().returns($q.when()),
           fetch: sinon.stub().returns($q.when())
         });
-        providers.add({ name: 'provider2', type: 'type2',
+        providers.add({
+          name: 'provider2', type: 'type2',
           buildFetchContext: sinon.stub().returns($q.when()),
           fetch: sinon.stub().returns($q.when())
         });
 
-        providers.getAll({acceptedTypes: ['type1']}).then(function(resolvedProviders) {
-          expect(resolvedProviders).to.shallowDeepEqual([{ name: 'provider', type: 'type1'}]);
+        providers.getAll({ acceptedTypes: ['type1'] }).then(function(resolvedProviders) {
+          expect(resolvedProviders).to.shallowDeepEqual([{ name: 'provider', type: 'type1' }]);
 
           done();
         });
@@ -182,17 +190,19 @@ describe('The esn.provider module', function() {
       });
 
       it('should filter providers that are not in the acceptedIds array', function(done) {
-        providers.add({ name: 'provider', type: 'type1', id: '123',
+        providers.add({
+          name: 'provider', type: 'type1', id: '123',
           buildFetchContext: sinon.stub().returns($q.when()),
           fetch: sinon.stub().returns($q.when())
         });
-        providers.add({ name: 'provider2', type: 'type2', id: '456',
+        providers.add({
+          name: 'provider2', type: 'type2', id: '456',
           buildFetchContext: sinon.stub().returns($q.when()),
           fetch: sinon.stub().returns($q.when())
         });
 
-        providers.getAll({acceptedIds: ['456']}).then(function(resolvedProviders) {
-          expect(resolvedProviders).to.shallowDeepEqual([{ name: 'provider2', type: 'type2', id: '456'}]);
+        providers.getAll({ acceptedIds: ['456'] }).then(function(resolvedProviders) {
+          expect(resolvedProviders).to.shallowDeepEqual([{ name: 'provider2', type: 'type2', id: '456' }]);
 
           done();
         });
@@ -201,15 +211,17 @@ describe('The esn.provider module', function() {
       });
 
       it('should build the fetch context of each provider using its own buildFetchContext function', function(done) {
-        var getAllOptions = {expected: 'options'},
-            provider1 = { name: 'provider', type: 'type1',
-              buildFetchContext: sinon.stub().returns($q.when('context1')),
-              fetch: sinon.stub().returns($q.when())
-            },
-            provider2 = { name: 'provider2', type: 'type2',
-              buildFetchContext: sinon.stub().returns($q.when('context2')),
-              fetch: sinon.stub().returns($q.when())
-            };
+        var getAllOptions = { expected: 'options' },
+          provider1 = {
+            name: 'provider', type: 'type1',
+            buildFetchContext: sinon.stub().returns($q.when('context1')),
+            fetch: sinon.stub().returns($q.when())
+          },
+          provider2 = {
+            name: 'provider2', type: 'type2',
+            buildFetchContext: sinon.stub().returns($q.when('context2')),
+            fetch: sinon.stub().returns($q.when())
+          };
 
         providers.add(provider1);
         providers.add(provider2);
@@ -255,11 +267,11 @@ describe('The esn.provider module', function() {
       var provider1, provider2, provider3, provider4, provider5;
 
       beforeEach(function() {
-        provider1 = {id: 1, name: '1', uid: '1'};
-        provider2 = {id: 2, name: '2', uid: '2'};
-        provider3 = {id: 3, name: '3', uid: '3'};
-        provider4 = {id: 4, name: '4', uid: '4'};
-        provider5 = {id: 5, name: '5', uid: '5'};
+        provider1 = { id: 1, name: '1', uid: '1' };
+        provider2 = { id: 2, name: '2', uid: '2' };
+        provider3 = { id: 3, name: '3', uid: '3' };
+        provider4 = { id: 4, name: '4', uid: '4' };
+        provider5 = { id: 5, name: '5', uid: '5' };
 
         [provider1, provider2, [provider3, provider4], provider5].forEach(function(provider) {
           providers.add(provider);
@@ -334,9 +346,9 @@ describe('The esn.provider module', function() {
       ]);
 
       expect(elementGroupingTool.getGroupedElements()).to.deep.equal([
-        {name: 'Events', elements: []},
-        {name: 'Contacts', elements: []},
-        {name: 'Emails', elements: []}
+        { name: 'Events', elements: [] },
+        { name: 'Contacts', elements: [] },
+        { name: 'Emails', elements: [] }
       ]);
     });
 
@@ -346,25 +358,31 @@ describe('The esn.provider module', function() {
         'Contacts',
         'Emails'
       ], [
-        {type: 'Events', title: 'anEvent'},
-        {type: 'Emails', email: 'anEmail'},
-        {type: 'Events', title: 'anEvent2'},
-        {type: 'Contacts', name: 'aContact'},
-        {type: 'Contacts', name: 'aContact2'}
+        { type: 'Events', title: 'anEvent' },
+        { type: 'Emails', email: 'anEmail' },
+        { type: 'Events', title: 'anEvent2' },
+        { type: 'Contacts', name: 'aContact' },
+        { type: 'Contacts', name: 'aContact2' }
       ]);
 
       expect(elementGroupingTool.getGroupedElements()).to.deep.equal([
-        {name: 'Events', elements: [
-          {type: 'Events', title: 'anEvent'},
-          {type: 'Events', title: 'anEvent2'}
-        ]},
-        {name: 'Contacts', elements: [
-          {type: 'Contacts', name: 'aContact'},
-          {type: 'Contacts', name: 'aContact2'}
-        ]},
-        {name: 'Emails', elements: [
-          {type: 'Emails', email: 'anEmail'}
-        ]}
+        {
+          name: 'Events', elements: [
+            { type: 'Events', title: 'anEvent' },
+            { type: 'Events', title: 'anEvent2' }
+          ]
+        },
+        {
+          name: 'Contacts', elements: [
+            { type: 'Contacts', name: 'aContact' },
+            { type: 'Contacts', name: 'aContact2' }
+          ]
+        },
+        {
+          name: 'Emails', elements: [
+            { type: 'Emails', email: 'anEmail' }
+          ]
+        }
       ]);
     });
 
@@ -399,7 +417,7 @@ describe('The esn.provider module', function() {
 
     it('should allow insertion of an item with same id if previous item is removed', function() {
       var tool = new ByDateElementGroupingTool(),
-          item = { id: '123', date: 2 };
+        item = { id: '123', date: 2 };
 
       tool.addElement({ id: '000', date: 1 });
       tool.addElement(item);
@@ -449,56 +467,56 @@ describe('The esn.provider module', function() {
 
     it('should put a received element in the today group if it has the now date', function() {
       var element = { date: nowDate },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'Today');
     });
 
     it('should put a received element in the today group if it has the midnight date', function() {
       var element = { date: '2015-08-20T00:10:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'Today');
     });
 
     it('should put a received element in the today group even if it has a future date', function() {
       var element = { date: '2015-08-21T00:10:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'Today');
     });
 
     it('should put a received element in the yesterday group if it is 1 day old', function() {
       var element = { date: '2015-08-19T20:00:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'Yesterday');
     });
 
     it('should put a received element in the week group if it is 2 days old, but in the same week', function() {
       var element = { date: '2015-08-18T04:00:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Week');
     });
 
     it('should put a received element in the week group if it is 4 days old, but in the same week', function() {
       var element = { date: '2015-08-16T04:00:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Week');
     });
 
     it('should put a received element in the month group if it is 7 days old, in the previous week', function() {
       var element = { date: '2015-08-13T04:00:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
 
     it('should put a received element in the month group if it is just older than one week', function() {
       var element = { date: '2015-08-12T22:00:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
@@ -507,7 +525,7 @@ describe('The esn.provider module', function() {
       localTimeZone = 'Asia/Ho_Chi_Minh';
 
       var element = { date: '2015-08-16T08:00:00+07:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Week');
     });
@@ -516,7 +534,7 @@ describe('The esn.provider module', function() {
       localTimeZone = 'UTC';
 
       var element = { date: '2015-08-16T08:00:00+07:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Week');
     });
@@ -526,7 +544,7 @@ describe('The esn.provider module', function() {
       nowDate = new Date('2015-08-21T05:00:00+07:00');
 
       var element = { date: '2015-08-16T01:00:00+00:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Week');
     });
@@ -535,7 +553,7 @@ describe('The esn.provider module', function() {
       localTimeZone = 'Asia/Ho_Chi_Minh';
 
       var element = { date: '2015-08-15T23:00:00+07:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
@@ -543,7 +561,7 @@ describe('The esn.provider module', function() {
     it('should put a received element in the month group if it is just older than one week when element +7 TZ', function() {
       localTimeZone = 'UTC';
       var element = { date: '2015-08-15T05:00:00+07:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
@@ -551,7 +569,7 @@ describe('The esn.provider module', function() {
     it('should put a received element in the month group if it is just older than one week when now +7 TZ', function() {
       localTimeZone = 'Asia/Ho_Chi_Minh';
       var element = { date: '2015-08-15T22:00:00+00:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
@@ -559,7 +577,7 @@ describe('The esn.provider module', function() {
     it('should put a received element in the month group if it is just older than one week with both -7 TZ', function() {
       localTimeZone = 'America/Los_Angeles';
       var element = { date: '2015-08-15T15:00:00-07:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
@@ -567,7 +585,7 @@ describe('The esn.provider module', function() {
     it('should put a received element in the month group if it is just older than one week when element -7 TZ', function() {
       localTimeZone = 'UTC';
       var element = { date: '2015-08-15T15:00:00-07:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
@@ -575,21 +593,21 @@ describe('The esn.provider module', function() {
     it('should put a received element in the month group if it is just older than one week when now -7 TZ', function() {
       localTimeZone = 'America/Los_Angeles';
       var element = { date: '2015-08-15T22:00:00+00:00' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
 
     it('should put a received element in the month group if its date is the first of the month', function() {
       var element = { date: '2015-08-01T04:00:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'This Month');
     });
 
     it('should put a received element in the older group if its date is the last day of the previous month', function() {
       var element = { date: '2015-07-31T04:00:00Z' },
-          elementGroupingTool = new ByDateElementGroupingTool([element]);
+        elementGroupingTool = new ByDateElementGroupingTool([element]);
 
       assertGroups(elementGroupingTool, element, 'Older than a month');
     });
@@ -598,8 +616,8 @@ describe('The esn.provider module', function() {
 
       it('should remove the element from group', function() {
         var element1 = { date: '2015-05-31T04:00:00Z' },
-            element2 = { date: '2015-07-31T04:00:00Z' },
-            elementGroupingTool = new ByDateElementGroupingTool([element1, element2]);
+          element2 = { date: '2015-07-31T04:00:00Z' },
+          elementGroupingTool = new ByDateElementGroupingTool([element1, element2]);
 
         elementGroupingTool.removeElement(element2);
 
@@ -612,8 +630,8 @@ describe('The esn.provider module', function() {
 
       it('should remove all elements from group', function() {
         var element1 = { date: '2015-05-31T04:00:00Z' },
-            element2 = { date: '2015-07-31T04:00:00Z' },
-            elementGroupingTool = new ByDateElementGroupingTool([element1, element2]);
+          element2 = { date: '2015-07-31T04:00:00Z' },
+          elementGroupingTool = new ByDateElementGroupingTool([element1, element2]);
 
         elementGroupingTool.removeElements([element2, element1]);
 
@@ -630,7 +648,7 @@ describe('The esn.provider module', function() {
 
       it('should return the element if the it exists', function() {
         var elementGroupingTool = new ByDateElementGroupingTool(),
-            element = { id: 'myId', date: '2015-05-31T04:00:00Z' };
+          element = { id: 'myId', date: '2015-05-31T04:00:00Z' };
 
         elementGroupingTool.addElement(element);
 
@@ -729,38 +747,38 @@ describe('The esn.provider module', function() {
 
     it('should update most recent item when fetching recent items', function(done) {
       var called = 0,
-          provider = {
-            templateUrl: 'templateUrl',
-            fetch: function() {
-              var expectedItem1 = {
-                    date: new Date(Date.UTC(2016, 0, 1, 0, 0, 0, 0)),
-                    templateUrl: 'templateUrl',
-                    provider: provider
-                  },
-                  expectedItem2 = {
-                    date: new Date(Date.UTC(2017, 0, 1, 0, 0, 0, 0)),
-                    templateUrl: 'templateUrl',
-                    provider: provider
-                  };
-
-              var fetcher = function() {
-                return $q.when([{ date: '2016-01-01T00:00:00Z' }]);
+        provider = {
+          templateUrl: 'templateUrl',
+          fetch: function() {
+            var expectedItem1 = {
+                date: new Date(Date.UTC(2016, 0, 1, 0, 0, 0, 0)),
+                templateUrl: 'templateUrl',
+                provider: provider
+              },
+              expectedItem2 = {
+                date: new Date(Date.UTC(2017, 0, 1, 0, 0, 0, 0)),
+                templateUrl: 'templateUrl',
+                provider: provider
               };
 
-              fetcher.loadRecentItems = function(item) {
-                expect(item).to.deep.equal(++called === 1 ? expectedItem1 : expectedItem2);
+            var fetcher = function() {
+              return $q.when([{ date: '2016-01-01T00:00:00Z' }]);
+            };
 
-                if (called === 2) {
-                  return done();
-                }
+            fetcher.loadRecentItems = function(item) {
+              expect(item).to.deep.equal(++called === 1 ? expectedItem1 : expectedItem2);
 
-                return $q.when([{ date: '2017-01-01T00:00:00Z' }]);
-              };
+              if (called === 2) {
+                return done();
+              }
 
-              return fetcher;
-            }
-          },
-          source = toAggregatorSource(provider);
+              return $q.when([{ date: '2017-01-01T00:00:00Z' }]);
+            };
+
+            return fetcher;
+          }
+        },
+        source = toAggregatorSource(provider);
 
       source.loadNextItems();
       $rootScope.$digest();

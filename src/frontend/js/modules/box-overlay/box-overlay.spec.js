@@ -2,7 +2,7 @@
 
 /* global chai: false, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The box-overlay Angular module', function() {
 
@@ -24,11 +24,13 @@ describe('The box-overlay Angular module', function() {
   function clickTheButton(button) {
     button.click();
     $rootScope.$digest();
+
     return button;
   }
 
   function closeFirstBox() {
     var closeButton = angular.element('.box-overlay-open i.close').first();
+
     closeButton.triggerHandler('click');
     $timeout.flush();
   }
@@ -46,7 +48,7 @@ describe('The box-overlay Angular module', function() {
   }
 
   function triggerEventOnFirstInputElement(event) {
-    angular.element('.box-overlay-open input').first().trigger({type: event});
+    angular.element('.box-overlay-open input').first().trigger({ type: event });
     $scope.$digest();
   }
 
@@ -70,7 +72,7 @@ describe('The box-overlay Angular module', function() {
             toString: function() { return input; }
           };
         },
-        getLocale: function() { return 'fr' }
+        getLocale: function() { return 'fr'; }
       };
 
       $provide.value('notificationFactory', notificationFactory = {
@@ -89,7 +91,7 @@ describe('The box-overlay Angular module', function() {
     var $httpBackend, ESN_BOX_OVERLAY_EVENTS, ESN_BOX_OVERLAY_MAX_WINDOWS;
 
     beforeEach(angular.mock.inject(function(_$window_, _$compile_, _$rootScope_, _$httpBackend_, _$timeout_,
-        _deviceDetector_, _DEVICES_, _ESN_BOX_OVERLAY_EVENTS_, _ESN_BOX_OVERLAY_MAX_WINDOWS_) {
+      _deviceDetector_, _DEVICES_, _ESN_BOX_OVERLAY_EVENTS_, _ESN_BOX_OVERLAY_MAX_WINDOWS_) {
       $window = _$window_;
       $compile = _$compile_;
       $rootScope = _$rootScope_;
@@ -202,6 +204,7 @@ describe('The box-overlay Angular module', function() {
 
     it('should not accept to open two boxes with the same identifier', function() {
       var button = compileAndClickTheButton('<button box-overlay box-id="identifier" />');
+
       clickTheButton(button);
 
       expect(overlays()).to.have.length(1);
@@ -413,6 +416,7 @@ describe('The box-overlay Angular module', function() {
     beforeEach(angular.mock.module(function($provide) {
       boxOverlay = function(options) {
         boxOverlay.receivedOptions = options;
+
         return boxOverlayReturnValue;
       };
       $provide.value('$boxOverlay', boxOverlay);
@@ -426,9 +430,9 @@ describe('The box-overlay Angular module', function() {
     }));
 
     it('delegate to $boxOverlay with the given options', function() {
-      boxOverlayOpener.open({my: 'super options'});
+      boxOverlayOpener.open({ my: 'super options' });
 
-      expect(boxOverlay.receivedOptions).to.deep.equal({my: 'super options'});
+      expect(boxOverlay.receivedOptions).to.deep.equal({ my: 'super options' });
     });
 
     it('call the show fn if the returned value is defined', function(done) {

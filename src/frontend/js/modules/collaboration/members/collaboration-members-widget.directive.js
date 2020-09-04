@@ -12,7 +12,7 @@
         objectTypeFilter: '@'
       },
       link: link,
-      template: require("./collaboration-members-widget.pug")
+      template: require('./collaboration-members-widget.pug')
     };
 
     function link(scope, element, attrs) {

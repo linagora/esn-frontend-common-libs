@@ -1,0 +1,4 @@
+{
+  "extends": "@linagora/eslint-config-linagora-esn",
+  "ignorePatterns": ["src/frontend/components", "test/frontend/karma-include/recaptcha_ajax.js"]
+}

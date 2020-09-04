@@ -18,11 +18,13 @@ const SUPPORTED_COLOR_FUNCTIONS = {
  *      been transformed at least once, and so, the color value will be just a string.
  *      e.g. hsl(var(--primary-color-h), var(--primary-color-s), calc(var(--primary-color-l) + 20%)).
  *      Therefore we need to process it as a string.
- * 
+ *
  * @param {Object} color The object that contains all the properties related to the color parsed by LESS.
  * @returns {Object|string} A transformed color value that works with CSS Variables.
  */
-function colorFunctionInterceptor({ color, amount, method, functionName }) {
+function colorFunctionInterceptor({
+  color, amount, method, functionName
+}) {
   if (!Object.values(SUPPORTED_COLOR_FUNCTIONS).includes(functionName)) {
     throw new Error(`The LESS's color function '${functionName}' is not supported with CSS Variables`);
   }
@@ -39,7 +41,7 @@ function colorFunctionInterceptor({ color, amount, method, functionName }) {
     const l = color.args[2].args[0].value;
 
     if (functionName === SUPPORTED_COLOR_FUNCTIONS.FADE) {
-      return `hsla(var(${h}), var(${s}), calc(var(${l})), ${amount.value}%)`
+      return `hsla(var(${h}), var(${s}), calc(var(${l})), ${amount.value}%)`;
     }
 
     if (functionName === SUPPORTED_COLOR_FUNCTIONS.LIGHTEN) {
@@ -54,7 +56,7 @@ function colorFunctionInterceptor({ color, amount, method, functionName }) {
   function _nthTransform() {
     const lastCommaIndex = color.value.lastIndexOf(',');
 
-    if (functionName === SUPPORTED_COLOR_FUNCTIONS.FADE) { 
+    if (functionName === SUPPORTED_COLOR_FUNCTIONS.FADE) {
       return color.value.substring(0, lastCommaIndex + 2) + `${amount.value}%)`;
     }
 
@@ -66,17 +68,23 @@ function colorFunctionInterceptor({ color, amount, method, functionName }) {
 }
 
 module.exports = {
-  install: function (less, pluginManager, functions) {
-    functions.add(SUPPORTED_COLOR_FUNCTIONS.LIGHTEN, function (color, amount, method) {
-      return colorFunctionInterceptor({ color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.LIGHTEN });
+  install: function(less, pluginManager, functions) {
+    functions.add(SUPPORTED_COLOR_FUNCTIONS.LIGHTEN, function(color, amount, method) {
+      return colorFunctionInterceptor({
+        color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.LIGHTEN
+      });
     });
 
-    functions.add(SUPPORTED_COLOR_FUNCTIONS.DARKEN, function (color, amount, method) {
-      return colorFunctionInterceptor({ color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.DARKEN });
+    functions.add(SUPPORTED_COLOR_FUNCTIONS.DARKEN, function(color, amount, method) {
+      return colorFunctionInterceptor({
+        color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.DARKEN
+      });
     });
 
-    functions.add(SUPPORTED_COLOR_FUNCTIONS.FADE, function (color, amount, method) {
-      return colorFunctionInterceptor({ color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.FADE });
-    })
+    functions.add(SUPPORTED_COLOR_FUNCTIONS.FADE, function(color, amount, method) {
+      return colorFunctionInterceptor({
+        color, amount, method, functionName: SUPPORTED_COLOR_FUNCTIONS.FADE
+      });
+    });
   }
 };

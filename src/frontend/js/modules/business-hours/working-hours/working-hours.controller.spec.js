@@ -2,23 +2,18 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnBusinessHoursWorkingHoursController', function() {
 
-  var $controller, $rootScope, $scope, esnDatetimeService;
+  var $controller, $rootScope, $scope;
 
   beforeEach(function() {
     angular.mock.module('esn.business-hours');
 
-    angular.mock.inject(function(
-      _$controller_,
-      _$rootScope_,
-      _esnDatetimeService_
-    ) {
+    angular.mock.inject(function(_$controller_, _$rootScope_) {
       $controller = _$controller_;
       $rootScope = _$rootScope_;
-      esnDatetimeService = _esnDatetimeService_;
     });
   });
 

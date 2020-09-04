@@ -13,7 +13,7 @@
     function create() {
       return ESNOauthApplicationClient.create(self.application).then(function(response) {
         $log.debug('Successfully created new application', self.application);
-        self.onCreated({application: response.data});
+        self.onCreated({ application: response.data });
       }, function(err) {
         $log.error('Error while creating new application', err.data);
       });

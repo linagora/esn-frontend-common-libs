@@ -17,7 +17,7 @@ function usersAutocompleteInput(
 ) {
   return {
     restrict: 'E',
-    template: require("../../../../views/modules/user/users-autocomplete-input.pug"),
+    template: require('../../../../views/modules/user/users-autocomplete-input.pug'),
     link: {
       pre: link
     },

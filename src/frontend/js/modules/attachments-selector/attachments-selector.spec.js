@@ -2,7 +2,7 @@
 
 /* global chai: false, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnAttachmentsSelectorService\'s AttachmentServiceHolder', function() {
 

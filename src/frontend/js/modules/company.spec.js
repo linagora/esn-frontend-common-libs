@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Company Angular module', function() {
   beforeEach(angular.mock.module('esn.company'));
@@ -19,12 +19,13 @@ describe('The Company Angular module', function() {
 
       it('should send a request to /api/companies?name=:name', function() {
         this.$httpBackend.expectGET('/api/companies?name=' + this.companyName).respond(this.response);
-        this.companyAPI.search({name: this.companyName});
+        this.companyAPI.search({ name: this.companyName });
         this.$httpBackend.flush();
       });
 
       it('should return a promise', function() {
-        var promise = this.companyAPI.search({name: this.companyName});
+        var promise = this.companyAPI.search({ name: this.companyName });
+
         expect(promise.then).to.be.a.function;
       });
     });
@@ -32,6 +33,7 @@ describe('The Company Angular module', function() {
 
   describe('ensureUniqueCompany directive', function() {
     var html = '<form name="form"><input type="text" name="company" ng-model="settings.company" ensure-unique-company></form>';
+
     beforeEach(angular.mock.inject(['$compile', '$rootScope', '$httpBackend', function($c, $r, $h) {
       this.$compile = $c;
       this.$rootScope = $r;
@@ -49,6 +51,7 @@ describe('The Company Angular module', function() {
       var element = this.$compile(html)(this.$rootScope);
       var input = element.find('input');
       var scope = element.scope();
+
       input.val(this.companyName);
       input.trigger('change');
       expect(scope.form.company.$error.ajax).to.be.true;
@@ -58,6 +61,7 @@ describe('The Company Angular module', function() {
       this.$httpBackend.expectGET('/api/companies?name=' + this.companyName).respond(this.response);
       var element = this.$compile(html)(this.$rootScope);
       var input = element.find('input');
+
       input.val(this.companyName);
       input.trigger('change');
       this.$httpBackend.flush();
@@ -68,6 +72,7 @@ describe('The Company Angular module', function() {
       var element = this.$compile(html)(this.$rootScope);
       var input = element.find('input');
       var scope = element.scope();
+
       input.val(this.companyName);
       input.trigger('change');
       this.$httpBackend.flush();
@@ -81,6 +86,7 @@ describe('The Company Angular module', function() {
       var element = this.$compile(html)(this.$rootScope);
       var input = element.find('input');
       var scope = element.scope();
+
       input.val(this.companyName);
       input.trigger('change');
       this.$httpBackend.flush();

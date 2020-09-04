@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.background Angular module', function() {
 
@@ -22,6 +22,7 @@ describe('The esn.background Angular module', function() {
 
       it('should add task to the task list', function() {
         var task = $q.when();
+
         backgroundProcessorService.add(task);
 
         expect(backgroundProcessorService.tasks).to.deep.equal([task]);
@@ -29,11 +30,13 @@ describe('The esn.background Angular module', function() {
 
       it('should return the task itself', function() {
         var task = $q.when();
+
         expect(backgroundProcessorService.add(task)).to.equal(task);
       });
 
       it('should remove task from task list when task is done', function() {
         var task = $q.when();
+
         backgroundProcessorService.add(task);
         $rootScope.$digest();
 
@@ -42,6 +45,7 @@ describe('The esn.background Angular module', function() {
 
       it('should remove task from task list when task is failed', function() {
         var task = $q.reject();
+
         backgroundProcessorService.add(task);
         $rootScope.$digest();
 
@@ -65,6 +69,7 @@ describe('The esn.background Angular module', function() {
       sinon.spy(backgroundProcessorService, 'add');
 
       var task = $q.when();
+
       inBackground(task);
 
       expect(backgroundProcessorService.add).to.have.been.calledOnce;

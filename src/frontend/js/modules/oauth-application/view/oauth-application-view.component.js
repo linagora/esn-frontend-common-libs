@@ -4,6 +4,6 @@
   angular.module('esn.oauth-application')
     .component('esnOauthApplicationView', {
       controller: 'ESNOauthApplicationViewController',
-      template: require("./oauth-application-view.pug")
+      template: require('./oauth-application-view.pug')
     });
 })();

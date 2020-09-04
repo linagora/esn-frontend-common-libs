@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnUserNotificationListItem directive', function() {
   var $compile, $scope, $rootScope;

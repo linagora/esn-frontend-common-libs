@@ -12,7 +12,7 @@
       scope: {
         notification: '='
       },
-      template: require("./user-notification-simple-template.pug")
+      template: require('./user-notification-simple-template.pug')
     };
 
     function controller($scope) {

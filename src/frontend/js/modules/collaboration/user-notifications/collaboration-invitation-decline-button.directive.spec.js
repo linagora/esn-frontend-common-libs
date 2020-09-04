@@ -16,7 +16,6 @@ describe('The esnCollaborationInvitationDeclineButton directive', function() {
       register: function() {}
     };
 
-
     angular.mock.module('esn.collaboration', 'esn.object-type', 'esn.user-notification');
     angular.mock.module(function($provide) {
       $provide.value('esnCollaborationClientService', esnCollaborationClientService);

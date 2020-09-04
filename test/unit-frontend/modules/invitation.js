@@ -32,6 +32,7 @@ describe('The Invitation Angular module', function() {
 
       it('should return a promise', function() {
         var promise = this.invitationAPI.get(this.invitationId);
+
         expect(promise.then).to.be.a.function;
       });
     });
@@ -59,6 +60,7 @@ describe('The Invitation Angular module', function() {
 
       it('should return a promise', function() {
         var promise = this.invitationAPI.create();
+
         expect(promise.then).to.be.a.function;
       });
     });
@@ -90,6 +92,7 @@ describe('The Invitation Angular module', function() {
 
       it('should return a promise', function() {
         var promise = this.invitationAPI.finalize();
+
         expect(promise.then).to.be.a.function;
       });
 

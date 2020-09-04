@@ -5,4 +5,4 @@ angular.module('esn.box-overlay')
 
 function addTemplateCache($templateCache) {
   $templateCache.put('/views/modules/box-overlay/box-overlay.html', require('./box-overlay.pug'));
-};
+}

@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esn.http Angular module', function() {
 
@@ -64,7 +64,7 @@ describe('The esn.http Angular module', function() {
       it('should call redirectToLogin when HTTP 401 and reject', function(done) {
         httpErrorHandler.redirectToLogin = sinon.spy();
 
-        this.redirectWhenNotAuthInterceptor.responseError({status: 401}).then(function() {
+        this.redirectWhenNotAuthInterceptor.responseError({ status: 401 }).then(function() {
           done(new Error());
         }, function() {
           expect(httpErrorHandler.redirectToLogin).to.have.been.called;
@@ -74,7 +74,7 @@ describe('The esn.http Angular module', function() {
       });
 
       it('should reject when HTTP !== 401', function(done) {
-        this.redirectWhenNotAuthInterceptor.responseError({status: 400}).then(function() {
+        this.redirectWhenNotAuthInterceptor.responseError({ status: 400 }).then(function() {
           done();
         }, function() {
           done();

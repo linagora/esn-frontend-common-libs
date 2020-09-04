@@ -2,6 +2,7 @@ require('./oembed.js');
 
 (function(angular) {
   'use strict';
+
   var instagram = angular.module('esn.oembed.instagram', ['esn.oembed']);
 
   var provider = {

@@ -18,7 +18,9 @@ describe('The esn.like Angular module', function() {
 
     function compileDirective(html) {
       var element = $compile(html)($scope);
+
       $scope.$digest();
+
       return element;
     }
 
@@ -51,12 +53,14 @@ describe('The esn.like Angular module', function() {
 
       it('should not send request when resource is already liked', function() {
         var spy = sinon.spy();
+
         ResourceLinkAPIMock.create = spy;
         $scope.message = {
           _id: '123',
           liked: true
         };
         var element = compileDirective('<like-button target-object-type="esn.message" target-id="message._id" liked="message.liked"/>');
+
         element.isolateScope().like();
         expect(spy).to.not.have.been.called;
       });
@@ -82,6 +86,7 @@ describe('The esn.like Angular module', function() {
         };
 
         var element = compileDirective('<like-button target-object-type="\'esn.message\'" target-id="message._id" liked="message.liked"/>');
+
         element.isolateScope().like();
       });
 
@@ -97,6 +102,7 @@ describe('The esn.like Angular module', function() {
         };
 
         var element = compileDirective('<like-button target-object-type="\'esn.message\'" target-id="message._id" liked="message.liked"/>');
+
         element.isolateScope().like();
         $scope.$digest();
         expect(element.isolateScope().liked).to.be.true;
@@ -114,6 +120,7 @@ describe('The esn.like Angular module', function() {
         };
 
         var element = compileDirective('<like-button target-object-type="\'esn.message\'" target-id="message._id" liked="message.liked"/>');
+
         element.isolateScope().like();
         $scope.$digest();
         expect(element.isolateScope().liked).to.not.be.ok;
@@ -133,6 +140,7 @@ describe('The esn.like Angular module', function() {
         };
 
         var element = compileDirective('<like-button target-object-type="\'esn.message\'" target-id="message._id" liked="message.liked" on-liked="onMessageLiked()"/>');
+
         element.isolateScope().like();
         $scope.$digest();
       });

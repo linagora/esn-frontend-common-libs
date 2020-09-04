@@ -5,7 +5,7 @@ require('./time-zone-selector.controller.js');
 
   angular.module('esn.datetime')
     .component('esnDatetimeTimeZoneSelector', {
-      template: require("./time-zone-selector.pug"),
+      template: require('./time-zone-selector.pug'),
       controller: 'esnDatetimeTimeZoneSelectorController',
       bindings: {
         timeZone: '='

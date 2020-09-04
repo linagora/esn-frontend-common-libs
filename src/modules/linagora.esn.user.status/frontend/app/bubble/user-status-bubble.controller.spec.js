@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The userStatusBubbleController controller', function() {
 
@@ -27,9 +27,8 @@ describe('The userStatusBubbleController controller', function() {
 
   function initController() {
     var controller = $controller('userStatusBubbleController',
-      {$scope: $scope},
-      {userId: userId}
-    );
+      { $scope: $scope },
+      { userId: userId });
 
     $scope.$digest();
 
@@ -42,7 +41,7 @@ describe('The userStatusBubbleController controller', function() {
       var status = USER_STATUS.connected;
 
       userStatusService.getCurrentStatus = sinon.spy(function() {
-        return $q.when({_id: userId, status: status});
+        return $q.when({ _id: userId, status: status });
       });
       var controller = initController();
 
@@ -70,7 +69,7 @@ describe('The userStatusBubbleController controller', function() {
 
     beforeEach(function() {
       userStatusService.getCurrentStatus = function() {
-        return $q.when({_id: userId, status: USER_STATUS.connected});
+        return $q.when({ _id: userId, status: USER_STATUS.connected });
       };
     });
 
@@ -82,7 +81,7 @@ describe('The userStatusBubbleController controller', function() {
       controller.$onInit();
       $rootScope.$digest();
 
-      event[userId] = {status: status};
+      event[userId] = { status: status };
       $scope.$emit(USER_STATUS_EVENTS.USER_CHANGE_STATE, event);
       $rootScope.$digest();
       expect(controller.status).to.equal(status);
@@ -90,7 +89,7 @@ describe('The userStatusBubbleController controller', function() {
 
     it('should ignore status if event._id is not the current user', function() {
       var status = 'updatedstatus';
-      var event = {anotherUserId: {status: status}};
+      var event = { anotherUserId: { status: status } };
       var controller = initController();
 
       controller.$onInit();

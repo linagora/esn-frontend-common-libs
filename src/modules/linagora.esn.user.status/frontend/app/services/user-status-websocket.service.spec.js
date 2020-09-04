@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The linagora.esn.user-status userStatusWebsocketService service', function() {
   var USER_STATUS_EVENTS,
@@ -14,7 +14,7 @@ describe('The linagora.esn.user-status userStatusWebsocketService service', func
 
   beforeEach(function() {
     userStatusService = {};
-    userStatusNamespace = {on: sinon.spy()};
+    userStatusNamespace = { on: sinon.spy() };
 
     function livenotificationFactory(USER_STATUS_NAMESPACE) {
       livenotificationMock = function(name) {
@@ -49,10 +49,10 @@ describe('The linagora.esn.user-status userStatusWebsocketService service', func
 
       userStatusWebsocketService.listen();
       expect(userStatusNamespace.on).to.have.been.calledWith(USER_STATUS_EVENTS.USER_CHANGE_STATE, sinon.match.func.and(function(callback) {
-        var data = {_id: 1, status: 'connected'};
+        var data = { _id: 1, status: 'connected' };
 
         callback(data);
-        expect($rootScope.$broadcast).to.have.been.calledWith(USER_STATUS_EVENTS.USER_CHANGE_STATE, {1: data});
+        expect($rootScope.$broadcast).to.have.been.calledWith(USER_STATUS_EVENTS.USER_CHANGE_STATE, { 1: data });
         expect(userStatusService.cacheUserStatus).to.have.been.calledWith(data);
 
         return true;
@@ -65,7 +65,7 @@ describe('The linagora.esn.user-status userStatusWebsocketService service', func
 
       userStatusWebsocketService.listen();
       expect(userStatusNamespace.on).to.have.been.calledWith(USER_STATUS_EVENTS.USER_CHANGE_STATE, sinon.match.func.and(function(callback) {
-        var data = {_id: 1, status: 'connected'};
+        var data = { _id: 1, status: 'connected' };
 
         callback(data);
         expect($rootScope.$broadcast).to.not.have.been.called;

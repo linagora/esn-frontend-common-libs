@@ -15,7 +15,7 @@ require('./user-notification-list.controller.js');
       },
       controller: 'EsnUserNotificationListController',
       controllerAs: 'ctrl',
-      template: require("./user-notification-list.pug")
+      template: require('./user-notification-list.pug')
     };
   }
 })(angular);

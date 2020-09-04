@@ -3,7 +3,7 @@
 /* global chai: false */
 /* global sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnAttachmentViewerService service', function() {
   var $log, esnAttachmentViewerService, esnAttachmentViewerGalleryService;
@@ -32,7 +32,7 @@ describe('The esnAttachmentViewerService service', function() {
     it('should get all files in gallery if gallery is specified', function() {
       var spy = sinon.spy(esnAttachmentViewerGalleryService, 'getAllFilesInGallery');
 
-      esnAttachmentViewerGalleryService.addFileToGallery({name: 'file1'}, 'gallery1');
+      esnAttachmentViewerGalleryService.addFileToGallery({ name: 'file1' }, 'gallery1');
 
       esnAttachmentViewerService.open({}, 'gallery1');
 
@@ -40,8 +40,8 @@ describe('The esnAttachmentViewerService service', function() {
     });
 
     it('should log the error if file is not belong to gallery', function() {
-      var file1 = {name: 'file1'};
-      var file2 = {name: 'file2'};
+      var file1 = { name: 'file1' };
+      var file2 = { name: 'file2' };
 
       esnAttachmentViewerGalleryService.addFileToGallery(file1, 'gallery1');
       esnAttachmentViewerGalleryService.addFileToGallery(file2, 'gallery2');

@@ -16,7 +16,7 @@
       scope: {
         notification: '='
       },
-      template: require("./collaboration-membership-invitation.pug")
+      template: require('./collaboration-membership-invitation.pug')
     };
 
     function controller($scope) {
@@ -30,7 +30,7 @@
       $scope.invitedUser = session.user;
       $scope.error = false;
 
-      $q.all({user: userResolver, collaboration: collaborationResolver}).then(function(result) {
+      $q.all({ user: userResolver, collaboration: collaborationResolver }).then(function(result) {
         $scope.invitationSender = result.user.data;
         $scope.invitationSenderDisplayName = $scope.invitationSender.displayName($scope.invitationSender);
         $scope.invitationCollaboration = result.collaboration.data || result.collaboration;

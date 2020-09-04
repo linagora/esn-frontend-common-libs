@@ -33,11 +33,14 @@ require('../test/fixtures/logger-noop.js');
 var sinonChai = require('sinon-chai/lib/sinon-chai.js');
 var shallowDeepEqual = require('chai-shallow-deep-equal/chai-shallow-deep-equal.js');
 var chaiDatetime = require('chai-datetime/chai-datetime.js');
+
+/* global chai */
 chai.use(sinonChai);
 chai.use(shallowDeepEqual);
 chai.use(chaiDatetime);
 
 // require all test files using special Webpack feature
 // https://webpack.github.io/docs/context.html#require-context
-const testsContext = require.context(".", true, /\.spec$/);
+const testsContext = require.context('.', true, /\.spec$/);
+
 testsContext.keys().forEach(testsContext);

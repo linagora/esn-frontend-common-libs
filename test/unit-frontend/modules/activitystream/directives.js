@@ -74,13 +74,15 @@ describe('The esn.activitystream Angular module', function() {
       callbackOnWeakInfo = function() {
         done(new Error('Should not have been called'));
       };
-      this.$scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+      this.$scope.activitystream = { activity_stream: { uuid: '0987654321' } };
       var html = '<div activity-stream-notification></div>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
       var msg = {};
-      callbackOnNotification({room: this.$scope.activitystream.activity_stream.uuid, data: msg});
+
+      callbackOnNotification({ room: this.$scope.activitystream.activity_stream.uuid, data: msg });
       done();
     });
 
@@ -91,8 +93,9 @@ describe('The esn.activitystream Angular module', function() {
         done();
       };
 
-      this.$scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+      this.$scope.activitystream = { activity_stream: { uuid: '0987654321' } };
       var html = '<div activity-stream-notification></div>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
@@ -103,13 +106,15 @@ describe('The esn.activitystream Angular module', function() {
         },
         published: ''
       };
-      callbackOnNotification({room: this.$scope.activitystream.activity_stream.uuid, data: msg});
+
+      callbackOnNotification({ room: this.$scope.activitystream.activity_stream.uuid, data: msg });
     });
 
     it('should update scope.asMessagesUpdates.post if socket message verb is post', function() {
       callbackOnWeakInfo = function() {};
-      this.$scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+      this.$scope.activitystream = { activity_stream: { uuid: '0987654321' } };
       var html = '<div activity-stream-notification></div>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
@@ -120,15 +125,17 @@ describe('The esn.activitystream Angular module', function() {
         },
         verb: 'post'
       };
-      callbackOnNotification({room: this.$scope.activitystream.activity_stream.uuid, data: msg});
-      expect(this.$scope.asMessagesUpdates).to.deep.equal({post: [msg], update: []});
+
+      callbackOnNotification({ room: this.$scope.activitystream.activity_stream.uuid, data: msg });
+      expect(this.$scope.asMessagesUpdates).to.deep.equal({ post: [msg], update: [] });
     });
 
     it('should update scope.asMessagesUpdates.post if socket message verb is update' +
     ' and the message is not already known', function() {
       callbackOnWeakInfo = function() {};
-      this.$scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+      this.$scope.activitystream = { activity_stream: { uuid: '0987654321' } };
       var html = '<div activity-stream-notification></div>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
@@ -139,15 +146,17 @@ describe('The esn.activitystream Angular module', function() {
         },
         verb: 'update'
       };
-      callbackOnNotification({room: this.$scope.activitystream.activity_stream.uuid, data: msg});
-      expect(this.$scope.asMessagesUpdates).to.deep.equal({post: [], update: [msg]});
+
+      callbackOnNotification({ room: this.$scope.activitystream.activity_stream.uuid, data: msg });
+      expect(this.$scope.asMessagesUpdates).to.deep.equal({ post: [], update: [msg] });
     });
 
     it('should not update scope.asMessagesUpdates.post if socket message verb is update' +
     ' and the message is already known', function() {
       callbackOnWeakInfo = function() {};
-      this.$scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+      this.$scope.activitystream = { activity_stream: { uuid: '0987654321' } };
       var html = '<div activity-stream-notification></div>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
@@ -161,9 +170,10 @@ describe('The esn.activitystream Angular module', function() {
         },
         verb: 'update'
       };
-      this.$scope.asMessagesUpdates = {post: [msg], update: []};
-      callbackOnNotification({room: this.$scope.activitystream.activity_stream.uuid, data: msg});
-      expect(this.$scope.asMessagesUpdates).to.deep.equal({post: [msg], update: []});
+
+      this.$scope.asMessagesUpdates = { post: [msg], update: [] };
+      callbackOnNotification({ room: this.$scope.activitystream.activity_stream.uuid, data: msg });
+      expect(this.$scope.asMessagesUpdates).to.deep.equal({ post: [msg], update: [] });
     });
 
     it('should not call the method "notificationFactory.weakInfo(title, text)" ' +
@@ -172,8 +182,9 @@ describe('The esn.activitystream Angular module', function() {
         done(new Error('Should not pass here'));
       };
 
-      this.$scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+      this.$scope.activitystream = { activity_stream: { uuid: '0987654321' } };
       var html = '<div activity-stream-notification></div>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
@@ -184,7 +195,8 @@ describe('The esn.activitystream Angular module', function() {
         },
         published: ''
       };
-      callbackOnNotification({room: this.$scope.activitystream.activity_stream.uuid, data: msg});
+
+      callbackOnNotification({ room: this.$scope.activitystream.activity_stream.uuid, data: msg });
       done();
     });
 
@@ -194,8 +206,9 @@ describe('The esn.activitystream Angular module', function() {
         done(new Error('Should not pass here'));
       };
 
-      this.$scope.activitystream = {activity_stream: {uuid: '0987654321'}};
+      this.$scope.activitystream = { activity_stream: { uuid: '0987654321' } };
       var html = '<div activity-stream-notification></div>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(callbackOnNotification).to.be.a('function');
@@ -206,7 +219,8 @@ describe('The esn.activitystream Angular module', function() {
         },
         published: ''
       };
-      callbackOnNotification({room: '098765', data: msg});
+
+      callbackOnNotification({ room: '098765', data: msg });
       done();
     });
   });
@@ -229,29 +243,35 @@ describe('The esn.activitystream Angular module', function() {
       this.initASDirective = function() {
         var html = '<activity-stream activitystream="activitystream" streams="streams"></activity-stream>';
         var element = this.$compile(html)(this.$scope);
+
         this.$rootScope.$digest();
         var scope = element.isolateScope();
+
         scope.loadMoreElements = function() {};
+
         return scope;
       };
     }]));
 
     describe('when "message:posted" event is emitted', function() {
       it('should do nothing if message.activitystreamUuid is not one the scope streams', function(done) {
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: '0987654321'}};
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: '0987654321' } };
         var scope = this.initASDirective();
+
         scope.getStreamUpdates = function() {
           return done(new Error('Should not have been called'));
         };
         this.$timeout.flush();
-        this.$rootScope.$emit('message:posted', {activitystreamUuid: 'anotherASId'});
+        this.$rootScope.$emit('message:posted', { activitystreamUuid: 'anotherASId' });
         done();
       });
 
       it('should do nothing if a rest call is already active for the message activityStreamUuid', function(done) {
         var uuid = '0987654321';
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: uuid}};
+
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: uuid } };
         var scope = this.initASDirective();
+
         scope.getStreamUpdates = function() {
           return done(new Error('Should not have been called'));
         };
@@ -259,67 +279,75 @@ describe('The esn.activitystream Angular module', function() {
         scope.restActive = {};
         scope.restActive[uuid] = true;
         scope.restActive.anotherId = true;
-        this.$rootScope.$emit('message:posted', {activitystreamUuid: uuid});
+        this.$rootScope.$emit('message:posted', { activitystreamUuid: uuid });
         done();
       });
 
       it('should do nothing if a rest call to update the messages is already active', function(done) {
         var uuid = '0987654321';
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: uuid}};
+
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: uuid } };
         var scope = this.initASDirective();
+
         scope.getStreamUpdates = function() {
           return done(new Error('Should not have been called'));
         };
         this.$timeout.flush();
         scope.updateMessagesActive = true;
-        this.$rootScope.$emit('message:posted', {activitystreamUuid: uuid});
+        this.$rootScope.$emit('message:posted', { activitystreamUuid: uuid });
         done();
       });
 
       it('should call scope.getStreamUpdates() method with scope.activitystream.uuid', function(done) {
         var uuid = '0987654321';
+
         this.$scope.streams = [];
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: uuid}};
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: uuid } };
         var scope = this.initASDirective();
+
         scope.getStreamUpdates = function(id) {
           expect(id).to.equals(uuid);
+
           return done();
         };
         this.$timeout.flush();
-        this.$rootScope.$emit('message:posted', {activitystreamUuid: uuid});
+        this.$rootScope.$emit('message:posted', { activitystreamUuid: uuid });
       });
 
       it('should update scope.lastPost.messageId', function() {
         this.$scope.streams = [];
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: '0987654321'}};
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: '0987654321' } };
         var scope = this.initASDirective();
+
         scope.getStreamUpdates = function() {};
         this.$timeout.flush();
-        this.$rootScope.$emit('message:posted', {activitystreamUuid: '0987654321', id: 'msg42'});
+        this.$rootScope.$emit('message:posted', { activitystreamUuid: '0987654321', id: 'msg42' });
         expect(scope.lastPost.messageId).to.equal('msg42');
       });
     });
 
     describe('when "message:comment" event is emitted', function() {
       it('should ignore the event when the comment parent is not in the threads', function() {
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: '0987654321'}};
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: '0987654321' } };
         var scope = this.initASDirective();
+
         this.$timeout.flush();
 
         scope.threads.push(
-          {_id: 'msg1', responses: [{_id: 'cmt1'}] },
-          {_id: 'msg2', responses: [{_id: 'cmt2'}] },
-          {_id: 'msg3', responses: [{_id: 'cmt3'}] }
+          { _id: 'msg1', responses: [{ _id: 'cmt1' }] },
+          { _id: 'msg2', responses: [{ _id: 'cmt2' }] },
+          { _id: 'msg3', responses: [{ _id: 'cmt3' }] }
         );
-        this.$rootScope.$emit('message:comment', {parent: {_id: 'msg33'}});
+        this.$rootScope.$emit('message:comment', { parent: { _id: 'msg33' } });
       });
 
       it('should only update scope.lastPost.Comment if scope.updateMessagesActive is true', function() {
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: '0987654321'}};
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: '0987654321' } };
         var scope = this.initASDirective();
-        scope.threads = [{_id: 'parentId', responses: [{_id: 'cmt1'}], shares: [] }];
+
+        scope.threads = [{ _id: 'parentId', responses: [{ _id: 'cmt1' }], shares: [] }];
         scope.updateMessagesActive = true;
-        this.$rootScope.$emit('message:comment', {id: 'commentId', parent: {_id: 'parentId'}});
+        this.$rootScope.$emit('message:comment', { id: 'commentId', parent: { _id: 'parentId' } });
         expect(scope.lastPost.comment).to.deep.equal({
           parentId: 'parentId',
           id: 'commentId'
@@ -327,11 +355,12 @@ describe('The esn.activitystream Angular module', function() {
       });
 
       it('should only update scope.lastPost.Comment if a rest call is already running for the message', function() {
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: '0987654321'}};
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: '0987654321' } };
         var scope = this.initASDirective();
-        scope.threads = [{_id: 'parentId', responses: [{_id: 'cmt1'}], shares: [{objectType: 'activitystream', id: 'shareId'}] }];
-        scope.restActive = {shareId: true};
-        this.$rootScope.$emit('message:comment', {id: 'commentId', parent: {_id: 'parentId'}});
+
+        scope.threads = [{ _id: 'parentId', responses: [{ _id: 'cmt1' }], shares: [{ objectType: 'activitystream', id: 'shareId' }] }];
+        scope.restActive = { shareId: true };
+        this.$rootScope.$emit('message:comment', { id: 'commentId', parent: { _id: 'parentId' } });
         expect(scope.lastPost.comment).to.deep.equal({
           parentId: 'parentId',
           id: 'commentId'
@@ -339,50 +368,52 @@ describe('The esn.activitystream Angular module', function() {
       });
 
       it('should update the thread comments method', function() {
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: '0987654321'}};
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: '0987654321' } };
         var scope = this.initASDirective();
+
         this.$timeout.flush();
 
         this.$httpBackend.expectGET('/api/messages/msg2').respond({
           _id: 'msg2',
           responses: [
-            {_id: 'cmt2'},
-            {_id: 'cmt4'}
+            { _id: 'cmt2' },
+            { _id: 'cmt4' }
           ],
           shares: []
         });
 
         scope.threads.push(
-          {_id: 'msg1', responses: [{_id: 'cmt1'}], shares: [] },
-          {_id: 'msg2', responses: [{_id: 'cmt2'}], shares: [] },
-          {_id: 'msg3', responses: [{_id: 'cmt3'}], shares: [] }
+          { _id: 'msg1', responses: [{ _id: 'cmt1' }], shares: [] },
+          { _id: 'msg2', responses: [{ _id: 'cmt2' }], shares: [] },
+          { _id: 'msg3', responses: [{ _id: 'cmt3' }], shares: [] }
         );
-        this.$rootScope.$emit('message:comment', {parent: {_id: 'msg2'}});
+        this.$rootScope.$emit('message:comment', { parent: { _id: 'msg2' } });
         this.$httpBackend.flush();
         expect(scope.threads[1].responses).to.have.length(2);
       });
 
       it('should update scope.lastPost.comment', function() {
-        this.$scope.activitystream = {_id: '123', activity_stream: {uuid: '0987654321'}};
+        this.$scope.activitystream = { _id: '123', activity_stream: { uuid: '0987654321' } };
         var scope = this.initASDirective();
+
         this.$timeout.flush();
 
         this.$httpBackend.expectGET('/api/messages/msg2').respond({
           _id: 'msg2',
           responses: [
-            {_id: 'cmt2'},
-            {_id: 'cmt4'}
+            { _id: 'cmt2' },
+            { _id: 'cmt4' }
           ]
         });
 
         scope.threads.push(
-          {_id: 'msg1', responses: [{_id: 'cmt1'}], shares: [] },
-          {_id: 'msg2', responses: [{_id: 'cmt2'}], shares: [{objectType: 'activitystream', id: '0987654321'}] },
-          {_id: 'msg3', responses: [{_id: 'cmt3'}], shares: [] }
+          { _id: 'msg1', responses: [{ _id: 'cmt1' }], shares: [] },
+          { _id: 'msg2', responses: [{ _id: 'cmt2' }], shares: [{ objectType: 'activitystream', id: '0987654321' }] },
+          { _id: 'msg3', responses: [{ _id: 'cmt3' }], shares: [] }
         );
-        this.$rootScope.$emit('message:comment', {parent: {_id: 'msg2'}, id: 'cmt1'});
+        this.$rootScope.$emit('message:comment', { parent: { _id: 'msg2' }, id: 'cmt1' });
         this.$httpBackend.flush();
-        expect(scope.lastPost.comment).to.deep.equal({id: 'cmt1', parentId: 'msg2'});
+        expect(scope.lastPost.comment).to.deep.equal({ id: 'cmt1', parentId: 'msg2' });
       });
     });
   });
@@ -397,6 +428,7 @@ describe('The esn.activitystream Angular module', function() {
 
       angular.mock.module('esn.activitystream');
       var self = this;
+
       angular.mock.module(function($provide) {
         $provide.value('$log', self.asLog);
         $provide.value('localStorageService', self.storageService);
@@ -413,6 +445,7 @@ describe('The esn.activitystream Angular module', function() {
 
     it('should not initiate scope.selectedStream if local storage is empty', function() {
       var ASId = 'activityStreamId';
+
       this.$scope.activitystream = {
         _id: ASId
       };
@@ -420,15 +453,18 @@ describe('The esn.activitystream Angular module', function() {
 
       this.storageService.getOrCreateInstance = function(storageName) {
         expect(storageName).to.equal('streamFilters');
+
         return {
           getItem: function(itemName) {
             expect(itemName).to.equal(ASId);
+
             return $q.when({});
           }
         };
       };
 
       var html = '<activity-stream-filter></activity-stream-filter>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
       expect(this.$scope.selectedStream).to.not.exist;
@@ -437,25 +473,29 @@ describe('The esn.activitystream Angular module', function() {
     it('should initiate scope.selectedStream from local storage', function() {
       var ASId = 'activityStreamId';
       var ASUUID = 'asUUID';
+
       this.$scope.activitystream = {
         activity_stream: {
           uuid: ASUUID
         },
         _id: ASId
       };
-      this.$scope.streams = [{activity_stream: {uuid: ASUUID}}];
+      this.$scope.streams = [{ activity_stream: { uuid: ASUUID } }];
 
       this.storageService.getOrCreateInstance = function(storageName) {
         expect(storageName).to.equal('streamFilters');
+
         return {
           getItem: function(itemName) {
             expect(itemName).to.equal(ASId);
+
             return $q.when(ASUUID);
           }
         };
       };
 
       var html = '<activity-stream-filter></activity-stream-filter>';
+
       this.$compile(html)(this.$scope);
       this.$rootScope.$digest();
 
@@ -475,8 +515,10 @@ describe('The esn.activitystream Angular module', function() {
           }
         };
         var self = this;
+
         this.storageService.getOrCreateInstance = function(storageName) {
           expect(storageName).to.equal('streamFilters');
+
           return {
             getItem: function() {
               return $q.when({});
@@ -489,6 +531,7 @@ describe('The esn.activitystream Angular module', function() {
         };
 
         var html = '<activity-stream-filter></activity-stream-filter>';
+
         this.$compile(html)(this.$scope);
         this.$rootScope.$digest();
         this.$scope.selectStream(selectedStream);
@@ -503,8 +546,10 @@ describe('The esn.activitystream Angular module', function() {
         this.$scope.streams = [];
 
         var self = this;
+
         this.storageService.getOrCreateInstance = function(storageName) {
           expect(storageName).to.equal('streamFilters');
+
           return {
             getItem: function() {
               return $q.when({});
@@ -517,6 +562,7 @@ describe('The esn.activitystream Angular module', function() {
         };
 
         var html = '<activity-stream-filter></activity-stream-filter>';
+
         this.$compile(html)(this.$scope);
         this.$rootScope.$digest();
         this.$scope.clearStreamSelection();

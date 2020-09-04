@@ -14,7 +14,7 @@ require('./user-notification-toggler.controller.js');
       restrict: 'E',
       replace: true,
       scope: true,
-      template: require("./user-notification-toggler.pug")
+      template: require('./user-notification-toggler.pug')
     };
 
     function link(scope, element) {

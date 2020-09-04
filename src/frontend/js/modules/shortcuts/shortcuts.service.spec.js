@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnShortcuts service', function() {
   var esnShortcutsRegistry, esnShortcuts, hotkeys, deviceDetector;
@@ -162,7 +162,9 @@ describe('The esnShortcuts service', function() {
 
       esnShortcuts.register(category, shortcuts);
 
-      expect(esnShortcutsRegistry.addCategory).to.have.been.calledWith({ id: category.id, name: category.name, moduleDetector: true, parentId: undefined });
+      expect(esnShortcutsRegistry.addCategory).to.have.been.calledWith({
+        id: category.id, name: category.name, moduleDetector: true, parentId: undefined
+      });
       expect(esnShortcutsRegistry.register).to.have.been.calledTwice;
     });
 
@@ -191,7 +193,9 @@ describe('The esnShortcuts service', function() {
 
       esnShortcuts.register(category);
 
-      expect(esnShortcutsRegistry.addCategory).to.have.been.calledWith({ id: category.id, name: category.name, moduleDetector: true, parentId: undefined });
+      expect(esnShortcutsRegistry.addCategory).to.have.been.calledWith({
+        id: category.id, name: category.name, moduleDetector: true, parentId: undefined
+      });
       expect(esnShortcutsRegistry.register).to.have.been.calledTwice;
     });
 

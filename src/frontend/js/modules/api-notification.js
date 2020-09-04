@@ -2,8 +2,8 @@
   'use strict';
 
   angular.module('esn.api-notification', ['esn.notification', 'esn.session'])
-  .directive('apiNotification', function($log, session, notificationFactory, livenotification) {
-    return {
+    .directive('apiNotification', function($log, session, notificationFactory, livenotification) {
+      return {
         restrict: 'E',
         link: function(scope) {
 
@@ -18,6 +18,7 @@
               $log.debug('New notification of namespace /notifications with data', msg);
 
               var text = msg.author + ' ' + msg.action + ' a ' + msg.object;
+
               if (msg.link) {
                 text = 'Check it out on <a target="_blank" href="' + msg.link + '">link</a>';
               }

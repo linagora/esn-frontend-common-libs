@@ -52,6 +52,7 @@ describe('The esn.file module', function() {
   describe('The extension filter', function() {
 
     var extension;
+
     beforeEach(inject(function($filter) {
       extension = $filter('extension');
     }));

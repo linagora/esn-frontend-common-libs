@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The esnAvatarUrlService service', function() {
   var esnAvatarUrlService, email, username, userId;

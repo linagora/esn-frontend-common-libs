@@ -13,7 +13,7 @@
       },
       controller: 'ESNCollaborationMembershipRequestsActionsController',
       controllerAs: 'ctrl',
-      template: require("./collaboration-membership-requests-actions.pug")
+      template: require('./collaboration-membership-requests-actions.pug')
     };
   }
 })();

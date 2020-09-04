@@ -25,7 +25,8 @@ require('./subheader.constants.js');
 
       function unregisterContainer() {
         subHeaderQueue = [];
-        injectSubHeader = destroySubHeader = null;
+        injectSubHeader = null;
+        destroySubHeader = null;
         setVisible(false);
       }
 

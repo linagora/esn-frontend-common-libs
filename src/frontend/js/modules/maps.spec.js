@@ -2,7 +2,7 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Maps Angular module', function() {
 
@@ -76,6 +76,7 @@ describe('The Maps Angular module', function() {
         this.geoAPI.getCurrentPosition = done;
         this.$rootScope.position = {};
         var element = this.$compile(this.html)(this.$rootScope);
+
         this.$rootScope.$digest();
         element.scope().fillPosition();
       });
@@ -84,7 +85,8 @@ describe('The Maps Angular module', function() {
         this.$rootScope.position = {};
         var element = this.$compile(this.html)(this.$rootScope);
 
-        var result = {coords: {latitude: 1, longitude: 2}};
+        var result = { coords: { latitude: 1, longitude: 2 } };
+
         this.geoAPI.getCurrentPosition = function() {
           return $q.when(result);
         };

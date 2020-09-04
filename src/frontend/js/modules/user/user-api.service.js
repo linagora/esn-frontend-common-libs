@@ -15,7 +15,7 @@
     };
 
     function currentUser() {
-      return esnRestangular.one('user').get({_: Date.now()});
+      return esnRestangular.one('user').get({ _: Date.now() });
     }
 
     function user(uuid) {
@@ -25,7 +25,6 @@
     function getUsersByEmail(email) {
       return esnRestangular.all('users').getList({ email: email });
     }
-
 
     function setUserStates(userId, states, domainId) {
       return esnRestangular.one('users', userId).customPUT(states, 'states', { domain_id: domainId || session.domain._id });

@@ -1,8 +1,9 @@
 'use strict';
 
-/* global chai: false */
+/* global chai, sinon: false */
+/* eslint-disable no-restricted-globals */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The Aggregator module', function() {
 
@@ -21,13 +22,14 @@ describe('The Aggregator module', function() {
 
       it('should return true after instantiation', function() {
         var wrapper = new this.PageAggregatorSourceWrapper({});
+
         expect(wrapper.hasNext()).to.be.true;
       });
 
       it('should return true when source#loadNextItem call does not send back lastPage', function(done) {
         var wrapper = new this.PageAggregatorSourceWrapper({
           loadNextItems: function() {
-            return $q.when({data: [1]});
+            return $q.when({ data: [1] });
           }
         });
 
@@ -75,9 +77,10 @@ describe('The Aggregator module', function() {
         var wrapper = new this.PageAggregatorSourceWrapper({
           id: id,
           loadNextItems: function() {
-            return $q.when({data: data});
+            return $q.when({ data: data });
           }
         });
+
         wrapper.hasNext = function() {
           return false;
         };
@@ -92,7 +95,7 @@ describe('The Aggregator module', function() {
       });
 
       it('should call the source#loadNextItems function', function(done) {
-        var opts = {foo: 'bar'};
+        var opts = { foo: 'bar' };
         var source = {
           loadNextItems: function(options) {
             expect(options).to.deep.equal(opts);
@@ -101,6 +104,7 @@ describe('The Aggregator module', function() {
         };
 
         var wrapper = new this.PageAggregatorSourceWrapper(source);
+
         wrapper.loadNextItems(opts);
         $rootScope.$apply();
       });
@@ -112,12 +116,12 @@ describe('The Aggregator module', function() {
         var wrapper = new this.PageAggregatorSourceWrapper({
           id: id,
           loadNextItems: function() {
-            return $q.when({data: data, lastPage: true});
+            return $q.when({ data: data, lastPage: true });
           }
         });
 
         wrapper.loadNextItems().then(function(result) {
-          expect(result).to.deep.equal({id: id, lastPage: true, data: data});
+          expect(result).to.deep.equal({ id: id, lastPage: true, data: data });
           done();
         }, done);
         $rootScope.$apply();
@@ -130,12 +134,12 @@ describe('The Aggregator module', function() {
         var wrapper = new this.PageAggregatorSourceWrapper({
           id: id,
           loadNextItems: function() {
-            return $q.when({data: data});
+            return $q.when({ data: data });
           }
         });
 
         wrapper.loadNextItems().then(function(result) {
-          expect(result).to.deep.equal({id: id, lastPage: false, data: data});
+          expect(result).to.deep.equal({ id: id, lastPage: false, data: data });
           expect(wrapper.hasNext()).to.be.true;
           done();
         }, done);
@@ -151,6 +155,7 @@ describe('The Aggregator module', function() {
     var compare = function(a, b) {
       var valueA = a.value.toLowerCase();
       var valueB = b.value.toLowerCase();
+
       if (valueA < valueB) {
         return -1;
       }
@@ -170,8 +175,10 @@ describe('The Aggregator module', function() {
 
     SourceMock.prototype.loadNextItems = function() {
       var current = this.currentCalls;
+
       this.currentCalls++;
-      return $q.when({lastPage: this.currentCalls >= this.mockData.length, data: this.mockData[current]});
+
+      return $q.when({ lastPage: this.currentCalls >= this.mockData.length, data: this.mockData[current] });
     };
 
     describe('the constructor', function() {
@@ -231,11 +238,13 @@ describe('The Aggregator module', function() {
 
       it('should send false after instantiation', function() {
         var aggregator = new this.PageAggregatorService('test', [], {});
+
         expect(aggregator._sourcesHaveData()).to.be.false;
       });
 
       it('should send true when data is available in a source', function() {
         var aggregator = new this.PageAggregatorService('test', [1, 2], {});
+
         aggregator.wrappedSources[0].data = [1, 2, 3];
         expect(aggregator._sourcesHaveData()).to.be.true;
       });
@@ -257,7 +266,8 @@ describe('The Aggregator module', function() {
       });
 
       it('should be true when at least a source hasNext', function() {
-        var aggregator = new this.PageAggregatorService('test', [1, 2, 3], {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', [1, 2, 3], { compare: compare });
+
         aggregator.wrappedSources[0].source.hasNext = function() {
           return true;
         };
@@ -268,7 +278,7 @@ describe('The Aggregator module', function() {
         PageAggregatorSourceWrapperMock.prototype.hasNext = function() {
           return false;
         };
-        var aggregator = new this.PageAggregatorService('test', [1, 2, 3], {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', [1, 2, 3], { compare: compare });
 
         aggregator.wrappedSources.forEach(function(wrappedSource) {
           wrappedSource.source.hasNext = function() {
@@ -298,11 +308,12 @@ describe('The Aggregator module', function() {
           },
           {
             loadNextItems: function() {
-              return $q.when({data: [2]});
+              return $q.when({ data: [2] });
             }
           }
         ];
-        var aggregator = new this.PageAggregatorService('test', sources, {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', sources, { compare: compare });
+
         aggregator.wrappedSources[0].data = [1];
         aggregator._loadItemsFromSources().then(function() {
           expect(aggregator.wrappedSources[0].data).to.deep.equal([1]);
@@ -318,16 +329,17 @@ describe('The Aggregator module', function() {
         var sources = [
           {
             loadNextItems: function() {
-              return $q.when({data: [1]});
+              return $q.when({ data: [1] });
             }
           },
           {
             loadNextItems: function() {
-              return $q.when({data: [2]});
+              return $q.when({ data: [2] });
             }
           }
         ];
-        var aggregator = new this.PageAggregatorService('test', sources, {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', sources, { compare: compare });
+
         aggregator._loadItemsFromSources().then(function() {
           expect(aggregator.wrappedSources[0].data).to.deep.equal([1]);
           expect(aggregator.wrappedSources[1].data).to.deep.equal([2]);
@@ -340,16 +352,17 @@ describe('The Aggregator module', function() {
         var sources = [
           {
             loadNextItems: function() {
-              return $q.when({data: []});
+              return $q.when({ data: [] });
             }
           },
           {
             loadNextItems: function() {
-              return $q.when({data: [2]});
+              return $q.when({ data: [2] });
             }
           }
         ];
-        var aggregator = new this.PageAggregatorService('test', sources, {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', sources, { compare: compare });
+
         aggregator._loadItemsFromSources().then(function() {
           expect(aggregator.wrappedSources[0].data).to.deep.equal([]);
           expect(aggregator.wrappedSources[1].data).to.deep.equal([2]);
@@ -367,11 +380,12 @@ describe('The Aggregator module', function() {
           },
           {
             loadNextItems: function() {
-              return $q.when({data: [2]});
+              return $q.when({ data: [2] });
             }
           }
         ];
-        var aggregator = new this.PageAggregatorService('test', sources, {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', sources, { compare: compare });
+
         aggregator._loadItemsFromSources().then(function() {
           expect(aggregator.wrappedSources[0].data).to.deep.equal([]);
           expect(aggregator.wrappedSources[1].data).to.deep.equal([2]);
@@ -389,11 +403,12 @@ describe('The Aggregator module', function() {
           },
           {
             loadNextItems: function() {
-              return $q.when({data: [2]});
+              return $q.when({ data: [2] });
             }
           }
         ];
-        var aggregator = new this.PageAggregatorService('test', sources, {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', sources, { compare: compare });
+
         aggregator._loadItemsFromSources().then(function() {
           done();
         }, done);
@@ -411,28 +426,32 @@ describe('The Aggregator module', function() {
       });
 
       it('should return undefined when no items are available', function() {
-        var aggregator = new this.PageAggregatorService('test', [1], {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', [1], { compare: compare });
+
         expect(aggregator._getSmallerItem()).to.be.undefined;
       });
 
       it('should return undefined when first wrappedSource data is empty', function() {
-        var aggregator = new this.PageAggregatorService('test', [1], {compare: compare});
+        var aggregator = new this.PageAggregatorService('test', [1], { compare: compare });
+
         aggregator.wrappedSources[0].data = [];
         expect(aggregator._getSmallerItem()).to.be.undefined;
         expect(aggregator.wrappedSources[0].data).to.be.empty;
       });
 
       it('should return non undefined element when a source have data', function() {
-        var item = {value: 'a'};
-        var aggregator = new this.PageAggregatorService('test', [1, 2], {compare: compare});
+        var item = { value: 'a' };
+        var aggregator = new this.PageAggregatorService('test', [1, 2], { compare: compare });
+
         aggregator.wrappedSources[0].data = [];
         aggregator.wrappedSources[1].data = [item];
         expect(aggregator._getSmallerItem()).to.equal(item);
       });
 
       it('should return the only defined element and empty the cache', function() {
-        var item = {value: 'a'};
-        var aggregator = new this.PageAggregatorService('test', [1], {compare: compare});
+        var item = { value: 'a' };
+        var aggregator = new this.PageAggregatorService('test', [1], { compare: compare });
+
         aggregator.wrappedSources[0].data = [item];
         expect(aggregator._getSmallerItem()).to.deep.equal(item);
         expect(aggregator.wrappedSources[0].data).to.be.empty;
@@ -442,15 +461,16 @@ describe('The Aggregator module', function() {
       // [{value: 'a'}, {value: 'b'}, {value: 'c'}]
       // The array is already ordered
       it('should return the smaller element from the array based on the compare function and remove it from the cache (ordered)', function() {
-        var a = [{value: 'a'}, {value: 'e'}, {value: 'z'}];
-        var b = [{value: 'b'}, {value: 'b'}, {value: 'c'}];
-        var c = [{value: 'c'}, {value: 'd'}, {value: 'e'}];
-        var aggregator = new this.PageAggregatorService('test', [1, 2, 3], {compare: compare});
+        var a = [{ value: 'a' }, { value: 'e' }, { value: 'z' }];
+        var b = [{ value: 'b' }, { value: 'b' }, { value: 'c' }];
+        var c = [{ value: 'c' }, { value: 'd' }, { value: 'e' }];
+        var aggregator = new this.PageAggregatorService('test', [1, 2, 3], { compare: compare });
+
         aggregator.wrappedSources[0].data = a;
         aggregator.wrappedSources[1].data = b;
         aggregator.wrappedSources[2].data = c;
-        expect(aggregator._getSmallerItem()).to.deep.equal({value: 'a'});
-        expect(aggregator.wrappedSources[0].data).to.deep.equal([{value: 'e'}, {value: 'z'}]);
+        expect(aggregator._getSmallerItem()).to.deep.equal({ value: 'a' });
+        expect(aggregator.wrappedSources[0].data).to.deep.equal([{ value: 'e' }, { value: 'z' }]);
         expect(aggregator.wrappedSources[1].data).to.deep.equal(b);
         expect(aggregator.wrappedSources[2].data).to.deep.equal(c);
       });
@@ -459,32 +479,34 @@ describe('The Aggregator module', function() {
       // [{value: 'c'}, {value: 'b'}, {value: 'a'}]
       // The array is not ordered before processing
       it('should return the smaller element from the array based on the compare function and remove it from the cache (not ordered)', function() {
-        var a = [{value: 'a'}, {value: 'e'}, {value: 'z'}];
-        var b = [{value: 'b'}, {value: 'b'}, {value: 'c'}];
-        var c = [{value: 'c'}, {value: 'd'}, {value: 'e'}];
-        var aggregator = new this.PageAggregatorService('test', [1, 2, 3], {compare: compare});
+        var a = [{ value: 'a' }, { value: 'e' }, { value: 'z' }];
+        var b = [{ value: 'b' }, { value: 'b' }, { value: 'c' }];
+        var c = [{ value: 'c' }, { value: 'd' }, { value: 'e' }];
+        var aggregator = new this.PageAggregatorService('test', [1, 2, 3], { compare: compare });
+
         aggregator.wrappedSources[0].data = c;
         aggregator.wrappedSources[1].data = b;
         aggregator.wrappedSources[2].data = a;
-        expect(aggregator._getSmallerItem()).to.deep.equal({value: 'a'});
+        expect(aggregator._getSmallerItem()).to.deep.equal({ value: 'a' });
         expect(aggregator.wrappedSources[0].data).to.deep.equal(c);
         expect(aggregator.wrappedSources[1].data).to.deep.equal(b);
-        expect(aggregator.wrappedSources[2].data).to.deep.equal([{value: 'e'}, {value: 'z'}]);
+        expect(aggregator.wrappedSources[2].data).to.deep.equal([{ value: 'e' }, { value: 'z' }]);
       });
 
       it('should return the last smaller element', function() {
-        var a = [{value: 'a', foo: 'bar'}];
-        var b = [{value: 'b'}, {value: 'b'}, {value: 'c'}];
-        var c = [{value: 'a', foo: 'baz'}, {value: 'd'}, {value: 'e'}];
-        var d = [{value: 'a'}, {value: 'e'}];
-        var f = [{value: 'f'}, {value: 'e'}];
-        var aggregator = new this.PageAggregatorService('test', [1, 2, 3, 4, 5], {compare: compare});
+        var a = [{ value: 'a', foo: 'bar' }];
+        var b = [{ value: 'b' }, { value: 'b' }, { value: 'c' }];
+        var c = [{ value: 'a', foo: 'baz' }, { value: 'd' }, { value: 'e' }];
+        var d = [{ value: 'a' }, { value: 'e' }];
+        var f = [{ value: 'f' }, { value: 'e' }];
+        var aggregator = new this.PageAggregatorService('test', [1, 2, 3, 4, 5], { compare: compare });
+
         aggregator.wrappedSources[0].data = a;
         aggregator.wrappedSources[1].data = b;
         aggregator.wrappedSources[2].data = c;
         aggregator.wrappedSources[3].data = d;
         aggregator.wrappedSources[4].data = f;
-        expect(aggregator._getSmallerItem()).to.deep.equal({value: 'a'});
+        expect(aggregator._getSmallerItem()).to.deep.equal({ value: 'a' });
       });
     });
 
@@ -498,7 +520,8 @@ describe('The Aggregator module', function() {
       });
 
       it('should reject when no more data is available to fetch', function(done) {
-        var aggregator = new this.PageAggregatorService(name, [], {compare: compare});
+        var aggregator = new this.PageAggregatorService(name, [], { compare: compare });
+
         aggregator.hasNext = function() {
           return false;
         };
@@ -513,12 +536,14 @@ describe('The Aggregator module', function() {
       });
 
       it('should resolve when sources does not have any more data', function(done) {
-        var item = {foo: 'bar'},
-            hasNext = false,
-            aggregator = new this.PageAggregatorService(name, [], {compare: compare});
+        var item = { foo: 'bar' },
+          hasNext = false,
+          aggregator = new this.PageAggregatorService(name, [], { compare: compare });
 
         aggregator.hasNext = function() {
-          return (hasNext = !hasNext);
+          hasNext = !hasNext;
+
+          return hasNext;
         };
 
         aggregator._loadItemsFromSources = function() {
@@ -546,8 +571,8 @@ describe('The Aggregator module', function() {
       });
 
       it('should resolve when first page size is reached', function(done) {
-        var item = {foo: 'bar'},
-            aggregator = new this.PageAggregatorService(name, [], { compare: compare, first_page_size: 3 });
+        var item = { foo: 'bar' },
+          aggregator = new this.PageAggregatorService(name, [], { compare: compare, first_page_size: 3 });
 
         aggregator.hasNext = function() {
           return true;
@@ -579,7 +604,7 @@ describe('The Aggregator module', function() {
       });
 
       it('should resolve when page size is reached', function(done) {
-        var item = {foo: 'bar'},
+        var item = { foo: 'bar' },
           aggregator = new this.PageAggregatorService(name, [], { compare, first_page_size: 2 });
 
         aggregator.hasNext = function() {
@@ -601,7 +626,7 @@ describe('The Aggregator module', function() {
         // Consume first page
         aggregator.loadNextItems();
 
-        const callback = sinon.spy(function () {
+        const callback = sinon.spy(function() {
           done();
         });
 
@@ -613,16 +638,16 @@ describe('The Aggregator module', function() {
       describe('Functional tests', function() {
         it('should paginate results in the right order', function(done) {
 
-          var a = {id: 1, value: 'A'};
-          var b = {id: 2, value: 'B'};
-          var d = {id: 4, value: 'D'};
-          var e = {id: 5, value: 'E'};
-          var f = {id: 6, value: 'F'};
-          var g = {id: 7, value: 'G'};
-          var h = {id: 8, value: 'H'};
-          var x = {id: 24, value: 'X'};
-          var y = {id: 25, value: 'Y'};
-          var z = {id: 26, value: 'Z'};
+          var a = { id: 1, value: 'A' };
+          var b = { id: 2, value: 'B' };
+          var d = { id: 4, value: 'D' };
+          var e = { id: 5, value: 'E' };
+          var f = { id: 6, value: 'F' };
+          var g = { id: 7, value: 'G' };
+          var h = { id: 8, value: 'H' };
+          var x = { id: 24, value: 'X' };
+          var y = { id: 25, value: 'Y' };
+          var z = { id: 26, value: 'Z' };
 
           var sources = [
             new SourceMock(1, [[a, b], [e]]),
@@ -632,16 +657,16 @@ describe('The Aggregator module', function() {
             new SourceMock(5, [[a], [f], [y, z]])
           ];
 
-          var aggregator = new this.PageAggregatorService('test', sources, {compare: compare, first_page_size: 5, results_per_page: 5});
+          var aggregator = new this.PageAggregatorService('test', sources, { compare: compare, first_page_size: 5, results_per_page: 5 });
 
           aggregator.loadNextItems().then(function(results) {
             expect(results).to.deep.equal({
               id: 'test', firstPage: true, lastPage: false, data: [
-                {id: 1, value: 'A'},
-                {id: 1, value: 'A'},
-                {id: 2, value: 'B'},
-                {id: 4, value: 'D'},
-                {id: 5, value: 'E'}
+                { id: 1, value: 'A' },
+                { id: 1, value: 'A' },
+                { id: 2, value: 'B' },
+                { id: 4, value: 'D' },
+                { id: 5, value: 'E' }
               ]
             });
 
@@ -649,19 +674,19 @@ describe('The Aggregator module', function() {
 
               expect(results).to.deep.equal({
                 id: 'test', firstPage: false, lastPage: false, data: [
-                  {id: 6, value: 'F'},
-                  {id: 7, value: 'G'},
-                  {id: 8, value: 'H'},
-                  {id: 24, value: 'X'},
-                  {id: 25, value: 'Y'}
+                  { id: 6, value: 'F' },
+                  { id: 7, value: 'G' },
+                  { id: 8, value: 'H' },
+                  { id: 24, value: 'X' },
+                  { id: 25, value: 'Y' }
                 ]
               });
 
               aggregator.loadNextItems().then(function(results) {
                 expect(results).to.deep.equal({
                   id: 'test', firstPage: false, lastPage: true, data: [
-                    {id: 26, value: 'Z'},
-                    {id: 26, value: 'Z'}
+                    { id: 26, value: 'Z' },
+                    { id: 26, value: 'Z' }
                   ]
                 });
 
@@ -678,27 +703,27 @@ describe('The Aggregator module', function() {
 
         it('should return all the items in a single page if results_per_page is greater than the number of items', function(done) {
 
-          var a = {id: 1, value: 'A'};
-          var b = {id: 2, value: 'B'};
-          var d = {id: 4, value: 'D'};
-          var e = {id: 5, value: 'E'};
-          var x = {id: 24, value: 'X'};
+          var a = { id: 1, value: 'A' };
+          var b = { id: 2, value: 'B' };
+          var d = { id: 4, value: 'D' };
+          var e = { id: 5, value: 'E' };
+          var x = { id: 24, value: 'X' };
 
           var sources = [
             new SourceMock(1, [[a, b], [e]]),
             new SourceMock(2, [[d, x]])
           ];
 
-          var aggregator = new this.PageAggregatorService('test', sources, {compare: compare, first_page_size: 20, results_per_page: 20});
+          var aggregator = new this.PageAggregatorService('test', sources, { compare: compare, first_page_size: 20, results_per_page: 20 });
 
           aggregator.loadNextItems().then(function(results) {
             expect(results).to.deep.equal({
               id: 'test', firstPage: true, lastPage: true, data: [
-                {id: 1, value: 'A'},
-                {id: 2, value: 'B'},
-                {id: 4, value: 'D'},
-                {id: 5, value: 'E'},
-                {id: 24, value: 'X'}
+                { id: 1, value: 'A' },
+                { id: 2, value: 'B' },
+                { id: 4, value: 'D' },
+                { id: 5, value: 'E' },
+                { id: 24, value: 'X' }
               ]
             });
             done();
@@ -711,15 +736,15 @@ describe('The Aggregator module', function() {
     describe('the loadRecentItems function', function() {
 
       var $rootScope,
-          PageAggregatorService,
-          sourceWithLoadRecentItems = function(items) {
-            return {
-              loadRecentItems: function() {
-                return $q.when(items);
-              }
-            };
-          },
-          sourceWithoutLoadRecentItems = {};
+        PageAggregatorService,
+        sourceWithLoadRecentItems = function(items) {
+          return {
+            loadRecentItems: function() {
+              return $q.when(items);
+            }
+          };
+        },
+        sourceWithoutLoadRecentItems = {};
 
       beforeEach(angular.mock.inject(function(_PageAggregatorService_, _$rootScope_) {
         PageAggregatorService = _PageAggregatorService_;
@@ -748,7 +773,7 @@ describe('The Aggregator module', function() {
 
       it('should return the recent items, correctly sorted', function(done) {
         var itemsFirstSource = [{ value: 2 }, { value: 1 }],
-            itemsSecondSource = [{ value: 3 }, { value: 0 }];
+          itemsSecondSource = [{ value: 3 }, { value: 0 }];
 
         new PageAggregatorService('id', [
           sourceWithLoadRecentItems(itemsFirstSource),
@@ -762,7 +787,7 @@ describe('The Aggregator module', function() {
 
           done();
         })
-        .catch(done);
+          .catch(done);
 
         $rootScope.$digest();
       });
@@ -772,15 +797,15 @@ describe('The Aggregator module', function() {
     describe('the bidirectionalFetcher function', function() {
 
       var $rootScope,
-          PageAggregatorService,
-          sourceWithLoadRecentItems = {
-            loadNextItems: function() {
-              return $q.when({ data: [{ a: 'old' }], lastPage: true });
-            },
-            loadRecentItems: function() {
-              return $q.when([{ a: 'recent' }]);
-            }
-          };
+        PageAggregatorService,
+        sourceWithLoadRecentItems = {
+          loadNextItems: function() {
+            return $q.when({ data: [{ a: 'old' }], lastPage: true });
+          },
+          loadRecentItems: function() {
+            return $q.when([{ a: 'recent' }]);
+          }
+        };
 
       beforeEach(angular.mock.inject(function(_PageAggregatorService_, _$rootScope_) {
         PageAggregatorService = _PageAggregatorService_;
@@ -803,7 +828,7 @@ describe('The Aggregator module', function() {
 
           done();
         })
-        .catch(done);
+          .catch(done);
 
         $rootScope.$digest();
       });
@@ -816,7 +841,7 @@ describe('The Aggregator module', function() {
 
           done();
         })
-        .catch(done);
+          .catch(done);
 
         $rootScope.$digest();
       });

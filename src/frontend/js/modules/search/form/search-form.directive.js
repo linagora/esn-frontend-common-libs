@@ -10,7 +10,7 @@
         $scope.spinnerKey = angular.isDefined($scope.spinnerKey) ? $scope.spinnerKey : defaultSpinnerConfiguration.spinnerKey;
         $scope.spinnerConf = angular.isDefined($scope.spinnerConf) ? $scope.spinnerConf : defaultSpinnerConfiguration.spinnerConf;
       },
-      template: require("./search-form.pug")
+      template: require('./search-form.pug')
     };
   }
 })(angular);

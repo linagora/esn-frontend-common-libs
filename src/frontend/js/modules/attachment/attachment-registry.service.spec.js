@@ -2,16 +2,15 @@
 
 /* global chai: false */
 
-var expect = chai.expect;
+var { expect } = chai;
 
 describe('The ESNAttachmentIconController', function() {
   var $controller, $scope, $rootScope, ESN_ATTACHMENT_ICONS;
 
   function initController(type) {
     var controller = $controller('ESNAttachmentIconController',
-      {$scope: $scope},
-      {type: type}
-    );
+      { $scope: $scope },
+      { type: type });
 
     $scope.$digest();
 
