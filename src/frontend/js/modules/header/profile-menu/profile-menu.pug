@@ -2,7 +2,7 @@ md-menu.blue.btn-icon.btn-link.all-centered(md-position-mode='right bottom')
   img.header-avatar(ng-src="{{ctrl.avatarURL}}", alt="{{ 'Avatar' | translate }}", aria-label='menu', ng-click='ctrl.openMenu($mdMenu, $event)')
   md-menu-content.dm-icon.profile-menu
     md-menu-item
-      md-button(ui-sref="profile({ user_id: '' })", target="_blank")
+      md-button(ng-href="/account/", target="_blank")
         md-icon(md-svg-icon="account-settings-variant", aria-label="Account Icon")
         | {{ 'Your account' | translate }}
     md-menu-item
