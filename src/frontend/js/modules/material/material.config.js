@@ -27,5 +27,5 @@ function configTheme($mdThemingProvider) {
 }
 
 function configDefaultIcon($mdIconProvider) {
-  $mdIconProvider.defaultIconSet('images/mdi/mdi.svg', 24);
+  $mdIconProvider.defaultIconSet(require('!!file-loader!../../../images/mdi/mdi.svg').default, 24);
 }
