@@ -8,4 +8,3 @@ angular.module('esn.material', [
 ]);
 
 require('./material.config.js');
-require('./material.run.js');
