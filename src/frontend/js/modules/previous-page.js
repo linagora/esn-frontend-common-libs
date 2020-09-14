@@ -11,12 +11,13 @@ angular.module('esn.previous-page', [])
         // TODO: Write tests for the newly changed logic: https://github.com/OpenPaaS-Suite/esn-frontend-calendar/issues/12, https://github.com/OpenPaaS-Suite/esn-frontend-inbox/issues/74
         const availableStates = $state.get();
         const backState = availableStates.find(state => state.name === attrs.esnBackButton) || availableStates.find(state => state.default);
+        const preventHistoryBack = attrs.hasOwnProperty('preventHistoryBack');
 
         if (!backState) {
           $log.warn(`There is no ${attrs.esnBackButton} state or a default state to come back to.`);
         }
 
-        element.click(() => esnPreviousPage.back(backState ? backState.name : attrs.esnBackButton));
+        element.click(() => esnPreviousPage.back(backState ? backState.name : attrs.esnBackButton, preventHistoryBack));
       }
     };
   })
@@ -29,8 +30,8 @@ angular.module('esn.previous-page', [])
       init: init
     };
 
-    function back(defaultState) {
-      if (hasPreviousPage && $window.history && $window.history.length > 0) {
+    function back(defaultState, preventHistoryBack = false) {
+      if (hasPreviousPage && $window.history && $window.history.length > 0 && !preventHistoryBack) {
         return $window.history.back();
       }
 
