@@ -129,7 +129,6 @@ require('./js/modules/collaboration/user-notifications/collaboration-membership-
 require('./js/modules/collaboration/user-notifications/collaboration-membership-request-accepted.component.js');
 require('./js/modules/collaboration/user-notifications/collaboration-membership-request-declined.component.js');
 require('./js/modules/collaboration/user-notifications/collaboration-request-membership-action.controller.js');
-require('./js/modules/maps.js');
 require('./js/modules/paginate.js');
 require('./js/modules/pagination/pagination.module.js');
 require('./js/modules/pagination/pagination.constants.js');
