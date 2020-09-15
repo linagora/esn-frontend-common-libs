@@ -59,7 +59,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './assets/index.pug',
       filename: './index.html'
-    })
+    }),
+    new webpack.NamedModulesPlugin(), // for rewiremock
+    new webpack.HotModuleReplacementPlugin(), // for rewiremock
+    new (require('rewiremock/webpack/plugin'))() // for rewiremock
   ],
   module: {
     rules: [
