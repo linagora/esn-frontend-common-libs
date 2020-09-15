@@ -12,7 +12,7 @@ materialAdmin
         return {
             restrict: 'C',
             link: function(scope, element) {
-                if($('.fg-line')[0]) {
+                if(element.closest('.fg-line').length) {
                     var inputEle = element.find('.form-control');
                     var p = inputEle.closest('.form-group');
 
