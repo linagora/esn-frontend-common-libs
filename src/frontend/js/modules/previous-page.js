@@ -8,7 +8,6 @@ angular.module('esn.previous-page', [])
     return {
       restrict: 'A',
       link: function(scope, element, attrs) {
-        // TODO: Write tests for the newly changed logic: https://github.com/OpenPaaS-Suite/esn-frontend-calendar/issues/12, https://github.com/OpenPaaS-Suite/esn-frontend-inbox/issues/74
         const availableStates = $state.get();
         const backState = availableStates.find(state => state.name === attrs.esnBackButton) || availableStates.find(state => state.default);
         const preventHistoryBack = attrs.hasOwnProperty('preventHistoryBack');
