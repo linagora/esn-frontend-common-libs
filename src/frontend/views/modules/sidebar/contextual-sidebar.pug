@@ -1,20 +1,21 @@
 .aside#contextual-sidebar(tabindex="-1", role="dialog")
-  .aside-dialog
-    .aside-content
-      #aside-header(ng-if="!hideHeader")
-        div.header-inner.flex-vertical-centered.flex-space-between
-          ul.list-inline.all-centered
-            li.logo
-              a(href='', ui-sref='home')
-                img.openpaas-logo(ng-src="{{'/api/themes/' + domainId + '/favicon'}}", fallback-src='/images/logo-tiny.png', src="/images/logo-tiny.png", alt="{{ 'OpenPaas Logo' | translate }}")
-          ul.list-inline.all-centered.header-actions
-            li.hover-scale-animation
-              button.btn.btn-link.btn-icon(ui-sref='search.main')
-                i.mdi.mdi-magnify
-            li.hover-scale-animation(feature-flag="core.features.header:user-notification")
-              esn-user-notification-toggler
-            li.hover-scale-animation
-              application-menu-toggler
-            li
-              profile-menu.profile-menu
-      .aside-body(ng-bind="content", ng-class="{'hideHeader' : hideHeader}")
+  .aside-wrapper
+    .aside-dialog
+      .aside-content
+        #aside-header(ng-if="!hideHeader")
+          div.header-inner.flex-vertical-centered.flex-space-between
+            ul.list-inline.all-centered
+              li.logo
+                a(href='', ui-sref='home')
+                  img.openpaas-logo(ng-src="{{'/api/themes/' + domainId + '/favicon'}}", fallback-src='/images/logo-tiny.png', src="/images/logo-tiny.png", alt="{{ 'OpenPaas Logo' | translate }}")
+            ul.list-inline.all-centered.header-actions
+              li.hover-scale-animation
+                button.btn.btn-link.btn-icon(ui-sref='search.main')
+                  i.mdi.mdi-magnify
+              li.hover-scale-animation(feature-flag="core.features.header:user-notification")
+                esn-user-notification-toggler
+              li.hover-scale-animation
+                application-menu-toggler
+              li
+                profile-menu.profile-menu
+        .aside-body(ng-bind="content", ng-class="{'hideHeader' : hideHeader}")

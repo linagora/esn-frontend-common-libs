@@ -7,7 +7,9 @@ body.aside-open {
 
 .aside#contextual-sidebar {
   width: 268px;
-  min-width:268px;
+  min-width: 268px;
+  overflow: unset;
+  overflow-x: visible;
 
   @media (min-width: @screen-md-min) {
     top: @header-height-md;
@@ -15,6 +17,17 @@ body.aside-open {
 
   @media (min-width: @screen-xl-min) {
     top: @header-height-xl;
+  }
+
+  .aside-wrapper {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    overflow-y: auto;
   }
 
   #aside-header {
