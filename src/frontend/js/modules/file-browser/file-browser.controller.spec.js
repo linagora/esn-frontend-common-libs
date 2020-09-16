@@ -82,19 +82,20 @@ describe('The esnFileBrowserController', function() {
     });
 
     it('should change status and reset childNodes list in case of error', function() {
-      var bindings = {
-        loadNode: function() { return $q.reject(new Error('Something happened')); }
+      const error = new Error('Something happened');
+      const bindings = {
+        loadNode: function() { return $q.reject(error); }
       };
-      var filesBrowser = initController(bindings);
+      const filesBrowser = initController(bindings);
 
-      $log.error = sinon.spy();
+      $log.error = sinon.stub();
       filesBrowser.$onInit();
       $scope.$digest();
 
       expect(filesBrowser.status).to.equal('error');
       expect(filesBrowser.selectedNodes).to.be.empty;
       expect(filesBrowser.childNodes).to.be.empty;
-      expect($log.error).to.have.been.calledWith('Error while loading nodes', new Error('Something happened'));
+      expect($log.error).to.have.been.calledWith('Error while loading nodes', error);
     });
   });
 
