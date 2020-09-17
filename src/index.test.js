@@ -24,7 +24,6 @@ require('async/dist/async.js');
 require('angular-mocks/angular-mocks.js');
 
 require('../test/frontend/karma-include/injector.js');
-require('../test/config/mocks/esn-api-client');
 require('../test/config/cucumber.conf.js');
 require('../test/fixtures/code-generation/constants.js');
 require('../test/fixtures/code-generation/constants-with-overrides.js');
@@ -34,9 +33,9 @@ require('../test/fixtures/logger-noop.js');
 // We need to import this here since it is not imported in app.module.js.
 require('./frontend/js/modules/esn.api-client');
 
-var sinonChai = require('sinon-chai/lib/sinon-chai.js');
-var shallowDeepEqual = require('chai-shallow-deep-equal/chai-shallow-deep-equal.js');
-var chaiDatetime = require('chai-datetime/chai-datetime.js');
+const sinonChai = require('sinon-chai/lib/sinon-chai.js');
+const shallowDeepEqual = require('chai-shallow-deep-equal/chai-shallow-deep-equal.js');
+const chaiDatetime = require('chai-datetime/chai-datetime.js');
 
 /* global chai */
 chai.use(sinonChai);

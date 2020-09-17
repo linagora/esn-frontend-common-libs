@@ -2,15 +2,19 @@
 
 /* global sinon, chai: false */
 
-// We're mocking this inside test/config/mocks/esn-api-client.js
-const Client = require('esn-api-client/src/Client').default;
+const Client = require('esn-api-client/src/Client');
 const { expect } = chai;
 
 describe('The ESN API Client module', function() {
+  let ClientMock;
   let $window;
   let esnApiClient;
 
   beforeEach(function() {
+    ClientMock = sinon.spy(class Client {});
+
+    sinon.stub(Client, 'default').value(ClientMock);
+
     angular.mock.module('esn.api-client');
     angular.mock.inject(function(_$window_, _esnApiClient_) {
       $window = _$window_;
@@ -18,13 +22,17 @@ describe('The ESN API Client module', function() {
     });
   });
 
+  afterEach(function() {
+    sinon.restore();
+  });
+
   describe('The esnApiClient factory', function() {
     it('should create a new instance of Client with correct options', function() {
-      expect(Client).to.have.been.calledWith(sinon.match({
+      expect(ClientMock).to.have.been.calledWith(sinon.match({
         baseURL: $window.location.origin,
         customPromise: $q
       }));
-      expect(esnApiClient instanceof Client).to.be.true;
+      expect(esnApiClient instanceof ClientMock).to.be.true;
     });
   });
 });
