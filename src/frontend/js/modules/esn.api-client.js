@@ -1,6 +1,8 @@
-const Client = require('esn-api-client/src/Client').default;
+const Client = require('esn-api-client/src/Client');
 
 angular.module('esn.api-client', [])
   .factory('esnApiClient', function($q, $window) {
-    return new Client({ baseURL: $window.location.origin, customPromise: $q });
+    const ESNApiClient = Client.default;
+
+    return new ESNApiClient({ baseURL: $window.location.origin, customPromise: $q });
   });

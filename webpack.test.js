@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const AllowMutateEsmExportsPlugin = require('./test/webpack/AllowMutateEsmExports');
 const angularCommon = path.resolve(__dirname, 'src', 'angular-common.js');
 const angularInjections = path.resolve(__dirname, 'src', 'require-angular-injections.js');
 const chartJs = path.resolve(__dirname, 'src', 'frontend', 'components', 'Chart.js/Chart.js');
@@ -60,9 +61,7 @@ module.exports = {
       template: './assets/index.pug',
       filename: './index.html'
     }),
-    new webpack.NamedModulesPlugin(), // for rewiremock
-    new webpack.HotModuleReplacementPlugin(), // for rewiremock
-    new (require('rewiremock/webpack/plugin'))() // for rewiremock
+    new AllowMutateEsmExportsPlugin() // Allows mocking ES6 modules
   ],
   module: {
     rules: [

@@ -24,7 +24,6 @@ require('async/dist/async.js');
 require('angular-mocks/angular-mocks.js');
 
 require('../test/frontend/karma-include/injector.js');
-require('../test/config/mocks/esn-api-client');
 require('../test/config/cucumber.conf.js');
 require('../test/fixtures/code-generation/constants.js');
 require('../test/fixtures/code-generation/constants-with-overrides.js');
