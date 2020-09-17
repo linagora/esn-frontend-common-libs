@@ -33,9 +33,9 @@ require('../test/fixtures/logger-noop.js');
 // We need to import this here since it is not imported in app.module.js.
 require('./frontend/js/modules/esn.api-client');
 
-var sinonChai = require('sinon-chai/lib/sinon-chai.js');
-var shallowDeepEqual = require('chai-shallow-deep-equal/chai-shallow-deep-equal.js');
-var chaiDatetime = require('chai-datetime/chai-datetime.js');
+const sinonChai = require('sinon-chai/lib/sinon-chai.js');
+const shallowDeepEqual = require('chai-shallow-deep-equal/chai-shallow-deep-equal.js');
+const chaiDatetime = require('chai-datetime/chai-datetime.js');
 
 /* global chai */
 chai.use(sinonChai);
