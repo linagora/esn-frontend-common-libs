@@ -577,8 +577,6 @@
 })(angular);
 
 require('./avatar/avatar-url.service.js');
-require('./avatar/list/avatar-list.component.js');
-require('./avatar/list/avatar-list.controller.js');
 
 require('../constants.js');
 require('./http.js');

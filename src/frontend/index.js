@@ -65,8 +65,6 @@ require('./js/modules/infinite-list/infinite-list.directive.js');
 require('./js/modules/infinite-list/infinite-list.service.js');
 require('./js/modules/sidebar.js');
 require('./js/modules/avatar.js');
-require('./js/modules/avatar/list/avatar-list.component.js');
-require('./js/modules/avatar/list/avatar-list.controller.js');
 require('./js/modules/avatar/avatar-url.service.js');
 require('./js/modules/user/user.module.js');
 require('./js/modules/user/user.constants.js');
