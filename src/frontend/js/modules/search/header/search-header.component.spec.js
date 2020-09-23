@@ -21,10 +21,12 @@ describe('The esnSearchHeader component', function() {
     scope = $rootScope.$new();
   }));
 
-  function compileSearchHeaderDirective() {
+  function compileSearchHeaderDirective(showGlobalSearch = true) {
     var html = '<esn-search-header></esn-search-header>';
 
     element = $compile(html)(scope);
+
+    element.controller('esnSearchHeader').showGlobalSearch = showGlobalSearch;
     scope.$digest();
   }
 
@@ -68,5 +70,19 @@ describe('The esnSearchHeader component', function() {
     submitWithText();
 
     expect($state.go).to.have.been.calledWith('search.main', { a: null, p: null, q: 'cow' }, { location: 'replace', reload: true });
+  });
+
+  it('should show global search box if showGlobalSearch is true', function() {
+    scope = $rootScope.$new();
+    compileSearchHeaderDirective();
+
+    expect(element.find('.search-header').length > 0).to.be.true;
+  });
+
+  it('should NOT show global search box if showGlobalSearch is false', function() {
+    scope = $rootScope.$new();
+    compileSearchHeaderDirective(false);
+
+    expect(element.find('.search-header').length).to.equal(0);
   });
 });

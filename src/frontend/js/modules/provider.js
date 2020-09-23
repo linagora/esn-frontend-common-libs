@@ -17,6 +17,9 @@ const _ = require('lodash');
       }
 
       Providers.prototype = {
+        getNumberOfProviders: function() {
+          return this.providersPromises.length;
+        },
         add: function(providerPromise) {
           this.providersPromises.push($q.when(providerPromise));
         },

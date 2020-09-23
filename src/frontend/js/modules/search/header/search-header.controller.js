@@ -6,8 +6,11 @@ require('../search.service.js');
   angular.module('esn.search')
     .controller('ESNSearchHeaderController', ESNSearchHeaderController);
 
-  function ESNSearchHeaderController(esnSearchService) {
+  function ESNSearchHeaderController(esnSearchService, searchProviders) {
     var self = this;
+
+    // Check if we need to show the global search box
+    self.showGlobalSearch = searchProviders.getNumberOfProviders() > 0;
 
     self.search = search;
 

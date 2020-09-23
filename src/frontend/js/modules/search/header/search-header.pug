@@ -1,4 +1,4 @@
-.search-header.flex-vertical-centered
+.search-header.flex-vertical-centered(ng-if="$ctrl.showGlobalSearch")
   .header-back-button(ng-show="'search' | includedByState")
     button.btn.btn-link.btn-icon(href='', esn-back-button='home', title="{{ 'Back' | translate }}")
       i.mdi.mdi-arrow-left.mdi-margin-right
