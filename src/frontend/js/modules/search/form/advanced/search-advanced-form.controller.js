@@ -53,6 +53,18 @@ require('../../query/search-query.service.js');
     function loadProviders() {
       esnSearchContextService.getProvidersContext().then(function(providers) {
         self.providers = providers;
+
+        self.selectedProvider = undefined;
+
+        var activeProviders = (self.providers || []).filter(function(provider) {
+          return provider.active;
+        });
+
+        if (activeProviders.length) {
+          self.selectedProvider = activeProviders[0];
+        }
+
+        onProviderSelected(self.selectedProvider);
       });
     }
 
@@ -65,6 +77,7 @@ require('../../query/search-query.service.js');
     }
 
     function onProviderSelected(provider) {
+      // TODO: Write tests for this (https://github.com/OpenPaaS-Suite/esn-frontend-common-libs/issues/110)
       if (self.provider && provider && self.provider.id !== provider.id) {
         clearAdvancedQuery();
       }

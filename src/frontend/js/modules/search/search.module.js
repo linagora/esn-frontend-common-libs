@@ -27,8 +27,6 @@ require('./form/advanced/search-advanced-toggle-button.controller.js');
 require('./form/search-form.directive.js');
 require('./header/search-header.component.js');
 require('./header/search-header.controller.js');
-require('./provider-select/search-provider-select.component.js');
-require('./provider-select/search-provider-select.controller.js');
 require('./query/search-query.service.js');
 require('./result/search-result-item.component.js');
 require('./result/search-result-item.controller.js');
