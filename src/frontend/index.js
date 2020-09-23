@@ -51,8 +51,6 @@ require('./js/modules/search/result/search-result-item.controller.js');
 require('./js/modules/search/sub-header/sub-header.directive.js');
 require('./js/modules/search/application-menu.directive.js');
 require('./js/modules/search/search-providers.service.js');
-require('./js/modules/search/provider-select/search-provider-select.component.js');
-require('./js/modules/search/provider-select/search-provider-select.controller.js');
 require('./js/modules/search/query/search-query.service.js');
 require('./js/modules/search/search-provider.service.js');
 require('./js/modules/infinite-list/infinite-list.module.js');
