@@ -1,9 +1,14 @@
+require('./header/profile-menu/profile-menu.module.js');
+require('./application-menu.js');
+require('./search/search-providers.service.js');
+
 (function(angular) {
   'use strict';
 
   angular.module('esn.sidebar', [
     'esn.application-menu',
-    'esn.profile-menu'
+    'esn.profile-menu',
+    'esn.search'
   ])
 
     .constant('CONTEXTUAL_SIDEBAR', {
@@ -30,8 +35,11 @@
       return contextualSidebarService;
     })
 
-    .directive('contextualSidebar', function($timeout, $window, $mdUtil, contextualSidebarService, session) {
+    .directive('contextualSidebar', function($timeout, $window, $mdUtil, contextualSidebarService, session, searchProviders) {
       function link(scope, element, attr) {
+        // Check if we need to show the global search box
+        scope.showGlobalSearch = searchProviders.getNumberOfProviders() > 0;
+
         var options = { scope: scope },
           placementToAnimationMap = {
             left: 'am-fade-and-slide-left',
@@ -87,6 +95,3 @@
     });
 
 })(angular);
-
-require('./header/profile-menu/profile-menu.module.js');
-require('./application-menu.js');
