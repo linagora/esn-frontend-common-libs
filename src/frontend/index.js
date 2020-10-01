@@ -282,7 +282,6 @@ require('./js/modules/i18n/i18n.service.js');
 require('./js/modules/i18n/i18n.constants.js');
 require('./js/modules/i18n/i18n.config.js');
 require('./js/modules/i18n/i18n-dateformat.service.js');
-require('./js/modules/i18n/i18n-loader.service.js');
 require('./js/modules/i18n/i18n-string.service.js');
 require('./js/modules/i18n/i18n.filter.js');
 require('./js/modules/i18n/language-selector/i18n-language-selector.component.js');

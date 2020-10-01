@@ -15,7 +15,6 @@ const pugLoaderOptions = {
   root: `${__dirname}/src/frontend/views`
 };
 const lodashPath = path.resolve(__dirname, 'node_modules', 'lodash', 'dist', 'lodash.js');
-const i18nLoaderMockPath = path.resolve(__dirname, 'test', 'config', 'mocks', 'i18n-loader.js');
 
 const BASE_HREF = process.env.BASE_HREF || '/';
 
@@ -35,10 +34,6 @@ module.exports = {
   },
   plugins: [
     new webpack.IgnorePlugin({ resourceRegExp: /codemirror/ }), // for summernote
-    new webpack.NormalModuleReplacementPlugin(
-      /i18n-loader.service.js/,
-      i18nLoaderMockPath
-    ),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
