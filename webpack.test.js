@@ -9,7 +9,6 @@ const chartJs = path.resolve(__dirname, 'src', 'frontend', 'components', 'Chart.
 const materialAdmin = path.resolve(__dirname, 'src', 'frontend', 'js', 'material.js');
 const momentPath = path.resolve(__dirname, 'node_modules', 'moment', 'moment.js');
 const chaiPath = path.resolve(__dirname, 'node_modules', 'chai/chai.js');
-const showdownPath = path.resolve(__dirname, 'node_modules', 'showdown/dist/showdown.js');
 
 const pugLoaderOptions = {
   root: `${__dirname}/src/frontend/views`
@@ -46,8 +45,7 @@ module.exports = {
       angular: angularCommon,
       _: lodashPath,
       moment: momentPath,
-      'window.angularInjections': angularInjections,
-      showdown: showdownPath
+      'window.angularInjections': angularInjections
     }),
     /*
      * To transform assets/index.pug to an HTML file, with webpack autoimporting the "main.js" bundle

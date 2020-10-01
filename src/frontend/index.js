@@ -134,8 +134,6 @@ require('./js/modules/object-type.js');
 require('./js/modules/file.js');
 require('./js/modules/background.js');
 require('./js/modules/parser.js');
-require('./js/modules/markdown-parser.js');
-require('./js/modules/markdown-parser.js');
 require('./js/modules/widget-helper.js');
 require('./js/modules/oembed/oembed.js');
 require('./js/modules/oembed/youtube.js');
