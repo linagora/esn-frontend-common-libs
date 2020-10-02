@@ -67,8 +67,6 @@
     "restangular": "1.6.1",
     "roboto-fontface": "0.4.3",
     "save-dev": "0.0.1-security",
-    "showdown": "1.5.0",
-    "showdown-twitter": "^1.1.0",
     "summernote": "github:linagora/summernote#0.8.2-1",
     "ui-router-extras": "0.1.0",
     "videogular": "1.4.4",

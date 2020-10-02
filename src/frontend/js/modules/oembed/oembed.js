@@ -164,6 +164,5 @@ require('./image.js');
 require('./instagram.js');
 require('./slideshare.js');
 require('./soundcloud.js');
-require('./twitter.js');
 require('./vimeo.js');
 require('./youtube.js');
