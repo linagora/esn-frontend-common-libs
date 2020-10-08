@@ -61,7 +61,7 @@
     "mdi": "2.0.46",
     "moment": "2.15.1",
     "moment-timezone": "0.5.17",
-    "ng-tags-input": "3.2.0",
+    "ng-tags-input": "3.0.0",
     "openpaas-auth-client": "github:openpaas-suite/openpaas-auth-client#main",
     "re-tree": "0.0.2",
     "restangular": "1.6.1",
