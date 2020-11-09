@@ -22,7 +22,7 @@
 
     function onAvatarUpdated(event, user) {
       if (user && user._id === session.user._id) {
-        self.avatarURL = esnAvatarUrlService.generateUrlByUserId(session.user._id, true);
+        self.avatarURL = esnAvatarUrlService.generateUrlByUserId(user._id, true);
       }
     }
   }
