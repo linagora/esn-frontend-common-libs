@@ -4,7 +4,7 @@
   angular.module('esn.avatar')
     .factory('esnAvatarUrlService', esnAvatarUrlService);
 
-  function esnAvatarUrlService(urlUtils) {
+  function esnAvatarUrlService($log, urlUtils) {
     return {
       generateUrl: generateUrl,
       generateForCurrentUser: generateForCurrentUser,
@@ -17,6 +17,8 @@
     }
 
     function generateForCurrentUser(noCache) {
+      $log.warn('DEPRECATION: The esnAvatarUrlService.generateForCurrentUser should not be used anymore, as it is not compatible with OIDC.');
+
       return applyTimestamp('/api/user/profile/avatar', noCache);
     }
 

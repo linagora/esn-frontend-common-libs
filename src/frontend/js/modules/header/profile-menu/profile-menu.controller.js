@@ -11,7 +11,7 @@
     self.openMenu = openMenu;
 
     function $onInit() {
-      self.avatarURL = esnAvatarUrlService.generateForCurrentUser(true);
+      self.avatarURL = esnAvatarUrlService.generateUrlByUserId(session.user._id, true);
 
       $scope.$on('avatar:updated', onAvatarUpdated);
     }
@@ -22,7 +22,7 @@
 
     function onAvatarUpdated(event, user) {
       if (user && user._id === session.user._id) {
-        self.avatarURL = esnAvatarUrlService.generateForCurrentUser(true);
+        self.avatarURL = esnAvatarUrlService.generateUrlByUserId(user._id, true);
       }
     }
   }
