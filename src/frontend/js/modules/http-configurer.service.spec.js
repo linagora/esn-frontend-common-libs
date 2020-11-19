@@ -75,4 +75,16 @@ describe('The esn.http httpConfigurer service', function() {
       expect(httpConfigurer.getUrl()).to.equal(theBaseUrl);
     });
   });
+
+  describe('getHeaders()', function() {
+    it('should send back an empty object when no specific header is set', function() {
+      expect(httpConfigurer.getHeaders()).to.deep.equal({});
+    });
+    it('should send back the specific headers', function() {
+      const headers = { Authorization: 'Bearer 1234' };
+
+      httpConfigurer.setHeaders(headers);
+      expect(httpConfigurer.getHeaders()).to.deep.equal(headers);
+    });
+  });
 });

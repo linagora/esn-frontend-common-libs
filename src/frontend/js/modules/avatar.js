@@ -163,7 +163,7 @@
         return $upload.http({
           method: 'POST',
           url: httpConfigurer.getUrl('/api/user/profile/avatar'),
-          headers: { 'Content-Type': mime },
+          headers: { ...httpConfigurer.getHeaders(), 'Content-Type': mime },
           data: blob,
           params: { mimetype: mime, size: blob.size },
           withCredentials: true
@@ -174,7 +174,7 @@
         return $upload.http({
           method: 'PUT',
           url: httpConfigurer.getUrl('/api/users/' + userId + '/profile/avatar?domain_id=' + domainId),
-          headers: { 'Content-Type': mime },
+          headers: { ...httpConfigurer.getHeaders(), 'Content-Type': mime },
           data: blob,
           params: { mimetype: mime, size: blob.size },
           withCredentials: true
