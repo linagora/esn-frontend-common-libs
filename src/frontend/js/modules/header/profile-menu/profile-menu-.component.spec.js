@@ -52,7 +52,12 @@ describe('The profileMenu component', function() {
   });
 
   it('should retrieve a coherent avatarUrl', function() {
-    var regexpAvatarUrl = /^\/api\/user\/profile\/avatar\?cb=\d+$/;
+    var regexpAvatarUrl = /^\/api\/users\/123\/profile\/avatar\?cb=\d+$/;
+    var currentUser = { _id: '123' };
+
+    session.user = currentUser;
+    $rootScope.$broadcast('avatar:updated', currentUser);
+    $rootScope.$digest();
 
     expect(element.find('.header-avatar').attr('ng-src')).to.match(regexpAvatarUrl);
   });
