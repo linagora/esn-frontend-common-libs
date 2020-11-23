@@ -8,7 +8,7 @@ function esnAuth($log, userAPI, httpConfigurer) {
   let auth;
 
   const onSignInComplete = data => {
-    $log.debug('User signed in');
+    $log.debug('esn.auth - User signed in');
     data.headers && httpConfigurer.setHeaders(data.headers);
   };
 
@@ -19,17 +19,26 @@ function esnAuth($log, userAPI, httpConfigurer) {
     });
 
     auth.addEventListener('userSignedOut', () => {
-      console.log('User signed out, redirecting to sign in...');
+      $log.info('esn.auth - User signed out, redirecting to sign in...');
       auth.signin();
     });
 
     auth.addEventListener('sessionExpiring', () => {
-      $log.debug('Session is expiring');
+      $log.info('esn.auth - Session is expiring');
+    });
+
+    auth.addEventListener('silentRenewError', err => {
+      $log.info('esn.auth - Silent renew error', err);
     });
 
     auth.addEventListener('sessionExpired', () => {
-      $log.debug('Session expired, force authentication');
-      auth.signin();
+      if (!auth.willRenewSession()) {
+        $log.info('esn.auth - Session expired, force signin');
+
+        return auth.signin();
+      }
+
+      $log.info('esn.auth - Session expired, waiting for auth to renew it');
     });
   }
 
