@@ -76,6 +76,7 @@ angular.module('esn.http', [
       var moduleRestangular = { restangular: restangular, baseUri: baseUri };
 
       updateRestangularBaseUrl(moduleRestangular);
+      updateRestangularHeaders(moduleRestangular);
       restangulars.push(moduleRestangular);
     }
 
