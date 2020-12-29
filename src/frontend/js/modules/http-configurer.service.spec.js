@@ -15,8 +15,9 @@ describe('The esn.http httpConfigurer service', function() {
 
   describe('manageRestangular fn', function() {
     it('should prepend the current baseUrl', function() {
-      var raInstance = {
-        setBaseUrl: sinon.spy()
+      const raInstance = {
+        setBaseUrl: sinon.spy(),
+        setDefaultHeaders: sinon.spy()
       };
 
       httpConfigurer.setBaseUrl('/test1');
@@ -26,8 +27,9 @@ describe('The esn.http httpConfigurer service', function() {
     });
 
     it('should update the baseUrl when setBaseUrl is called', function() {
-      var raInstance = {
-        setBaseUrl: function() {}
+      const raInstance = {
+        setBaseUrl: sinon.spy(),
+        setDefaultHeaders: sinon.spy()
       };
 
       httpConfigurer.setBaseUrl('/test1');
@@ -36,6 +38,36 @@ describe('The esn.http httpConfigurer service', function() {
       httpConfigurer.setBaseUrl('/test2');
 
       expect(raInstance.setBaseUrl).to.have.been.calledWith('/test2/mod1/api');
+    });
+
+    it('should set the headers to restangular instances', function() {
+      const headers = { Authorization: 'bearer 1234' };
+      const raInstance = {
+        setBaseUrl: sinon.spy(),
+        setDefaultHeaders: sinon.spy()
+      };
+
+      httpConfigurer.setBaseUrl('/test1');
+      httpConfigurer.setHeaders(headers);
+      httpConfigurer.manageRestangular(raInstance, '/mod1/api');
+
+      expect(raInstance.setDefaultHeaders).to.have.been.calledWith(headers);
+    });
+
+    it('should update the headers when setHeaders is called', function() {
+      const headers = { Authorization: 'bearer 1234' };
+      const raInstance = {
+        setBaseUrl: sinon.spy(),
+        setDefaultHeaders: sinon.spy()
+      };
+
+      httpConfigurer.setBaseUrl('/test1');
+      httpConfigurer.setHeaders({ foo: 'bar' });
+      httpConfigurer.manageRestangular(raInstance, '/mod1/api');
+      raInstance.setDefaultHeaders = sinon.spy();
+      httpConfigurer.setHeaders(headers);
+
+      expect(raInstance.setDefaultHeaders).to.have.been.calledWith(headers);
     });
   });
 
