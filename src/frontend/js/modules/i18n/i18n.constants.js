@@ -38,5 +38,12 @@
       vi: 'EEE dd/MM/yyyy',
       zh: 'EEE yyyy/MM/dd',
       ru: 'EEE dd/MM/yyyy'
+    })
+    .constant('ESN_I18N_SUPPORTED_MOMENT_LOCALES_MAPPING', {
+      // En is supported by default
+      fr: 'fr',
+      vi: 'vi',
+      zh: 'zh-cn',
+      ru: 'ru'
     });
 })();
