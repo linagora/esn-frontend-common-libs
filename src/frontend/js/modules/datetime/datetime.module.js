@@ -3,7 +3,8 @@
 
   angular.module('esn.datetime', [
     'esn.configuration',
-    'esn.form.helper'
+    'esn.form.helper',
+    'tmh.dynamicLocale'
   ]);
 })(angular);
 
