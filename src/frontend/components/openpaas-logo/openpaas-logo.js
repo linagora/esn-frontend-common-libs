@@ -109,7 +109,8 @@
         };
 
         scope.stop = function() {
-          if ( !scope.spinner ) { return ; }
+          if (!scope.spinner || !element[0].contains(scope.spinner)) return;
+
           element[0].removeChild(scope.spinner);
         };
 
