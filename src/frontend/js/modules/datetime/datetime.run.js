@@ -5,7 +5,7 @@ require('./datetime.service.js');
 
   angular.module('esn.datetime')
     .config(function(tmhDynamicLocaleProvider) {
-      tmhDynamicLocaleProvider.localeLocationPattern('https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/i18n/angular-locale_{{locale}}.js');
+      tmhDynamicLocaleProvider.localeLocationPattern('i18n/angular-locale_{{locale}}.js');
     })
     .run(run);
 
