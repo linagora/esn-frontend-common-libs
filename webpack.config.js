@@ -40,13 +40,16 @@ module.exports = {
       'window.angularInjections': angularInjections,
       localforage: 'localforage' // for calendar
     }),
-    new CopyWebpackPlugin([
-      { from: './node_modules/angular-i18n/angular-locale_vi.js', to: path.resolve(__dirname + '/i18n') },
-      { from: './node_modules/angular-i18n/angular-locale_fr.js', to: path.resolve(__dirname + '/i18n') },
-      { from: './node_modules/angular-i18n/angular-locale_zh.js', to: path.resolve(__dirname + '/i18n') },
-      { from: './node_modules/angular-i18n/angular-locale_en.js', to: path.resolve(__dirname + '/i18n') },
-      { from: './node_modules/angular-i18n/angular-locale_ru.js', to: path.resolve(__dirname + '/i18n') }
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: './node_modules/angular-i18n/angular-locale_vi.js', to: path.resolve(__dirname + '/i18n') },
+        { from: './node_modules/angular-i18n/angular-locale_fr.js', to: path.resolve(__dirname + '/i18n') },
+        { from: './node_modules/angular-i18n/angular-locale_zh.js', to: path.resolve(__dirname + '/i18n') },
+        { from: './node_modules/angular-i18n/angular-locale_en.js', to: path.resolve(__dirname + '/i18n') },
+        { from: './node_modules/angular-i18n/angular-locale_ru.js', to: path.resolve(__dirname + '/i18n') }
+      ]
+    }),
+
     /*
      * To transform assets/index.pug to an HTML file, with webpack autoimporting the "main.js" bundle
      */
