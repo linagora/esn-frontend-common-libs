@@ -27,8 +27,18 @@
         return uri + hash; // finally append the hash as well
       }
 
+      function isValidURL(string) {
+        if (typeof string !== 'string') {
+          return false;
+        }
+
+        // eslint-disable-next-line no-useless-escape
+        return string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g) !== null;
+      }
+
       return {
-        updateUrlParameter: updateUrlParameter
+        updateUrlParameter,
+        isValidURL
       };
 
     })

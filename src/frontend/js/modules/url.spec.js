@@ -74,6 +74,27 @@ describe('The esn.url Angular module', function() {
 
     });
 
+    describe('The isValidURL function', function() {
+      it('should return true if the string is a valid absolute URL', function() {
+        expect(urlUtils.isValidURL('http://123.com')).to.be.true;
+      });
+
+      it('should return true if the string is a valid relative URL', function() {
+        expect(urlUtils.isValidURL('123.com')).to.be.true;
+      });
+
+      it('should return false if it is not a string', function() {
+        expect(urlUtils.isValidURL(123)).to.be.false;
+      });
+
+      it('should return false if the string is empty', function() {
+        expect(urlUtils.isValidURL('')).to.be.false;
+      });
+
+      it('should return false if the string is not a valid URL', function() {
+        expect(urlUtils.isValidURL('/123')).to.be.false;
+      });
+    });
   });
 
   describe('The absoluteUrl factory', function() {
