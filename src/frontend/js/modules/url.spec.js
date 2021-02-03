@@ -95,6 +95,24 @@ describe('The esn.url Angular module', function() {
         expect(urlUtils.isValidURL('/123')).to.be.false;
       });
     });
+
+    describe('The isAbsoluteURL function', function() {
+      it('should return true if the url is an absolute URL', function() {
+        expect(urlUtils.isAbsoluteURL('http://123.com')).to.be.true;
+      });
+
+      it('should return false if the url is a relative URL', function() {
+        expect(urlUtils.isAbsoluteURL('123.com')).to.be.false;
+      });
+
+      it('should return false if the url is invalid', function() {
+        expect(urlUtils.isAbsoluteURL('someinvalid/string')).to.be.false;
+      });
+
+      it('should return false if the url is not a string', function() {
+        expect(urlUtils.isAbsoluteURL(123)).to.be.false;
+      });
+    });
   });
 
   describe('The absoluteUrl factory', function() {
