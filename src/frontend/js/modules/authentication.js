@@ -1,5 +1,7 @@
+import jwtDecode from 'jwt-decode';
+
 angular.module('esn.authentication', ['esn.http'])
-  .factory('tokenAPI', function(esnRestangular) {
+  .factory('tokenAPI', function(esnRestangular, $log) {
 
     // https://github.com/linagora/openpaas-esn/blob/master/backend/core/auth/token.js#L3
     // token TTL is 60 seconds server-side. We keep a lower value to get over
@@ -8,13 +10,47 @@ angular.module('esn.authentication', ['esn.http'])
     const NETWORK_LAG = 15 * 1000;
     const CACHE_MAX_TTL = SERVER_TTL - NETWORK_LAG;
     const cachedToken = { promise: null, timestamp: 0 };
+    const cachedJWTToken = { promise: null, expirationTime: 0 };
 
     return {
-      getNewToken
+      getNewToken,
+      getWebToken
     };
 
     function getNewToken(resetCache = false) {
       return resetCache ? getTokenNoCache() : getCachedToken();
+    }
+
+    function getWebToken(reset = false) {
+      return reset ? requestNewWebToken() : getCachedWebToken();
+    }
+
+    function requestNewWebToken() {
+      const jwtPromise = esnRestangular.one('jwt/generate').post();
+
+      return jwtPromise
+        .then(({ data: token }) => {
+          // Expiration time claim not included? default to 0, meaning never expires
+          const { exp = 0 } = jwtDecode(token);
+
+          setJWTCache(jwtPromise, exp);
+
+          return jwtPromise;
+        })
+        .catch(err => {
+          $log.error(`An error occured while fetching the JWT: ${err}`);
+          setJWTCache(null);
+        });
+    }
+
+    function getCachedWebToken() {
+      const { expirationTime, promise } = cachedJWTToken;
+
+      // check if the cached token never expires.
+      if (!expirationTime) return promise || requestNewWebToken();
+
+      // check if we haven't reached the expiration time yet.
+      return expirationTime > Date.now() ? promise : requestNewWebToken();
     }
 
     function getCachedToken() {
@@ -40,6 +76,11 @@ angular.module('esn.authentication', ['esn.http'])
 
     function getCache() {
       return cachedToken;
+    }
+
+    function setJWTCache(promise, expirationTime = 0) {
+      cachedJWTToken.promise = promise;
+      cachedJWTToken.expirationTime = expirationTime;
     }
   });
 
