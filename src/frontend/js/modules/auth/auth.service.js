@@ -4,7 +4,7 @@ const { getAuth } = require('./client');
 
 angular.module('esn.auth').factory('esnAuth', esnAuth);
 
-function esnAuth($log, userAPI, httpConfigurer) {
+function esnAuth($log, $window, userAPI, httpConfigurer) {
   let auth;
 
   const onSignInComplete = data => {
@@ -16,7 +16,7 @@ function esnAuth($log, userAPI, httpConfigurer) {
     auth = getAuth({
       fetchUser: userAPI.currentUser,
       onSignInComplete
-    });
+    }, $window.openpaas);
 
     auth.addEventListener('userSignedOut', () => {
       $log.info('esn.auth - User signed out, redirecting to sign in...');
