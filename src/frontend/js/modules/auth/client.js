@@ -2,11 +2,18 @@ const getAuthProvider = require('openpaas-auth-client').default;
 
 const DEFAULT_PROVIDER = 'basic';
 
-function getAuth(options) {
-  return getAuthProvider(getProvider(), { ...getSettings(), ...options });
+function getAuth(options, config) {
+  return getAuthProvider(getProvider(config), {
+    ...getSettings(config),
+    ...options
+  });
 }
 
-function getSettings() {
+function getSettings(config) {
+  if (config && config.AUTH_PROVIDER_SETTINGS) {
+    return config.AUTH_PROVIDER_SETTINGS;
+  }
+
   if (typeof process.env.AUTH_PROVIDER_SETTINGS === 'string') {
     try {
       return JSON.parse(process.env.AUTH_PROVIDER_SETTINGS);
@@ -19,8 +26,16 @@ function getSettings() {
   return process.env.AUTH_PROVIDER_SETTINGS;
 }
 
-function getProvider() {
-  return process.env.AUTH_PROVIDER || DEFAULT_PROVIDER;
+function getProvider(config) {
+  if (config && config.AUTH_PROVIDER) {
+    return config.AUTH_PROVIDER;
+  }
+
+  if (process.env.AUTH_PROVIDER) {
+    return process.env.AUTH_PROVIDER;
+  }
+
+  return DEFAULT_PROVIDER;
 }
 
 module.exports = { getAuth };
