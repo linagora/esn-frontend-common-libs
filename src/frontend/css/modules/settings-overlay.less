@@ -8,13 +8,23 @@
           opacity: 1;
         }
       }
+
+      .settings-overlay-dots {
+        background-color: @body-bg;
+        box-shadow: -4px 0px 20px @body-bg;
+      }
     }
   }
 
   .md-menu {
     &.md-open {
-      .mdi {
-        opacity: 1;
+      .settings-overlay-dots {
+        background-color: @body-bg;
+        box-shadow: -4px 0px 20px @body-bg;
+
+        .mdi {
+          opacity: 1;
+        }
       }
     }
   }
@@ -27,11 +37,15 @@
     height: 100%;
     right: 0;
     font-size: @asideSettingsIconFontSize;
-    background-color: inherit;
     padding-right: 2px;
 
-    .mdi {
-      opacity: 0;
+    .settings-overlay-dots {
+      width: 22px;
+      height: 22px;
+
+      .mdi {
+        opacity: 0;
+      }
     }
   }
 }
@@ -39,6 +53,11 @@
 .is-desktop .clickable:not(.text-danger):not(a):not(.menu-root):hover {
   settings-overlay {
     .md-menu {
+      .settings-overlay-dots {
+        background-color: @darkenBgColor;
+        box-shadow: -4px 0px 20px @darkenBgColor;
+      }
+
       .mdi {
         opacity: 0.5;
       }
@@ -53,6 +72,15 @@
 .is-mobile .clickable:not(.text-danger):not(a):not(.menu-root) {
   &.selected {
     settings-overlay {
+      .md-menu {
+        .settings-overlay-dots {
+          &.selected .badge {
+            box-shadow: -4px 0px 20px @darkenBgColor;
+            background-color: @darkenBgColor;
+          }
+        }
+      }
+
       .md-menu, .md-menu.md-open {
         .mdi {
           opacity: 1;
