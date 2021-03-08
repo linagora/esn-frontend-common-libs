@@ -17,8 +17,8 @@ require('./datetime.constants.js');
   ) {
     var humanTimeGroupings = [
       { name: 'Today', dateFormat: 'shortTime', accepts: _isToday },
-      { name: 'Yesterday', dateFormat: 'ddd', accepts: _isYesterday },
-      { name: 'This week', dateFormat: 'ddd', accepts: _isThisWeek },
+      { name: 'Yesterday', dateFormat: 'ddd shortTime', accepts: _isYesterday },
+      { name: 'This week', dateFormat: 'ddd shortTime', accepts: _isThisWeek },
       { name: 'Last week', dateFormat: 'MMM D', accepts: _isLastWeek },
       { name: 'This month', dateFormat: 'MMM D', accepts: _isThisMonth },
       { name: 'Last month', dateFormat: 'MMM D', accepts: _isLastMonth },
