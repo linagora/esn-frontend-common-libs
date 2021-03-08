@@ -13,6 +13,8 @@
     .all-centered();
     .col-xs-4();
 
+    padding-left: 0;
+    padding-right: 0;
     height: 80px;
 
     & > a {
@@ -24,6 +26,8 @@
       .label {
         color: @action-list-icon-color;
         font-size: 100%;
+        padding: 0.2em 0 0.3em;
+        white-space: normal;
       }
 
       & > i.mdi {
@@ -45,8 +49,8 @@
 
   &.popover {
     // Without a fixed width there, the action-list can be rendered too tight
-    max-width: 300px;
-    width: 300px;
+    max-width: 350px;
+    width: 350px;
     z-index: @aside-z-index + 1;
 
     .popover-content {
