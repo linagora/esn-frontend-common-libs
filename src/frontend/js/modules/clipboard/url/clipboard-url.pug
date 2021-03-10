@@ -1,9 +1,8 @@
 .esn-clipboard-url
   .fg-line
     input.form-control(type="text", ng-model="ctrl.url", ng-click="ctrl.onTextClick($event)", readonly)
-  a.btn.btn-link
-    md-tooltip(md-direction="top") {{ 'Copy to clipboard' | translate }}
-    i.mdi.mdi-clipboard-arrow-left(
+  a.btn.btn-link.btn-icon(title="{{ 'Copy to clipboard' | translate }}", bs-tooltip)
+    i.mdi.mdi-content-copy(
       ngclipboard
       data-clipboard-text="{{ctrl.url}}",
       ngclipboard-success="ctrl.onCopySuccess();" ngclipboard-error="ctrl.onCopyError(e);"
