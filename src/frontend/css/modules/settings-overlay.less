@@ -4,6 +4,8 @@
   &.selected {
     settings-overlay {
       .md-menu, .md-menu.md-open {
+        display: block;
+
         .mdi {
           opacity: 1;
         }
@@ -18,6 +20,8 @@
 
   .md-menu {
     &.md-open {
+      display: block;
+
       .settings-overlay-dots {
         background-color: @body-bg;
         box-shadow: -4px 0px 20px @body-bg;
@@ -32,10 +36,9 @@
   .md-menu {
     .all-centered;
 
-    position: absolute;
-    top: 0;
+    position: relative;
+    display: none;
     height: 100%;
-    right: 0;
     font-size: @asideSettingsIconFontSize;
     padding-right: 2px;
 
@@ -53,6 +56,8 @@
 .is-desktop .clickable:not(.text-danger):not(a):not(.menu-root):hover {
   settings-overlay {
     .md-menu {
+      display: block;
+
       .settings-overlay-dots {
         background-color: @darkenBgColor;
         box-shadow: -4px 0px 20px @darkenBgColor;
@@ -73,6 +78,8 @@
   &.selected {
     settings-overlay {
       .md-menu {
+        display: block;
+
         .settings-overlay-dots {
           &.selected .badge {
             box-shadow: -4px 0px 20px @darkenBgColor;
@@ -91,6 +98,8 @@
 
   settings-overlay .md-menu {
     &.md-open {
+      display: block;
+
       .mdi {
         opacity: 1;
       }
