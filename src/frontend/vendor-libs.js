@@ -67,6 +67,7 @@ require('moment-timezone/builds/moment-timezone-with-data.js');
 require('dompurify/dist/purify.js');
 require('matchmedia/index.js');
 require('re-tree/re-tree.js');
+require('angular-dynamic-locale/src/tmhDynamicLocale.js');
 require('./components/jquery.focus/dist/jquery.focus.js');
 require('./components/bootstrap/dist/js/bootstrap.js');
 require('./components/angular-file-upload/dist/angular-file-upload-shim.js');

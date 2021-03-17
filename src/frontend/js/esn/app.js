@@ -23,7 +23,8 @@ angular.module('esnApp', [
   'luegg.directives',
   'naturalSort',
   'esn.configuration',
-  'ngTagsInput'
+  'ngTagsInput',
+  'tmh.dynamicLocale'
 ].concat(angularInjections))
 
   .config(function(routeResolver, $urlRouterProvider, $stateProvider) {

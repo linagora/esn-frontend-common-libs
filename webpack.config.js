@@ -8,6 +8,7 @@ const commonLibsPath = path.resolve(__dirname);
 const angularCommon = path.resolve(__dirname, 'src', 'angular-common');
 const chartJs = path.resolve(__dirname, 'src', 'frontend', 'components', 'Chart.js/Chart.js');
 const materialAdmin = path.resolve(__dirname, 'src', 'frontend', 'js', 'material.js');
+const angularDynamicLocale = path.resolve(__dirname, 'node_modules', 'angular-dynamic-locale', 'src', 'tmhDynamicLocale.js');
 const pugLoaderOptions = {};
 
 module.exports = {
@@ -34,6 +35,7 @@ module.exports = {
       Chart: chartJs,
       materialAdmin: materialAdmin,
       angular: angularCommon,
+      angularDynamicLocale: angularDynamicLocale,
       'window.angularInjections': angularInjections,
       localforage: 'localforage' // for calendar
     }),
