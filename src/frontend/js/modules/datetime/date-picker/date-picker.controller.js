@@ -34,17 +34,6 @@ require('../datetime.service.js');
         unsubscribeFromWatchNgModel();
       });
       self.uiValue = self.ngModel && esnDatetimeService.updateObjectToBrowserTimeZone(self.ngModel);
-
-      // Datepicker translation
-      const saveDate = angular.copy(self.uiValue);
-
-      $timeout(function() {
-        self.someChange = true;
-        $timeout(function() {
-          self.someChange = false;
-          self.uiValue = saveDate;
-        }, 0);
-      }, 0);
     }
 
     function onChange() {
