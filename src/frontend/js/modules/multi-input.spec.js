@@ -72,17 +72,6 @@ describe('The multi-input Angular module', function() {
 
     });
 
-    describe('The hideDeleteButton fn', function() {
-
-      it('should insert false value in showDeleteButton if it is true', function() {
-        $scope.showDeleteButtonArray[2] = true;
-        $scope.hideDeleteButton(2);
-        timeout.flush();
-        expect($scope.showDeleteButtonArray[2]).is.false;
-      });
-
-    });
-
     describe('The verifyNew fn', function() {
       beforeEach(function() {
         $scope.content = [{ value: '' }];

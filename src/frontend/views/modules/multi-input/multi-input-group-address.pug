@@ -1,7 +1,10 @@
 .multi-input-content
   .form-group(ng-repeat='item in content track by $index' resetable-input)
-    div
-      .col-xs-4.col-sm-3
+    .row
+      .col-md-6.col-sm-9
+        .fg-line
+          input.form-control.multi-input-text(type='text', ng-model='item.street', placeholder="{{ 'Street' | translate }}", ng-model-options="{allowInvalid: true}", ng-change='verifyNew($index)', ng-focus="onFocusFn($index)", ng-blur="hideDeleteButton($index)")
+      .col-md-3.col-sm-3
         .fg-line
           .select
             select.form-control.multi-input-type(
@@ -10,23 +13,18 @@
               ng-options='type as (type | esnI18n) for type in types',
               ng-change="onTypeChange($index)"
             )
-      .col-xs-8.col-sm-9
+      .col-md-1
+        .action-button
+          i.clickable.mdi.mdi-close(ng-show="showDeleteButtonArray[$index]", ng-click="deleteField($index)")
+          i.clickable.mdi.mdi-plus(ng-show="showAddButton[$index]", ng-click="addField()")
+    .row      
+      .col-md-3.col-sm-3
         .fg-line
-          input.form-control.multi-input-text(type='text', ng-model='item.street', placeholder="{{ 'Street' | translate }}", ng-model-options="{allowInvalid: true}", ng-change='verifyNew($index)', ng-focus="onFocusFn($index)", ng-blur="hideDeleteButton($index)")
-          i.clickable.mdi.mdi-minus-circle-outline.button-remove(ng-show="showDeleteButtonArray[$index]", ng-click="deleteField($index)")
-    div
-      div
-        .col-xs-4.col-sm-3
-          .fg-line
-            input.form-control(type='text', ng-model='item.zip', placeholder="{{ 'Zip' | translate }}", ng-model-options="{allowInvalid: true}", ng-change='verifyNew($index)', ng-focus="onFocusFn($index)", ng-blur="hideDeleteButton($index)")
-        .col-xs-8.col-sm-9
-          .fg-line
-            input.form-control(type='text', ng-model='item.city', placeholder="{{ 'City' | translate }}", ng-model-options="{allowInvalid: true}", ng-change='verifyNew($index)', ng-focus="onFocusFn($index)", ng-blur="hideDeleteButton($index)")
-      .col-xs-12
+          input.form-control(type='text', ng-model='item.zip', placeholder="{{ 'Zip' | translate }}", ng-model-options="{allowInvalid: true}", ng-change='verifyNew($index)', ng-focus="onFocusFn($index)", ng-blur="hideDeleteButton($index)")
+      .col-md-6.col-sm-9
+        .fg-line
+          input.form-control(type='text', ng-model='item.city', placeholder="{{ 'City' | translate }}", ng-model-options="{allowInvalid: true}", ng-change='verifyNew($index)', ng-focus="onFocusFn($index)", ng-blur="hideDeleteButton($index)")
+    .row
+      .col-md-9
         .fg-line
           input.form-control(type='text', ng-model='item.country', placeholder="{{ 'Country' | translate }}", ng-model-options="{allowInvalid: true}", ng-change='verifyNew($index)', ng-focus="onFocusFn($index)", ng-blur="hideDeleteButton($index)")
-.multi-input-button.clickable(ng-if="showAddButton" ng-click="addField()")
-  .form-group
-    .col-xs-12.flex-vertical-centered.m-t-10.m-b-10
-      i.mdi.mdi-plus-circle.button-add.m-r-5
-      | {{ 'Add a new address' | translate }}
