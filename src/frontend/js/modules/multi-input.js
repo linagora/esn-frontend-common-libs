@@ -24,7 +24,6 @@
       $scope.onFocusFn = function(id) {
 
         if ($scope.content.length === 1) {
-
           $scope.showAddButton[id] = true;
           $scope.showDeleteButtonArray[id] = false;
         } else {
@@ -32,9 +31,7 @@
           $scope.showAddButton[$scope.content.length - 2] = true;
 
           $scope.showDeleteButtonArray[$scope.content.length - 1] = true;
-
         }
-
       };
 
       function hasValueInput(content) {
