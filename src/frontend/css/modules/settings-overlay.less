@@ -33,7 +33,7 @@
     }
   }
 
-  .md-menu {
+  .md-menu.settings-overlay {
     .all-centered;
 
     position: relative;
@@ -57,7 +57,7 @@
 .is-desktop .clickable:not(.text-danger):not(a):not(.menu-root):hover {
   settings-overlay {
     .md-menu {
-      display: block;
+      .all-centered;
 
       .settings-overlay-dots {
         background-color: @darkenBgColor;
@@ -79,7 +79,7 @@
   &.selected {
     settings-overlay {
       .md-menu {
-        display: block;
+        .all-centered;
 
         .settings-overlay-dots {
           &.selected .badge {
