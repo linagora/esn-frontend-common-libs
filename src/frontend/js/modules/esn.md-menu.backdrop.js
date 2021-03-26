@@ -6,9 +6,13 @@ angular.module('esn.md-menu.backdrop', [])
     };
 
     function link(scope, element, attrs) {
-      observe();
+      const observer = observe();
 
       element.click(changeBackdropZIndex);
+
+      element.on('$destroy', () => {
+        observer.disconnect();
+      });
 
       function changeBackdropZIndex() {
         observe();
@@ -26,6 +30,8 @@ angular.module('esn.md-menu.backdrop', [])
         });
 
         mutationObserver.observe(document.body, { childList: true });
+
+        return mutationObserver;
       }
     }
   });
