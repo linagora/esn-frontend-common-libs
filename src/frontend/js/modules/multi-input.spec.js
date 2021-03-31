@@ -54,31 +54,22 @@ describe('The multi-input Angular module', function() {
 
     describe('The onFocusFn fn', function() {
 
-      it('should insert true value in showDeleteButton if it is undefined', function() {
+      it('should insert true value in showAddButton and false in showDeleteButtonArray if it is the first element', function() {
         $scope.onFocusFn(1);
-        expect($scope.showDeleteButtonArray[1]).is.true;
+
+        expect($scope.showDeleteButtonArray[1]).is.false;
+        expect($scope.showAddButton[1]).is.true;
       });
 
-      it('should insert true value in showAddButton', function() {
-        $scope.onFocusFn(1);
-        expect($scope.showAddButton).is.true;
-      });
-
-      it('should insert true value in showDeleteButton', function() {
-        $scope.showDeleteButtonArray[2] = false;
-        $scope.onFocusFn(2);
+      it('should insertnpm true value in showDeleteButton', function() {
+        $scope.inputValue = [{ value: 'value 1' }, { value: 'value2' }, { value: 'value3' }];
+        $controller('MultiInputGroupController', {
+          $scope: $scope
+        });
+        $scope.$digest();
+        $scope.onFocusFn(3);
         expect($scope.showDeleteButtonArray[2]).is.true;
-      });
-
-    });
-
-    describe('The hideDeleteButton fn', function() {
-
-      it('should insert false value in showDeleteButton if it is true', function() {
-        $scope.showDeleteButtonArray[2] = true;
-        $scope.hideDeleteButton(2);
-        timeout.flush();
-        expect($scope.showDeleteButtonArray[2]).is.false;
+        expect($scope.showAddButton[1]).is.true;
       });
 
     });
@@ -87,12 +78,6 @@ describe('The multi-input Angular module', function() {
       beforeEach(function() {
         $scope.content = [{ value: '' }];
         $scope.inputValue = [{ value: '' }];
-      });
-
-      it('should affect true value to showAddButton', function() {
-        $scope.showAddButton = false;
-        $scope.verifyNew(0);
-        expect($scope.showAddButton).is.true;
       });
 
       it('should call onFocusFn fn with correct params', function() {
@@ -116,9 +101,14 @@ describe('The multi-input Angular module', function() {
     describe('The addField fn', function() {
 
       it('should affect false value to showAddButton', function() {
-        $scope.showAddButton = true;
+        $scope.inputValue = [{ value: 'value 1' }, { value: 'value2' }, { value: 'value3' }];
+        $controller('MultiInputGroupController', {
+          $scope: $scope
+        });
+        $scope.$digest();
+        $scope.showAddButton[1] = true;
         ctrl.addField();
-        expect($scope.showAddButton).is.false;
+        expect($scope.showAddButton[1]).is.false;
       });
 
       it('should add one field scope content', function() {
@@ -141,13 +131,6 @@ describe('The multi-input Angular module', function() {
     describe('The deleteField fn', function() {
       beforeEach(function() {
         $scope.inputValue = [];
-      });
-
-      it('should affect false value to showAddButton if content is empty after remove item', function() {
-        $scope.content = [];
-        $scope.showAddButton = true;
-        ctrl.deleteField(null, 0);
-        expect($scope.showAddButton).is.false;
       });
 
       it('should remove one item scope content', function() {
@@ -187,15 +170,15 @@ describe('The multi-input Angular module', function() {
       });
 
       it('should affect true value to showAddButton', function() {
-        $scope.showAddButton = false;
+        $scope.showAddButton[1] = true;
         $scope.onTypeChange(0);
-        expect($scope.showAddButton).is.true;
+        expect($scope.showAddButton[1]).is.true;
       });
 
       it('should affect true value to showDeleteButtonArray', function() {
         $scope.showDeleteButtonArray[0] = false;
         $scope.onTypeChange(0);
-        expect($scope.showDeleteButtonArray[0]).to.be.true;
+        expect($scope.showDeleteButtonArray[0]).to.be.false;
       });
 
       it('should update inputValue', function() {

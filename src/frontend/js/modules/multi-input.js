@@ -17,20 +17,21 @@
 
     .controller('MultiInputGroupController', function($scope, $timeout, multiInputService) {
       $scope.showDeleteButtonArray = [];
+      $scope.showAddButton = [];
       $scope.content = $scope.inputValue && $scope.inputValue.length ? angular.copy($scope.inputValue) : [{}];
       $scope.inputValue = $scope.inputValue ? $scope.inputValue : [];
 
       $scope.onFocusFn = function(id) {
-        $scope.showAddButton = true;
-        $scope.showDeleteButtonArray[id] = true;
-      };
 
-      $scope.hideDeleteButton = function(id) {
-        $timeout(function() {
-          if ($scope.showDeleteButtonArray[id]) {
-            $scope.showDeleteButtonArray[id] = false;
-          }
-        }, 200);
+        if ($scope.content.length === 1) {
+          $scope.showAddButton[id] = true;
+          $scope.showDeleteButtonArray[id] = false;
+        } else {
+          $scope.showAddButton[$scope.content.length - 1] = false;
+          $scope.showAddButton[$scope.content.length - 2] = true;
+
+          $scope.showDeleteButtonArray[$scope.content.length - 1] = true;
+        }
       };
 
       function hasValueInput(content) {
@@ -48,7 +49,9 @@
       };
 
       this.addField = function(element) {
-        $scope.showAddButton = false;
+        $scope.showAddButton[$scope.content.length - 2] = false;
+        $scope.showDeleteButtonArray[$scope.content.length - 1] = false;
+
         $scope.content.push({
           value: '',
           type: $scope.types ? $scope.types[$scope.content.length % $scope.types.length] : ''
@@ -63,7 +66,6 @@
         }
         if ($scope.content.length === 0) {
           $scope.content = [{ type: $scope.types ? $scope.types[0] : '' }];
-          $scope.showAddButton = false;
         }
         multiInputService.focusLastItem(element, '.multi-input-content .multi-input-text');
       };
