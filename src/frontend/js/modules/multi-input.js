@@ -21,8 +21,10 @@
       $scope.content = $scope.inputValue && $scope.inputValue.length ? angular.copy($scope.inputValue) : [{}];
       $scope.inputValue = $scope.inputValue ? $scope.inputValue : [];
 
-      $scope.onFocusFn = function(id) {
+      $scope.showAddButton[$scope.content.length - 1] = true;
+      $scope.showDeleteButtonArray[$scope.content.length - 1] = false;
 
+      $scope.onFocusFn = function(id) {
         if ($scope.content.length === 1) {
           $scope.showAddButton[id] = true;
           $scope.showDeleteButtonArray[id] = false;
@@ -61,7 +63,7 @@
 
       this.deleteField = function(element, id) {
         $scope.content.splice(id, 1);
-        if ($scope.inputValue[id]) {
+        if ($scope.inputValue && $scope.inputValue[id]) {
           $scope.inputValue.splice(id, 1);
         }
         if ($scope.content.length === 0) {

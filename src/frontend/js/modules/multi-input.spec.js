@@ -49,7 +49,7 @@ describe('The multi-input Angular module', function() {
     });
 
     it('should init showDeleteButton array', function() {
-      expect($scope.showDeleteButtonArray).to.deep.equal([]);
+      expect($scope.showDeleteButtonArray).to.deep.equal([false]);
     });
 
     describe('The onFocusFn fn', function() {
