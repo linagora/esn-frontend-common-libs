@@ -114,6 +114,7 @@
           };
 
           scope.domainId = session.domain._id;
+          scope.baseUrl = window.openpaas && window.openpaas.OPENPAAS_API_URL || '';
 
           var unregister = matchmedia.on(ESN_MEDIA_QUERY_SM_XS, function(mediaQueryList) {
             scope.enableScrollListener = mediaQueryList.matches;

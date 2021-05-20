@@ -62,6 +62,7 @@ require('./search/search-providers.service.js');
         }
 
         scope.domainId = session.domain._id;
+        scope.baseUrl = window.openpaas && window.openpaas.OPENPAAS_API_URL || '';
 
         var sidebar = contextualSidebarService(options);
         var jWindow = angular.element($window);
