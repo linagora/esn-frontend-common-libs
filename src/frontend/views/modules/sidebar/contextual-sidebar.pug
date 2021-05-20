@@ -7,7 +7,7 @@
             ul.list-inline.all-centered
               li.logo
                 a(href='', ui-sref='home')
-                  img.openpaas-logo(ng-src="{{'/api/themes/' + domainId + '/favicon'}}", fallback-src='/images/logo-tiny.png', src="/images/logo-tiny.png", alt="{{ 'OpenPaas Logo' | translate }}")
+                  img.openpaas-logo(ng-src="{{ baseUrl + '/api/themes/' + domainId + '/favicon'}}", fallback-src='/images/logo-tiny.png', src="/images/logo-tiny.png", alt="{{ 'OpenPaas Logo' | translate }}")
             ul.list-inline.all-centered.header-actions
               li.hover-scale-animation(ng-if="showGlobalSearch")
                 button.btn.btn-link.btn-icon(ui-sref='search.main')
