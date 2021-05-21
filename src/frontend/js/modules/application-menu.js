@@ -11,7 +11,7 @@ angular.module('esn.application-menu', [])
       replace: true,
       template: require('../../views/modules/application-menu/application-menu-toggler.pug'),
       link: function($scope) {
-        $scope.appGridItems = process.env.APP_GRID_ITEMS;
+        $scope.appGridItems = window.openpaas.APP_GRID_ITEMS || process.env.APP_GRID_ITEMS;
 
         if (!$scope.appGridItems) {
           $log.error('The environment variable APP_GRID_ITEMS has not been defined yet, and the application grid will break.');
