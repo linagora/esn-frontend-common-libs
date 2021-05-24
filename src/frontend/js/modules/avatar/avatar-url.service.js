@@ -19,15 +19,15 @@
     function generateForCurrentUser(noCache) {
       $log.warn('DEPRECATION: The esnAvatarUrlService.generateForCurrentUser should not be used anymore, as it is not compatible with OIDC.');
 
-      return applyTimestamp('/api/user/profile/avatar', noCache);
+      return applyTimestamp(`${_getBaseUrl()}/api/user/profile/avatar`, noCache);
     }
 
     function generateUrlByUserEmail(email, noCache) {
-      return applyTimestamp('/api/avatars?email=' + email, noCache);
+      return applyTimestamp(`${_getBaseUrl()}/api/avatars?email=${email}`, noCache);
     }
 
     function generateUrlByUserId(userId, noCache) {
-      return applyTimestamp('/api/users/' + userId + '/profile/avatar', noCache);
+      return applyTimestamp(`${_getBaseUrl()}/api/users/${userId}/profile/avatar`, noCache);
     }
 
     function applyTimestamp(url, apply) {
@@ -36,6 +36,10 @@
       }
 
       return url;
+    }
+
+    function _getBaseUrl() {
+      return window.openpaas && window.openpaas.OPENPAAS_API_URL || '';
     }
   }
 })(angular);
