@@ -9,6 +9,9 @@ describe('The profileMenu component', function() {
 
   beforeEach(function() {
     angular.mock.module('esn.profile-menu');
+    angular.mock.module(function($provide) {
+      $provide.value('APPLICATION_GRID_ACCOUNT_SPA_NAME', 'Account');
+    });
   });
 
   beforeEach(angular.mock.inject(function(

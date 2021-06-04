@@ -31,6 +31,8 @@
 
     .constant('ESN_SUBHEADER_HEIGHT_MD', 47)
 
+    .constant('APPLICATION_GRID_ACCOUNT_SPA_NAME', 'Account')
+
     .factory('headerService', function($rootScope, dynamicDirectiveService, MAIN_HEADER, SUB_HEADER, SUB_HEADER_HAS_INJECTION_EVENT) {
 
       function buildDynamicDirective(directiveName, scope) {
