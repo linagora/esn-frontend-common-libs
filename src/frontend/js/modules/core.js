@@ -127,7 +127,11 @@ const _ = require('lodash');
       return {
         link: function postLink(scope, element, attrs) {
           element.bind('error', function() {
-            angular.element(this).attr('src', attrs.fallbackSrc);
+            if (angular.element(this).attr('src') !== attrs.fallbackSrc) {
+              angular.element(this).attr('src', attrs.fallbackSrc);
+            } else {
+              console.warn(`Img fallback src ${attrs.fallbackSrc} not found.`);
+            }
           });
         }
       };
