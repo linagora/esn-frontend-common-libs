@@ -50,7 +50,8 @@ angular.module('esn.authentication', ['esn.http'])
       if (!expirationTime) return promise || requestNewWebToken();
 
       // check if we haven't reached the expiration time yet.
-      return expirationTime > Date.now() ? promise : requestNewWebToken();
+      // jwt exp claim is a NumericDate value that is defined as the number of seconds (not milliseconds) since Epoch.
+      return expirationTime > Date.now() / 1000 ? promise : requestNewWebToken();
     }
 
     function getCachedToken() {
