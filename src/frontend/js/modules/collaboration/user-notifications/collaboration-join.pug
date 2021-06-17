@@ -10,7 +10,7 @@
           p {{ 'Loading notification' | translate }}
         div(ng-hide='loading || error || notFound')
           a.pull-left(ng-href='/#/{{::collaborationPath}}/{{::collaborationJoined._id}}')
-            img.media-object(ng-src='/api/avatars?objectType={{::collaborationJoined.objectType}}&id={{::collaborationJoined._id}}', fallback-src='images/collaboration.png', alt="{{ 'Collaboration joined' | translate }}")
+            img.media-object(ng-src='/api/avatars?objectType={{::collaborationJoined.objectType}}&id={{::collaborationJoined._id}}', fallback-src='assets/images/collaboration.png', alt="{{ 'Collaboration joined' | translate }}")
           .media-body
             .ellipsis
               span.pull-right.date.hidden-xs(am-time-ago="::notification.timestamps.creation")

@@ -2,7 +2,7 @@
   .media
     .pull-left
       a(ui-sref="profile({user_id: ctrl.member._id})")
-        img.lv-img-sm(ng-src="/api/users/{{::ctrl.member._id}}/profile/avatar", src="images/user.png", alt="{{ 'Profile Avatar' | translate }}")
+        img.lv-img-sm(ng-src="/api/users/{{::ctrl.member._id}}/profile/avatar", src="assets/images/user.png", alt="{{ 'Profile Avatar' | translate }}")
     .pull-right
       ul.actions(ng-if="ctrl.isCollaborationManager")
         li.dropdown
