@@ -13,6 +13,7 @@ describe('The esn.authentication tokenAPI service', function() {
 
   beforeEach(module(function($provide) {
     $provide.value('esnRestangular', esnRestangular);
+    $provide.value('esnAuth', {});
   }));
 
   beforeEach(inject(function(_tokenAPI_) {
@@ -61,6 +62,16 @@ describe('The esn.authentication tokenAPI service', function() {
   });
 
   describe('the getWebToken method', () => {
+    it('should call POST /api/jwt/generate', () => {
+      const promiseSpy = sinon.fake.resolves('jwt');
+
+      esnRestangular.one = sinon.fake.returns({ post: promiseSpy });
+
+      tokenAPI.getWebToken();
+      expect(esnRestangular.one).to.have.been.calledWith('jwt/generate');
+      expect(promiseSpy).to.have.been.called;
+    });
+
     it('should call POST /api/jwt/generate', () => {
       const promiseSpy = sinon.fake.resolves('jwt');
 
