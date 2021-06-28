@@ -4,12 +4,15 @@ const { getAuth } = require('./client');
 
 angular.module('esn.auth').factory('esnAuth', esnAuth);
 
-function esnAuth($log, $window, userAPI, httpConfigurer) {
+function esnAuth($q, $log, $window, userAPI, httpConfigurer) {
   let auth;
-
+  const signInCompleteDeferred = $q.defer();
   const onSignInComplete = data => {
     $log.debug('esn.auth - User signed in');
-    data.headers && httpConfigurer.setHeaders(data.headers);
+    if (data.headers) {
+      httpConfigurer.setHeaders(data.headers);
+      signInCompleteDeferred.resolve();
+    }
   };
 
   if (!auth) {
@@ -41,6 +44,8 @@ function esnAuth($log, $window, userAPI, httpConfigurer) {
       $log.info('esn.auth - Session expired, waiting for auth to renew it');
     });
   }
+
+  auth.signInCompletePromise = signInCompleteDeferred.promise;
 
   return auth;
 }
