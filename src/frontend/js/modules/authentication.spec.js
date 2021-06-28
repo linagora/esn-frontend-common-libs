@@ -13,6 +13,7 @@ describe('The esn.authentication tokenAPI service', function() {
 
   beforeEach(module(function($provide) {
     $provide.value('esnRestangular', esnRestangular);
+    $provide.value('esnAuth', {});
   }));
 
   beforeEach(inject(function(_tokenAPI_) {
