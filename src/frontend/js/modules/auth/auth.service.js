@@ -6,17 +6,14 @@ angular.module('esn.auth').factory('esnAuth', esnAuth);
 
 function esnAuth($q, $log, $window, userAPI, httpConfigurer) {
   let auth;
-  let onSignInComplete;
-
-  const signInCompletePromise = $q(function(resolve) {
-    onSignInComplete = data => {
-      $log.debug('esn.auth - User signed in');
-      if (data.headers) {
-        httpConfigurer.setHeaders(data.headers);
-        resolve();
-      }
-    };
-  });
+  const signInCompleteDeferred = $q.defer();
+  const onSignInComplete = data => {
+    $log.debug('esn.auth - User signed in');
+    if (data.headers) {
+      httpConfigurer.setHeaders(data.headers);
+      signInCompleteDeferred.resolve();
+    }
+  };
 
   if (!auth) {
     auth = getAuth({
@@ -48,7 +45,7 @@ function esnAuth($q, $log, $window, userAPI, httpConfigurer) {
     });
   }
 
-  auth.signInCompletePromise = signInCompletePromise;
+  auth.signInCompletePromise = signInCompleteDeferred.promise;
 
   return auth;
 }

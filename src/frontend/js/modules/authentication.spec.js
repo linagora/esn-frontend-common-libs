@@ -72,16 +72,6 @@ describe('The esn.authentication tokenAPI service', function() {
       expect(promiseSpy).to.have.been.called;
     });
 
-    it('should call POST /api/jwt/generate', () => {
-      const promiseSpy = sinon.fake.resolves('jwt');
-
-      esnRestangular.one = sinon.fake.returns({ post: promiseSpy });
-
-      tokenAPI.getWebToken();
-      expect(esnRestangular.one).to.have.been.calledWith('jwt/generate');
-      expect(promiseSpy).to.have.been.called;
-    });
-
     it('should call the cached token promise ( that doesn\'t expire ) to POST /api/jwt/generate', () => {
       const promiseSpy = sinon.stub();
 
