@@ -128,7 +128,7 @@
         });
     })
 
-    .factory('sessionFactory', function($log, $q, Restangular, userAPI, domainAPI, session, themesService, applyThemeService) {
+    .factory('sessionFactory', function($log, $q, Restangular, userAPI, domainAPI, session, themesService, applyThemeService, esnAuth) {
 
       function onError(error, callback) {
         if (error && error.data) {
@@ -150,7 +150,7 @@
       }
 
       function fetchUser(callback) {
-        userAPI.currentUser().then(function(response) {
+        esnAuth.signInCompletePromise.then(userAPI.currentUser).then(function(response) {
           var user = Restangular.stripRestangular(response.data);
 
           session.setUser(user);
