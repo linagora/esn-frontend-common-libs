@@ -14,20 +14,15 @@ angular.module('esn.authentication', ['esn.http'])
 
     return {
       getNewToken,
-      getWebToken,
-      getWebTokenWhenSignInComplete
+      getWebToken
     };
 
     function getNewToken(resetCache = false) {
-      return resetCache ? getTokenNoCache() : getCachedToken();
+      return esnAuth.signInCompletePromise.then(() => (resetCache ? getTokenNoCache() : getCachedToken()));
     }
 
     function getWebToken(reset = false) {
-      return reset ? requestNewWebToken() : getCachedWebToken();
-    }
-
-    function getWebTokenWhenSignInComplete(reset = false) {
-      return esnAuth.signInCompletePromise.then(() => getWebToken(reset));
+      return esnAuth.signInCompletePromise.then(() => (reset ? requestNewWebToken() : getCachedWebToken()));
     }
 
     function requestNewWebToken() {

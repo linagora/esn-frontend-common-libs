@@ -13,7 +13,9 @@ describe('The esn.authentication tokenAPI service', function() {
 
   beforeEach(module(function($provide) {
     $provide.value('esnRestangular', esnRestangular);
-    $provide.value('esnAuth', {});
+    $provide.value('esnAuth', {
+      signInCompletePromise: $q.when()
+    });
   }));
 
   beforeEach(inject(function(_tokenAPI_) {
@@ -26,9 +28,10 @@ describe('The esn.authentication tokenAPI service', function() {
 
       esnRestangular.one = sinon.fake.returns({ get: getSpy });
 
-      tokenAPI.getNewToken();
-      expect(esnRestangular.one).to.have.been.calledWith('authenticationtoken');
-      expect(getSpy).to.have.been.called;
+      return tokenAPI.getNewToken().then(() => {
+        expect(esnRestangular.one).to.have.been.calledWith('authenticationtoken');
+        expect(getSpy).to.have.been.called;
+      });
     });
 
     it('should cache calls to GET /api/authenticationtoken', function() {
@@ -38,8 +41,7 @@ describe('The esn.authentication tokenAPI service', function() {
 
       esnRestangular.one = sinon.fake.returns({ get: getSpy });
 
-      return tokenAPI.getNewToken().then(() => {
-        tokenAPI.getNewToken();
+      return tokenAPI.getNewToken().then(() => tokenAPI.getNewToken()).then(() => {
         expect(esnRestangular.one).to.have.been.calledOnceWithExactly('authenticationtoken');
         expect(getSpy).to.have.been.calledOnce;
       });
@@ -52,8 +54,7 @@ describe('The esn.authentication tokenAPI service', function() {
 
       esnRestangular.one = sinon.fake.returns({ get: getSpy });
 
-      return tokenAPI.getNewToken().then(() => {
-        tokenAPI.getNewToken(true);
+      return tokenAPI.getNewToken().then(() => tokenAPI.getNewToken(true)).then(() => {
         expect(esnRestangular.one).to.have.been.calledTwice;
         expect(esnRestangular.one).to.have.been.calledWithExactly('authenticationtoken');
         expect(getSpy).to.have.been.calledTwice;
@@ -67,9 +68,10 @@ describe('The esn.authentication tokenAPI service', function() {
 
       esnRestangular.one = sinon.fake.returns({ post: promiseSpy });
 
-      tokenAPI.getWebToken();
-      expect(esnRestangular.one).to.have.been.calledWith('jwt/generate');
-      expect(promiseSpy).to.have.been.called;
+      return tokenAPI.getWebToken().then(() => {
+        expect(esnRestangular.one).to.have.been.calledWith('jwt/generate');
+        expect(promiseSpy).to.have.been.called;
+      });
     });
 
     it('should call the cached token promise ( that doesn\'t expire ) to POST /api/jwt/generate', () => {
@@ -79,8 +81,7 @@ describe('The esn.authentication tokenAPI service', function() {
 
       esnRestangular.one = sinon.fake.returns({ post: promiseSpy });
 
-      return tokenAPI.getWebToken().then(() => {
-        tokenAPI.getWebToken();
+      return tokenAPI.getWebToken().then(() => tokenAPI.getWebToken()).then(() => {
         expect(esnRestangular.one).to.have.been.calledWith('jwt/generate');
         expect(promiseSpy).to.have.been.calledTwice; // twice, cause it tries to decode the token first
       });
@@ -92,8 +93,7 @@ describe('The esn.authentication tokenAPI service', function() {
       promiseSpy.resolves('jwt');
       esnRestangular.one = sinon.fake.returns({ post: promiseSpy });
 
-      return tokenAPI.getWebToken().then(() => {
-        tokenAPI.getWebToken(true);
+      return tokenAPI.getWebToken().then(() => tokenAPI.getWebToken(true)).then(() => {
         expect(promiseSpy).to.have.been.calledTwice;
         expect(esnRestangular.one).to.have.been.calledWithExactly('jwt/generate');
       });
@@ -113,9 +113,8 @@ describe('The esn.authentication tokenAPI service', function() {
       promiseSpy.resolves('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE1MTYyMzkxMjN9.MJuIweGw2pVzGh_lNFfsbAH1-Lrr5JVRZptQqgBMDVg');
 
       return tokenAPI.getWebToken() // fetch the token initially
+        .then(() => tokenAPI.getWebToken()) // try to use the cached token
         .then(() => {
-          tokenAPI.getWebToken(); // try to use the cached token
-
           expect(esnRestangular.one).to.have.been.calledWithExactly('jwt/generate');
           expect(esnRestangular.one).to.have.callCount(4);
           // why 4 you ask?
