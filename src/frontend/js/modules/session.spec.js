@@ -1,6 +1,6 @@
 'use strict';
 
-/* global chai: false */
+/* global chai, sinon: false */
 
 var { expect } = chai;
 
@@ -366,4 +366,64 @@ describe('The esn.session Angular module', function() {
 
   });
 
+  describe('the sessionInitESNController', () => {
+    let userAPI, esnAuth, self;
+
+    beforeEach(function() {
+      self = this;
+
+      userAPI = {
+        currentUser: sinon.stub().returns($q.when({})),
+        user: sinon.stub().returns($q.when({}))
+      };
+
+      esnAuth = {
+        signout: sinon.spy(),
+        init: sinon.stub().returns($q.when({}))
+      };
+
+      angular.mock.module(function($provide) {
+        $provide.value('userAPI', userAPI);
+        $provide.value('esnAuth', esnAuth);
+      });
+
+      angular.mock.inject(function($rootScope, $controller, session, $timeout) {
+        this.$scope = $rootScope.$new();
+        this.$rootScope = $rootScope;
+        this.$controller = $controller;
+        this.session = session;
+        this.$timeout = $timeout;
+      });
+    });
+
+    function initController() {
+      const controller = self.$controller('sessionInitESNController', {
+        $rootScope: self.$rootScope,
+        $scope: self.$scope
+      });
+
+      return controller;
+    }
+
+    it('should signout the user if he is unauthorized ( broken session )', function() {
+      esnAuth.init = sinon.stub().returns($q.reject({
+        code: 401
+      }));
+
+      initController();
+      this.$scope.$digest();
+
+      expect(esnAuth.signout).to.have.been.called;
+    });
+
+    it('shouldn\'t signout the user when a non 401 error was received', function() {
+      esnAuth.init = sinon.stub().returns($q.reject({
+        code: 500
+      }));
+
+      initController();
+
+      expect(esnAuth.signout).to.not.have.been.called;
+    });
+  });
 });
