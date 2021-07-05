@@ -378,7 +378,7 @@ describe('The esn.session Angular module', function() {
       };
 
       esnAuth = {
-        signout: sinon.spy(),
+        signin: sinon.spy(),
         init: sinon.stub().returns($q.when({}))
       };
 
@@ -405,7 +405,7 @@ describe('The esn.session Angular module', function() {
       return controller;
     }
 
-    it('should signout the user if he is unauthorized ( broken session )', function() {
+    it('should redirect to the signin url if the user is unauthorized ( broken session )', function() {
       esnAuth.init = sinon.stub().returns($q.reject({
         code: 401
       }));
@@ -413,17 +413,17 @@ describe('The esn.session Angular module', function() {
       initController();
       this.$scope.$digest();
 
-      expect(esnAuth.signout).to.have.been.called;
+      expect(esnAuth.signin).to.have.been.called;
     });
 
-    it('shouldn\'t signout the user when a non 401 error was received', function() {
+    it('shouldn\'t redirect to the signin url when a non 401 error was received', function() {
       esnAuth.init = sinon.stub().returns($q.reject({
         code: 500
       }));
 
       initController();
 
-      expect(esnAuth.signout).to.not.have.been.called;
+      expect(esnAuth.signin).to.not.have.been.called;
     });
   });
 });
