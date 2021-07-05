@@ -124,7 +124,7 @@
           if (error.code && error.code === 401) {
             $log.error('failed to fetch the current user', error);
 
-            return esnAuth.signout();
+            return esnAuth.signin();
           }
 
           $scope.$apply(() => {
