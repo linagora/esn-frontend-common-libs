@@ -517,7 +517,7 @@
         objectType: '<'
       }
     })
-    .controller('EsnAvatarController', function($attrs, $q, $log, userAPI, esnAvatarUrlService) {
+    .controller('EsnAvatarController', function($attrs, $q, $log, $scope, userAPI, esnAvatarUrlService) {
       var self = this;
 
       self.$onInit = setProperties;
@@ -529,6 +529,8 @@
         if ($attrs.resolveAvatar) {
           return self.resolveAvatar().then(function(avatar) {
             self.avatar = avatar;
+            // trigger a DOM update after resolving the avatar url
+            $scope.$evalAsync();
           });
         }
 
