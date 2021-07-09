@@ -32,6 +32,7 @@ function esnAuth($q, $log, $window, userAPI, httpConfigurer) {
 
     auth.addEventListener('silentRenewError', err => {
       $log.info('esn.auth - Silent renew error', err);
+      auth.signin();
     });
 
     auth.addEventListener('sessionExpired', () => {
