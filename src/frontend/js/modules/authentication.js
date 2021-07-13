@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 
 angular.module('esn.authentication', ['esn.http'])
-  .factory('tokenAPI', function(esnRestangular, $log) {
+  .factory('tokenAPI', function(esnRestangular, $log, esnAuth) {
 
     // https://github.com/linagora/openpaas-esn/blob/master/backend/core/auth/token.js#L3
     // token TTL is 60 seconds server-side. We keep a lower value to get over
@@ -18,11 +18,11 @@ angular.module('esn.authentication', ['esn.http'])
     };
 
     function getNewToken(resetCache = false) {
-      return resetCache ? getTokenNoCache() : getCachedToken();
+      return esnAuth.signInCompletePromise.then(() => (resetCache ? getTokenNoCache() : getCachedToken()));
     }
 
     function getWebToken(reset = false) {
-      return reset ? requestNewWebToken() : getCachedWebToken();
+      return esnAuth.signInCompletePromise.then(() => (reset ? requestNewWebToken() : getCachedWebToken()));
     }
 
     function requestNewWebToken() {

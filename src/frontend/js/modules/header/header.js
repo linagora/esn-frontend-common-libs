@@ -100,7 +100,7 @@
       };
     })
 
-    .directive('mainHeader', function(matchmedia, headerService, Fullscreen, session,
+    .directive('mainHeader', function(matchmedia, headerService, Fullscreen, session, esnRestangular,
       SUB_HEADER_HAS_INJECTION_EVENT, ESN_MEDIA_QUERY_SM_XS) {
       return {
         restrict: 'E',
@@ -117,6 +117,18 @@
 
           scope.domainId = session.domain._id;
           scope.baseUrl = window.openpaas && window.openpaas.OPENPAAS_API_URL || '';
+
+          esnRestangular.one('themes', scope.domainId)
+            .withHttpConfig({ responseType: 'arraybuffer' })
+            .customGET('logo').then(function(response) {
+              const blob = new Blob(
+                [response.data], { type: response.headers('Content-Type') }
+              );
+
+              scope.logoUrl = (window.URL || window.webkitURL).createObjectURL(blob);
+            }, () => {
+              scope.logoUrl = 'assets/images/white-logo.svg';
+            });
 
           var unregister = matchmedia.on(ESN_MEDIA_QUERY_SM_XS, function(mediaQueryList) {
             scope.enableScrollListener = mediaQueryList.matches;

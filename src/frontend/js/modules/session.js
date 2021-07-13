@@ -121,6 +121,12 @@
             });
         })
         .catch(error => {
+          if (error.code && error.code === 401) {
+            $log.error('failed to fetch the current user', error);
+
+            return esnAuth.signin();
+          }
+
           $scope.$apply(() => {
             $scope.session.error = error.data;
             $scope.session.template = esnTemplate.templates.error;
@@ -128,7 +134,7 @@
         });
     })
 
-    .factory('sessionFactory', function($log, $q, Restangular, userAPI, domainAPI, session, themesService, applyThemeService) {
+    .factory('sessionFactory', function($log, $q, Restangular, userAPI, domainAPI, session, themesService, applyThemeService, esnAuth) {
 
       function onError(error, callback) {
         if (error && error.data) {
@@ -150,7 +156,7 @@
       }
 
       function fetchUser(callback) {
-        userAPI.currentUser().then(function(response) {
+        esnAuth.signInCompletePromise.then(userAPI.currentUser).then(function(response) {
           var user = Restangular.stripRestangular(response.data);
 
           session.setUser(user);
