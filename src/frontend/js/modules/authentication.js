@@ -1,6 +1,32 @@
 import jwtDecode from 'jwt-decode';
 
-angular.module('esn.authentication', ['esn.http'])
+angular.module('esn.authentication', ['esn.http', 'ui.router'])
+  .constant('authCallbackPath', '/auth/oidc/callback')
+  .run(function($location, $window, authCallbackPath) {
+    const currentLocation = {
+      path: $location.path(),
+      search: $location.search()
+    };
+
+    if (currentLocation.path !== authCallbackPath) {
+      $window.localStorage.setItem('redirectToAfterAuth', JSON.stringify(currentLocation));
+    }
+  })
+  .config(function($urlRouterProvider, authCallbackPath) {
+
+    $urlRouterProvider.when(authCallbackPath, function($location, $window) {
+
+      const redirectToAfterAuth = JSON.parse($window.localStorage.getItem('redirectToAfterAuth'));
+
+      $window.localStorage.removeItem('redirectToAfterAuth');
+
+      if (redirectToAfterAuth) {
+        $location.path(redirectToAfterAuth.path).search(redirectToAfterAuth.search);
+      } else {
+        return '/';
+      }
+    });
+  })
   .factory('tokenAPI', function(esnRestangular, $log, esnAuth) {
 
     // https://github.com/linagora/openpaas-esn/blob/master/backend/core/auth/token.js#L3
