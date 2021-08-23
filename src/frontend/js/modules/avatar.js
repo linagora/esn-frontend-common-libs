@@ -14,6 +14,10 @@
     'esn.session'
   ])
     .constant('AVATAR_OFFSET', 10)
+    .constant('DEFAULT_AVATAR_SIZE', 256)
+    .constant('FONT_RATIO', 66)
+    .constant('DEFAULT_TEXT_COLOR', 'white')
+    .constant('BACKGROUND_COLORS', ['#d32f2f', '#C2185B', '#7B1FA2', '#512DA8', '#303F9F', '#1976D2', '#0288D1', '#0097A7', '#00796B', '#388E3C', '#689F38', '#AFB42B', '#FBC02D', '#FFA000', '#F57C00', '#E64A19', '#5D4037', '#616161', '#455A64'])
     .provider('avatarDefaultUrl', function() {
       var url = '/images/community.png';
 
@@ -573,6 +577,140 @@
 
       function displayUserStatus() {
         return self.objectType === 'user' ? !!self.avatar.id && !self.hideUserStatus : false;
+      }
+    })
+    .factory('EsnInitialsAvatarGeneratorService', function(DEFAULT_AVATAR_SIZE, DEFAULT_TEXT_COLOR, FONT_RATIO, BACKGROUND_COLORS) {
+      let canvas = null;
+
+      return {
+        generate
+      };
+
+      /**
+       * generate an avatar from username or email
+       *
+       * @param {String} username - the username or email
+       * @returns {String} - the generated avatar string
+       */
+      function generate(username) {
+        const text = generateInitials(username);
+        const color = generateColor(username);
+
+        return drawAvatar(text, color);
+      }
+
+      /**
+       * generate initials from username or email
+       *
+       * @param {String} name - the username or email
+       * @returns {String} - the initials
+       */
+      function generateInitials(name) {
+        const initials = name.split(' ').map(c => c[0].toUpperCase());
+
+        return initials.join('');
+      }
+
+      /**
+       * generate color from username or email
+       *
+       * @param {String} name - the username or email
+       * @returns {String} - the color
+       */
+      function generateColor(seed) {
+        let hash = 0;
+
+        seed.split('').forEach(c => {
+          // eslint-disable-next-line no-bitwise
+          hash = ((hash << 5) - hash) + c.charCodeAt(0);
+        });
+
+        // eslint-disable-next-line no-bitwise
+        const uuid = (hash & 0x00FFFFFF).toString(16);
+        const sum = uuid
+          .slice(-3)
+          .split('')
+          .reduce((acc, value) => acc + value.charCodeAt(), 0);
+
+        return BACKGROUND_COLORS[sum % BACKGROUND_COLORS.length];
+      }
+
+      /**
+       * generates a base64 string canvas element with the given text and color
+       *
+       * @param {String} text - the text to draw
+       * @param {String} color - the background color
+       * @returns {String} - the generated canvas element
+       */
+      function drawAvatar(text, color) {
+        if (!canvas) {
+          canvas = document.createElement('canvas');
+        }
+        const context = canvas.getContext('2d');
+        const avatarSize = DEFAULT_AVATAR_SIZE;
+        let fontSize = 1;
+
+        canvas.width = avatarSize;
+        canvas.height = avatarSize;
+
+        context.fillStyle = color;
+        context.beginPath();
+        context.ellipse(
+          canvas.width / 2, canvas.height / 2,
+          canvas.width / 2, canvas.height / 2,
+          0,
+          0, Math.PI * 2
+        );
+        context.fill();
+
+        if (text.length === 1) {
+          // use precalculated font ratio to improve perfomance
+          fontSize = avatarSize * FONT_RATIO / 100;
+        } else if (text.length > 1) {
+          fontSize = calculateFitFontSize(context, avatarSize, text);
+        }
+
+        context.font = fontName(fontSize);
+        context.fillStyle = DEFAULT_TEXT_COLOR;
+        context.textBaseline = 'middle';
+        const textWidth = context.measureText(text).width;
+
+        context.fillText(text, (avatarSize / 2) - (textWidth / 2), avatarSize / 2);
+
+        return canvas.toDataURL();
+      }
+
+      /**
+       * calculate the font size that fits the text in the canvas
+       *
+       * @param {CanvasRenderingContext2D} canvasContext - the canvas context
+       * @param {Number} canvasSize - the canvas size
+       * @param {String} text - the text to draw
+       * @returns {Number} - the font size
+       */
+      function calculateFitFontSize(canvasContext, canvasSize, text) {
+        let fontSize = 0;
+        let textMetric, textWidth, textHeight;
+
+        do {
+          fontSize++;
+          canvasContext.font = fontName(fontSize);
+          textMetric = canvasContext.measureText(text);
+          textWidth = textMetric.width;
+          textHeight = textMetric.emHeightAscent + textMetric.emHeightDescent;
+        } while (textWidth < canvasSize && textHeight < canvasSize);
+
+        return fontSize;
+      }
+
+      /**
+       * calculate the font name for the given font size
+       *
+       * @param {Number} fontSize - the font size
+       * @returns {String} - the font name
+       */
+      function fontName(size) {
+        return `${size}px Arial`;
       }
     });
 })(angular);
