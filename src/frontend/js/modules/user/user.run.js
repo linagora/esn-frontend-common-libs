@@ -7,7 +7,7 @@ require('./user-api.service.js');
   angular.module('esn.user')
     .run(runBlock);
 
-  function runBlock(objectTypeResolver, userAPI, userUtils, esnRestangular) {
+  function runBlock($templateCache, objectTypeResolver, userAPI, userUtils, esnRestangular) {
     objectTypeResolver.register('user', userAPI.user);
     esnRestangular.extendModel('users', function(model) {
       model.url = function(user) {
@@ -25,5 +25,8 @@ require('./user-api.service.js');
 
       return model;
     });
+
+    $templateCache.put('/views/modules/auto-complete/users.html', require('../../../views/modules/auto-complete/users.pug'));
+    $templateCache.put('/views/modules/auto-complete/user-auto-complete.html', require('../../../views/modules/auto-complete/user-auto-complete.pug'));
   }
 })(angular);
