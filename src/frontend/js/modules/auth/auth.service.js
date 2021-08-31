@@ -9,9 +9,11 @@ function esnAuth($q, $log, $window, userAPI, httpConfigurer) {
   const signInCompleteDeferred = $q.defer();
   const onSignInComplete = data => {
     $log.debug('esn.auth - User signed in');
-    if (data.headers) {
+
+    signInCompleteDeferred.resolve();
+
+    if (data && data.headers) {
       httpConfigurer.setHeaders(data.headers);
-      signInCompleteDeferred.resolve();
     }
   };
 
