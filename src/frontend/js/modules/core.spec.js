@@ -1,5 +1,7 @@
 'use strict';
 
+const DOMPurify = require('dompurify/dist/purify.js');
+
 /* global chai, sinon: false */
 
 var { expect } = chai;
@@ -418,6 +420,66 @@ describe('The Angular core module', function() {
         $rootScope.$digest();
         expect(errorSpy).to.not.have.been.called;
       });
+    });
+  });
+
+  describe('The esnDomPurify filter', function() {
+    let esnDomPurify, $sce;
+
+    beforeEach(function() {
+      angular.mock.inject(function($window, $filter, _$sce_) {
+        $window.DOMPurify = DOMPurify;
+        esnDomPurify = $filter('esnDomPurify');
+        $sce = _$sce_;
+      });
+    });
+
+    it('should prefix ids and class, add div container and modify css selectors', function() {
+      const input =
+      `
+      <style>
+      .test-class {
+        color: #ffffff;
+      }
+      #test-id {
+        height: 10px;
+      }
+      div {
+        display: none;
+      }
+      </style>
+      <div>
+        <p id="test-id">Hello</p>
+        <div class="test-class">World</div>
+      </div>
+      `;
+      const expectedOutput =
+      `
+      <div class="mail_container">
+      <html><head>
+      <style>
+      .mail_container .x_test-class {
+        color: #ffffff;
+      }
+      .mail_container #x_test-id {
+        height: 10px;
+      }
+      .mail_container div {
+        display: none;
+      }
+      </style>
+      </head><body>
+      <div>
+        <p id="x_test-id">Hello</p>
+        <div class="x_test-class">World</div>
+      </div>
+      </body></html>
+      </div>
+      `.replaceAll(/\s/g, '');
+
+      const ouput = $sce.valueOf(esnDomPurify(input)).replaceAll(/\s/g, '');
+
+      expect(ouput).to.equal(expectedOutput);
     });
   });
 });
