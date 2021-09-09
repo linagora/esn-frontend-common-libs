@@ -242,11 +242,9 @@ const cssjs = require('jotform-css.js');
       DOMPurify.addHook('uponSanitizeElement', function(node, data) {
         if (data.tagName === 'style') {
           const parsedStyle = parser.parseCSS(node.textContent);
+          const cleanStyle = parsedStyle.map(styleBlock => ({ ...styleBlock, selector: _computeCssRule(styleBlock.selector) }));
 
-          for (let i = 0; i < parsedStyle.length; i++) {
-            parsedStyle[i].selector = _computeCssRule(parsedStyle[i].selector);
-          }
-          node.textContent = parser.getCSSForEditor(parsedStyle);
+          node.textContent = parser.getCSSForEditor(cleanStyle);
         }
       });
       DOMPurify.addHook('uponSanitizeAttribute', function(_node, data) {

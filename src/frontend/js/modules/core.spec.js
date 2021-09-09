@@ -447,6 +447,15 @@ describe('The Angular core module', function() {
       div {
         display: none;
       }
+      div#test-id {
+        height: 20px;
+      }
+      #test-id div.test-class {
+        height: 30px;
+      }
+      #test-id > .test-class {
+        height: 40px;
+      }
       </style>
       <div>
         <p id="test-id">Hello</p>
@@ -466,6 +475,15 @@ describe('The Angular core module', function() {
       }
       .mail_container div {
         display: none;
+      }
+      .mail_container div#x_test-id {
+        height: 20px;
+      }
+      .mail_container #x_test-id div.x_test-class {
+        height: 30px;
+      }
+      .mail_container #x_test-id > .x_test-class {
+        height: 40px;
       }
       </style>
       </head><body>
