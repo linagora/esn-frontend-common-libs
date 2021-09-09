@@ -52,6 +52,7 @@
     "esn-frontend-application-grid": "github:linagora/esn-frontend-application-grid#main",
     "hex-to-hsl": "1.0.2",
     "iframe-resizer": "3.5.5",
+    "jotform-css.js": "^1.0.1",
     "jquery": "2.1.1",
     "jquery.focus": "0.1.4",
     "jwt-decode": "3.1.2",

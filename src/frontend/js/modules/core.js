@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const cssjs = require('jotform-css.js');
 
 (function(angular) {
   'use strict';
@@ -223,16 +224,44 @@ const _ = require('lodash');
     })
   /* global DOMPurify: false */
     .filter('esnDomPurify', function($sce) {
-      return function(dirty) {
-        DOMPurify.addHook('afterSanitizeAttributes', function(node) {
-        // set all elements owning target to target=_blank
-          if ('href' in node) {
-            node.setAttribute('target', '_blank');
-            node.setAttribute('rel', 'nofollow noopener');
-          }
-        });
+      function _computeCssRule(cssSelector) {
+        return '.mail_container ' + cssSelector.replaceAll(/([.#])/g, '$1x_');
+      }
 
-        return $sce.trustAsHtml(DOMPurify.sanitize(dirty, { ADD_ATTR: ['target'], FORBID_TAGS: ['style', 'input', 'form'] }));
+      function _addDivContainer(mailContent) {
+        return '<div class="mail_container">' + mailContent + '</div>';
+      }
+
+      const parser = new cssjs.cssjs();
+
+      DOMPurify.setConfig({
+        WHOLE_DOCUMENT: true,
+        ADD_ATTR: ['target'],
+        FORBID_TAGS: ['input', 'form']
+      });
+      DOMPurify.addHook('uponSanitizeElement', function(node, data) {
+        if (data.tagName === 'style') {
+          const parsedStyle = parser.parseCSS(node.textContent);
+          const cleanStyle = parsedStyle.map(styleBlock => ({ ...styleBlock, selector: _computeCssRule(styleBlock.selector) }));
+
+          node.textContent = parser.getCSSForEditor(cleanStyle);
+        }
+      });
+      DOMPurify.addHook('uponSanitizeAttribute', function(_node, data) {
+        if (data.attrName === 'id' || data.attrName === 'class') {
+          data.attrValue = 'x_' + data.attrValue;
+        }
+      });
+      DOMPurify.addHook('afterSanitizeAttributes', function(node) {
+        // set all elements owning target to target=_blank
+        if ('href' in node) {
+          node.setAttribute('target', '_blank');
+          node.setAttribute('rel', 'nofollow noopener');
+        }
+      });
+
+      return function(dirty) {
+        return $sce.trustAsHtml(_addDivContainer(DOMPurify.sanitize(dirty)));
       };
     });
 
