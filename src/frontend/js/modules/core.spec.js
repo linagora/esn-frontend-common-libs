@@ -423,18 +423,17 @@ describe('The Angular core module', function() {
     });
   });
 
-  describe('The esnDomPurify filter', function() {
-    let esnDomPurify, $sce;
+  describe('The htmlCleaner service', function() {
+    let htmlCleaner;
 
     beforeEach(function() {
-      angular.mock.inject(function($window, $filter, _$sce_) {
+      angular.mock.inject(function($window, $injector) {
         $window.DOMPurify = DOMPurify;
-        esnDomPurify = $filter('esnDomPurify');
-        $sce = _$sce_;
+        htmlCleaner = $injector.get('htmlCleaner');
       });
     });
 
-    it('should prefix ids and class, add div container and modify css selectors', function() {
+    it('clean function should inline style and clean html', function() {
       const input =
       `
       <style>
@@ -445,16 +444,7 @@ describe('The Angular core module', function() {
         height: 10px;
       }
       div {
-        display: none;
-      }
-      div#test-id {
-        height: 20px;
-      }
-      #test-id div.test-class {
-        height: 30px;
-      }
-      #test-id > .test-class {
-        height: 40px;
+        background-color: red;
       }
       </style>
       <div>
@@ -464,38 +454,13 @@ describe('The Angular core module', function() {
       `;
       const expectedOutput =
       `
-      <div class="mail_container">
-      <html><head>
-      <style>
-      .mail_container .x_test-class {
-        color: #ffffff;
-      }
-      .mail_container #x_test-id {
-        height: 10px;
-      }
-      .mail_container div {
-        display: none;
-      }
-      .mail_container div#x_test-id {
-        height: 20px;
-      }
-      .mail_container #x_test-id div.x_test-class {
-        height: 30px;
-      }
-      .mail_container #x_test-id > .x_test-class {
-        height: 40px;
-      }
-      </style>
-      </head><body>
-      <div>
-        <p id="x_test-id">Hello</p>
-        <div class="x_test-class">World</div>
-      </div>
-      </body></html>
+      <div style="background-color:red;">
+        <p style="height:10px;" id="x_test-id">Hello</p>
+        <div style="background-color:red; color:#ffffff;" class="x_test-class">World</div>
       </div>
       `.replaceAll(/\s/g, '');
 
-      const ouput = $sce.valueOf(esnDomPurify(input)).replaceAll(/\s/g, '');
+      const ouput = htmlCleaner.clean(input).replaceAll(/\s/g, '');
 
       expect(ouput).to.equal(expectedOutput);
     });

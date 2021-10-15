@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const cssjs = require('jotform-css.js');
+const juice = require('juice');
 
 (function(angular) {
   'use strict';
@@ -222,46 +222,48 @@ const cssjs = require('jotform-css.js');
         $window.location = url;
       };
     })
-  /* global DOMPurify: false */
-    .filter('esnDomPurify', function($sce) {
-      function _computeCssRule(cssSelector) {
-        return '.mail_container ' + cssSelector.replaceAll(/([.#])/g, '$1x_');
+    /* global DOMPurify: false */
+    .service('htmlCleaner', function() {
+      const service = {
+        clean
+      };
+
+      initJuiceAndDomPurify();
+
+      return service;
+
+      function clean(dirty) {
+        const dirtyWithInlinedCss = juice(dirty);
+
+        return DOMPurify.sanitize(dirtyWithInlinedCss);
       }
 
-      function _addDivContainer(mailContent) {
-        return '<div class="mail_container">' + mailContent + '</div>';
+      function initJuiceAndDomPurify() {
+        juice.excludedProperties = ['position'];
+
+        DOMPurify.setConfig({
+          // WHOLE_DOCUMENT: true,
+          ADD_ATTR: ['target'],
+          FORBID_TAGS: ['input', 'form']
+        });
+
+        DOMPurify.addHook('uponSanitizeAttribute', function(_node, data) {
+          if (data.attrName === 'id' || data.attrName === 'class') {
+            data.attrValue = 'x_' + data.attrValue;
+          }
+        });
+        DOMPurify.addHook('afterSanitizeAttributes', function(node) {
+          // set all elements owning target to target=_blank
+          if ('href' in node) {
+            node.setAttribute('target', '_blank');
+            node.setAttribute('rel', 'nofollow noopener');
+          }
+        });
       }
-
-      const parser = new cssjs.cssjs();
-
-      DOMPurify.setConfig({
-        WHOLE_DOCUMENT: true,
-        ADD_ATTR: ['target'],
-        FORBID_TAGS: ['input', 'form']
-      });
-      DOMPurify.addHook('uponSanitizeElement', function(node, data) {
-        if (data.tagName === 'style') {
-          const parsedStyle = parser.parseCSS(node.textContent);
-          const cleanStyle = parsedStyle.map(styleBlock => ({ ...styleBlock, selector: _computeCssRule(styleBlock.selector) }));
-
-          node.textContent = parser.getCSSForEditor(cleanStyle);
-        }
-      });
-      DOMPurify.addHook('uponSanitizeAttribute', function(_node, data) {
-        if (data.attrName === 'id' || data.attrName === 'class') {
-          data.attrValue = 'x_' + data.attrValue;
-        }
-      });
-      DOMPurify.addHook('afterSanitizeAttributes', function(node) {
-        // set all elements owning target to target=_blank
-        if ('href' in node) {
-          node.setAttribute('target', '_blank');
-          node.setAttribute('rel', 'nofollow noopener');
-        }
-      });
-
+    })
+    .filter('esnDomPurify', function($sce, htmlCleaner) {
       return function(dirty) {
-        return $sce.trustAsHtml(_addDivContainer(DOMPurify.sanitize(dirty)));
+        return $sce.trustAsHtml(htmlCleaner.clean(dirty));
       };
     });
 
