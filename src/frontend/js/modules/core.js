@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const juice = require('juice');
+const DOMPurify = require('dompurify');
 
 (function(angular) {
   'use strict';
@@ -222,7 +223,6 @@ const juice = require('juice');
         $window.location = url;
       };
     })
-    /* global DOMPurify: false */
     .service('htmlCleaner', function() {
       const service = {
         clean
