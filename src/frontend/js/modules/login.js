@@ -166,6 +166,7 @@
     .controller('logoutController', function(session, esnAuth) {
       session.setLogout();
       esnAuth.signout();
+      session.destroyOIDCSession();
     })
     .factory('loginAPI', function(esnRestangular, moment) {
 

@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('esn.session', ['esn.user', 'esn.domain', 'esn.template', 'esn.themes', 'esn.auth'])
-    .factory('session', function($q) {
+    .factory('session', function($q, esnRestangular) {
 
       var bootstrapDefer = $q.defer();
       var loggedIn = false;
@@ -38,7 +38,8 @@
           return session.domain.administrators.some(function(administrator) {
             return administrator.user_id === session.user._id;
           });
-        }
+        },
+        destroyOIDCSession
       };
 
       function isLoggedIn() {
@@ -82,6 +83,10 @@
       function setDomain(domain) {
         angular.copy(domain, session.domain);
         checkBootstrap();
+      }
+
+      function destroyOIDCSession() {
+        esnRestangular.one('oidc').one('logout').post();
       }
 
       session.setUser = setUser;
