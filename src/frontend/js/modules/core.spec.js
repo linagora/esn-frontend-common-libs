@@ -1,7 +1,5 @@
 'use strict';
 
-const DOMPurify = require('dompurify/dist/purify.js');
-
 /* global chai, sinon: false */
 
 var { expect } = chai;
@@ -428,7 +426,6 @@ describe('The Angular core module', function() {
 
     beforeEach(function() {
       angular.mock.inject(function($window, $injector) {
-        $window.DOMPurify = DOMPurify;
         htmlCleaner = $injector.get('htmlCleaner');
       });
     });
