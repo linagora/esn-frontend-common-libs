@@ -7,8 +7,14 @@ angular.module('esn.authentication', ['esn.http', 'ui.router'])
       path: $location.path(),
       search: $location.search()
     };
+    const locationListInSorage = JSON.parse($window.localStorage.getItem('locationListInSorage')) || {};
 
     if (currentLocation.path !== authCallbackPath) {
+      const locationList = [];
+
+      locationList.push(currentLocation, locationListInSorage);
+
+      $window.localStorage.setItem('locationListInSorage', JSON.stringify(locationList));
       $window.localStorage.setItem('redirectToAfterAuth', JSON.stringify(currentLocation));
     }
   })
