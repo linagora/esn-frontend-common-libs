@@ -8,13 +8,16 @@ angular.module('esn.authentication', ['esn.http', 'ui.router'])
       search: $location.search()
     };
 
-    if (currentLocation.path !== authCallbackPath) {
+    if (currentLocation.path !== authCallbackPath && currentLocation.path !== authCallbackPath + '/') {
       $window.localStorage.setItem('redirectToAfterAuth', JSON.stringify(currentLocation));
     }
   })
   .config(function($urlRouterProvider, authCallbackPath) {
 
-    $urlRouterProvider.when(authCallbackPath, function($location, $window) {
+    $urlRouterProvider.when(authCallbackPath, redirectAndCleanLocalStorage);
+    $urlRouterProvider.when(authCallbackPath + '/', redirectAndCleanLocalStorage);
+
+    function redirectAndCleanLocalStorage($location, $window) {
 
       const redirectToAfterAuth = JSON.parse($window.localStorage.getItem('redirectToAfterAuth'));
 
@@ -25,7 +28,7 @@ angular.module('esn.authentication', ['esn.http', 'ui.router'])
       } else {
         return '/';
       }
-    });
+    }
   })
   .factory('tokenAPI', function(esnRestangular, $log, esnAuth) {
 
