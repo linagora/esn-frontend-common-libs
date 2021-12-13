@@ -4,6 +4,10 @@ div
 
     div.header-inner.flex-vertical-centered.flex-space-between
       ul.list-inline.all-centered
+        li.burger-menu 
+          button.btn.btn-link.btn-icon.waves-notransition.hidden-xs(ng-click="toggleSideMenu()", title="{{ 'Toggle sidebar' | translate }}")
+            i.mdi.mdi-menu
+
         li.logo
           a(href='', ui-sref='home')
             img.openpaas-logo(ng-src=`{{logoUrl}}`, src='assets/images/white-logo.svg', alt="{{ 'OpenPaas Logo' | translate }}")
