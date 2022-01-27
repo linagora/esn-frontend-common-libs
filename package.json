@@ -70,7 +70,7 @@
     "restangular": "1.6.1",
     "roboto-fontface": "0.4.3",
     "save-dev": "0.0.1-security",
-    "summernote": "github:linagora/summernote#0.8.2-1",
+    "summernote": "github:linagora/summernote#v0.8.18",
     "ui-router-extras": "0.1.0",
     "videogular": "1.4.4",
     "videogular-buffering": "1.4.4",
