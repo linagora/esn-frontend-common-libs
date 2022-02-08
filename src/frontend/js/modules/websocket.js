@@ -351,22 +351,24 @@
           return $q.reject(new Error('User not logged in'));
         }
 
-        return tokenAPI.getNewToken().then(function(response) {
-          _disconnectOld();
-          var sio = io()(httpConfigurer.getUrl('/'), {
-            query: 'token=' + response.data.token + '&user=' + session.user._id,
-            reconnection: false
+        return tokenAPI.getWebToken()
+          .then(({ data: token }) => {
+            _disconnectOld();
+
+            const WS_URL = (window.openpaas && window.openpaas.WS_URL) || httpConfigurer.getUrl();
+
+            const sio = io()(WS_URL, {
+              query: { token, user: session.user._id },
+              reconnection: false
+            });
+
+            ioSocketConnection.setSio(sio);
+          })
+          .catch(error => {
+            $log.info('fatal: tokenAPI.getWebToken() failed', error);
+
+            return $q.reject(error);
           });
-
-          ioSocketConnection.setSio(sio);
-        }, function(error) {
-          $log.info('fatal: tokenAPI.getNewToken() failed');
-          if (error && error.data) {
-            $log.info('Error while getting auth token', error.data);
-          }
-
-          return Promise.reject(error);
-        });
       }
 
       function _clearManagersCache() {
