@@ -15,3 +15,5 @@ Note that there is a 10000ms timeout by default. If you want to change that, sim
 ```sh
 TEST_TIMEOUT=2000 npm run test
 ```
+
+Test trigger CI
