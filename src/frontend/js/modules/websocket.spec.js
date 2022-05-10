@@ -1,6 +1,6 @@
 'use strict';
 
-/* global chai: false */
+/* global chai, sinon: false */
 
 var { expect } = chai;
 
@@ -1135,13 +1135,7 @@ describe('The esn.websocket Angular module', function() {
       self.ioaction.isUnsubscribe = function() { return false; };
 
       self.tokenAPI = {
-        getNewToken: function() {
-          return {
-            then: function(callback) {
-              self.tokenAPI.callback = callback;
-            }
-          };
-        }
+        getWebToken: sinon.stub().returns($q.when({ data: 'jwt' }))
       };
 
       self.io = function() {
@@ -1198,19 +1192,14 @@ describe('The esn.websocket Angular module', function() {
         $rootScope.$digest();
       });
 
-      it('should call tokenAPI.getNewToken()', function() {
-        expect(self.tokenAPI.callback).to.be.not.ok;
+      it('should call tokenAPI.getWebToken()', function() {
         self.icm.connect();
-        expect(self.tokenAPI.callback).to.be.a('function');
+        expect(self.tokenAPI.getWebToken).to.be.called;
       });
 
       it('should resolve when token API response succeed', function(done) {
-        self.tokenAPI.getNewToken = function() {
-          return $q.when({
-            data: {
-              token: 'apitoken'
-            }
-          });
+        self.tokenAPI.getWebToken = function() {
+          return $q.when({ data: 'jwt' });
         };
 
         self.icm.connect().then(function() {
@@ -1221,9 +1210,7 @@ describe('The esn.websocket Angular module', function() {
       });
 
       it('should reject when token API response fails', function(done) {
-        self.tokenAPI.getNewToken = function() {
-          return Promise.reject(new Error('test'));
-        };
+        self.tokenAPI.getWebToken = sinon.stub().returns($q.reject());
 
         self.icm.connect().then(function() {
           done(true);
@@ -1234,16 +1221,23 @@ describe('The esn.websocket Angular module', function() {
         $rootScope.$digest();
       });
     });
-    describe('tokenAPI.getNewToken() callback', function() {
+    describe('tokenAPI.getWebToken() callback', function() {
 
       it('should call socketIO connect method, with token in arguments', function(done) {
-        self.ioMock = function(ns, options) {
-          expect(options.query).to.contain('token=token1');
-          expect(options.query).to.contain('user=user1');
-          done();
+        const expectedOptions = {
+          query: {
+            token: 'jwt'
+          },
+          reconnection: false
         };
-        self.icm.connect();
-        self.tokenAPI.callback({ data: { token: 'token1' } });
+
+        self.ioMock = sinon.spy();
+        self.icm.connect()
+          .then(function() {
+            expect(self.ioMock).to.be.calledWith(sinon.match.any, expectedOptions);
+            done();
+          })
+          .catch(done);
       });
 
       it('should set socketIO connect method response in ioSocketConnection', function(done) {
@@ -1253,7 +1247,6 @@ describe('The esn.websocket Angular module', function() {
           expect(sio).to.deep.equal({ io: true });
           done();
         };
-        self.tokenAPI.callback({ data: { token: 'token1' } });
       });
 
     });
@@ -1262,13 +1255,12 @@ describe('The esn.websocket Angular module', function() {
         self.ioMock = function() { return { io: true }; };
         self.ioMock.managers = {};
         self.icm.connect();
-        self.tokenAPI.callback({ data: { token: 'token1' } });
         self.isc.isConnected = function() { return false; };
 
-        self.tokenAPI.getNewToken = function() {
+        self.tokenAPI.getWebToken = function() {
           done();
 
-          return { then: function() {} };
+          return $q.when({ data: 'jwt' });
         };
 
         self.isc.callbacks.disconnect();
@@ -1295,7 +1287,6 @@ describe('The esn.websocket Angular module', function() {
         self.ioOfflineBuffer.flushBuffer = done;
         self.ioMock = function() { return { io: true }; };
         self.icm.connect();
-        self.tokenAPI.callback({ data: { token: 'token1' } });
         self.isc.callbacks.connect();
       });
       it('should apply the buffered messages to socketio', function() {
@@ -1314,7 +1305,6 @@ describe('The esn.websocket Angular module', function() {
         self.ioOfflineBuffer.push(a2);
         self.ioMock = function() { return { io: true }; };
         self.icm.connect();
-        self.tokenAPI.callback({ data: { token: 'token1' } });
         self.isc.callbacks.connect();
         expect(appliedActions).to.have.length(2);
         expect(appliedActions[0].id).to.equal('action1');
@@ -1336,7 +1326,6 @@ describe('The esn.websocket Angular module', function() {
         self.ioOfflineBuffer.handleSubscription(a2);
         self.ioMock = function() { return { io: true }; };
         self.icm.connect();
-        self.tokenAPI.callback({ data: { token: 'token1' } });
         self.isc.callbacks.connect();
         expect(appliedActions).to.have.length(2);
         expect(appliedActions[0].id).to.equal('action1');
