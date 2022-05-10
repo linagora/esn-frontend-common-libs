@@ -233,7 +233,7 @@ const DOMPurify = require('dompurify');
       return service;
 
       function clean(dirty) {
-        const dirtyWithInlinedCss = juice(dirty);
+        const dirtyWithInlinedCss = juice(dirty, { preserveMediaQueries: false });
 
         return DOMPurify.sanitize(dirtyWithInlinedCss);
       }
