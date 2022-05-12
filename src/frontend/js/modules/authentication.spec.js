@@ -22,46 +22,6 @@ describe('The esn.authentication tokenAPI service', function() {
     tokenAPI = _tokenAPI_;
   }));
 
-  describe('the getNewToken method', function() {
-    it('should call GET /api/authenticationtoken', function() {
-      const getSpy = sinon.fake.resolves('token1');
-
-      esnRestangular.one = sinon.fake.returns({ get: getSpy });
-
-      return tokenAPI.getNewToken().then(() => {
-        expect(esnRestangular.one).to.have.been.calledWith('authenticationtoken');
-        expect(getSpy).to.have.been.called;
-      });
-    });
-
-    it('should cache calls to GET /api/authenticationtoken', function() {
-      const getSpy = sinon.stub();
-
-      getSpy.resolves('token1');
-
-      esnRestangular.one = sinon.fake.returns({ get: getSpy });
-
-      return tokenAPI.getNewToken().then(() => tokenAPI.getNewToken()).then(() => {
-        expect(esnRestangular.one).to.have.been.calledOnceWithExactly('authenticationtoken');
-        expect(getSpy).to.have.been.calledOnce;
-      });
-    });
-
-    it('should not use cache when first argument is true', function() {
-      const getSpy = sinon.stub();
-
-      getSpy.resolves('token1');
-
-      esnRestangular.one = sinon.fake.returns({ get: getSpy });
-
-      return tokenAPI.getNewToken().then(() => tokenAPI.getNewToken(true)).then(() => {
-        expect(esnRestangular.one).to.have.been.calledTwice;
-        expect(esnRestangular.one).to.have.been.calledWithExactly('authenticationtoken');
-        expect(getSpy).to.have.been.calledTwice;
-      });
-    });
-  });
-
   describe('the getWebToken method', () => {
     it('should call POST /api/jwt/generate', () => {
       const promiseSpy = sinon.fake.resolves('jwt');
