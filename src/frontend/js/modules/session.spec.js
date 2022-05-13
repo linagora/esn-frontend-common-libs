@@ -201,7 +201,7 @@ describe('The esn.session Angular module', function() {
   });
 
   describe('sessionFactory service', function() {
-    var service, $rootScope, userdefer, domaindefer, tokendefer, userAPI, domainAPI, session, tokenAPI, esnAuth;
+    var service, $rootScope, userdefer, domaindefer, userAPI, domainAPI, session, esnAuth;
 
     beforeEach(function() {
 
@@ -236,14 +236,6 @@ describe('The esn.session Angular module', function() {
         ready: $q.when()
       };
 
-      tokenAPI = {
-        getNewToken: function() {
-          tokendefer = $q.defer();
-
-          return tokendefer.promise;
-        }
-      };
-
       esnAuth = {
         signInCompletePromise: {
           then: callback => callback()
@@ -253,7 +245,6 @@ describe('The esn.session Angular module', function() {
       angular.mock.module(function($provide) {
         $provide.value('userAPI', userAPI);
         $provide.value('domainAPI', domainAPI);
-        $provide.value('tokenAPI', tokenAPI);
         $provide.value('session', session);
         $provide.value('esnAuth', esnAuth);
       });
