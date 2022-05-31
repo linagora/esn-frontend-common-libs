@@ -101,7 +101,7 @@
     })
 
     .directive('mainHeader', function(matchmedia, headerService, Fullscreen, session, esnRestangular,
-      SUB_HEADER_HAS_INJECTION_EVENT, ESN_MEDIA_QUERY_SM_XS) {
+      SUB_HEADER_HAS_INJECTION_EVENT, ESN_MEDIA_QUERY_SM_XS, $rootScope) {
       return {
         restrict: 'E',
         replace: true,
@@ -113,6 +113,10 @@
 
           scope.toggleFullScreen = function() {
             Fullscreen.toggleAll();
+          };
+
+          scope.toggleSideMenu = function() {
+            $rootScope.$broadcast('toggleSideMenu', true);
           };
 
           scope.domainId = session.domain._id;
